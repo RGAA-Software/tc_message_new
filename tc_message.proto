@@ -1,0 +1,10 @@
+syntax = "proto3";
+package tc;
+
+enum MessageType {
+  kHello = 0;
+}
+
+message Message {
+
+}
