@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Protobuf REQUIRED)
 
-if(WIN32)
+if(WIN32 OR APPLE OR UNIX)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto)
 
     add_library(tc_message library.cpp ${PROTO_SRCS} ${PROTO_HDRS})
