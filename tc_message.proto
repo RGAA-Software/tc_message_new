@@ -8,6 +8,7 @@ enum MessageType {
   kHeartBeat = 2;
   kVideoFrame = 3;
   kAudioFrame = 4;
+  kKeyEvent = 5;
 }
 
 enum VideoType {
@@ -44,6 +45,31 @@ message AudioFrame {
   bytes data = 3;
 }
 
+message KeyEvent
+{
+	enum LockKeyStatusCheck {
+		kDontCareLockKey = 0;
+		kCheckNumLock = 1;
+		kCheckCapsLock = 2;
+	}
+
+	// 虚拟键盘码,参考msdn文档的虚拟键码表: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+    uint32 key_code = 1;
+
+	// 按下还是松开
+    bool down = 2;
+
+	// 按键当前的状态 GetKeyState()获取
+	int32  num_lock_status =3;
+
+	int32  caps_lock_status = 4;
+
+	LockKeyStatusCheck status_check = 5;
+
+	// 当前毫秒值时间戳
+	int64 timestamp = 6;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -52,4 +78,5 @@ message Message {
   HeartBeat heart_beat = 5;
   VideoFrame video_frame = 6;
   AudioFrame audio_frame = 7;
+  KeyEvent key_event = 8;
 }
