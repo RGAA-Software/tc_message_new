@@ -9,12 +9,25 @@ enum MessageType {
   kVideoFrame = 3;
   kAudioFrame = 4;
   kKeyEvent = 5;
+  kMouseEvent = 6;
 }
 
 enum VideoType {
   kNetH264 = 0;
   kNetHevc = 1;
   kNetVp9 = 2;
+}
+
+enum EButtonFlag
+{
+  kButtonFlagNone = 0;
+  kButtonFlagCapsLockOn = 1;
+  kButtonFlagShiftDown = 2;
+  kButtonFlagControlDown = 4;
+  kButtonFlagAltDown = 8;
+  kButtonFlagLeftMouseButton = 16;
+  kButtonFlagMiddleMouseButton = 32;
+  kButtonFlagRightMouseButton = 64;
 }
 
 message Ack {
@@ -70,6 +83,27 @@ message KeyEvent
 	int64 timestamp = 6;
 }
 
+message MouseEvent
+{
+    //to do 当服务端采集方式为采集屏幕的时候，当前鼠标事件对应的屏幕索引
+    int32 monitor_index = 1;
+
+    // 当前鼠标x值，占窗口宽度的比值
+    float x_ratio = 2;
+
+    // 当前鼠标y值，占窗口高度度的比值
+    float y_ratio = 3;
+
+	// 按键掩码, 用来表示摁下了什么按键、抬起了什么按键 ref: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
+    int32 button = 4;
+
+	// 鼠标data，滚轮等数据
+    int32 data = 5;
+
+	// 当前毫秒值时间戳
+	int64 timestamp = 6;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -79,4 +113,5 @@ message Message {
   VideoFrame video_frame = 6;
   AudioFrame audio_frame = 7;
   KeyEvent key_event = 8;
+  MouseEvent mouse_event = 9;
 }
