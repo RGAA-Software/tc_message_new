@@ -59,9 +59,15 @@ extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
 class Hello;
 struct HelloDefaultTypeInternal;
 extern HelloDefaultTypeInternal _Hello_default_instance_;
+class KeyEvent;
+struct KeyEventDefaultTypeInternal;
+extern KeyEventDefaultTypeInternal _KeyEvent_default_instance_;
 class Message;
 struct MessageDefaultTypeInternal;
 extern MessageDefaultTypeInternal _Message_default_instance_;
+class MouseEvent;
+struct MouseEventDefaultTypeInternal;
+extern MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
 class VideoFrame;
 struct VideoFrameDefaultTypeInternal;
 extern VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
@@ -71,23 +77,53 @@ template<> ::tc::Ack* Arena::CreateMaybeMessage<::tc::Ack>(Arena*);
 template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
 template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
+template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
 template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
+template<> ::tc::MouseEvent* Arena::CreateMaybeMessage<::tc::MouseEvent>(Arena*);
 template<> ::tc::VideoFrame* Arena::CreateMaybeMessage<::tc::VideoFrame>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tc {
 
+enum KeyEvent_LockKeyStatusCheck : int {
+  KeyEvent_LockKeyStatusCheck_kDontCareLockKey = 0,
+  KeyEvent_LockKeyStatusCheck_kCheckNumLock = 1,
+  KeyEvent_LockKeyStatusCheck_kCheckCapsLock = 2,
+  KeyEvent_LockKeyStatusCheck_KeyEvent_LockKeyStatusCheck_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  KeyEvent_LockKeyStatusCheck_KeyEvent_LockKeyStatusCheck_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool KeyEvent_LockKeyStatusCheck_IsValid(int value);
+constexpr KeyEvent_LockKeyStatusCheck KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_MIN = KeyEvent_LockKeyStatusCheck_kDontCareLockKey;
+constexpr KeyEvent_LockKeyStatusCheck KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_MAX = KeyEvent_LockKeyStatusCheck_kCheckCapsLock;
+constexpr int KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_ARRAYSIZE = KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* KeyEvent_LockKeyStatusCheck_descriptor();
+template<typename T>
+inline const std::string& KeyEvent_LockKeyStatusCheck_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, KeyEvent_LockKeyStatusCheck>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function KeyEvent_LockKeyStatusCheck_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    KeyEvent_LockKeyStatusCheck_descriptor(), enum_t_value);
+}
+inline bool KeyEvent_LockKeyStatusCheck_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, KeyEvent_LockKeyStatusCheck* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<KeyEvent_LockKeyStatusCheck>(
+    KeyEvent_LockKeyStatusCheck_descriptor(), name, value);
+}
 enum MessageType : int {
   kHello = 0,
   kAck = 1,
   kHeartBeat = 2,
   kVideoFrame = 3,
   kAudioFrame = 4,
+  kKeyEvent = 5,
+  kMouseEvent = 6,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kAudioFrame;
+constexpr MessageType MessageType_MAX = kMouseEvent;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -129,6 +165,37 @@ inline bool VideoType_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, VideoType* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<VideoType>(
     VideoType_descriptor(), name, value);
+}
+enum EButtonFlag : int {
+  kButtonFlagNone = 0,
+  kButtonFlagCapsLockOn = 1,
+  kButtonFlagShiftDown = 2,
+  kButtonFlagControlDown = 4,
+  kButtonFlagAltDown = 8,
+  kButtonFlagLeftMouseButton = 16,
+  kButtonFlagMiddleMouseButton = 32,
+  kButtonFlagRightMouseButton = 64,
+  EButtonFlag_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  EButtonFlag_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool EButtonFlag_IsValid(int value);
+constexpr EButtonFlag EButtonFlag_MIN = kButtonFlagNone;
+constexpr EButtonFlag EButtonFlag_MAX = kButtonFlagRightMouseButton;
+constexpr int EButtonFlag_ARRAYSIZE = EButtonFlag_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EButtonFlag_descriptor();
+template<typename T>
+inline const std::string& EButtonFlag_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, EButtonFlag>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function EButtonFlag_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    EButtonFlag_descriptor(), enum_t_value);
+}
+inline bool EButtonFlag_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, EButtonFlag* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<EButtonFlag>(
+    EButtonFlag_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -910,6 +977,444 @@ class AudioFrame final :
 };
 // -------------------------------------------------------------------
 
+class KeyEvent final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.KeyEvent) */ {
+ public:
+  inline KeyEvent() : KeyEvent(nullptr) {}
+  ~KeyEvent() override;
+  explicit PROTOBUF_CONSTEXPR KeyEvent(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KeyEvent(const KeyEvent& from);
+  KeyEvent(KeyEvent&& from) noexcept
+    : KeyEvent() {
+    *this = ::std::move(from);
+  }
+
+  inline KeyEvent& operator=(const KeyEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KeyEvent& operator=(KeyEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KeyEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KeyEvent* internal_default_instance() {
+    return reinterpret_cast<const KeyEvent*>(
+               &_KeyEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(KeyEvent& a, KeyEvent& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KeyEvent* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KeyEvent* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KeyEvent* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<KeyEvent>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KeyEvent& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const KeyEvent& from) {
+    KeyEvent::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KeyEvent* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.KeyEvent";
+  }
+  protected:
+  explicit KeyEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef KeyEvent_LockKeyStatusCheck LockKeyStatusCheck;
+  static constexpr LockKeyStatusCheck kDontCareLockKey =
+    KeyEvent_LockKeyStatusCheck_kDontCareLockKey;
+  static constexpr LockKeyStatusCheck kCheckNumLock =
+    KeyEvent_LockKeyStatusCheck_kCheckNumLock;
+  static constexpr LockKeyStatusCheck kCheckCapsLock =
+    KeyEvent_LockKeyStatusCheck_kCheckCapsLock;
+  static inline bool LockKeyStatusCheck_IsValid(int value) {
+    return KeyEvent_LockKeyStatusCheck_IsValid(value);
+  }
+  static constexpr LockKeyStatusCheck LockKeyStatusCheck_MIN =
+    KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_MIN;
+  static constexpr LockKeyStatusCheck LockKeyStatusCheck_MAX =
+    KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_MAX;
+  static constexpr int LockKeyStatusCheck_ARRAYSIZE =
+    KeyEvent_LockKeyStatusCheck_LockKeyStatusCheck_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  LockKeyStatusCheck_descriptor() {
+    return KeyEvent_LockKeyStatusCheck_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& LockKeyStatusCheck_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, LockKeyStatusCheck>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function LockKeyStatusCheck_Name.");
+    return KeyEvent_LockKeyStatusCheck_Name(enum_t_value);
+  }
+  static inline bool LockKeyStatusCheck_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      LockKeyStatusCheck* value) {
+    return KeyEvent_LockKeyStatusCheck_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kKeyCodeFieldNumber = 1,
+    kDownFieldNumber = 2,
+    kNumLockStatusFieldNumber = 3,
+    kCapsLockStatusFieldNumber = 4,
+    kTimestampFieldNumber = 6,
+    kStatusCheckFieldNumber = 5,
+  };
+  // uint32 key_code = 1;
+  void clear_key_code();
+  uint32_t key_code() const;
+  void set_key_code(uint32_t value);
+  private:
+  uint32_t _internal_key_code() const;
+  void _internal_set_key_code(uint32_t value);
+  public:
+
+  // bool down = 2;
+  void clear_down();
+  bool down() const;
+  void set_down(bool value);
+  private:
+  bool _internal_down() const;
+  void _internal_set_down(bool value);
+  public:
+
+  // int32 num_lock_status = 3;
+  void clear_num_lock_status();
+  int32_t num_lock_status() const;
+  void set_num_lock_status(int32_t value);
+  private:
+  int32_t _internal_num_lock_status() const;
+  void _internal_set_num_lock_status(int32_t value);
+  public:
+
+  // int32 caps_lock_status = 4;
+  void clear_caps_lock_status();
+  int32_t caps_lock_status() const;
+  void set_caps_lock_status(int32_t value);
+  private:
+  int32_t _internal_caps_lock_status() const;
+  void _internal_set_caps_lock_status(int32_t value);
+  public:
+
+  // int64 timestamp = 6;
+  void clear_timestamp();
+  int64_t timestamp() const;
+  void set_timestamp(int64_t value);
+  private:
+  int64_t _internal_timestamp() const;
+  void _internal_set_timestamp(int64_t value);
+  public:
+
+  // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
+  void clear_status_check();
+  ::tc::KeyEvent_LockKeyStatusCheck status_check() const;
+  void set_status_check(::tc::KeyEvent_LockKeyStatusCheck value);
+  private:
+  ::tc::KeyEvent_LockKeyStatusCheck _internal_status_check() const;
+  void _internal_set_status_check(::tc::KeyEvent_LockKeyStatusCheck value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.KeyEvent)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t key_code_;
+    bool down_;
+    int32_t num_lock_status_;
+    int32_t caps_lock_status_;
+    int64_t timestamp_;
+    int status_check_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MouseEvent final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.MouseEvent) */ {
+ public:
+  inline MouseEvent() : MouseEvent(nullptr) {}
+  ~MouseEvent() override;
+  explicit PROTOBUF_CONSTEXPR MouseEvent(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MouseEvent(const MouseEvent& from);
+  MouseEvent(MouseEvent&& from) noexcept
+    : MouseEvent() {
+    *this = ::std::move(from);
+  }
+
+  inline MouseEvent& operator=(const MouseEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MouseEvent& operator=(MouseEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MouseEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MouseEvent* internal_default_instance() {
+    return reinterpret_cast<const MouseEvent*>(
+               &_MouseEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(MouseEvent& a, MouseEvent& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MouseEvent* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MouseEvent* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MouseEvent* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MouseEvent>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MouseEvent& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const MouseEvent& from) {
+    MouseEvent::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MouseEvent* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.MouseEvent";
+  }
+  protected:
+  explicit MouseEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMonitorIndexFieldNumber = 1,
+    kXRatioFieldNumber = 2,
+    kYRatioFieldNumber = 3,
+    kButtonFieldNumber = 4,
+    kTimestampFieldNumber = 6,
+    kDataFieldNumber = 5,
+  };
+  // int32 monitor_index = 1;
+  void clear_monitor_index();
+  int32_t monitor_index() const;
+  void set_monitor_index(int32_t value);
+  private:
+  int32_t _internal_monitor_index() const;
+  void _internal_set_monitor_index(int32_t value);
+  public:
+
+  // float x_ratio = 2;
+  void clear_x_ratio();
+  float x_ratio() const;
+  void set_x_ratio(float value);
+  private:
+  float _internal_x_ratio() const;
+  void _internal_set_x_ratio(float value);
+  public:
+
+  // float y_ratio = 3;
+  void clear_y_ratio();
+  float y_ratio() const;
+  void set_y_ratio(float value);
+  private:
+  float _internal_y_ratio() const;
+  void _internal_set_y_ratio(float value);
+  public:
+
+  // int32 button = 4;
+  void clear_button();
+  int32_t button() const;
+  void set_button(int32_t value);
+  private:
+  int32_t _internal_button() const;
+  void _internal_set_button(int32_t value);
+  public:
+
+  // int64 timestamp = 6;
+  void clear_timestamp();
+  int64_t timestamp() const;
+  void set_timestamp(int64_t value);
+  private:
+  int64_t _internal_timestamp() const;
+  void _internal_set_timestamp(int64_t value);
+  public:
+
+  // int32 data = 5;
+  void clear_data();
+  int32_t data() const;
+  void set_data(int32_t value);
+  private:
+  int32_t _internal_data() const;
+  void _internal_set_data(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.MouseEvent)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t monitor_index_;
+    float x_ratio_;
+    float y_ratio_;
+    int32_t button_;
+    int64_t timestamp_;
+    int32_t data_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -958,7 +1463,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -1036,6 +1541,8 @@ class Message final :
     kHeartBeatFieldNumber = 5,
     kVideoFrameFieldNumber = 6,
     kAudioFrameFieldNumber = 7,
+    kKeyEventFieldNumber = 8,
+    kMouseEventFieldNumber = 9,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -1129,6 +1636,42 @@ class Message final :
       ::tc::AudioFrame* audio_frame);
   ::tc::AudioFrame* unsafe_arena_release_audio_frame();
 
+  // .tc.KeyEvent key_event = 8;
+  bool has_key_event() const;
+  private:
+  bool _internal_has_key_event() const;
+  public:
+  void clear_key_event();
+  const ::tc::KeyEvent& key_event() const;
+  PROTOBUF_NODISCARD ::tc::KeyEvent* release_key_event();
+  ::tc::KeyEvent* mutable_key_event();
+  void set_allocated_key_event(::tc::KeyEvent* key_event);
+  private:
+  const ::tc::KeyEvent& _internal_key_event() const;
+  ::tc::KeyEvent* _internal_mutable_key_event();
+  public:
+  void unsafe_arena_set_allocated_key_event(
+      ::tc::KeyEvent* key_event);
+  ::tc::KeyEvent* unsafe_arena_release_key_event();
+
+  // .tc.MouseEvent mouse_event = 9;
+  bool has_mouse_event() const;
+  private:
+  bool _internal_has_mouse_event() const;
+  public:
+  void clear_mouse_event();
+  const ::tc::MouseEvent& mouse_event() const;
+  PROTOBUF_NODISCARD ::tc::MouseEvent* release_mouse_event();
+  ::tc::MouseEvent* mutable_mouse_event();
+  void set_allocated_mouse_event(::tc::MouseEvent* mouse_event);
+  private:
+  const ::tc::MouseEvent& _internal_mouse_event() const;
+  ::tc::MouseEvent* _internal_mutable_mouse_event();
+  public:
+  void unsafe_arena_set_allocated_mouse_event(
+      ::tc::MouseEvent* mouse_event);
+  ::tc::MouseEvent* unsafe_arena_release_mouse_event();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -1160,6 +1703,8 @@ class Message final :
     ::tc::HeartBeat* heart_beat_;
     ::tc::VideoFrame* video_frame_;
     ::tc::AudioFrame* audio_frame_;
+    ::tc::KeyEvent* key_event_;
+    ::tc::MouseEvent* mouse_event_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1472,6 +2017,254 @@ inline void AudioFrame::set_allocated_data(std::string* data) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:tc.AudioFrame.data)
+}
+
+// -------------------------------------------------------------------
+
+// KeyEvent
+
+// uint32 key_code = 1;
+inline void KeyEvent::clear_key_code() {
+  _impl_.key_code_ = 0u;
+}
+inline uint32_t KeyEvent::_internal_key_code() const {
+  return _impl_.key_code_;
+}
+inline uint32_t KeyEvent::key_code() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.key_code)
+  return _internal_key_code();
+}
+inline void KeyEvent::_internal_set_key_code(uint32_t value) {
+  
+  _impl_.key_code_ = value;
+}
+inline void KeyEvent::set_key_code(uint32_t value) {
+  _internal_set_key_code(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.key_code)
+}
+
+// bool down = 2;
+inline void KeyEvent::clear_down() {
+  _impl_.down_ = false;
+}
+inline bool KeyEvent::_internal_down() const {
+  return _impl_.down_;
+}
+inline bool KeyEvent::down() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.down)
+  return _internal_down();
+}
+inline void KeyEvent::_internal_set_down(bool value) {
+  
+  _impl_.down_ = value;
+}
+inline void KeyEvent::set_down(bool value) {
+  _internal_set_down(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.down)
+}
+
+// int32 num_lock_status = 3;
+inline void KeyEvent::clear_num_lock_status() {
+  _impl_.num_lock_status_ = 0;
+}
+inline int32_t KeyEvent::_internal_num_lock_status() const {
+  return _impl_.num_lock_status_;
+}
+inline int32_t KeyEvent::num_lock_status() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.num_lock_status)
+  return _internal_num_lock_status();
+}
+inline void KeyEvent::_internal_set_num_lock_status(int32_t value) {
+  
+  _impl_.num_lock_status_ = value;
+}
+inline void KeyEvent::set_num_lock_status(int32_t value) {
+  _internal_set_num_lock_status(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.num_lock_status)
+}
+
+// int32 caps_lock_status = 4;
+inline void KeyEvent::clear_caps_lock_status() {
+  _impl_.caps_lock_status_ = 0;
+}
+inline int32_t KeyEvent::_internal_caps_lock_status() const {
+  return _impl_.caps_lock_status_;
+}
+inline int32_t KeyEvent::caps_lock_status() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.caps_lock_status)
+  return _internal_caps_lock_status();
+}
+inline void KeyEvent::_internal_set_caps_lock_status(int32_t value) {
+  
+  _impl_.caps_lock_status_ = value;
+}
+inline void KeyEvent::set_caps_lock_status(int32_t value) {
+  _internal_set_caps_lock_status(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.caps_lock_status)
+}
+
+// .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
+inline void KeyEvent::clear_status_check() {
+  _impl_.status_check_ = 0;
+}
+inline ::tc::KeyEvent_LockKeyStatusCheck KeyEvent::_internal_status_check() const {
+  return static_cast< ::tc::KeyEvent_LockKeyStatusCheck >(_impl_.status_check_);
+}
+inline ::tc::KeyEvent_LockKeyStatusCheck KeyEvent::status_check() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.status_check)
+  return _internal_status_check();
+}
+inline void KeyEvent::_internal_set_status_check(::tc::KeyEvent_LockKeyStatusCheck value) {
+  
+  _impl_.status_check_ = value;
+}
+inline void KeyEvent::set_status_check(::tc::KeyEvent_LockKeyStatusCheck value) {
+  _internal_set_status_check(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.status_check)
+}
+
+// int64 timestamp = 6;
+inline void KeyEvent::clear_timestamp() {
+  _impl_.timestamp_ = int64_t{0};
+}
+inline int64_t KeyEvent::_internal_timestamp() const {
+  return _impl_.timestamp_;
+}
+inline int64_t KeyEvent::timestamp() const {
+  // @@protoc_insertion_point(field_get:tc.KeyEvent.timestamp)
+  return _internal_timestamp();
+}
+inline void KeyEvent::_internal_set_timestamp(int64_t value) {
+  
+  _impl_.timestamp_ = value;
+}
+inline void KeyEvent::set_timestamp(int64_t value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:tc.KeyEvent.timestamp)
+}
+
+// -------------------------------------------------------------------
+
+// MouseEvent
+
+// int32 monitor_index = 1;
+inline void MouseEvent::clear_monitor_index() {
+  _impl_.monitor_index_ = 0;
+}
+inline int32_t MouseEvent::_internal_monitor_index() const {
+  return _impl_.monitor_index_;
+}
+inline int32_t MouseEvent::monitor_index() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.monitor_index)
+  return _internal_monitor_index();
+}
+inline void MouseEvent::_internal_set_monitor_index(int32_t value) {
+  
+  _impl_.monitor_index_ = value;
+}
+inline void MouseEvent::set_monitor_index(int32_t value) {
+  _internal_set_monitor_index(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.monitor_index)
+}
+
+// float x_ratio = 2;
+inline void MouseEvent::clear_x_ratio() {
+  _impl_.x_ratio_ = 0;
+}
+inline float MouseEvent::_internal_x_ratio() const {
+  return _impl_.x_ratio_;
+}
+inline float MouseEvent::x_ratio() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.x_ratio)
+  return _internal_x_ratio();
+}
+inline void MouseEvent::_internal_set_x_ratio(float value) {
+  
+  _impl_.x_ratio_ = value;
+}
+inline void MouseEvent::set_x_ratio(float value) {
+  _internal_set_x_ratio(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.x_ratio)
+}
+
+// float y_ratio = 3;
+inline void MouseEvent::clear_y_ratio() {
+  _impl_.y_ratio_ = 0;
+}
+inline float MouseEvent::_internal_y_ratio() const {
+  return _impl_.y_ratio_;
+}
+inline float MouseEvent::y_ratio() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.y_ratio)
+  return _internal_y_ratio();
+}
+inline void MouseEvent::_internal_set_y_ratio(float value) {
+  
+  _impl_.y_ratio_ = value;
+}
+inline void MouseEvent::set_y_ratio(float value) {
+  _internal_set_y_ratio(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.y_ratio)
+}
+
+// int32 button = 4;
+inline void MouseEvent::clear_button() {
+  _impl_.button_ = 0;
+}
+inline int32_t MouseEvent::_internal_button() const {
+  return _impl_.button_;
+}
+inline int32_t MouseEvent::button() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.button)
+  return _internal_button();
+}
+inline void MouseEvent::_internal_set_button(int32_t value) {
+  
+  _impl_.button_ = value;
+}
+inline void MouseEvent::set_button(int32_t value) {
+  _internal_set_button(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.button)
+}
+
+// int32 data = 5;
+inline void MouseEvent::clear_data() {
+  _impl_.data_ = 0;
+}
+inline int32_t MouseEvent::_internal_data() const {
+  return _impl_.data_;
+}
+inline int32_t MouseEvent::data() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.data)
+  return _internal_data();
+}
+inline void MouseEvent::_internal_set_data(int32_t value) {
+  
+  _impl_.data_ = value;
+}
+inline void MouseEvent::set_data(int32_t value) {
+  _internal_set_data(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.data)
+}
+
+// int64 timestamp = 6;
+inline void MouseEvent::clear_timestamp() {
+  _impl_.timestamp_ = int64_t{0};
+}
+inline int64_t MouseEvent::_internal_timestamp() const {
+  return _impl_.timestamp_;
+}
+inline int64_t MouseEvent::timestamp() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.timestamp)
+  return _internal_timestamp();
+}
+inline void MouseEvent::_internal_set_timestamp(int64_t value) {
+  
+  _impl_.timestamp_ = value;
+}
+inline void MouseEvent::set_timestamp(int64_t value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.timestamp)
 }
 
 // -------------------------------------------------------------------
@@ -1968,9 +2761,193 @@ inline void Message::set_allocated_audio_frame(::tc::AudioFrame* audio_frame) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.audio_frame)
 }
 
+// .tc.KeyEvent key_event = 8;
+inline bool Message::_internal_has_key_event() const {
+  return this != internal_default_instance() && _impl_.key_event_ != nullptr;
+}
+inline bool Message::has_key_event() const {
+  return _internal_has_key_event();
+}
+inline void Message::clear_key_event() {
+  if (GetArenaForAllocation() == nullptr && _impl_.key_event_ != nullptr) {
+    delete _impl_.key_event_;
+  }
+  _impl_.key_event_ = nullptr;
+}
+inline const ::tc::KeyEvent& Message::_internal_key_event() const {
+  const ::tc::KeyEvent* p = _impl_.key_event_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::KeyEvent&>(
+      ::tc::_KeyEvent_default_instance_);
+}
+inline const ::tc::KeyEvent& Message::key_event() const {
+  // @@protoc_insertion_point(field_get:tc.Message.key_event)
+  return _internal_key_event();
+}
+inline void Message::unsafe_arena_set_allocated_key_event(
+    ::tc::KeyEvent* key_event) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.key_event_);
+  }
+  _impl_.key_event_ = key_event;
+  if (key_event) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.key_event)
+}
+inline ::tc::KeyEvent* Message::release_key_event() {
+  
+  ::tc::KeyEvent* temp = _impl_.key_event_;
+  _impl_.key_event_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::KeyEvent* Message::unsafe_arena_release_key_event() {
+  // @@protoc_insertion_point(field_release:tc.Message.key_event)
+  
+  ::tc::KeyEvent* temp = _impl_.key_event_;
+  _impl_.key_event_ = nullptr;
+  return temp;
+}
+inline ::tc::KeyEvent* Message::_internal_mutable_key_event() {
+  
+  if (_impl_.key_event_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::KeyEvent>(GetArenaForAllocation());
+    _impl_.key_event_ = p;
+  }
+  return _impl_.key_event_;
+}
+inline ::tc::KeyEvent* Message::mutable_key_event() {
+  ::tc::KeyEvent* _msg = _internal_mutable_key_event();
+  // @@protoc_insertion_point(field_mutable:tc.Message.key_event)
+  return _msg;
+}
+inline void Message::set_allocated_key_event(::tc::KeyEvent* key_event) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.key_event_;
+  }
+  if (key_event) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(key_event);
+    if (message_arena != submessage_arena) {
+      key_event = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, key_event, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.key_event_ = key_event;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.key_event)
+}
+
+// .tc.MouseEvent mouse_event = 9;
+inline bool Message::_internal_has_mouse_event() const {
+  return this != internal_default_instance() && _impl_.mouse_event_ != nullptr;
+}
+inline bool Message::has_mouse_event() const {
+  return _internal_has_mouse_event();
+}
+inline void Message::clear_mouse_event() {
+  if (GetArenaForAllocation() == nullptr && _impl_.mouse_event_ != nullptr) {
+    delete _impl_.mouse_event_;
+  }
+  _impl_.mouse_event_ = nullptr;
+}
+inline const ::tc::MouseEvent& Message::_internal_mouse_event() const {
+  const ::tc::MouseEvent* p = _impl_.mouse_event_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::MouseEvent&>(
+      ::tc::_MouseEvent_default_instance_);
+}
+inline const ::tc::MouseEvent& Message::mouse_event() const {
+  // @@protoc_insertion_point(field_get:tc.Message.mouse_event)
+  return _internal_mouse_event();
+}
+inline void Message::unsafe_arena_set_allocated_mouse_event(
+    ::tc::MouseEvent* mouse_event) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.mouse_event_);
+  }
+  _impl_.mouse_event_ = mouse_event;
+  if (mouse_event) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.mouse_event)
+}
+inline ::tc::MouseEvent* Message::release_mouse_event() {
+  
+  ::tc::MouseEvent* temp = _impl_.mouse_event_;
+  _impl_.mouse_event_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::MouseEvent* Message::unsafe_arena_release_mouse_event() {
+  // @@protoc_insertion_point(field_release:tc.Message.mouse_event)
+  
+  ::tc::MouseEvent* temp = _impl_.mouse_event_;
+  _impl_.mouse_event_ = nullptr;
+  return temp;
+}
+inline ::tc::MouseEvent* Message::_internal_mutable_mouse_event() {
+  
+  if (_impl_.mouse_event_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::MouseEvent>(GetArenaForAllocation());
+    _impl_.mouse_event_ = p;
+  }
+  return _impl_.mouse_event_;
+}
+inline ::tc::MouseEvent* Message::mutable_mouse_event() {
+  ::tc::MouseEvent* _msg = _internal_mutable_mouse_event();
+  // @@protoc_insertion_point(field_mutable:tc.Message.mouse_event)
+  return _msg;
+}
+inline void Message::set_allocated_mouse_event(::tc::MouseEvent* mouse_event) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.mouse_event_;
+  }
+  if (mouse_event) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(mouse_event);
+    if (message_arena != submessage_arena) {
+      mouse_event = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, mouse_event, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.mouse_event_ = mouse_event;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.mouse_event)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1988,6 +2965,11 @@ inline void Message::set_allocated_audio_frame(::tc::AudioFrame* audio_frame) {
 
 PROTOBUF_NAMESPACE_OPEN
 
+template <> struct is_proto_enum< ::tc::KeyEvent_LockKeyStatusCheck> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::KeyEvent_LockKeyStatusCheck>() {
+  return ::tc::KeyEvent_LockKeyStatusCheck_descriptor();
+}
 template <> struct is_proto_enum< ::tc::MessageType> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::MessageType>() {
@@ -1997,6 +2979,11 @@ template <> struct is_proto_enum< ::tc::VideoType> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::VideoType>() {
   return ::tc::VideoType_descriptor();
+}
+template <> struct is_proto_enum< ::tc::EButtonFlag> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::EButtonFlag>() {
+  return ::tc::EButtonFlag_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
