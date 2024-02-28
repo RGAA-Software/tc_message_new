@@ -80,6 +80,8 @@ PROTOBUF_CONSTEXPR AudioFrame::AudioFrame(
     /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.samples_)*/0
   , /*decltype(_impl_.channels_)*/0
+  , /*decltype(_impl_.bits_)*/0
+  , /*decltype(_impl_.frame_size_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct AudioFrameDefaultTypeInternal {
   PROTOBUF_CONSTEXPR AudioFrameDefaultTypeInternal()
@@ -193,6 +195,8 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.samples_),
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.channels_),
+  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.bits_),
+  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.frame_size_),
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.data_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _internal_metadata_),
@@ -240,9 +244,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 14, -1, -1, sizeof(::tc::HeartBeat)},
   { 20, -1, -1, sizeof(::tc::VideoFrame)},
   { 32, -1, -1, sizeof(::tc::AudioFrame)},
-  { 41, -1, -1, sizeof(::tc::KeyEvent)},
-  { 53, -1, -1, sizeof(::tc::MouseEvent)},
-  { 65, -1, -1, sizeof(::tc::Message)},
+  { 43, -1, -1, sizeof(::tc::KeyEvent)},
+  { 55, -1, -1, sizeof(::tc::MouseEvent)},
+  { 67, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -262,40 +266,41 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "\007\n\005Hello\"\013\n\tHeartBeat\"\204\001\n\nVideoFrame\022\033\n\004"
   "type\030\001 \001(\0162\r.tc.VideoType\022\014\n\004data\030\002 \001(\014\022"
   "\023\n\013frame_index\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013fra"
-  "me_width\030\005 \001(\005\022\024\n\014frame_height\030\006 \001(\005\"=\n\n"
+  "me_width\030\005 \001(\005\022\024\n\014frame_height\030\006 \001(\005\"_\n\n"
   "AudioFrame\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030"
-  "\002 \001(\005\022\014\n\004data\030\003 \001(\014\"\372\001\n\010KeyEvent\022\020\n\010key_"
-  "code\030\001 \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_sta"
-  "tus\030\003 \001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014s"
-  "tatus_check\030\005 \001(\0162\037.tc.KeyEvent.LockKeyS"
-  "tatusCheck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKey"
-  "StatusCheck\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkCh"
-  "eckNumLock\020\001\022\022\n\016kCheckCapsLock\020\002\"v\n\nMous"
-  "eEvent\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio"
-  "\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022"
-  "\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\"\236\002\n\007Mes"
-  "sage\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\ts"
-  "end_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello"
-  "\022\024\n\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001"
-  "(\0132\r.tc.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016"
-  ".tc.VideoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc"
-  ".AudioFrame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyE"
-  "vent\022#\n\013mouse_event\030\t \001(\0132\016.tc.MouseEven"
-  "t*u\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016"
-  "\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudi"
-  "oFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006"
-  "*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020"
-  "\001\022\013\n\007kNetVp9\020\002*\356\001\n\013EButtonFlag\022\023\n\017kButto"
-  "nFlagNone\020\000\022\031\n\025kButtonFlagCapsLockOn\020\001\022\030"
-  "\n\024kButtonFlagShiftDown\020\002\022\032\n\026kButtonFlagC"
-  "ontrolDown\020\004\022\026\n\022kButtonFlagAltDown\020\010\022\036\n\032"
-  "kButtonFlagLeftMouseButton\020\020\022 \n\034kButtonF"
-  "lagMiddleMouseButton\020 \022\037\n\033kButtonFlagRig"
-  "htMouseButton\020@b\006proto3"
+  "\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022"
+  "\014\n\004data\030\005 \001(\014\"\372\001\n\010KeyEvent\022\020\n\010key_code\030\001"
+  " \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_status\030\003 "
+  "\001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014status_"
+  "check\030\005 \001(\0162\037.tc.KeyEvent.LockKeyStatusC"
+  "heck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKeyStatus"
+  "Check\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkCheckNum"
+  "Lock\020\001\022\022\n\016kCheckCapsLock\020\002\"v\n\nMouseEvent"
+  "\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001(\002"
+  "\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004dat"
+  "a\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\"\236\002\n\007Message\022\035"
+  "\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_ti"
+  "me\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n\003ac"
+  "k\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\0132\r.t"
+  "c.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016.tc.Vi"
+  "deoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.Audio"
+  "Frame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEvent\022#"
+  "\n\013mouse_event\030\t \001(\0132\016.tc.MouseEvent*u\n\013M"
+  "essageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHea"
+  "rtBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame"
+  "\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006*4\n\tVi"
+  "deoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007k"
+  "NetVp9\020\002*\356\001\n\013EButtonFlag\022\023\n\017kButtonFlagN"
+  "one\020\000\022\031\n\025kButtonFlagCapsLockOn\020\001\022\030\n\024kBut"
+  "tonFlagShiftDown\020\002\022\032\n\026kButtonFlagControl"
+  "Down\020\004\022\026\n\022kButtonFlagAltDown\020\010\022\036\n\032kButto"
+  "nFlagLeftMouseButton\020\020\022 \n\034kButtonFlagMid"
+  "dleMouseButton\020 \022\037\n\033kButtonFlagRightMous"
+  "eButton\020@b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 1383, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 1417, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -1033,6 +1038,8 @@ AudioFrame::AudioFrame(const AudioFrame& from)
       decltype(_impl_.data_){}
     , decltype(_impl_.samples_){}
     , decltype(_impl_.channels_){}
+    , decltype(_impl_.bits_){}
+    , decltype(_impl_.frame_size_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1045,8 +1052,8 @@ AudioFrame::AudioFrame(const AudioFrame& from)
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.samples_, &from._impl_.samples_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.channels_) -
-    reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.channels_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.frame_size_) -
+    reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
   // @@protoc_insertion_point(copy_constructor:tc.AudioFrame)
 }
 
@@ -1058,6 +1065,8 @@ inline void AudioFrame::SharedCtor(
       decltype(_impl_.data_){}
     , decltype(_impl_.samples_){0}
     , decltype(_impl_.channels_){0}
+    , decltype(_impl_.bits_){0}
+    , decltype(_impl_.frame_size_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.data_.InitDefault();
@@ -1092,8 +1101,8 @@ void AudioFrame::Clear() {
 
   _impl_.data_.ClearToEmpty();
   ::memset(&_impl_.samples_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.channels_) -
-      reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.channels_));
+      reinterpret_cast<char*>(&_impl_.frame_size_) -
+      reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1119,9 +1128,25 @@ const char* AudioFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         } else
           goto handle_unusual;
         continue;
-      // bytes data = 3;
+      // int32 bits = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.bits_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 frame_size = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.frame_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bytes data = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           auto str = _internal_mutable_data();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
@@ -1169,10 +1194,22 @@ uint8_t* AudioFrame::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_channels(), target);
   }
 
-  // bytes data = 3;
+  // int32 bits = 3;
+  if (this->_internal_bits() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_bits(), target);
+  }
+
+  // int32 frame_size = 4;
+  if (this->_internal_frame_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_frame_size(), target);
+  }
+
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
     target = stream->WriteBytesMaybeAliased(
-        3, this->_internal_data(), target);
+        5, this->_internal_data(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1191,7 +1228,7 @@ size_t AudioFrame::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes data = 3;
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
@@ -1206,6 +1243,16 @@ size_t AudioFrame::ByteSizeLong() const {
   // int32 channels = 2;
   if (this->_internal_channels() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_channels());
+  }
+
+  // int32 bits = 3;
+  if (this->_internal_bits() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_bits());
+  }
+
+  // int32 frame_size = 4;
+  if (this->_internal_frame_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_size());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1235,6 +1282,12 @@ void AudioFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_channels() != 0) {
     _this->_internal_set_channels(from._internal_channels());
   }
+  if (from._internal_bits() != 0) {
+    _this->_internal_set_bits(from._internal_bits());
+  }
+  if (from._internal_frame_size() != 0) {
+    _this->_internal_set_frame_size(from._internal_frame_size());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1259,8 +1312,8 @@ void AudioFrame::InternalSwap(AudioFrame* other) {
       &other->_impl_.data_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.channels_)
-      + sizeof(AudioFrame::_impl_.channels_)
+      PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.frame_size_)
+      + sizeof(AudioFrame::_impl_.frame_size_)
       - PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.samples_)>(
           reinterpret_cast<char*>(&_impl_.samples_),
           reinterpret_cast<char*>(&other->_impl_.samples_));

@@ -55,7 +55,9 @@ message VideoFrame {
 message AudioFrame {
   int32 samples = 1;
   int32 channels = 2;
-  bytes data = 3;
+  int32 bits = 3;
+  int32 frame_size = 4;
+  bytes data = 5;
 }
 
 message KeyEvent

@@ -923,11 +923,13 @@ class AudioFrame final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 3,
+    kDataFieldNumber = 5,
     kSamplesFieldNumber = 1,
     kChannelsFieldNumber = 2,
+    kBitsFieldNumber = 3,
+    kFrameSizeFieldNumber = 4,
   };
-  // bytes data = 3;
+  // bytes data = 5;
   void clear_data();
   const std::string& data() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -959,6 +961,24 @@ class AudioFrame final :
   void _internal_set_channels(int32_t value);
   public:
 
+  // int32 bits = 3;
+  void clear_bits();
+  int32_t bits() const;
+  void set_bits(int32_t value);
+  private:
+  int32_t _internal_bits() const;
+  void _internal_set_bits(int32_t value);
+  public:
+
+  // int32 frame_size = 4;
+  void clear_frame_size();
+  int32_t frame_size() const;
+  void set_frame_size(int32_t value);
+  private:
+  int32_t _internal_frame_size() const;
+  void _internal_set_frame_size(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.AudioFrame)
  private:
   class _Internal;
@@ -970,6 +990,8 @@ class AudioFrame final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
     int32_t samples_;
     int32_t channels_;
+    int32_t bits_;
+    int32_t frame_size_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1969,7 +1991,47 @@ inline void AudioFrame::set_channels(int32_t value) {
   // @@protoc_insertion_point(field_set:tc.AudioFrame.channels)
 }
 
-// bytes data = 3;
+// int32 bits = 3;
+inline void AudioFrame::clear_bits() {
+  _impl_.bits_ = 0;
+}
+inline int32_t AudioFrame::_internal_bits() const {
+  return _impl_.bits_;
+}
+inline int32_t AudioFrame::bits() const {
+  // @@protoc_insertion_point(field_get:tc.AudioFrame.bits)
+  return _internal_bits();
+}
+inline void AudioFrame::_internal_set_bits(int32_t value) {
+  
+  _impl_.bits_ = value;
+}
+inline void AudioFrame::set_bits(int32_t value) {
+  _internal_set_bits(value);
+  // @@protoc_insertion_point(field_set:tc.AudioFrame.bits)
+}
+
+// int32 frame_size = 4;
+inline void AudioFrame::clear_frame_size() {
+  _impl_.frame_size_ = 0;
+}
+inline int32_t AudioFrame::_internal_frame_size() const {
+  return _impl_.frame_size_;
+}
+inline int32_t AudioFrame::frame_size() const {
+  // @@protoc_insertion_point(field_get:tc.AudioFrame.frame_size)
+  return _internal_frame_size();
+}
+inline void AudioFrame::_internal_set_frame_size(int32_t value) {
+  
+  _impl_.frame_size_ = value;
+}
+inline void AudioFrame::set_frame_size(int32_t value) {
+  _internal_set_frame_size(value);
+  // @@protoc_insertion_point(field_set:tc.AudioFrame.frame_size)
+}
+
+// bytes data = 5;
 inline void AudioFrame::clear_data() {
   _impl_.data_.ClearToEmpty();
 }
