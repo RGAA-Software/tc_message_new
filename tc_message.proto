@@ -62,48 +62,51 @@ message AudioFrame {
 
 message KeyEvent
 {
-	enum LockKeyStatusCheck {
-		kDontCareLockKey = 0;
-		kCheckNumLock = 1;
-		kCheckCapsLock = 2;
-	}
+  enum LockKeyStatusCheck {
+    kDontCareLockKey = 0;
+    kCheckNumLock = 1;
+    kCheckCapsLock = 2;
+  }
 
-	// 虚拟键盘码,参考msdn文档的虚拟键码表: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
-    uint32 key_code = 1;
+  // 虚拟键盘码,参考msdn文档的虚拟键码表: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+  uint32 key_code = 1;
 
-	// 按下还是松开
-    bool down = 2;
+  // 按下还是松开
+  bool down = 2;
 
-	// 按键当前的状态 GetKeyState()获取
-	int32  num_lock_status =3;
+  // 按键当前的状态 GetKeyState()获取
+  int32  num_lock_status = 3;
 
-	int32  caps_lock_status = 4;
+  int32  caps_lock_status = 4;
 
-	LockKeyStatusCheck status_check = 5;
+  LockKeyStatusCheck status_check = 5;
 
-	// 当前毫秒值时间戳
-	int64 timestamp = 6;
+  // 当前毫秒值时间戳
+  int64 timestamp = 6;
 }
 
 message MouseEvent
 {
-    //to do 当服务端采集方式为采集屏幕的时候，当前鼠标事件对应的屏幕索引
-    int32 monitor_index = 1;
+  //to do 当服务端采集方式为采集屏幕的时候，当前鼠标事件对应的屏幕索引
+  int32 monitor_index = 1;
 
-    // 当前鼠标x值，占窗口宽度的比值
-    float x_ratio = 2;
+  // 当前鼠标x值，占窗口宽度的比值
+  float x_ratio = 2;
 
-    // 当前鼠标y值，占窗口高度度的比值
-    float y_ratio = 3;
+  // 当前鼠标y值，占窗口高度度的比值
+  float y_ratio = 3;
 
-	// 按键掩码, 用来表示摁下了什么按键、抬起了什么按键 ref: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
-    int32 button = 4;
+  // 按键掩码, 用来表示摁下了什么按键、抬起了什么按键 ref: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
+  int32 button = 4;
 
-	// 鼠标data，滚轮等数据
-    int32 data = 5;
+  // 鼠标data，滚轮等数据
+  int32 data = 5;
 
-	// 当前毫秒值时间戳
-	int64 timestamp = 6;
+  // 当前毫秒值时间戳
+  int64 timestamp = 6;
+
+  int32 delta_x = 7;
+  int32 delta_y = 8;
 }
 
 message Message {

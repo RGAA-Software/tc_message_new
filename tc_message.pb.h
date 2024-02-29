@@ -1361,6 +1361,8 @@ class MouseEvent final :
     kButtonFieldNumber = 4,
     kTimestampFieldNumber = 6,
     kDataFieldNumber = 5,
+    kDeltaXFieldNumber = 7,
+    kDeltaYFieldNumber = 8,
   };
   // int32 monitor_index = 1;
   void clear_monitor_index();
@@ -1416,6 +1418,24 @@ class MouseEvent final :
   void _internal_set_data(int32_t value);
   public:
 
+  // int32 delta_x = 7;
+  void clear_delta_x();
+  int32_t delta_x() const;
+  void set_delta_x(int32_t value);
+  private:
+  int32_t _internal_delta_x() const;
+  void _internal_set_delta_x(int32_t value);
+  public:
+
+  // int32 delta_y = 8;
+  void clear_delta_y();
+  int32_t delta_y() const;
+  void set_delta_y(int32_t value);
+  private:
+  int32_t _internal_delta_y() const;
+  void _internal_set_delta_y(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.MouseEvent)
  private:
   class _Internal;
@@ -1430,6 +1450,8 @@ class MouseEvent final :
     int32_t button_;
     int64_t timestamp_;
     int32_t data_;
+    int32_t delta_x_;
+    int32_t delta_y_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2327,6 +2349,46 @@ inline void MouseEvent::_internal_set_timestamp(int64_t value) {
 inline void MouseEvent::set_timestamp(int64_t value) {
   _internal_set_timestamp(value);
   // @@protoc_insertion_point(field_set:tc.MouseEvent.timestamp)
+}
+
+// int32 delta_x = 7;
+inline void MouseEvent::clear_delta_x() {
+  _impl_.delta_x_ = 0;
+}
+inline int32_t MouseEvent::_internal_delta_x() const {
+  return _impl_.delta_x_;
+}
+inline int32_t MouseEvent::delta_x() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.delta_x)
+  return _internal_delta_x();
+}
+inline void MouseEvent::_internal_set_delta_x(int32_t value) {
+  
+  _impl_.delta_x_ = value;
+}
+inline void MouseEvent::set_delta_x(int32_t value) {
+  _internal_set_delta_x(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.delta_x)
+}
+
+// int32 delta_y = 8;
+inline void MouseEvent::clear_delta_y() {
+  _impl_.delta_y_ = 0;
+}
+inline int32_t MouseEvent::_internal_delta_y() const {
+  return _impl_.delta_y_;
+}
+inline int32_t MouseEvent::delta_y() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.delta_y)
+  return _internal_delta_y();
+}
+inline void MouseEvent::_internal_set_delta_y(int32_t value) {
+  
+  _impl_.delta_y_ = value;
+}
+inline void MouseEvent::set_delta_y(int32_t value) {
+  _internal_set_delta_y(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.delta_y)
 }
 
 // -------------------------------------------------------------------
