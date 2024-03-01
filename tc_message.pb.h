@@ -167,20 +167,20 @@ inline bool VideoType_Parse(
     VideoType_descriptor(), name, value);
 }
 enum EButtonFlag : int {
-  kButtonFlagNone = 0,
-  kButtonFlagCapsLockOn = 1,
-  kButtonFlagShiftDown = 2,
-  kButtonFlagControlDown = 4,
-  kButtonFlagAltDown = 8,
-  kButtonFlagLeftMouseButton = 16,
-  kButtonFlagMiddleMouseButton = 32,
-  kButtonFlagRightMouseButton = 64,
+  kNone = 0,
+  kCapsLockOn = 1,
+  kShiftDown = 2,
+  kControlDown = 4,
+  kAltDown = 8,
+  kLeftMouseButton = 16,
+  kMiddleMouseButton = 32,
+  kRightMouseButton = 64,
   EButtonFlag_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   EButtonFlag_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool EButtonFlag_IsValid(int value);
-constexpr EButtonFlag EButtonFlag_MIN = kButtonFlagNone;
-constexpr EButtonFlag EButtonFlag_MAX = kButtonFlagRightMouseButton;
+constexpr EButtonFlag EButtonFlag_MIN = kNone;
+constexpr EButtonFlag EButtonFlag_MAX = kRightMouseButton;
 constexpr int EButtonFlag_ARRAYSIZE = EButtonFlag_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EButtonFlag_descriptor();

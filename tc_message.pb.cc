@@ -295,17 +295,15 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "t\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n"
   "\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006*4\n\tVideoTy"
   "pe\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp"
-  "9\020\002*\356\001\n\013EButtonFlag\022\023\n\017kButtonFlagNone\020\000"
-  "\022\031\n\025kButtonFlagCapsLockOn\020\001\022\030\n\024kButtonFl"
-  "agShiftDown\020\002\022\032\n\026kButtonFlagControlDown\020"
-  "\004\022\026\n\022kButtonFlagAltDown\020\010\022\036\n\032kButtonFlag"
-  "LeftMouseButton\020\020\022 \n\034kButtonFlagMiddleMo"
-  "useButton\020 \022\037\n\033kButtonFlagRightMouseButt"
+  "9\020\002*\236\001\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
+  "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
+  "\004\022\014\n\010kAltDown\020\010\022\024\n\020kLeftMouseButton\020\020\022\026\n"
+  "\022kMiddleMouseButton\020 \022\025\n\021kRightMouseButt"
   "on\020@b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 1452, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 1372, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,

@@ -20,14 +20,14 @@ enum VideoType {
 
 enum EButtonFlag
 {
-  kButtonFlagNone = 0;
-  kButtonFlagCapsLockOn = 1;
-  kButtonFlagShiftDown = 2;
-  kButtonFlagControlDown = 4;
-  kButtonFlagAltDown = 8;
-  kButtonFlagLeftMouseButton = 16;
-  kButtonFlagMiddleMouseButton = 32;
-  kButtonFlagRightMouseButton = 64;
+  kNone = 0;
+  kCapsLockOn = 1;
+  kShiftDown = 2;
+  kControlDown = 4;
+  kAltDown = 8;
+  kLeftMouseButton = 16;
+  kMiddleMouseButton = 32;
+  kRightMouseButton = 64;
 }
 
 message Ack {
