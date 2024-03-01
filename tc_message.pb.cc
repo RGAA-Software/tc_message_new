@@ -120,6 +120,8 @@ PROTOBUF_CONSTEXPR MouseEvent::MouseEvent(
   , /*decltype(_impl_.data_)*/0
   , /*decltype(_impl_.delta_x_)*/0
   , /*decltype(_impl_.delta_y_)*/0
+  , /*decltype(_impl_.pressed_)*/false
+  , /*decltype(_impl_.released_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct MouseEventDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MouseEventDefaultTypeInternal()
@@ -226,6 +228,8 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.timestamp_),
   PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_x_),
   PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_y_),
+  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.pressed_),
+  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.released_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -250,7 +254,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 32, -1, -1, sizeof(::tc::AudioFrame)},
   { 43, -1, -1, sizeof(::tc::KeyEvent)},
   { 55, -1, -1, sizeof(::tc::MouseEvent)},
-  { 69, -1, -1, sizeof(::tc::Message)},
+  { 71, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -279,33 +283,34 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "check\030\005 \001(\0162\037.tc.KeyEvent.LockKeyStatusC"
   "heck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKeyStatus"
   "Check\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkCheckNum"
-  "Lock\020\001\022\022\n\016kCheckCapsLock\020\002\"\230\001\n\nMouseEven"
+  "Lock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMouseEven"
   "t\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001("
   "\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004da"
   "ta\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007delta_x\030\007"
-  " \001(\005\022\017\n\007delta_y\030\010 \001(\005\"\236\002\n\007Message\022\035\n\004typ"
-  "e\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 "
-  "\001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n\003ack\030\004 \001"
-  "(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\0132\r.tc.Hea"
-  "rtBeat\022#\n\013video_frame\030\006 \001(\0132\016.tc.VideoFr"
-  "ame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.AudioFrame"
-  "\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEvent\022#\n\013mou"
-  "se_event\030\t \001(\0132\016.tc.MouseEvent*u\n\013Messag"
-  "eType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBea"
-  "t\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n"
-  "\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006*4\n\tVideoTy"
-  "pe\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp"
-  "9\020\002*\356\001\n\013EButtonFlag\022\023\n\017kButtonFlagNone\020\000"
-  "\022\031\n\025kButtonFlagCapsLockOn\020\001\022\030\n\024kButtonFl"
-  "agShiftDown\020\002\022\032\n\026kButtonFlagControlDown\020"
-  "\004\022\026\n\022kButtonFlagAltDown\020\010\022\036\n\032kButtonFlag"
-  "LeftMouseButton\020\020\022 \n\034kButtonFlagMiddleMo"
-  "useButton\020 \022\037\n\033kButtonFlagRightMouseButt"
-  "on\020@b\006proto3"
+  " \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030\t \001(\010\022\020"
+  "\n\010released\030\n \001(\010\"\236\002\n\007Message\022\035\n\004type\030\001 \001"
+  "(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\030"
+  "\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n\003ack\030\004 \001(\0132\007."
+  "tc.Ack\022!\n\nheart_beat\030\005 \001(\0132\r.tc.HeartBea"
+  "t\022#\n\013video_frame\030\006 \001(\0132\016.tc.VideoFrame\022#"
+  "\n\013audio_frame\030\007 \001(\0132\016.tc.AudioFrame\022\037\n\tk"
+  "ey_event\030\010 \001(\0132\014.tc.KeyEvent\022#\n\013mouse_ev"
+  "ent\030\t \001(\0132\016.tc.MouseEvent*u\n\013MessageType"
+  "\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017"
+  "\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKey"
+  "Event\020\005\022\017\n\013kMouseEvent\020\006*4\n\tVideoType\022\014\n"
+  "\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\356"
+  "\001\n\013EButtonFlag\022\023\n\017kButtonFlagNone\020\000\022\031\n\025k"
+  "ButtonFlagCapsLockOn\020\001\022\030\n\024kButtonFlagShi"
+  "ftDown\020\002\022\032\n\026kButtonFlagControlDown\020\004\022\026\n\022"
+  "kButtonFlagAltDown\020\010\022\036\n\032kButtonFlagLeftM"
+  "ouseButton\020\020\022 \n\034kButtonFlagMiddleMouseBu"
+  "tton\020 \022\037\n\033kButtonFlagRightMouseButton\020@b"
+  "\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 1452, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 1487, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -1664,12 +1669,14 @@ MouseEvent::MouseEvent(const MouseEvent& from)
     , decltype(_impl_.data_){}
     , decltype(_impl_.delta_x_){}
     , decltype(_impl_.delta_y_){}
+    , decltype(_impl_.pressed_){}
+    , decltype(_impl_.released_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.monitor_index_, &from._impl_.monitor_index_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.delta_y_) -
-    reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.delta_y_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.released_) -
+    reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.released_));
   // @@protoc_insertion_point(copy_constructor:tc.MouseEvent)
 }
 
@@ -1686,6 +1693,8 @@ inline void MouseEvent::SharedCtor(
     , decltype(_impl_.data_){0}
     , decltype(_impl_.delta_x_){0}
     , decltype(_impl_.delta_y_){0}
+    , decltype(_impl_.pressed_){false}
+    , decltype(_impl_.released_){false}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1714,8 +1723,8 @@ void MouseEvent::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.monitor_index_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.delta_y_) -
-      reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.delta_y_));
+      reinterpret_cast<char*>(&_impl_.released_) -
+      reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.released_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1785,6 +1794,22 @@ const char* MouseEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
           _impl_.delta_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool pressed = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.pressed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool released = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          _impl_.released_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1874,6 +1899,18 @@ uint8_t* MouseEvent::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_delta_y(), target);
   }
 
+  // bool pressed = 9;
+  if (this->_internal_pressed() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_pressed(), target);
+  }
+
+  // bool released = 10;
+  if (this->_internal_released() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(10, this->_internal_released(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1938,6 +1975,16 @@ size_t MouseEvent::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delta_y());
   }
 
+  // bool pressed = 9;
+  if (this->_internal_pressed() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool released = 10;
+  if (this->_internal_released() != 0) {
+    total_size += 1 + 1;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1988,6 +2035,12 @@ void MouseEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_delta_y() != 0) {
     _this->_internal_set_delta_y(from._internal_delta_y());
   }
+  if (from._internal_pressed() != 0) {
+    _this->_internal_set_pressed(from._internal_pressed());
+  }
+  if (from._internal_released() != 0) {
+    _this->_internal_set_released(from._internal_released());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2006,8 +2059,8 @@ void MouseEvent::InternalSwap(MouseEvent* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.delta_y_)
-      + sizeof(MouseEvent::_impl_.delta_y_)
+      PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.released_)
+      + sizeof(MouseEvent::_impl_.released_)
       - PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.monitor_index_)>(
           reinterpret_cast<char*>(&_impl_.monitor_index_),
           reinterpret_cast<char*>(&other->_impl_.monitor_index_));

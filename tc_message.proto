@@ -107,6 +107,8 @@ message MouseEvent
 
   int32 delta_x = 7;
   int32 delta_y = 8;
+  bool pressed = 9;
+  bool released = 10;
 }
 
 message Message {
