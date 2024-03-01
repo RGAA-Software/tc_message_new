@@ -1363,6 +1363,8 @@ class MouseEvent final :
     kDataFieldNumber = 5,
     kDeltaXFieldNumber = 7,
     kDeltaYFieldNumber = 8,
+    kPressedFieldNumber = 9,
+    kReleasedFieldNumber = 10,
   };
   // int32 monitor_index = 1;
   void clear_monitor_index();
@@ -1436,6 +1438,24 @@ class MouseEvent final :
   void _internal_set_delta_y(int32_t value);
   public:
 
+  // bool pressed = 9;
+  void clear_pressed();
+  bool pressed() const;
+  void set_pressed(bool value);
+  private:
+  bool _internal_pressed() const;
+  void _internal_set_pressed(bool value);
+  public:
+
+  // bool released = 10;
+  void clear_released();
+  bool released() const;
+  void set_released(bool value);
+  private:
+  bool _internal_released() const;
+  void _internal_set_released(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.MouseEvent)
  private:
   class _Internal;
@@ -1452,6 +1472,8 @@ class MouseEvent final :
     int32_t data_;
     int32_t delta_x_;
     int32_t delta_y_;
+    bool pressed_;
+    bool released_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2389,6 +2411,46 @@ inline void MouseEvent::_internal_set_delta_y(int32_t value) {
 inline void MouseEvent::set_delta_y(int32_t value) {
   _internal_set_delta_y(value);
   // @@protoc_insertion_point(field_set:tc.MouseEvent.delta_y)
+}
+
+// bool pressed = 9;
+inline void MouseEvent::clear_pressed() {
+  _impl_.pressed_ = false;
+}
+inline bool MouseEvent::_internal_pressed() const {
+  return _impl_.pressed_;
+}
+inline bool MouseEvent::pressed() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.pressed)
+  return _internal_pressed();
+}
+inline void MouseEvent::_internal_set_pressed(bool value) {
+  
+  _impl_.pressed_ = value;
+}
+inline void MouseEvent::set_pressed(bool value) {
+  _internal_set_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.pressed)
+}
+
+// bool released = 10;
+inline void MouseEvent::clear_released() {
+  _impl_.released_ = false;
+}
+inline bool MouseEvent::_internal_released() const {
+  return _impl_.released_;
+}
+inline bool MouseEvent::released() const {
+  // @@protoc_insertion_point(field_get:tc.MouseEvent.released)
+  return _internal_released();
+}
+inline void MouseEvent::_internal_set_released(bool value) {
+  
+  _impl_.released_ = value;
+}
+inline void MouseEvent::set_released(bool value) {
+  _internal_set_released(value);
+  // @@protoc_insertion_point(field_set:tc.MouseEvent.released)
 }
 
 // -------------------------------------------------------------------
