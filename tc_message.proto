@@ -12,6 +12,7 @@ enum MessageType {
   kMouseEvent = 6;
   // server->client 服务器光标信息同步
   kCursorInfoSync = 7;
+  kIpcVideoFrame = 8;
 }
 
 enum VideoType {
@@ -114,16 +115,27 @@ message MouseEvent
 }
 
 message CursorInfoSync {
-    // 是否可见
-    bool visible = 1;
-    uint32 x = 2;
-    uint32 y = 3;
-    uint32 hotspot_x = 4;
-    uint32 hotspot_y = 5;
-    uint32 width = 6;
-    uint32 height = 7;
-    // 位图信息
-    bytes bitmap = 8;
+  // 是否可见
+  bool visible = 1;
+  uint32 x = 2;
+  uint32 y = 3;
+  uint32 hotspot_x = 4;
+  uint32 hotspot_y = 5;
+  uint32 width = 6;
+  uint32 height = 7;
+  // 位图信息
+  bytes bitmap = 8;
+}
+
+message IpcVideoFrame {
+  int32 capture_type = 1;
+  int32 frame_width = 2;
+  int32 frame_height = 3;
+  int64 frame_index = 4;
+  int64 frame_format = 5;
+  uint64 handle = 6;
+  int64 adapter_uid = 7;
+  int32 capture_index = 8;
 }
 
 message Message {
@@ -137,4 +149,5 @@ message Message {
   KeyEvent key_event = 8;
   MouseEvent mouse_event = 9;
   CursorInfoSync cursor_info_sync = 10;
+  IpcVideoFrame ipc_video_frame = 11;
 }

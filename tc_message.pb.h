@@ -62,6 +62,9 @@ extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
 class Hello;
 struct HelloDefaultTypeInternal;
 extern HelloDefaultTypeInternal _Hello_default_instance_;
+class IpcVideoFrame;
+struct IpcVideoFrameDefaultTypeInternal;
+extern IpcVideoFrameDefaultTypeInternal _IpcVideoFrame_default_instance_;
 class KeyEvent;
 struct KeyEventDefaultTypeInternal;
 extern KeyEventDefaultTypeInternal _KeyEvent_default_instance_;
@@ -81,6 +84,7 @@ template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*)
 template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
 template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
+template<> ::tc::IpcVideoFrame* Arena::CreateMaybeMessage<::tc::IpcVideoFrame>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
 template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
 template<> ::tc::MouseEvent* Arena::CreateMaybeMessage<::tc::MouseEvent>(Arena*);
@@ -123,12 +127,13 @@ enum MessageType : int {
   kKeyEvent = 5,
   kMouseEvent = 6,
   kCursorInfoSync = 7,
+  kIpcVideoFrame = 8,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kCursorInfoSync;
+constexpr MessageType MessageType_MAX = kIpcVideoFrame;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -1716,6 +1721,231 @@ class CursorInfoSync final :
 };
 // -------------------------------------------------------------------
 
+class IpcVideoFrame final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.IpcVideoFrame) */ {
+ public:
+  inline IpcVideoFrame() : IpcVideoFrame(nullptr) {}
+  ~IpcVideoFrame() override;
+  explicit PROTOBUF_CONSTEXPR IpcVideoFrame(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IpcVideoFrame(const IpcVideoFrame& from);
+  IpcVideoFrame(IpcVideoFrame&& from) noexcept
+    : IpcVideoFrame() {
+    *this = ::std::move(from);
+  }
+
+  inline IpcVideoFrame& operator=(const IpcVideoFrame& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IpcVideoFrame& operator=(IpcVideoFrame&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IpcVideoFrame& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IpcVideoFrame* internal_default_instance() {
+    return reinterpret_cast<const IpcVideoFrame*>(
+               &_IpcVideoFrame_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(IpcVideoFrame& a, IpcVideoFrame& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IpcVideoFrame* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IpcVideoFrame* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IpcVideoFrame* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IpcVideoFrame>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const IpcVideoFrame& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const IpcVideoFrame& from) {
+    IpcVideoFrame::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IpcVideoFrame* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.IpcVideoFrame";
+  }
+  protected:
+  explicit IpcVideoFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCaptureTypeFieldNumber = 1,
+    kFrameWidthFieldNumber = 2,
+    kFrameIndexFieldNumber = 4,
+    kFrameFormatFieldNumber = 5,
+    kFrameHeightFieldNumber = 3,
+    kCaptureIndexFieldNumber = 8,
+    kHandleFieldNumber = 6,
+    kAdapterUidFieldNumber = 7,
+  };
+  // int32 capture_type = 1;
+  void clear_capture_type();
+  int32_t capture_type() const;
+  void set_capture_type(int32_t value);
+  private:
+  int32_t _internal_capture_type() const;
+  void _internal_set_capture_type(int32_t value);
+  public:
+
+  // int32 frame_width = 2;
+  void clear_frame_width();
+  int32_t frame_width() const;
+  void set_frame_width(int32_t value);
+  private:
+  int32_t _internal_frame_width() const;
+  void _internal_set_frame_width(int32_t value);
+  public:
+
+  // int64 frame_index = 4;
+  void clear_frame_index();
+  int64_t frame_index() const;
+  void set_frame_index(int64_t value);
+  private:
+  int64_t _internal_frame_index() const;
+  void _internal_set_frame_index(int64_t value);
+  public:
+
+  // int64 frame_format = 5;
+  void clear_frame_format();
+  int64_t frame_format() const;
+  void set_frame_format(int64_t value);
+  private:
+  int64_t _internal_frame_format() const;
+  void _internal_set_frame_format(int64_t value);
+  public:
+
+  // int32 frame_height = 3;
+  void clear_frame_height();
+  int32_t frame_height() const;
+  void set_frame_height(int32_t value);
+  private:
+  int32_t _internal_frame_height() const;
+  void _internal_set_frame_height(int32_t value);
+  public:
+
+  // int32 capture_index = 8;
+  void clear_capture_index();
+  int32_t capture_index() const;
+  void set_capture_index(int32_t value);
+  private:
+  int32_t _internal_capture_index() const;
+  void _internal_set_capture_index(int32_t value);
+  public:
+
+  // uint64 handle = 6;
+  void clear_handle();
+  uint64_t handle() const;
+  void set_handle(uint64_t value);
+  private:
+  uint64_t _internal_handle() const;
+  void _internal_set_handle(uint64_t value);
+  public:
+
+  // int64 adapter_uid = 7;
+  void clear_adapter_uid();
+  int64_t adapter_uid() const;
+  void set_adapter_uid(int64_t value);
+  private:
+  int64_t _internal_adapter_uid() const;
+  void _internal_set_adapter_uid(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.IpcVideoFrame)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int32_t capture_type_;
+    int32_t frame_width_;
+    int64_t frame_index_;
+    int64_t frame_format_;
+    int32_t frame_height_;
+    int32_t capture_index_;
+    uint64_t handle_;
+    int64_t adapter_uid_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -1764,7 +1994,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -1845,6 +2075,7 @@ class Message final :
     kKeyEventFieldNumber = 8,
     kMouseEventFieldNumber = 9,
     kCursorInfoSyncFieldNumber = 10,
+    kIpcVideoFrameFieldNumber = 11,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -1992,6 +2223,24 @@ class Message final :
       ::tc::CursorInfoSync* cursor_info_sync);
   ::tc::CursorInfoSync* unsafe_arena_release_cursor_info_sync();
 
+  // .tc.IpcVideoFrame ipc_video_frame = 11;
+  bool has_ipc_video_frame() const;
+  private:
+  bool _internal_has_ipc_video_frame() const;
+  public:
+  void clear_ipc_video_frame();
+  const ::tc::IpcVideoFrame& ipc_video_frame() const;
+  PROTOBUF_NODISCARD ::tc::IpcVideoFrame* release_ipc_video_frame();
+  ::tc::IpcVideoFrame* mutable_ipc_video_frame();
+  void set_allocated_ipc_video_frame(::tc::IpcVideoFrame* ipc_video_frame);
+  private:
+  const ::tc::IpcVideoFrame& _internal_ipc_video_frame() const;
+  ::tc::IpcVideoFrame* _internal_mutable_ipc_video_frame();
+  public:
+  void unsafe_arena_set_allocated_ipc_video_frame(
+      ::tc::IpcVideoFrame* ipc_video_frame);
+  ::tc::IpcVideoFrame* unsafe_arena_release_ipc_video_frame();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -2026,6 +2275,7 @@ class Message final :
     ::tc::KeyEvent* key_event_;
     ::tc::MouseEvent* mouse_event_;
     ::tc::CursorInfoSync* cursor_info_sync_;
+    ::tc::IpcVideoFrame* ipc_video_frame_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2904,6 +3154,170 @@ inline void CursorInfoSync::set_allocated_bitmap(std::string* bitmap) {
 
 // -------------------------------------------------------------------
 
+// IpcVideoFrame
+
+// int32 capture_type = 1;
+inline void IpcVideoFrame::clear_capture_type() {
+  _impl_.capture_type_ = 0;
+}
+inline int32_t IpcVideoFrame::_internal_capture_type() const {
+  return _impl_.capture_type_;
+}
+inline int32_t IpcVideoFrame::capture_type() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.capture_type)
+  return _internal_capture_type();
+}
+inline void IpcVideoFrame::_internal_set_capture_type(int32_t value) {
+  
+  _impl_.capture_type_ = value;
+}
+inline void IpcVideoFrame::set_capture_type(int32_t value) {
+  _internal_set_capture_type(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.capture_type)
+}
+
+// int32 frame_width = 2;
+inline void IpcVideoFrame::clear_frame_width() {
+  _impl_.frame_width_ = 0;
+}
+inline int32_t IpcVideoFrame::_internal_frame_width() const {
+  return _impl_.frame_width_;
+}
+inline int32_t IpcVideoFrame::frame_width() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.frame_width)
+  return _internal_frame_width();
+}
+inline void IpcVideoFrame::_internal_set_frame_width(int32_t value) {
+  
+  _impl_.frame_width_ = value;
+}
+inline void IpcVideoFrame::set_frame_width(int32_t value) {
+  _internal_set_frame_width(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.frame_width)
+}
+
+// int32 frame_height = 3;
+inline void IpcVideoFrame::clear_frame_height() {
+  _impl_.frame_height_ = 0;
+}
+inline int32_t IpcVideoFrame::_internal_frame_height() const {
+  return _impl_.frame_height_;
+}
+inline int32_t IpcVideoFrame::frame_height() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.frame_height)
+  return _internal_frame_height();
+}
+inline void IpcVideoFrame::_internal_set_frame_height(int32_t value) {
+  
+  _impl_.frame_height_ = value;
+}
+inline void IpcVideoFrame::set_frame_height(int32_t value) {
+  _internal_set_frame_height(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.frame_height)
+}
+
+// int64 frame_index = 4;
+inline void IpcVideoFrame::clear_frame_index() {
+  _impl_.frame_index_ = int64_t{0};
+}
+inline int64_t IpcVideoFrame::_internal_frame_index() const {
+  return _impl_.frame_index_;
+}
+inline int64_t IpcVideoFrame::frame_index() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.frame_index)
+  return _internal_frame_index();
+}
+inline void IpcVideoFrame::_internal_set_frame_index(int64_t value) {
+  
+  _impl_.frame_index_ = value;
+}
+inline void IpcVideoFrame::set_frame_index(int64_t value) {
+  _internal_set_frame_index(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.frame_index)
+}
+
+// int64 frame_format = 5;
+inline void IpcVideoFrame::clear_frame_format() {
+  _impl_.frame_format_ = int64_t{0};
+}
+inline int64_t IpcVideoFrame::_internal_frame_format() const {
+  return _impl_.frame_format_;
+}
+inline int64_t IpcVideoFrame::frame_format() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.frame_format)
+  return _internal_frame_format();
+}
+inline void IpcVideoFrame::_internal_set_frame_format(int64_t value) {
+  
+  _impl_.frame_format_ = value;
+}
+inline void IpcVideoFrame::set_frame_format(int64_t value) {
+  _internal_set_frame_format(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.frame_format)
+}
+
+// uint64 handle = 6;
+inline void IpcVideoFrame::clear_handle() {
+  _impl_.handle_ = uint64_t{0u};
+}
+inline uint64_t IpcVideoFrame::_internal_handle() const {
+  return _impl_.handle_;
+}
+inline uint64_t IpcVideoFrame::handle() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.handle)
+  return _internal_handle();
+}
+inline void IpcVideoFrame::_internal_set_handle(uint64_t value) {
+  
+  _impl_.handle_ = value;
+}
+inline void IpcVideoFrame::set_handle(uint64_t value) {
+  _internal_set_handle(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.handle)
+}
+
+// int64 adapter_uid = 7;
+inline void IpcVideoFrame::clear_adapter_uid() {
+  _impl_.adapter_uid_ = int64_t{0};
+}
+inline int64_t IpcVideoFrame::_internal_adapter_uid() const {
+  return _impl_.adapter_uid_;
+}
+inline int64_t IpcVideoFrame::adapter_uid() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.adapter_uid)
+  return _internal_adapter_uid();
+}
+inline void IpcVideoFrame::_internal_set_adapter_uid(int64_t value) {
+  
+  _impl_.adapter_uid_ = value;
+}
+inline void IpcVideoFrame::set_adapter_uid(int64_t value) {
+  _internal_set_adapter_uid(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.adapter_uid)
+}
+
+// int32 capture_index = 8;
+inline void IpcVideoFrame::clear_capture_index() {
+  _impl_.capture_index_ = 0;
+}
+inline int32_t IpcVideoFrame::_internal_capture_index() const {
+  return _impl_.capture_index_;
+}
+inline int32_t IpcVideoFrame::capture_index() const {
+  // @@protoc_insertion_point(field_get:tc.IpcVideoFrame.capture_index)
+  return _internal_capture_index();
+}
+inline void IpcVideoFrame::_internal_set_capture_index(int32_t value) {
+  
+  _impl_.capture_index_ = value;
+}
+inline void IpcVideoFrame::set_capture_index(int32_t value) {
+  _internal_set_capture_index(value);
+  // @@protoc_insertion_point(field_set:tc.IpcVideoFrame.capture_index)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -3666,9 +4080,101 @@ inline void Message::set_allocated_cursor_info_sync(::tc::CursorInfoSync* cursor
   // @@protoc_insertion_point(field_set_allocated:tc.Message.cursor_info_sync)
 }
 
+// .tc.IpcVideoFrame ipc_video_frame = 11;
+inline bool Message::_internal_has_ipc_video_frame() const {
+  return this != internal_default_instance() && _impl_.ipc_video_frame_ != nullptr;
+}
+inline bool Message::has_ipc_video_frame() const {
+  return _internal_has_ipc_video_frame();
+}
+inline void Message::clear_ipc_video_frame() {
+  if (GetArenaForAllocation() == nullptr && _impl_.ipc_video_frame_ != nullptr) {
+    delete _impl_.ipc_video_frame_;
+  }
+  _impl_.ipc_video_frame_ = nullptr;
+}
+inline const ::tc::IpcVideoFrame& Message::_internal_ipc_video_frame() const {
+  const ::tc::IpcVideoFrame* p = _impl_.ipc_video_frame_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::IpcVideoFrame&>(
+      ::tc::_IpcVideoFrame_default_instance_);
+}
+inline const ::tc::IpcVideoFrame& Message::ipc_video_frame() const {
+  // @@protoc_insertion_point(field_get:tc.Message.ipc_video_frame)
+  return _internal_ipc_video_frame();
+}
+inline void Message::unsafe_arena_set_allocated_ipc_video_frame(
+    ::tc::IpcVideoFrame* ipc_video_frame) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ipc_video_frame_);
+  }
+  _impl_.ipc_video_frame_ = ipc_video_frame;
+  if (ipc_video_frame) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.ipc_video_frame)
+}
+inline ::tc::IpcVideoFrame* Message::release_ipc_video_frame() {
+  
+  ::tc::IpcVideoFrame* temp = _impl_.ipc_video_frame_;
+  _impl_.ipc_video_frame_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::IpcVideoFrame* Message::unsafe_arena_release_ipc_video_frame() {
+  // @@protoc_insertion_point(field_release:tc.Message.ipc_video_frame)
+  
+  ::tc::IpcVideoFrame* temp = _impl_.ipc_video_frame_;
+  _impl_.ipc_video_frame_ = nullptr;
+  return temp;
+}
+inline ::tc::IpcVideoFrame* Message::_internal_mutable_ipc_video_frame() {
+  
+  if (_impl_.ipc_video_frame_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::IpcVideoFrame>(GetArenaForAllocation());
+    _impl_.ipc_video_frame_ = p;
+  }
+  return _impl_.ipc_video_frame_;
+}
+inline ::tc::IpcVideoFrame* Message::mutable_ipc_video_frame() {
+  ::tc::IpcVideoFrame* _msg = _internal_mutable_ipc_video_frame();
+  // @@protoc_insertion_point(field_mutable:tc.Message.ipc_video_frame)
+  return _msg;
+}
+inline void Message::set_allocated_ipc_video_frame(::tc::IpcVideoFrame* ipc_video_frame) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.ipc_video_frame_;
+  }
+  if (ipc_video_frame) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(ipc_video_frame);
+    if (message_arena != submessage_arena) {
+      ipc_video_frame = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ipc_video_frame, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.ipc_video_frame_ = ipc_video_frame;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.ipc_video_frame)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
