@@ -53,6 +53,9 @@ extern AckDefaultTypeInternal _Ack_default_instance_;
 class AudioFrame;
 struct AudioFrameDefaultTypeInternal;
 extern AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
+class CursorInfoSync;
+struct CursorInfoSyncDefaultTypeInternal;
+extern CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
 class HeartBeat;
 struct HeartBeatDefaultTypeInternal;
 extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
@@ -75,6 +78,7 @@ extern VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tc::Ack* Arena::CreateMaybeMessage<::tc::Ack>(Arena*);
 template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*);
+template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
 template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
@@ -118,12 +122,13 @@ enum MessageType : int {
   kAudioFrame = 4,
   kKeyEvent = 5,
   kMouseEvent = 6,
+  kCursorInfoSync = 7,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kMouseEvent;
+constexpr MessageType MessageType_MAX = kCursorInfoSync;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -1481,6 +1486,236 @@ class MouseEvent final :
 };
 // -------------------------------------------------------------------
 
+class CursorInfoSync final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.CursorInfoSync) */ {
+ public:
+  inline CursorInfoSync() : CursorInfoSync(nullptr) {}
+  ~CursorInfoSync() override;
+  explicit PROTOBUF_CONSTEXPR CursorInfoSync(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CursorInfoSync(const CursorInfoSync& from);
+  CursorInfoSync(CursorInfoSync&& from) noexcept
+    : CursorInfoSync() {
+    *this = ::std::move(from);
+  }
+
+  inline CursorInfoSync& operator=(const CursorInfoSync& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CursorInfoSync& operator=(CursorInfoSync&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CursorInfoSync& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CursorInfoSync* internal_default_instance() {
+    return reinterpret_cast<const CursorInfoSync*>(
+               &_CursorInfoSync_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(CursorInfoSync& a, CursorInfoSync& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CursorInfoSync* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CursorInfoSync* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CursorInfoSync* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CursorInfoSync>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CursorInfoSync& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CursorInfoSync& from) {
+    CursorInfoSync::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CursorInfoSync* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.CursorInfoSync";
+  }
+  protected:
+  explicit CursorInfoSync(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBitmapFieldNumber = 8,
+    kVisibleFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kHotspotXFieldNumber = 4,
+    kHotspotYFieldNumber = 5,
+    kWidthFieldNumber = 6,
+    kHeightFieldNumber = 7,
+  };
+  // bytes bitmap = 8;
+  void clear_bitmap();
+  const std::string& bitmap() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_bitmap(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_bitmap();
+  PROTOBUF_NODISCARD std::string* release_bitmap();
+  void set_allocated_bitmap(std::string* bitmap);
+  private:
+  const std::string& _internal_bitmap() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bitmap(const std::string& value);
+  std::string* _internal_mutable_bitmap();
+  public:
+
+  // bool visible = 1;
+  void clear_visible();
+  bool visible() const;
+  void set_visible(bool value);
+  private:
+  bool _internal_visible() const;
+  void _internal_set_visible(bool value);
+  public:
+
+  // uint32 x = 2;
+  void clear_x();
+  uint32_t x() const;
+  void set_x(uint32_t value);
+  private:
+  uint32_t _internal_x() const;
+  void _internal_set_x(uint32_t value);
+  public:
+
+  // uint32 y = 3;
+  void clear_y();
+  uint32_t y() const;
+  void set_y(uint32_t value);
+  private:
+  uint32_t _internal_y() const;
+  void _internal_set_y(uint32_t value);
+  public:
+
+  // uint32 hotspot_x = 4;
+  void clear_hotspot_x();
+  uint32_t hotspot_x() const;
+  void set_hotspot_x(uint32_t value);
+  private:
+  uint32_t _internal_hotspot_x() const;
+  void _internal_set_hotspot_x(uint32_t value);
+  public:
+
+  // uint32 hotspot_y = 5;
+  void clear_hotspot_y();
+  uint32_t hotspot_y() const;
+  void set_hotspot_y(uint32_t value);
+  private:
+  uint32_t _internal_hotspot_y() const;
+  void _internal_set_hotspot_y(uint32_t value);
+  public:
+
+  // uint32 width = 6;
+  void clear_width();
+  uint32_t width() const;
+  void set_width(uint32_t value);
+  private:
+  uint32_t _internal_width() const;
+  void _internal_set_width(uint32_t value);
+  public:
+
+  // uint32 height = 7;
+  void clear_height();
+  uint32_t height() const;
+  void set_height(uint32_t value);
+  private:
+  uint32_t _internal_height() const;
+  void _internal_set_height(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.CursorInfoSync)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bitmap_;
+    bool visible_;
+    uint32_t x_;
+    uint32_t y_;
+    uint32_t hotspot_x_;
+    uint32_t hotspot_y_;
+    uint32_t width_;
+    uint32_t height_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -1529,7 +1764,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -1609,6 +1844,7 @@ class Message final :
     kAudioFrameFieldNumber = 7,
     kKeyEventFieldNumber = 8,
     kMouseEventFieldNumber = 9,
+    kCursorInfoSyncFieldNumber = 10,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -1738,6 +1974,24 @@ class Message final :
       ::tc::MouseEvent* mouse_event);
   ::tc::MouseEvent* unsafe_arena_release_mouse_event();
 
+  // .tc.CursorInfoSync cursor_info_sync = 10;
+  bool has_cursor_info_sync() const;
+  private:
+  bool _internal_has_cursor_info_sync() const;
+  public:
+  void clear_cursor_info_sync();
+  const ::tc::CursorInfoSync& cursor_info_sync() const;
+  PROTOBUF_NODISCARD ::tc::CursorInfoSync* release_cursor_info_sync();
+  ::tc::CursorInfoSync* mutable_cursor_info_sync();
+  void set_allocated_cursor_info_sync(::tc::CursorInfoSync* cursor_info_sync);
+  private:
+  const ::tc::CursorInfoSync& _internal_cursor_info_sync() const;
+  ::tc::CursorInfoSync* _internal_mutable_cursor_info_sync();
+  public:
+  void unsafe_arena_set_allocated_cursor_info_sync(
+      ::tc::CursorInfoSync* cursor_info_sync);
+  ::tc::CursorInfoSync* unsafe_arena_release_cursor_info_sync();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -1771,6 +2025,7 @@ class Message final :
     ::tc::AudioFrame* audio_frame_;
     ::tc::KeyEvent* key_event_;
     ::tc::MouseEvent* mouse_event_;
+    ::tc::CursorInfoSync* cursor_info_sync_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2455,6 +2710,200 @@ inline void MouseEvent::set_released(bool value) {
 
 // -------------------------------------------------------------------
 
+// CursorInfoSync
+
+// bool visible = 1;
+inline void CursorInfoSync::clear_visible() {
+  _impl_.visible_ = false;
+}
+inline bool CursorInfoSync::_internal_visible() const {
+  return _impl_.visible_;
+}
+inline bool CursorInfoSync::visible() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.visible)
+  return _internal_visible();
+}
+inline void CursorInfoSync::_internal_set_visible(bool value) {
+  
+  _impl_.visible_ = value;
+}
+inline void CursorInfoSync::set_visible(bool value) {
+  _internal_set_visible(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.visible)
+}
+
+// uint32 x = 2;
+inline void CursorInfoSync::clear_x() {
+  _impl_.x_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_x() const {
+  return _impl_.x_;
+}
+inline uint32_t CursorInfoSync::x() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.x)
+  return _internal_x();
+}
+inline void CursorInfoSync::_internal_set_x(uint32_t value) {
+  
+  _impl_.x_ = value;
+}
+inline void CursorInfoSync::set_x(uint32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.x)
+}
+
+// uint32 y = 3;
+inline void CursorInfoSync::clear_y() {
+  _impl_.y_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_y() const {
+  return _impl_.y_;
+}
+inline uint32_t CursorInfoSync::y() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.y)
+  return _internal_y();
+}
+inline void CursorInfoSync::_internal_set_y(uint32_t value) {
+  
+  _impl_.y_ = value;
+}
+inline void CursorInfoSync::set_y(uint32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.y)
+}
+
+// uint32 hotspot_x = 4;
+inline void CursorInfoSync::clear_hotspot_x() {
+  _impl_.hotspot_x_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_hotspot_x() const {
+  return _impl_.hotspot_x_;
+}
+inline uint32_t CursorInfoSync::hotspot_x() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.hotspot_x)
+  return _internal_hotspot_x();
+}
+inline void CursorInfoSync::_internal_set_hotspot_x(uint32_t value) {
+  
+  _impl_.hotspot_x_ = value;
+}
+inline void CursorInfoSync::set_hotspot_x(uint32_t value) {
+  _internal_set_hotspot_x(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.hotspot_x)
+}
+
+// uint32 hotspot_y = 5;
+inline void CursorInfoSync::clear_hotspot_y() {
+  _impl_.hotspot_y_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_hotspot_y() const {
+  return _impl_.hotspot_y_;
+}
+inline uint32_t CursorInfoSync::hotspot_y() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.hotspot_y)
+  return _internal_hotspot_y();
+}
+inline void CursorInfoSync::_internal_set_hotspot_y(uint32_t value) {
+  
+  _impl_.hotspot_y_ = value;
+}
+inline void CursorInfoSync::set_hotspot_y(uint32_t value) {
+  _internal_set_hotspot_y(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.hotspot_y)
+}
+
+// uint32 width = 6;
+inline void CursorInfoSync::clear_width() {
+  _impl_.width_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_width() const {
+  return _impl_.width_;
+}
+inline uint32_t CursorInfoSync::width() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.width)
+  return _internal_width();
+}
+inline void CursorInfoSync::_internal_set_width(uint32_t value) {
+  
+  _impl_.width_ = value;
+}
+inline void CursorInfoSync::set_width(uint32_t value) {
+  _internal_set_width(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.width)
+}
+
+// uint32 height = 7;
+inline void CursorInfoSync::clear_height() {
+  _impl_.height_ = 0u;
+}
+inline uint32_t CursorInfoSync::_internal_height() const {
+  return _impl_.height_;
+}
+inline uint32_t CursorInfoSync::height() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.height)
+  return _internal_height();
+}
+inline void CursorInfoSync::_internal_set_height(uint32_t value) {
+  
+  _impl_.height_ = value;
+}
+inline void CursorInfoSync::set_height(uint32_t value) {
+  _internal_set_height(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.height)
+}
+
+// bytes bitmap = 8;
+inline void CursorInfoSync::clear_bitmap() {
+  _impl_.bitmap_.ClearToEmpty();
+}
+inline const std::string& CursorInfoSync::bitmap() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.bitmap)
+  return _internal_bitmap();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CursorInfoSync::set_bitmap(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.bitmap_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.bitmap)
+}
+inline std::string* CursorInfoSync::mutable_bitmap() {
+  std::string* _s = _internal_mutable_bitmap();
+  // @@protoc_insertion_point(field_mutable:tc.CursorInfoSync.bitmap)
+  return _s;
+}
+inline const std::string& CursorInfoSync::_internal_bitmap() const {
+  return _impl_.bitmap_.Get();
+}
+inline void CursorInfoSync::_internal_set_bitmap(const std::string& value) {
+  
+  _impl_.bitmap_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CursorInfoSync::_internal_mutable_bitmap() {
+  
+  return _impl_.bitmap_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CursorInfoSync::release_bitmap() {
+  // @@protoc_insertion_point(field_release:tc.CursorInfoSync.bitmap)
+  return _impl_.bitmap_.Release();
+}
+inline void CursorInfoSync::set_allocated_bitmap(std::string* bitmap) {
+  if (bitmap != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.bitmap_.SetAllocated(bitmap, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.bitmap_.IsDefault()) {
+    _impl_.bitmap_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.CursorInfoSync.bitmap)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -3127,9 +3576,101 @@ inline void Message::set_allocated_mouse_event(::tc::MouseEvent* mouse_event) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.mouse_event)
 }
 
+// .tc.CursorInfoSync cursor_info_sync = 10;
+inline bool Message::_internal_has_cursor_info_sync() const {
+  return this != internal_default_instance() && _impl_.cursor_info_sync_ != nullptr;
+}
+inline bool Message::has_cursor_info_sync() const {
+  return _internal_has_cursor_info_sync();
+}
+inline void Message::clear_cursor_info_sync() {
+  if (GetArenaForAllocation() == nullptr && _impl_.cursor_info_sync_ != nullptr) {
+    delete _impl_.cursor_info_sync_;
+  }
+  _impl_.cursor_info_sync_ = nullptr;
+}
+inline const ::tc::CursorInfoSync& Message::_internal_cursor_info_sync() const {
+  const ::tc::CursorInfoSync* p = _impl_.cursor_info_sync_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::CursorInfoSync&>(
+      ::tc::_CursorInfoSync_default_instance_);
+}
+inline const ::tc::CursorInfoSync& Message::cursor_info_sync() const {
+  // @@protoc_insertion_point(field_get:tc.Message.cursor_info_sync)
+  return _internal_cursor_info_sync();
+}
+inline void Message::unsafe_arena_set_allocated_cursor_info_sync(
+    ::tc::CursorInfoSync* cursor_info_sync) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.cursor_info_sync_);
+  }
+  _impl_.cursor_info_sync_ = cursor_info_sync;
+  if (cursor_info_sync) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.cursor_info_sync)
+}
+inline ::tc::CursorInfoSync* Message::release_cursor_info_sync() {
+  
+  ::tc::CursorInfoSync* temp = _impl_.cursor_info_sync_;
+  _impl_.cursor_info_sync_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::CursorInfoSync* Message::unsafe_arena_release_cursor_info_sync() {
+  // @@protoc_insertion_point(field_release:tc.Message.cursor_info_sync)
+  
+  ::tc::CursorInfoSync* temp = _impl_.cursor_info_sync_;
+  _impl_.cursor_info_sync_ = nullptr;
+  return temp;
+}
+inline ::tc::CursorInfoSync* Message::_internal_mutable_cursor_info_sync() {
+  
+  if (_impl_.cursor_info_sync_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::CursorInfoSync>(GetArenaForAllocation());
+    _impl_.cursor_info_sync_ = p;
+  }
+  return _impl_.cursor_info_sync_;
+}
+inline ::tc::CursorInfoSync* Message::mutable_cursor_info_sync() {
+  ::tc::CursorInfoSync* _msg = _internal_mutable_cursor_info_sync();
+  // @@protoc_insertion_point(field_mutable:tc.Message.cursor_info_sync)
+  return _msg;
+}
+inline void Message::set_allocated_cursor_info_sync(::tc::CursorInfoSync* cursor_info_sync) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.cursor_info_sync_;
+  }
+  if (cursor_info_sync) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(cursor_info_sync);
+    if (message_arena != submessage_arena) {
+      cursor_info_sync = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, cursor_info_sync, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.cursor_info_sync_ = cursor_info_sync;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.cursor_info_sync)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
