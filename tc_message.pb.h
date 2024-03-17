@@ -62,6 +62,12 @@ extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
 class Hello;
 struct HelloDefaultTypeInternal;
 extern HelloDefaultTypeInternal _Hello_default_instance_;
+class IpcKeyboardEvent;
+struct IpcKeyboardEventDefaultTypeInternal;
+extern IpcKeyboardEventDefaultTypeInternal _IpcKeyboardEvent_default_instance_;
+class IpcMouseEvent;
+struct IpcMouseEventDefaultTypeInternal;
+extern IpcMouseEventDefaultTypeInternal _IpcMouseEvent_default_instance_;
 class IpcVideoFrame;
 struct IpcVideoFrameDefaultTypeInternal;
 extern IpcVideoFrameDefaultTypeInternal _IpcVideoFrame_default_instance_;
@@ -84,6 +90,8 @@ template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*)
 template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
 template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
+template<> ::tc::IpcKeyboardEvent* Arena::CreateMaybeMessage<::tc::IpcKeyboardEvent>(Arena*);
+template<> ::tc::IpcMouseEvent* Arena::CreateMaybeMessage<::tc::IpcMouseEvent>(Arena*);
 template<> ::tc::IpcVideoFrame* Arena::CreateMaybeMessage<::tc::IpcVideoFrame>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
 template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
@@ -128,12 +136,14 @@ enum MessageType : int {
   kMouseEvent = 6,
   kCursorInfoSync = 7,
   kIpcVideoFrame = 8,
+  kIpcMouseEvent = 9,
+  kIpcKeyboardEvent = 10,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kIpcVideoFrame;
+constexpr MessageType MessageType_MAX = kIpcKeyboardEvent;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -1946,6 +1956,382 @@ class IpcVideoFrame final :
 };
 // -------------------------------------------------------------------
 
+class IpcMouseEvent final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.IpcMouseEvent) */ {
+ public:
+  inline IpcMouseEvent() : IpcMouseEvent(nullptr) {}
+  ~IpcMouseEvent() override;
+  explicit PROTOBUF_CONSTEXPR IpcMouseEvent(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IpcMouseEvent(const IpcMouseEvent& from);
+  IpcMouseEvent(IpcMouseEvent&& from) noexcept
+    : IpcMouseEvent() {
+    *this = ::std::move(from);
+  }
+
+  inline IpcMouseEvent& operator=(const IpcMouseEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IpcMouseEvent& operator=(IpcMouseEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IpcMouseEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IpcMouseEvent* internal_default_instance() {
+    return reinterpret_cast<const IpcMouseEvent*>(
+               &_IpcMouseEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(IpcMouseEvent& a, IpcMouseEvent& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IpcMouseEvent* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IpcMouseEvent* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IpcMouseEvent* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IpcMouseEvent>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const IpcMouseEvent& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const IpcMouseEvent& from) {
+    IpcMouseEvent::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(IpcMouseEvent* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.IpcMouseEvent";
+  }
+  protected:
+  explicit IpcMouseEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHwndFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kButtonFieldNumber = 4,
+    kPressedFieldNumber = 5,
+    kReleasedFieldNumber = 6,
+    kDataFieldNumber = 7,
+    kDxFieldNumber = 8,
+    kDyFieldNumber = 9,
+    kMiddleScrollFieldNumber = 10,
+    kAbsoluteFieldNumber = 11,
+  };
+  // uint64 hwnd = 1;
+  void clear_hwnd();
+  uint64_t hwnd() const;
+  void set_hwnd(uint64_t value);
+  private:
+  uint64_t _internal_hwnd() const;
+  void _internal_set_hwnd(uint64_t value);
+  public:
+
+  // uint32 x = 2;
+  void clear_x();
+  uint32_t x() const;
+  void set_x(uint32_t value);
+  private:
+  uint32_t _internal_x() const;
+  void _internal_set_x(uint32_t value);
+  public:
+
+  // uint32 y = 3;
+  void clear_y();
+  uint32_t y() const;
+  void set_y(uint32_t value);
+  private:
+  uint32_t _internal_y() const;
+  void _internal_set_y(uint32_t value);
+  public:
+
+  // int32 button = 4;
+  void clear_button();
+  int32_t button() const;
+  void set_button(int32_t value);
+  private:
+  int32_t _internal_button() const;
+  void _internal_set_button(int32_t value);
+  public:
+
+  // bool pressed = 5;
+  void clear_pressed();
+  bool pressed() const;
+  void set_pressed(bool value);
+  private:
+  bool _internal_pressed() const;
+  void _internal_set_pressed(bool value);
+  public:
+
+  // bool released = 6;
+  void clear_released();
+  bool released() const;
+  void set_released(bool value);
+  private:
+  bool _internal_released() const;
+  void _internal_set_released(bool value);
+  public:
+
+  // int32 data = 7;
+  void clear_data();
+  int32_t data() const;
+  void set_data(int32_t value);
+  private:
+  int32_t _internal_data() const;
+  void _internal_set_data(int32_t value);
+  public:
+
+  // int32 dx = 8;
+  void clear_dx();
+  int32_t dx() const;
+  void set_dx(int32_t value);
+  private:
+  int32_t _internal_dx() const;
+  void _internal_set_dx(int32_t value);
+  public:
+
+  // int32 dy = 9;
+  void clear_dy();
+  int32_t dy() const;
+  void set_dy(int32_t value);
+  private:
+  int32_t _internal_dy() const;
+  void _internal_set_dy(int32_t value);
+  public:
+
+  // int32 middle_scroll = 10;
+  void clear_middle_scroll();
+  int32_t middle_scroll() const;
+  void set_middle_scroll(int32_t value);
+  private:
+  int32_t _internal_middle_scroll() const;
+  void _internal_set_middle_scroll(int32_t value);
+  public:
+
+  // int32 absolute = 11;
+  void clear_absolute();
+  int32_t absolute() const;
+  void set_absolute(int32_t value);
+  private:
+  int32_t _internal_absolute() const;
+  void _internal_set_absolute(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.IpcMouseEvent)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint64_t hwnd_;
+    uint32_t x_;
+    uint32_t y_;
+    int32_t button_;
+    bool pressed_;
+    bool released_;
+    int32_t data_;
+    int32_t dx_;
+    int32_t dy_;
+    int32_t middle_scroll_;
+    int32_t absolute_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class IpcKeyboardEvent final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:tc.IpcKeyboardEvent) */ {
+ public:
+  inline IpcKeyboardEvent() : IpcKeyboardEvent(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR IpcKeyboardEvent(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  IpcKeyboardEvent(const IpcKeyboardEvent& from);
+  IpcKeyboardEvent(IpcKeyboardEvent&& from) noexcept
+    : IpcKeyboardEvent() {
+    *this = ::std::move(from);
+  }
+
+  inline IpcKeyboardEvent& operator=(const IpcKeyboardEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline IpcKeyboardEvent& operator=(IpcKeyboardEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const IpcKeyboardEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const IpcKeyboardEvent* internal_default_instance() {
+    return reinterpret_cast<const IpcKeyboardEvent*>(
+               &_IpcKeyboardEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(IpcKeyboardEvent& a, IpcKeyboardEvent& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(IpcKeyboardEvent* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(IpcKeyboardEvent* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  IpcKeyboardEvent* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IpcKeyboardEvent>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const IpcKeyboardEvent& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const IpcKeyboardEvent& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.IpcKeyboardEvent";
+  }
+  protected:
+  explicit IpcKeyboardEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:tc.IpcKeyboardEvent)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -1994,7 +2380,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2076,6 +2462,8 @@ class Message final :
     kMouseEventFieldNumber = 9,
     kCursorInfoSyncFieldNumber = 10,
     kIpcVideoFrameFieldNumber = 11,
+    kIpcMouseEventFieldNumber = 12,
+    kIpcKeyboardEventFieldNumber = 13,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -2241,6 +2629,42 @@ class Message final :
       ::tc::IpcVideoFrame* ipc_video_frame);
   ::tc::IpcVideoFrame* unsafe_arena_release_ipc_video_frame();
 
+  // .tc.IpcMouseEvent ipc_mouse_event = 12;
+  bool has_ipc_mouse_event() const;
+  private:
+  bool _internal_has_ipc_mouse_event() const;
+  public:
+  void clear_ipc_mouse_event();
+  const ::tc::IpcMouseEvent& ipc_mouse_event() const;
+  PROTOBUF_NODISCARD ::tc::IpcMouseEvent* release_ipc_mouse_event();
+  ::tc::IpcMouseEvent* mutable_ipc_mouse_event();
+  void set_allocated_ipc_mouse_event(::tc::IpcMouseEvent* ipc_mouse_event);
+  private:
+  const ::tc::IpcMouseEvent& _internal_ipc_mouse_event() const;
+  ::tc::IpcMouseEvent* _internal_mutable_ipc_mouse_event();
+  public:
+  void unsafe_arena_set_allocated_ipc_mouse_event(
+      ::tc::IpcMouseEvent* ipc_mouse_event);
+  ::tc::IpcMouseEvent* unsafe_arena_release_ipc_mouse_event();
+
+  // .tc.IpcKeyboardEvent ipc_keyboard_event = 13;
+  bool has_ipc_keyboard_event() const;
+  private:
+  bool _internal_has_ipc_keyboard_event() const;
+  public:
+  void clear_ipc_keyboard_event();
+  const ::tc::IpcKeyboardEvent& ipc_keyboard_event() const;
+  PROTOBUF_NODISCARD ::tc::IpcKeyboardEvent* release_ipc_keyboard_event();
+  ::tc::IpcKeyboardEvent* mutable_ipc_keyboard_event();
+  void set_allocated_ipc_keyboard_event(::tc::IpcKeyboardEvent* ipc_keyboard_event);
+  private:
+  const ::tc::IpcKeyboardEvent& _internal_ipc_keyboard_event() const;
+  ::tc::IpcKeyboardEvent* _internal_mutable_ipc_keyboard_event();
+  public:
+  void unsafe_arena_set_allocated_ipc_keyboard_event(
+      ::tc::IpcKeyboardEvent* ipc_keyboard_event);
+  ::tc::IpcKeyboardEvent* unsafe_arena_release_ipc_keyboard_event();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -2276,6 +2700,8 @@ class Message final :
     ::tc::MouseEvent* mouse_event_;
     ::tc::CursorInfoSync* cursor_info_sync_;
     ::tc::IpcVideoFrame* ipc_video_frame_;
+    ::tc::IpcMouseEvent* ipc_mouse_event_;
+    ::tc::IpcKeyboardEvent* ipc_keyboard_event_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3318,6 +3744,234 @@ inline void IpcVideoFrame::set_capture_index(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// IpcMouseEvent
+
+// uint64 hwnd = 1;
+inline void IpcMouseEvent::clear_hwnd() {
+  _impl_.hwnd_ = uint64_t{0u};
+}
+inline uint64_t IpcMouseEvent::_internal_hwnd() const {
+  return _impl_.hwnd_;
+}
+inline uint64_t IpcMouseEvent::hwnd() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.hwnd)
+  return _internal_hwnd();
+}
+inline void IpcMouseEvent::_internal_set_hwnd(uint64_t value) {
+  
+  _impl_.hwnd_ = value;
+}
+inline void IpcMouseEvent::set_hwnd(uint64_t value) {
+  _internal_set_hwnd(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.hwnd)
+}
+
+// uint32 x = 2;
+inline void IpcMouseEvent::clear_x() {
+  _impl_.x_ = 0u;
+}
+inline uint32_t IpcMouseEvent::_internal_x() const {
+  return _impl_.x_;
+}
+inline uint32_t IpcMouseEvent::x() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.x)
+  return _internal_x();
+}
+inline void IpcMouseEvent::_internal_set_x(uint32_t value) {
+  
+  _impl_.x_ = value;
+}
+inline void IpcMouseEvent::set_x(uint32_t value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.x)
+}
+
+// uint32 y = 3;
+inline void IpcMouseEvent::clear_y() {
+  _impl_.y_ = 0u;
+}
+inline uint32_t IpcMouseEvent::_internal_y() const {
+  return _impl_.y_;
+}
+inline uint32_t IpcMouseEvent::y() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.y)
+  return _internal_y();
+}
+inline void IpcMouseEvent::_internal_set_y(uint32_t value) {
+  
+  _impl_.y_ = value;
+}
+inline void IpcMouseEvent::set_y(uint32_t value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.y)
+}
+
+// int32 button = 4;
+inline void IpcMouseEvent::clear_button() {
+  _impl_.button_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_button() const {
+  return _impl_.button_;
+}
+inline int32_t IpcMouseEvent::button() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.button)
+  return _internal_button();
+}
+inline void IpcMouseEvent::_internal_set_button(int32_t value) {
+  
+  _impl_.button_ = value;
+}
+inline void IpcMouseEvent::set_button(int32_t value) {
+  _internal_set_button(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.button)
+}
+
+// bool pressed = 5;
+inline void IpcMouseEvent::clear_pressed() {
+  _impl_.pressed_ = false;
+}
+inline bool IpcMouseEvent::_internal_pressed() const {
+  return _impl_.pressed_;
+}
+inline bool IpcMouseEvent::pressed() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.pressed)
+  return _internal_pressed();
+}
+inline void IpcMouseEvent::_internal_set_pressed(bool value) {
+  
+  _impl_.pressed_ = value;
+}
+inline void IpcMouseEvent::set_pressed(bool value) {
+  _internal_set_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.pressed)
+}
+
+// bool released = 6;
+inline void IpcMouseEvent::clear_released() {
+  _impl_.released_ = false;
+}
+inline bool IpcMouseEvent::_internal_released() const {
+  return _impl_.released_;
+}
+inline bool IpcMouseEvent::released() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.released)
+  return _internal_released();
+}
+inline void IpcMouseEvent::_internal_set_released(bool value) {
+  
+  _impl_.released_ = value;
+}
+inline void IpcMouseEvent::set_released(bool value) {
+  _internal_set_released(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.released)
+}
+
+// int32 data = 7;
+inline void IpcMouseEvent::clear_data() {
+  _impl_.data_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_data() const {
+  return _impl_.data_;
+}
+inline int32_t IpcMouseEvent::data() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.data)
+  return _internal_data();
+}
+inline void IpcMouseEvent::_internal_set_data(int32_t value) {
+  
+  _impl_.data_ = value;
+}
+inline void IpcMouseEvent::set_data(int32_t value) {
+  _internal_set_data(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.data)
+}
+
+// int32 dx = 8;
+inline void IpcMouseEvent::clear_dx() {
+  _impl_.dx_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_dx() const {
+  return _impl_.dx_;
+}
+inline int32_t IpcMouseEvent::dx() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.dx)
+  return _internal_dx();
+}
+inline void IpcMouseEvent::_internal_set_dx(int32_t value) {
+  
+  _impl_.dx_ = value;
+}
+inline void IpcMouseEvent::set_dx(int32_t value) {
+  _internal_set_dx(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.dx)
+}
+
+// int32 dy = 9;
+inline void IpcMouseEvent::clear_dy() {
+  _impl_.dy_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_dy() const {
+  return _impl_.dy_;
+}
+inline int32_t IpcMouseEvent::dy() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.dy)
+  return _internal_dy();
+}
+inline void IpcMouseEvent::_internal_set_dy(int32_t value) {
+  
+  _impl_.dy_ = value;
+}
+inline void IpcMouseEvent::set_dy(int32_t value) {
+  _internal_set_dy(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.dy)
+}
+
+// int32 middle_scroll = 10;
+inline void IpcMouseEvent::clear_middle_scroll() {
+  _impl_.middle_scroll_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_middle_scroll() const {
+  return _impl_.middle_scroll_;
+}
+inline int32_t IpcMouseEvent::middle_scroll() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.middle_scroll)
+  return _internal_middle_scroll();
+}
+inline void IpcMouseEvent::_internal_set_middle_scroll(int32_t value) {
+  
+  _impl_.middle_scroll_ = value;
+}
+inline void IpcMouseEvent::set_middle_scroll(int32_t value) {
+  _internal_set_middle_scroll(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.middle_scroll)
+}
+
+// int32 absolute = 11;
+inline void IpcMouseEvent::clear_absolute() {
+  _impl_.absolute_ = 0;
+}
+inline int32_t IpcMouseEvent::_internal_absolute() const {
+  return _impl_.absolute_;
+}
+inline int32_t IpcMouseEvent::absolute() const {
+  // @@protoc_insertion_point(field_get:tc.IpcMouseEvent.absolute)
+  return _internal_absolute();
+}
+inline void IpcMouseEvent::_internal_set_absolute(int32_t value) {
+  
+  _impl_.absolute_ = value;
+}
+inline void IpcMouseEvent::set_absolute(int32_t value) {
+  _internal_set_absolute(value);
+  // @@protoc_insertion_point(field_set:tc.IpcMouseEvent.absolute)
+}
+
+// -------------------------------------------------------------------
+
+// IpcKeyboardEvent
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -4170,9 +4824,193 @@ inline void Message::set_allocated_ipc_video_frame(::tc::IpcVideoFrame* ipc_vide
   // @@protoc_insertion_point(field_set_allocated:tc.Message.ipc_video_frame)
 }
 
+// .tc.IpcMouseEvent ipc_mouse_event = 12;
+inline bool Message::_internal_has_ipc_mouse_event() const {
+  return this != internal_default_instance() && _impl_.ipc_mouse_event_ != nullptr;
+}
+inline bool Message::has_ipc_mouse_event() const {
+  return _internal_has_ipc_mouse_event();
+}
+inline void Message::clear_ipc_mouse_event() {
+  if (GetArenaForAllocation() == nullptr && _impl_.ipc_mouse_event_ != nullptr) {
+    delete _impl_.ipc_mouse_event_;
+  }
+  _impl_.ipc_mouse_event_ = nullptr;
+}
+inline const ::tc::IpcMouseEvent& Message::_internal_ipc_mouse_event() const {
+  const ::tc::IpcMouseEvent* p = _impl_.ipc_mouse_event_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::IpcMouseEvent&>(
+      ::tc::_IpcMouseEvent_default_instance_);
+}
+inline const ::tc::IpcMouseEvent& Message::ipc_mouse_event() const {
+  // @@protoc_insertion_point(field_get:tc.Message.ipc_mouse_event)
+  return _internal_ipc_mouse_event();
+}
+inline void Message::unsafe_arena_set_allocated_ipc_mouse_event(
+    ::tc::IpcMouseEvent* ipc_mouse_event) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ipc_mouse_event_);
+  }
+  _impl_.ipc_mouse_event_ = ipc_mouse_event;
+  if (ipc_mouse_event) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.ipc_mouse_event)
+}
+inline ::tc::IpcMouseEvent* Message::release_ipc_mouse_event() {
+  
+  ::tc::IpcMouseEvent* temp = _impl_.ipc_mouse_event_;
+  _impl_.ipc_mouse_event_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::IpcMouseEvent* Message::unsafe_arena_release_ipc_mouse_event() {
+  // @@protoc_insertion_point(field_release:tc.Message.ipc_mouse_event)
+  
+  ::tc::IpcMouseEvent* temp = _impl_.ipc_mouse_event_;
+  _impl_.ipc_mouse_event_ = nullptr;
+  return temp;
+}
+inline ::tc::IpcMouseEvent* Message::_internal_mutable_ipc_mouse_event() {
+  
+  if (_impl_.ipc_mouse_event_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::IpcMouseEvent>(GetArenaForAllocation());
+    _impl_.ipc_mouse_event_ = p;
+  }
+  return _impl_.ipc_mouse_event_;
+}
+inline ::tc::IpcMouseEvent* Message::mutable_ipc_mouse_event() {
+  ::tc::IpcMouseEvent* _msg = _internal_mutable_ipc_mouse_event();
+  // @@protoc_insertion_point(field_mutable:tc.Message.ipc_mouse_event)
+  return _msg;
+}
+inline void Message::set_allocated_ipc_mouse_event(::tc::IpcMouseEvent* ipc_mouse_event) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.ipc_mouse_event_;
+  }
+  if (ipc_mouse_event) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(ipc_mouse_event);
+    if (message_arena != submessage_arena) {
+      ipc_mouse_event = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ipc_mouse_event, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.ipc_mouse_event_ = ipc_mouse_event;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.ipc_mouse_event)
+}
+
+// .tc.IpcKeyboardEvent ipc_keyboard_event = 13;
+inline bool Message::_internal_has_ipc_keyboard_event() const {
+  return this != internal_default_instance() && _impl_.ipc_keyboard_event_ != nullptr;
+}
+inline bool Message::has_ipc_keyboard_event() const {
+  return _internal_has_ipc_keyboard_event();
+}
+inline void Message::clear_ipc_keyboard_event() {
+  if (GetArenaForAllocation() == nullptr && _impl_.ipc_keyboard_event_ != nullptr) {
+    delete _impl_.ipc_keyboard_event_;
+  }
+  _impl_.ipc_keyboard_event_ = nullptr;
+}
+inline const ::tc::IpcKeyboardEvent& Message::_internal_ipc_keyboard_event() const {
+  const ::tc::IpcKeyboardEvent* p = _impl_.ipc_keyboard_event_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::IpcKeyboardEvent&>(
+      ::tc::_IpcKeyboardEvent_default_instance_);
+}
+inline const ::tc::IpcKeyboardEvent& Message::ipc_keyboard_event() const {
+  // @@protoc_insertion_point(field_get:tc.Message.ipc_keyboard_event)
+  return _internal_ipc_keyboard_event();
+}
+inline void Message::unsafe_arena_set_allocated_ipc_keyboard_event(
+    ::tc::IpcKeyboardEvent* ipc_keyboard_event) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ipc_keyboard_event_);
+  }
+  _impl_.ipc_keyboard_event_ = ipc_keyboard_event;
+  if (ipc_keyboard_event) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.ipc_keyboard_event)
+}
+inline ::tc::IpcKeyboardEvent* Message::release_ipc_keyboard_event() {
+  
+  ::tc::IpcKeyboardEvent* temp = _impl_.ipc_keyboard_event_;
+  _impl_.ipc_keyboard_event_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::IpcKeyboardEvent* Message::unsafe_arena_release_ipc_keyboard_event() {
+  // @@protoc_insertion_point(field_release:tc.Message.ipc_keyboard_event)
+  
+  ::tc::IpcKeyboardEvent* temp = _impl_.ipc_keyboard_event_;
+  _impl_.ipc_keyboard_event_ = nullptr;
+  return temp;
+}
+inline ::tc::IpcKeyboardEvent* Message::_internal_mutable_ipc_keyboard_event() {
+  
+  if (_impl_.ipc_keyboard_event_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::IpcKeyboardEvent>(GetArenaForAllocation());
+    _impl_.ipc_keyboard_event_ = p;
+  }
+  return _impl_.ipc_keyboard_event_;
+}
+inline ::tc::IpcKeyboardEvent* Message::mutable_ipc_keyboard_event() {
+  ::tc::IpcKeyboardEvent* _msg = _internal_mutable_ipc_keyboard_event();
+  // @@protoc_insertion_point(field_mutable:tc.Message.ipc_keyboard_event)
+  return _msg;
+}
+inline void Message::set_allocated_ipc_keyboard_event(::tc::IpcKeyboardEvent* ipc_keyboard_event) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.ipc_keyboard_event_;
+  }
+  if (ipc_keyboard_event) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(ipc_keyboard_event);
+    if (message_arena != submessage_arena) {
+      ipc_keyboard_event = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ipc_keyboard_event, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.ipc_keyboard_event_ = ipc_keyboard_event;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.ipc_keyboard_event)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
