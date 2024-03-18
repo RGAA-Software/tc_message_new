@@ -152,60 +152,6 @@ struct CursorInfoSyncDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
-PROTOBUF_CONSTEXPR IpcVideoFrame::IpcVideoFrame(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.capture_type_)*/0
-  , /*decltype(_impl_.frame_width_)*/0
-  , /*decltype(_impl_.frame_index_)*/int64_t{0}
-  , /*decltype(_impl_.frame_format_)*/int64_t{0}
-  , /*decltype(_impl_.frame_height_)*/0
-  , /*decltype(_impl_.capture_index_)*/0
-  , /*decltype(_impl_.handle_)*/uint64_t{0u}
-  , /*decltype(_impl_.adapter_uid_)*/int64_t{0}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct IpcVideoFrameDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR IpcVideoFrameDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~IpcVideoFrameDefaultTypeInternal() {}
-  union {
-    IpcVideoFrame _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IpcVideoFrameDefaultTypeInternal _IpcVideoFrame_default_instance_;
-PROTOBUF_CONSTEXPR IpcMouseEvent::IpcMouseEvent(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.hwnd_)*/uint64_t{0u}
-  , /*decltype(_impl_.x_)*/0u
-  , /*decltype(_impl_.y_)*/0u
-  , /*decltype(_impl_.button_)*/0
-  , /*decltype(_impl_.pressed_)*/false
-  , /*decltype(_impl_.released_)*/false
-  , /*decltype(_impl_.data_)*/0
-  , /*decltype(_impl_.dx_)*/0
-  , /*decltype(_impl_.dy_)*/0
-  , /*decltype(_impl_.middle_scroll_)*/0
-  , /*decltype(_impl_.absolute_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct IpcMouseEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR IpcMouseEventDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~IpcMouseEventDefaultTypeInternal() {}
-  union {
-    IpcMouseEvent _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IpcMouseEventDefaultTypeInternal _IpcMouseEvent_default_instance_;
-PROTOBUF_CONSTEXPR IpcKeyboardEvent::IpcKeyboardEvent(
-    ::_pbi::ConstantInitialized) {}
-struct IpcKeyboardEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR IpcKeyboardEventDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~IpcKeyboardEventDefaultTypeInternal() {}
-  union {
-    IpcKeyboardEvent _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IpcKeyboardEventDefaultTypeInternal _IpcKeyboardEvent_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.hello_)*/nullptr
@@ -216,9 +162,6 @@ PROTOBUF_CONSTEXPR Message::Message(
   , /*decltype(_impl_.key_event_)*/nullptr
   , /*decltype(_impl_.mouse_event_)*/nullptr
   , /*decltype(_impl_.cursor_info_sync_)*/nullptr
-  , /*decltype(_impl_.ipc_video_frame_)*/nullptr
-  , /*decltype(_impl_.ipc_mouse_event_)*/nullptr
-  , /*decltype(_impl_.ipc_keyboard_event_)*/nullptr
   , /*decltype(_impl_.send_time_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -232,7 +175,7 @@ struct MessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[12];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[9];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[4];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
@@ -323,43 +266,6 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.height_),
   PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.bitmap_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.capture_type_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.frame_width_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.frame_height_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.frame_index_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.frame_format_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.handle_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.adapter_uid_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcVideoFrame, _impl_.capture_index_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.hwnd_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.button_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.pressed_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.released_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.data_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.dx_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.dy_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.middle_scroll_),
-  PROTOBUF_FIELD_OFFSET(::tc::IpcMouseEvent, _impl_.absolute_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::IpcKeyboardEvent, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -375,9 +281,6 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.key_event_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.mouse_event_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.cursor_info_sync_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ipc_video_frame_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ipc_mouse_event_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ipc_keyboard_event_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -388,10 +291,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 43, -1, -1, sizeof(::tc::KeyEvent)},
   { 55, -1, -1, sizeof(::tc::MouseEvent)},
   { 71, -1, -1, sizeof(::tc::CursorInfoSync)},
-  { 85, -1, -1, sizeof(::tc::IpcVideoFrame)},
-  { 99, -1, -1, sizeof(::tc::IpcMouseEvent)},
-  { 116, -1, -1, sizeof(::tc::IpcKeyboardEvent)},
-  { 122, -1, -1, sizeof(::tc::Message)},
+  { 85, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -403,9 +303,6 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_KeyEvent_default_instance_._instance,
   &::tc::_MouseEvent_default_instance_._instance,
   &::tc::_CursorInfoSync_default_instance_._instance,
-  &::tc::_IpcVideoFrame_default_instance_._instance,
-  &::tc::_IpcMouseEvent_default_instance_._instance,
-  &::tc::_IpcKeyboardEvent_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -433,49 +330,34 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "isible\030\001 \001(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\021\n\tho"
   "tspot_x\030\004 \001(\r\022\021\n\thotspot_y\030\005 \001(\r\022\r\n\005widt"
   "h\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\""
-  "\267\001\n\rIpcVideoFrame\022\024\n\014capture_type\030\001 \001(\005\022"
-  "\023\n\013frame_width\030\002 \001(\005\022\024\n\014frame_height\030\003 \001"
-  "(\005\022\023\n\013frame_index\030\004 \001(\003\022\024\n\014frame_format\030"
-  "\005 \001(\003\022\016\n\006handle\030\006 \001(\004\022\023\n\013adapter_uid\030\007 \001"
-  "(\003\022\025\n\rcapture_index\030\010 \001(\005\"\265\001\n\rIpcMouseEv"
-  "ent\022\014\n\004hwnd\030\001 \001(\004\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022"
-  "\016\n\006button\030\004 \001(\005\022\017\n\007pressed\030\005 \001(\010\022\020\n\010rele"
-  "ased\030\006 \001(\010\022\014\n\004data\030\007 \001(\005\022\n\n\002dx\030\010 \001(\005\022\n\n\002"
-  "dy\030\t \001(\005\022\025\n\rmiddle_scroll\030\n \001(\005\022\020\n\010absol"
-  "ute\030\013 \001(\005\"\022\n\020IpcKeyboardEvent\"\326\003\n\007Messag"
-  "e\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend"
-  "_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n"
-  "\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\0132"
-  "\r.tc.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016.tc"
-  ".VideoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.Au"
-  "dioFrame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEven"
-  "t\022#\n\013mouse_event\030\t \001(\0132\016.tc.MouseEvent\022,"
-  "\n\020cursor_info_sync\030\n \001(\0132\022.tc.CursorInfo"
-  "Sync\022*\n\017ipc_video_frame\030\013 \001(\0132\021.tc.IpcVi"
-  "deoFrame\022*\n\017ipc_mouse_event\030\014 \001(\0132\021.tc.I"
-  "pcMouseEvent\0220\n\022ipc_keyboard_event\030\r \001(\013"
-  "2\024.tc.IpcKeyboardEvent*\311\001\n\013MessageType\022\n"
-  "\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013"
-  "kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEv"
-  "ent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSyn"
-  "c\020\007\022\022\n\016kIpcVideoFrame\020\010\022\022\n\016kIpcMouseEven"
-  "t\020\t\022\025\n\021kIpcKeyboardEvent\020\n*4\n\tVideoType\022"
-  "\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002"
-  "*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLock"
-  "On\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020\004\022\014"
-  "\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024"
-  "kMiddleMouseButtonUp\020 \022\027\n\023kRightMouseBut"
-  "tonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMouseEventf"
-  "Wheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004\022\031\n\024kLe"
-  "ftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseButt"
-  "onDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 b\006p"
-  "roto3"
+  "\314\002\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.MessageTy"
+  "pe\022\021\n\tsend_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.t"
+  "c.Hello\022\024\n\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_b"
+  "eat\030\005 \001(\0132\r.tc.HeartBeat\022#\n\013video_frame\030"
+  "\006 \001(\0132\016.tc.VideoFrame\022#\n\013audio_frame\030\007 \001"
+  "(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030\010 \001(\0132\014."
+  "tc.KeyEvent\022#\n\013mouse_event\030\t \001(\0132\016.tc.Mo"
+  "useEvent\022,\n\020cursor_info_sync\030\n \001(\0132\022.tc."
+  "CursorInfoSync*\212\001\n\013MessageType\022\n\n\006kHello"
+  "\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFr"
+  "ame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n"
+  "\013kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007*4\n\tV"
+  "ideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007"
+  "kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013"
+  "kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kContro"
+  "lDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButto"
+  "nUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRigh"
+  "tMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMo"
+  "useEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020"
+  "\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddle"
+  "MouseButtonDown\020\200\020\022\032\n\025kRightMouseButtonD"
+  "own\020\200 b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2365, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 1774, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
+    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 9,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
     file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
@@ -524,9 +406,6 @@ bool MessageType_IsValid(int value) {
     case 5:
     case 6:
     case 7:
-    case 8:
-    case 9:
-    case 10:
       return true;
     default:
       return false;
@@ -2625,828 +2504,6 @@ void CursorInfoSync::InternalSwap(CursorInfoSync* other) {
 
 // ===================================================================
 
-class IpcVideoFrame::_Internal {
- public:
-};
-
-IpcVideoFrame::IpcVideoFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:tc.IpcVideoFrame)
-}
-IpcVideoFrame::IpcVideoFrame(const IpcVideoFrame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  IpcVideoFrame* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.capture_type_){}
-    , decltype(_impl_.frame_width_){}
-    , decltype(_impl_.frame_index_){}
-    , decltype(_impl_.frame_format_){}
-    , decltype(_impl_.frame_height_){}
-    , decltype(_impl_.capture_index_){}
-    , decltype(_impl_.handle_){}
-    , decltype(_impl_.adapter_uid_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.capture_type_, &from._impl_.capture_type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.adapter_uid_) -
-    reinterpret_cast<char*>(&_impl_.capture_type_)) + sizeof(_impl_.adapter_uid_));
-  // @@protoc_insertion_point(copy_constructor:tc.IpcVideoFrame)
-}
-
-inline void IpcVideoFrame::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.capture_type_){0}
-    , decltype(_impl_.frame_width_){0}
-    , decltype(_impl_.frame_index_){int64_t{0}}
-    , decltype(_impl_.frame_format_){int64_t{0}}
-    , decltype(_impl_.frame_height_){0}
-    , decltype(_impl_.capture_index_){0}
-    , decltype(_impl_.handle_){uint64_t{0u}}
-    , decltype(_impl_.adapter_uid_){int64_t{0}}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-IpcVideoFrame::~IpcVideoFrame() {
-  // @@protoc_insertion_point(destructor:tc.IpcVideoFrame)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void IpcVideoFrame::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void IpcVideoFrame::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void IpcVideoFrame::Clear() {
-// @@protoc_insertion_point(message_clear_start:tc.IpcVideoFrame)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&_impl_.capture_type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.adapter_uid_) -
-      reinterpret_cast<char*>(&_impl_.capture_type_)) + sizeof(_impl_.adapter_uid_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* IpcVideoFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 capture_type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.capture_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 frame_width = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.frame_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 frame_height = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.frame_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 frame_index = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.frame_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 frame_format = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.frame_format_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 handle = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.handle_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 adapter_uid = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.adapter_uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 capture_index = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.capture_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* IpcVideoFrame::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:tc.IpcVideoFrame)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 capture_type = 1;
-  if (this->_internal_capture_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_capture_type(), target);
-  }
-
-  // int32 frame_width = 2;
-  if (this->_internal_frame_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_frame_width(), target);
-  }
-
-  // int32 frame_height = 3;
-  if (this->_internal_frame_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_frame_height(), target);
-  }
-
-  // int64 frame_index = 4;
-  if (this->_internal_frame_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(4, this->_internal_frame_index(), target);
-  }
-
-  // int64 frame_format = 5;
-  if (this->_internal_frame_format() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(5, this->_internal_frame_format(), target);
-  }
-
-  // uint64 handle = 6;
-  if (this->_internal_handle() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(6, this->_internal_handle(), target);
-  }
-
-  // int64 adapter_uid = 7;
-  if (this->_internal_adapter_uid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(7, this->_internal_adapter_uid(), target);
-  }
-
-  // int32 capture_index = 8;
-  if (this->_internal_capture_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_capture_index(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:tc.IpcVideoFrame)
-  return target;
-}
-
-size_t IpcVideoFrame::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tc.IpcVideoFrame)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // int32 capture_type = 1;
-  if (this->_internal_capture_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_type());
-  }
-
-  // int32 frame_width = 2;
-  if (this->_internal_frame_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_width());
-  }
-
-  // int64 frame_index = 4;
-  if (this->_internal_frame_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_frame_index());
-  }
-
-  // int64 frame_format = 5;
-  if (this->_internal_frame_format() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_frame_format());
-  }
-
-  // int32 frame_height = 3;
-  if (this->_internal_frame_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_height());
-  }
-
-  // int32 capture_index = 8;
-  if (this->_internal_capture_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_index());
-  }
-
-  // uint64 handle = 6;
-  if (this->_internal_handle() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_handle());
-  }
-
-  // int64 adapter_uid = 7;
-  if (this->_internal_adapter_uid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_adapter_uid());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IpcVideoFrame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    IpcVideoFrame::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IpcVideoFrame::GetClassData() const { return &_class_data_; }
-
-
-void IpcVideoFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<IpcVideoFrame*>(&to_msg);
-  auto& from = static_cast<const IpcVideoFrame&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:tc.IpcVideoFrame)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_capture_type() != 0) {
-    _this->_internal_set_capture_type(from._internal_capture_type());
-  }
-  if (from._internal_frame_width() != 0) {
-    _this->_internal_set_frame_width(from._internal_frame_width());
-  }
-  if (from._internal_frame_index() != 0) {
-    _this->_internal_set_frame_index(from._internal_frame_index());
-  }
-  if (from._internal_frame_format() != 0) {
-    _this->_internal_set_frame_format(from._internal_frame_format());
-  }
-  if (from._internal_frame_height() != 0) {
-    _this->_internal_set_frame_height(from._internal_frame_height());
-  }
-  if (from._internal_capture_index() != 0) {
-    _this->_internal_set_capture_index(from._internal_capture_index());
-  }
-  if (from._internal_handle() != 0) {
-    _this->_internal_set_handle(from._internal_handle());
-  }
-  if (from._internal_adapter_uid() != 0) {
-    _this->_internal_set_adapter_uid(from._internal_adapter_uid());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void IpcVideoFrame::CopyFrom(const IpcVideoFrame& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tc.IpcVideoFrame)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool IpcVideoFrame::IsInitialized() const {
-  return true;
-}
-
-void IpcVideoFrame::InternalSwap(IpcVideoFrame* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(IpcVideoFrame, _impl_.adapter_uid_)
-      + sizeof(IpcVideoFrame::_impl_.adapter_uid_)
-      - PROTOBUF_FIELD_OFFSET(IpcVideoFrame, _impl_.capture_type_)>(
-          reinterpret_cast<char*>(&_impl_.capture_type_),
-          reinterpret_cast<char*>(&other->_impl_.capture_type_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata IpcVideoFrame::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[8]);
-}
-
-// ===================================================================
-
-class IpcMouseEvent::_Internal {
- public:
-};
-
-IpcMouseEvent::IpcMouseEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:tc.IpcMouseEvent)
-}
-IpcMouseEvent::IpcMouseEvent(const IpcMouseEvent& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  IpcMouseEvent* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.hwnd_){}
-    , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.button_){}
-    , decltype(_impl_.pressed_){}
-    , decltype(_impl_.released_){}
-    , decltype(_impl_.data_){}
-    , decltype(_impl_.dx_){}
-    , decltype(_impl_.dy_){}
-    , decltype(_impl_.middle_scroll_){}
-    , decltype(_impl_.absolute_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.hwnd_, &from._impl_.hwnd_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.absolute_) -
-    reinterpret_cast<char*>(&_impl_.hwnd_)) + sizeof(_impl_.absolute_));
-  // @@protoc_insertion_point(copy_constructor:tc.IpcMouseEvent)
-}
-
-inline void IpcMouseEvent::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.hwnd_){uint64_t{0u}}
-    , decltype(_impl_.x_){0u}
-    , decltype(_impl_.y_){0u}
-    , decltype(_impl_.button_){0}
-    , decltype(_impl_.pressed_){false}
-    , decltype(_impl_.released_){false}
-    , decltype(_impl_.data_){0}
-    , decltype(_impl_.dx_){0}
-    , decltype(_impl_.dy_){0}
-    , decltype(_impl_.middle_scroll_){0}
-    , decltype(_impl_.absolute_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-IpcMouseEvent::~IpcMouseEvent() {
-  // @@protoc_insertion_point(destructor:tc.IpcMouseEvent)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void IpcMouseEvent::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-}
-
-void IpcMouseEvent::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void IpcMouseEvent::Clear() {
-// @@protoc_insertion_point(message_clear_start:tc.IpcMouseEvent)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&_impl_.hwnd_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.absolute_) -
-      reinterpret_cast<char*>(&_impl_.hwnd_)) + sizeof(_impl_.absolute_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* IpcMouseEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint64 hwnd = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.hwnd_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 x = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 y = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 button = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.button_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool pressed = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.pressed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool released = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.released_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 data = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 dx = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.dx_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 dy = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.dy_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 middle_scroll = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          _impl_.middle_scroll_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 absolute = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
-          _impl_.absolute_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* IpcMouseEvent::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:tc.IpcMouseEvent)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // uint64 hwnd = 1;
-  if (this->_internal_hwnd() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_hwnd(), target);
-  }
-
-  // uint32 x = 2;
-  if (this->_internal_x() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_x(), target);
-  }
-
-  // uint32 y = 3;
-  if (this->_internal_y() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_y(), target);
-  }
-
-  // int32 button = 4;
-  if (this->_internal_button() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_button(), target);
-  }
-
-  // bool pressed = 5;
-  if (this->_internal_pressed() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(5, this->_internal_pressed(), target);
-  }
-
-  // bool released = 6;
-  if (this->_internal_released() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(6, this->_internal_released(), target);
-  }
-
-  // int32 data = 7;
-  if (this->_internal_data() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_data(), target);
-  }
-
-  // int32 dx = 8;
-  if (this->_internal_dx() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_dx(), target);
-  }
-
-  // int32 dy = 9;
-  if (this->_internal_dy() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(9, this->_internal_dy(), target);
-  }
-
-  // int32 middle_scroll = 10;
-  if (this->_internal_middle_scroll() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(10, this->_internal_middle_scroll(), target);
-  }
-
-  // int32 absolute = 11;
-  if (this->_internal_absolute() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(11, this->_internal_absolute(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:tc.IpcMouseEvent)
-  return target;
-}
-
-size_t IpcMouseEvent::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tc.IpcMouseEvent)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // uint64 hwnd = 1;
-  if (this->_internal_hwnd() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_hwnd());
-  }
-
-  // uint32 x = 2;
-  if (this->_internal_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_x());
-  }
-
-  // uint32 y = 3;
-  if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_y());
-  }
-
-  // int32 button = 4;
-  if (this->_internal_button() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_button());
-  }
-
-  // bool pressed = 5;
-  if (this->_internal_pressed() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // bool released = 6;
-  if (this->_internal_released() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // int32 data = 7;
-  if (this->_internal_data() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_data());
-  }
-
-  // int32 dx = 8;
-  if (this->_internal_dx() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_dx());
-  }
-
-  // int32 dy = 9;
-  if (this->_internal_dy() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_dy());
-  }
-
-  // int32 middle_scroll = 10;
-  if (this->_internal_middle_scroll() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_middle_scroll());
-  }
-
-  // int32 absolute = 11;
-  if (this->_internal_absolute() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_absolute());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IpcMouseEvent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    IpcMouseEvent::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IpcMouseEvent::GetClassData() const { return &_class_data_; }
-
-
-void IpcMouseEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<IpcMouseEvent*>(&to_msg);
-  auto& from = static_cast<const IpcMouseEvent&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:tc.IpcMouseEvent)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_hwnd() != 0) {
-    _this->_internal_set_hwnd(from._internal_hwnd());
-  }
-  if (from._internal_x() != 0) {
-    _this->_internal_set_x(from._internal_x());
-  }
-  if (from._internal_y() != 0) {
-    _this->_internal_set_y(from._internal_y());
-  }
-  if (from._internal_button() != 0) {
-    _this->_internal_set_button(from._internal_button());
-  }
-  if (from._internal_pressed() != 0) {
-    _this->_internal_set_pressed(from._internal_pressed());
-  }
-  if (from._internal_released() != 0) {
-    _this->_internal_set_released(from._internal_released());
-  }
-  if (from._internal_data() != 0) {
-    _this->_internal_set_data(from._internal_data());
-  }
-  if (from._internal_dx() != 0) {
-    _this->_internal_set_dx(from._internal_dx());
-  }
-  if (from._internal_dy() != 0) {
-    _this->_internal_set_dy(from._internal_dy());
-  }
-  if (from._internal_middle_scroll() != 0) {
-    _this->_internal_set_middle_scroll(from._internal_middle_scroll());
-  }
-  if (from._internal_absolute() != 0) {
-    _this->_internal_set_absolute(from._internal_absolute());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void IpcMouseEvent::CopyFrom(const IpcMouseEvent& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tc.IpcMouseEvent)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool IpcMouseEvent::IsInitialized() const {
-  return true;
-}
-
-void IpcMouseEvent::InternalSwap(IpcMouseEvent* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(IpcMouseEvent, _impl_.absolute_)
-      + sizeof(IpcMouseEvent::_impl_.absolute_)
-      - PROTOBUF_FIELD_OFFSET(IpcMouseEvent, _impl_.hwnd_)>(
-          reinterpret_cast<char*>(&_impl_.hwnd_),
-          reinterpret_cast<char*>(&other->_impl_.hwnd_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata IpcMouseEvent::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[9]);
-}
-
-// ===================================================================
-
-class IpcKeyboardEvent::_Internal {
- public:
-};
-
-IpcKeyboardEvent::IpcKeyboardEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:tc.IpcKeyboardEvent)
-}
-IpcKeyboardEvent::IpcKeyboardEvent(const IpcKeyboardEvent& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  IpcKeyboardEvent* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:tc.IpcKeyboardEvent)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData IpcKeyboardEvent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*IpcKeyboardEvent::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata IpcKeyboardEvent::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[10]);
-}
-
-// ===================================================================
-
 class Message::_Internal {
  public:
   static const ::tc::Hello& hello(const Message* msg);
@@ -3457,9 +2514,6 @@ class Message::_Internal {
   static const ::tc::KeyEvent& key_event(const Message* msg);
   static const ::tc::MouseEvent& mouse_event(const Message* msg);
   static const ::tc::CursorInfoSync& cursor_info_sync(const Message* msg);
-  static const ::tc::IpcVideoFrame& ipc_video_frame(const Message* msg);
-  static const ::tc::IpcMouseEvent& ipc_mouse_event(const Message* msg);
-  static const ::tc::IpcKeyboardEvent& ipc_keyboard_event(const Message* msg);
 };
 
 const ::tc::Hello&
@@ -3494,18 +2548,6 @@ const ::tc::CursorInfoSync&
 Message::_Internal::cursor_info_sync(const Message* msg) {
   return *msg->_impl_.cursor_info_sync_;
 }
-const ::tc::IpcVideoFrame&
-Message::_Internal::ipc_video_frame(const Message* msg) {
-  return *msg->_impl_.ipc_video_frame_;
-}
-const ::tc::IpcMouseEvent&
-Message::_Internal::ipc_mouse_event(const Message* msg) {
-  return *msg->_impl_.ipc_mouse_event_;
-}
-const ::tc::IpcKeyboardEvent&
-Message::_Internal::ipc_keyboard_event(const Message* msg) {
-  return *msg->_impl_.ipc_keyboard_event_;
-}
 Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -3524,9 +2566,6 @@ Message::Message(const Message& from)
     , decltype(_impl_.key_event_){nullptr}
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.ipc_video_frame_){nullptr}
-    , decltype(_impl_.ipc_mouse_event_){nullptr}
-    , decltype(_impl_.ipc_keyboard_event_){nullptr}
     , decltype(_impl_.send_time_){}
     , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -3556,15 +2595,6 @@ Message::Message(const Message& from)
   if (from._internal_has_cursor_info_sync()) {
     _this->_impl_.cursor_info_sync_ = new ::tc::CursorInfoSync(*from._impl_.cursor_info_sync_);
   }
-  if (from._internal_has_ipc_video_frame()) {
-    _this->_impl_.ipc_video_frame_ = new ::tc::IpcVideoFrame(*from._impl_.ipc_video_frame_);
-  }
-  if (from._internal_has_ipc_mouse_event()) {
-    _this->_impl_.ipc_mouse_event_ = new ::tc::IpcMouseEvent(*from._impl_.ipc_mouse_event_);
-  }
-  if (from._internal_has_ipc_keyboard_event()) {
-    _this->_impl_.ipc_keyboard_event_ = new ::tc::IpcKeyboardEvent(*from._impl_.ipc_keyboard_event_);
-  }
   ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
     reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -3584,9 +2614,6 @@ inline void Message::SharedCtor(
     , decltype(_impl_.key_event_){nullptr}
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.ipc_video_frame_){nullptr}
-    , decltype(_impl_.ipc_mouse_event_){nullptr}
-    , decltype(_impl_.ipc_keyboard_event_){nullptr}
     , decltype(_impl_.send_time_){uint64_t{0u}}
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -3612,9 +2639,6 @@ inline void Message::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.key_event_;
   if (this != internal_default_instance()) delete _impl_.mouse_event_;
   if (this != internal_default_instance()) delete _impl_.cursor_info_sync_;
-  if (this != internal_default_instance()) delete _impl_.ipc_video_frame_;
-  if (this != internal_default_instance()) delete _impl_.ipc_mouse_event_;
-  if (this != internal_default_instance()) delete _impl_.ipc_keyboard_event_;
 }
 
 void Message::SetCachedSize(int size) const {
@@ -3659,18 +2683,6 @@ void Message::Clear() {
     delete _impl_.cursor_info_sync_;
   }
   _impl_.cursor_info_sync_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ipc_video_frame_ != nullptr) {
-    delete _impl_.ipc_video_frame_;
-  }
-  _impl_.ipc_video_frame_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ipc_mouse_event_ != nullptr) {
-    delete _impl_.ipc_mouse_event_;
-  }
-  _impl_.ipc_mouse_event_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ipc_keyboard_event_ != nullptr) {
-    delete _impl_.ipc_keyboard_event_;
-  }
-  _impl_.ipc_keyboard_event_ = nullptr;
   ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -3760,30 +2772,6 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr = ctx->ParseMessage(_internal_mutable_cursor_info_sync(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.IpcVideoFrame ipc_video_frame = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ipc_video_frame(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.IpcMouseEvent ipc_mouse_event = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ipc_mouse_event(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.IpcKeyboardEvent ipc_keyboard_event = 13;
-      case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ipc_keyboard_event(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3886,27 +2874,6 @@ uint8_t* Message::_InternalSerialize(
         _Internal::cursor_info_sync(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.IpcVideoFrame ipc_video_frame = 11;
-  if (this->_internal_has_ipc_video_frame()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(11, _Internal::ipc_video_frame(this),
-        _Internal::ipc_video_frame(this).GetCachedSize(), target, stream);
-  }
-
-  // .tc.IpcMouseEvent ipc_mouse_event = 12;
-  if (this->_internal_has_ipc_mouse_event()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(12, _Internal::ipc_mouse_event(this),
-        _Internal::ipc_mouse_event(this).GetCachedSize(), target, stream);
-  }
-
-  // .tc.IpcKeyboardEvent ipc_keyboard_event = 13;
-  if (this->_internal_has_ipc_keyboard_event()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(13, _Internal::ipc_keyboard_event(this),
-        _Internal::ipc_keyboard_event(this).GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3979,27 +2946,6 @@ size_t Message::ByteSizeLong() const {
         *_impl_.cursor_info_sync_);
   }
 
-  // .tc.IpcVideoFrame ipc_video_frame = 11;
-  if (this->_internal_has_ipc_video_frame()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ipc_video_frame_);
-  }
-
-  // .tc.IpcMouseEvent ipc_mouse_event = 12;
-  if (this->_internal_has_ipc_mouse_event()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ipc_mouse_event_);
-  }
-
-  // .tc.IpcKeyboardEvent ipc_keyboard_event = 13;
-  if (this->_internal_has_ipc_keyboard_event()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ipc_keyboard_event_);
-  }
-
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
@@ -4061,18 +3007,6 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
     _this->_internal_mutable_cursor_info_sync()->::tc::CursorInfoSync::MergeFrom(
         from._internal_cursor_info_sync());
   }
-  if (from._internal_has_ipc_video_frame()) {
-    _this->_internal_mutable_ipc_video_frame()->::tc::IpcVideoFrame::MergeFrom(
-        from._internal_ipc_video_frame());
-  }
-  if (from._internal_has_ipc_mouse_event()) {
-    _this->_internal_mutable_ipc_mouse_event()->::tc::IpcMouseEvent::MergeFrom(
-        from._internal_ipc_mouse_event());
-  }
-  if (from._internal_has_ipc_keyboard_event()) {
-    _this->_internal_mutable_ipc_keyboard_event()->::tc::IpcKeyboardEvent::MergeFrom(
-        from._internal_ipc_keyboard_event());
-  }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
   }
@@ -4107,7 +3041,7 @@ void Message::InternalSwap(Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[11]);
+      file_level_metadata_tc_5fmessage_2eproto[8]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4144,18 +3078,6 @@ Arena::CreateMaybeMessage< ::tc::MouseEvent >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::tc::CursorInfoSync*
 Arena::CreateMaybeMessage< ::tc::CursorInfoSync >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::CursorInfoSync >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::IpcVideoFrame*
-Arena::CreateMaybeMessage< ::tc::IpcVideoFrame >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::IpcVideoFrame >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::IpcMouseEvent*
-Arena::CreateMaybeMessage< ::tc::IpcMouseEvent >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::IpcMouseEvent >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::IpcKeyboardEvent*
-Arena::CreateMaybeMessage< ::tc::IpcKeyboardEvent >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::IpcKeyboardEvent >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {
