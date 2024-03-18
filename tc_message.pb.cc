@@ -461,15 +461,19 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "c\020\007\022\022\n\016kIpcVideoFrame\020\010\022\022\n\016kIpcMouseEven"
   "t\020\t\022\025\n\021kIpcKeyboardEvent\020\n*4\n\tVideoType\022"
   "\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002"
-  "*\236\001\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLock"
+  "*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLock"
   "On\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020\004\022\014"
-  "\n\010kAltDown\020\010\022\024\n\020kLeftMouseButton\020\020\022\026\n\022kM"
-  "iddleMouseButton\020 \022\025\n\021kRightMouseButton\020"
-  "@b\006proto3"
+  "\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024"
+  "kMiddleMouseButtonUp\020 \022\027\n\023kRightMouseBut"
+  "tonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMouseEventf"
+  "Wheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004\022\031\n\024kLe"
+  "ftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseButt"
+  "onDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 b\006p"
+  "roto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2209, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2365, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -558,6 +562,12 @@ bool EButtonFlag_IsValid(int value) {
     case 16:
     case 32:
     case 64:
+    case 128:
+    case 256:
+    case 512:
+    case 1024:
+    case 2048:
+    case 4096:
       return true;
     default:
       return false;

@@ -30,9 +30,15 @@ enum EButtonFlag
   kShiftDown = 2;
   kControlDown = 4;
   kAltDown = 8;
-  kLeftMouseButton = 16;
-  kMiddleMouseButton = 32;
-  kRightMouseButton = 64;
+  kLeftMouseButtonUp = 16;
+  kMiddleMouseButtonUp = 32;
+  kRightMouseButtonUp = 64;
+  kMouseMove = 128; //表示鼠标移动
+  kMouseEventfWheel = 256; //表示鼠标滚轮滚动
+  kMouseEventfHWheel = 512; //表示鼠标滚轮滚动
+  kLeftMouseButtonDown = 1024;
+  kMiddleMouseButtonDown = 2048;
+  kRightMouseButtonDown = 4096;
 }
 
 message Ack {

@@ -192,15 +192,21 @@ enum EButtonFlag : int {
   kShiftDown = 2,
   kControlDown = 4,
   kAltDown = 8,
-  kLeftMouseButton = 16,
-  kMiddleMouseButton = 32,
-  kRightMouseButton = 64,
+  kLeftMouseButtonUp = 16,
+  kMiddleMouseButtonUp = 32,
+  kRightMouseButtonUp = 64,
+  kMouseMove = 128,
+  kMouseEventfWheel = 256,
+  kMouseEventfHWheel = 512,
+  kLeftMouseButtonDown = 1024,
+  kMiddleMouseButtonDown = 2048,
+  kRightMouseButtonDown = 4096,
   EButtonFlag_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   EButtonFlag_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool EButtonFlag_IsValid(int value);
 constexpr EButtonFlag EButtonFlag_MIN = kNone;
-constexpr EButtonFlag EButtonFlag_MAX = kRightMouseButton;
+constexpr EButtonFlag EButtonFlag_MAX = kRightMouseButtonDown;
 constexpr int EButtonFlag_ARRAYSIZE = EButtonFlag_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EButtonFlag_descriptor();
