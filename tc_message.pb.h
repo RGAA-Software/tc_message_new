@@ -56,6 +56,9 @@ extern AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
 class CursorInfoSync;
 struct CursorInfoSyncDefaultTypeInternal;
 extern CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
+class GamepadInfo;
+struct GamepadInfoDefaultTypeInternal;
+extern GamepadInfoDefaultTypeInternal _GamepadInfo_default_instance_;
 class HeartBeat;
 struct HeartBeatDefaultTypeInternal;
 extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
@@ -79,6 +82,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::tc::Ack* Arena::CreateMaybeMessage<::tc::Ack>(Arena*);
 template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*);
 template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
+template<> ::tc::GamepadInfo* Arena::CreateMaybeMessage<::tc::GamepadInfo>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
 template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
@@ -123,12 +127,13 @@ enum MessageType : int {
   kKeyEvent = 5,
   kMouseEvent = 6,
   kCursorInfoSync = 7,
+  kGamepadState = 8,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kCursorInfoSync;
+constexpr MessageType MessageType_MAX = kGamepadState;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -1722,6 +1727,220 @@ class CursorInfoSync final :
 };
 // -------------------------------------------------------------------
 
+class GamepadInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.GamepadInfo) */ {
+ public:
+  inline GamepadInfo() : GamepadInfo(nullptr) {}
+  ~GamepadInfo() override;
+  explicit PROTOBUF_CONSTEXPR GamepadInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GamepadInfo(const GamepadInfo& from);
+  GamepadInfo(GamepadInfo&& from) noexcept
+    : GamepadInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline GamepadInfo& operator=(const GamepadInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GamepadInfo& operator=(GamepadInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GamepadInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GamepadInfo* internal_default_instance() {
+    return reinterpret_cast<const GamepadInfo*>(
+               &_GamepadInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(GamepadInfo& a, GamepadInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GamepadInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GamepadInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GamepadInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GamepadInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GamepadInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const GamepadInfo& from) {
+    GamepadInfo::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GamepadInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.GamepadInfo";
+  }
+  protected:
+  explicit GamepadInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kButtonsFieldNumber = 1,
+    kLeftTriggerFieldNumber = 2,
+    kRightTriggerFieldNumber = 3,
+    kThumbLxFieldNumber = 4,
+    kThumbLyFieldNumber = 5,
+    kThumbRxFieldNumber = 6,
+    kThumbRyFieldNumber = 7,
+  };
+  // uint32 buttons = 1;
+  void clear_buttons();
+  uint32_t buttons() const;
+  void set_buttons(uint32_t value);
+  private:
+  uint32_t _internal_buttons() const;
+  void _internal_set_buttons(uint32_t value);
+  public:
+
+  // uint32 left_trigger = 2;
+  void clear_left_trigger();
+  uint32_t left_trigger() const;
+  void set_left_trigger(uint32_t value);
+  private:
+  uint32_t _internal_left_trigger() const;
+  void _internal_set_left_trigger(uint32_t value);
+  public:
+
+  // uint32 right_trigger = 3;
+  void clear_right_trigger();
+  uint32_t right_trigger() const;
+  void set_right_trigger(uint32_t value);
+  private:
+  uint32_t _internal_right_trigger() const;
+  void _internal_set_right_trigger(uint32_t value);
+  public:
+
+  // int32 thumb_lx = 4;
+  void clear_thumb_lx();
+  int32_t thumb_lx() const;
+  void set_thumb_lx(int32_t value);
+  private:
+  int32_t _internal_thumb_lx() const;
+  void _internal_set_thumb_lx(int32_t value);
+  public:
+
+  // int32 thumb_ly = 5;
+  void clear_thumb_ly();
+  int32_t thumb_ly() const;
+  void set_thumb_ly(int32_t value);
+  private:
+  int32_t _internal_thumb_ly() const;
+  void _internal_set_thumb_ly(int32_t value);
+  public:
+
+  // int32 thumb_rx = 6;
+  void clear_thumb_rx();
+  int32_t thumb_rx() const;
+  void set_thumb_rx(int32_t value);
+  private:
+  int32_t _internal_thumb_rx() const;
+  void _internal_set_thumb_rx(int32_t value);
+  public:
+
+  // int32 thumb_ry = 7;
+  void clear_thumb_ry();
+  int32_t thumb_ry() const;
+  void set_thumb_ry(int32_t value);
+  private:
+  int32_t _internal_thumb_ry() const;
+  void _internal_set_thumb_ry(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.GamepadInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    uint32_t buttons_;
+    uint32_t left_trigger_;
+    uint32_t right_trigger_;
+    int32_t thumb_lx_;
+    int32_t thumb_ly_;
+    int32_t thumb_rx_;
+    int32_t thumb_ry_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -1770,7 +1989,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -1851,6 +2070,7 @@ class Message final :
     kKeyEventFieldNumber = 8,
     kMouseEventFieldNumber = 9,
     kCursorInfoSyncFieldNumber = 10,
+    kGamepadInfoFieldNumber = 11,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -1998,6 +2218,24 @@ class Message final :
       ::tc::CursorInfoSync* cursor_info_sync);
   ::tc::CursorInfoSync* unsafe_arena_release_cursor_info_sync();
 
+  // .tc.GamepadInfo gamepad_info = 11;
+  bool has_gamepad_info() const;
+  private:
+  bool _internal_has_gamepad_info() const;
+  public:
+  void clear_gamepad_info();
+  const ::tc::GamepadInfo& gamepad_info() const;
+  PROTOBUF_NODISCARD ::tc::GamepadInfo* release_gamepad_info();
+  ::tc::GamepadInfo* mutable_gamepad_info();
+  void set_allocated_gamepad_info(::tc::GamepadInfo* gamepad_info);
+  private:
+  const ::tc::GamepadInfo& _internal_gamepad_info() const;
+  ::tc::GamepadInfo* _internal_mutable_gamepad_info();
+  public:
+  void unsafe_arena_set_allocated_gamepad_info(
+      ::tc::GamepadInfo* gamepad_info);
+  ::tc::GamepadInfo* unsafe_arena_release_gamepad_info();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -2032,6 +2270,7 @@ class Message final :
     ::tc::KeyEvent* key_event_;
     ::tc::MouseEvent* mouse_event_;
     ::tc::CursorInfoSync* cursor_info_sync_;
+    ::tc::GamepadInfo* gamepad_info_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2910,6 +3149,150 @@ inline void CursorInfoSync::set_allocated_bitmap(std::string* bitmap) {
 
 // -------------------------------------------------------------------
 
+// GamepadInfo
+
+// uint32 buttons = 1;
+inline void GamepadInfo::clear_buttons() {
+  _impl_.buttons_ = 0u;
+}
+inline uint32_t GamepadInfo::_internal_buttons() const {
+  return _impl_.buttons_;
+}
+inline uint32_t GamepadInfo::buttons() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.buttons)
+  return _internal_buttons();
+}
+inline void GamepadInfo::_internal_set_buttons(uint32_t value) {
+  
+  _impl_.buttons_ = value;
+}
+inline void GamepadInfo::set_buttons(uint32_t value) {
+  _internal_set_buttons(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.buttons)
+}
+
+// uint32 left_trigger = 2;
+inline void GamepadInfo::clear_left_trigger() {
+  _impl_.left_trigger_ = 0u;
+}
+inline uint32_t GamepadInfo::_internal_left_trigger() const {
+  return _impl_.left_trigger_;
+}
+inline uint32_t GamepadInfo::left_trigger() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.left_trigger)
+  return _internal_left_trigger();
+}
+inline void GamepadInfo::_internal_set_left_trigger(uint32_t value) {
+  
+  _impl_.left_trigger_ = value;
+}
+inline void GamepadInfo::set_left_trigger(uint32_t value) {
+  _internal_set_left_trigger(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.left_trigger)
+}
+
+// uint32 right_trigger = 3;
+inline void GamepadInfo::clear_right_trigger() {
+  _impl_.right_trigger_ = 0u;
+}
+inline uint32_t GamepadInfo::_internal_right_trigger() const {
+  return _impl_.right_trigger_;
+}
+inline uint32_t GamepadInfo::right_trigger() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.right_trigger)
+  return _internal_right_trigger();
+}
+inline void GamepadInfo::_internal_set_right_trigger(uint32_t value) {
+  
+  _impl_.right_trigger_ = value;
+}
+inline void GamepadInfo::set_right_trigger(uint32_t value) {
+  _internal_set_right_trigger(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.right_trigger)
+}
+
+// int32 thumb_lx = 4;
+inline void GamepadInfo::clear_thumb_lx() {
+  _impl_.thumb_lx_ = 0;
+}
+inline int32_t GamepadInfo::_internal_thumb_lx() const {
+  return _impl_.thumb_lx_;
+}
+inline int32_t GamepadInfo::thumb_lx() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.thumb_lx)
+  return _internal_thumb_lx();
+}
+inline void GamepadInfo::_internal_set_thumb_lx(int32_t value) {
+  
+  _impl_.thumb_lx_ = value;
+}
+inline void GamepadInfo::set_thumb_lx(int32_t value) {
+  _internal_set_thumb_lx(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.thumb_lx)
+}
+
+// int32 thumb_ly = 5;
+inline void GamepadInfo::clear_thumb_ly() {
+  _impl_.thumb_ly_ = 0;
+}
+inline int32_t GamepadInfo::_internal_thumb_ly() const {
+  return _impl_.thumb_ly_;
+}
+inline int32_t GamepadInfo::thumb_ly() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.thumb_ly)
+  return _internal_thumb_ly();
+}
+inline void GamepadInfo::_internal_set_thumb_ly(int32_t value) {
+  
+  _impl_.thumb_ly_ = value;
+}
+inline void GamepadInfo::set_thumb_ly(int32_t value) {
+  _internal_set_thumb_ly(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.thumb_ly)
+}
+
+// int32 thumb_rx = 6;
+inline void GamepadInfo::clear_thumb_rx() {
+  _impl_.thumb_rx_ = 0;
+}
+inline int32_t GamepadInfo::_internal_thumb_rx() const {
+  return _impl_.thumb_rx_;
+}
+inline int32_t GamepadInfo::thumb_rx() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.thumb_rx)
+  return _internal_thumb_rx();
+}
+inline void GamepadInfo::_internal_set_thumb_rx(int32_t value) {
+  
+  _impl_.thumb_rx_ = value;
+}
+inline void GamepadInfo::set_thumb_rx(int32_t value) {
+  _internal_set_thumb_rx(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.thumb_rx)
+}
+
+// int32 thumb_ry = 7;
+inline void GamepadInfo::clear_thumb_ry() {
+  _impl_.thumb_ry_ = 0;
+}
+inline int32_t GamepadInfo::_internal_thumb_ry() const {
+  return _impl_.thumb_ry_;
+}
+inline int32_t GamepadInfo::thumb_ry() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadInfo.thumb_ry)
+  return _internal_thumb_ry();
+}
+inline void GamepadInfo::_internal_set_thumb_ry(int32_t value) {
+  
+  _impl_.thumb_ry_ = value;
+}
+inline void GamepadInfo::set_thumb_ry(int32_t value) {
+  _internal_set_thumb_ry(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadInfo.thumb_ry)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -3672,9 +4055,101 @@ inline void Message::set_allocated_cursor_info_sync(::tc::CursorInfoSync* cursor
   // @@protoc_insertion_point(field_set_allocated:tc.Message.cursor_info_sync)
 }
 
+// .tc.GamepadInfo gamepad_info = 11;
+inline bool Message::_internal_has_gamepad_info() const {
+  return this != internal_default_instance() && _impl_.gamepad_info_ != nullptr;
+}
+inline bool Message::has_gamepad_info() const {
+  return _internal_has_gamepad_info();
+}
+inline void Message::clear_gamepad_info() {
+  if (GetArenaForAllocation() == nullptr && _impl_.gamepad_info_ != nullptr) {
+    delete _impl_.gamepad_info_;
+  }
+  _impl_.gamepad_info_ = nullptr;
+}
+inline const ::tc::GamepadInfo& Message::_internal_gamepad_info() const {
+  const ::tc::GamepadInfo* p = _impl_.gamepad_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::GamepadInfo&>(
+      ::tc::_GamepadInfo_default_instance_);
+}
+inline const ::tc::GamepadInfo& Message::gamepad_info() const {
+  // @@protoc_insertion_point(field_get:tc.Message.gamepad_info)
+  return _internal_gamepad_info();
+}
+inline void Message::unsafe_arena_set_allocated_gamepad_info(
+    ::tc::GamepadInfo* gamepad_info) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.gamepad_info_);
+  }
+  _impl_.gamepad_info_ = gamepad_info;
+  if (gamepad_info) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.gamepad_info)
+}
+inline ::tc::GamepadInfo* Message::release_gamepad_info() {
+  
+  ::tc::GamepadInfo* temp = _impl_.gamepad_info_;
+  _impl_.gamepad_info_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::GamepadInfo* Message::unsafe_arena_release_gamepad_info() {
+  // @@protoc_insertion_point(field_release:tc.Message.gamepad_info)
+  
+  ::tc::GamepadInfo* temp = _impl_.gamepad_info_;
+  _impl_.gamepad_info_ = nullptr;
+  return temp;
+}
+inline ::tc::GamepadInfo* Message::_internal_mutable_gamepad_info() {
+  
+  if (_impl_.gamepad_info_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::GamepadInfo>(GetArenaForAllocation());
+    _impl_.gamepad_info_ = p;
+  }
+  return _impl_.gamepad_info_;
+}
+inline ::tc::GamepadInfo* Message::mutable_gamepad_info() {
+  ::tc::GamepadInfo* _msg = _internal_mutable_gamepad_info();
+  // @@protoc_insertion_point(field_mutable:tc.Message.gamepad_info)
+  return _msg;
+}
+inline void Message::set_allocated_gamepad_info(::tc::GamepadInfo* gamepad_info) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.gamepad_info_;
+  }
+  if (gamepad_info) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(gamepad_info);
+    if (message_arena != submessage_arena) {
+      gamepad_info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, gamepad_info, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.gamepad_info_ = gamepad_info;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.gamepad_info)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

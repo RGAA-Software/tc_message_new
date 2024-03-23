@@ -12,6 +12,8 @@ enum MessageType {
   kMouseEvent = 6;
   // server->client 服务器光标信息同步
   kCursorInfoSync = 7;
+  // client -> server 手柄信息
+  kGamepadState = 8;
 }
 
 enum VideoType {
@@ -132,6 +134,17 @@ message CursorInfoSync {
   bytes bitmap = 8;
 }
 
+//https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad
+message GamepadInfo {
+  uint32 buttons = 1;
+  uint32 left_trigger = 2;
+  uint32 right_trigger = 3;
+  int32 thumb_lx = 4;
+  int32 thumb_ly = 5;
+  int32 thumb_rx = 6;
+  int32 thumb_ry = 7;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -143,4 +156,5 @@ message Message {
   KeyEvent key_event = 8;
   MouseEvent mouse_event = 9;
   CursorInfoSync cursor_info_sync = 10;
+  GamepadInfo gamepad_info = 11;
 }
