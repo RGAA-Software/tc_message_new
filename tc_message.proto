@@ -153,7 +153,7 @@ enum GamepadButton {
   GP_XINPUT_GAMEPAD_Y =	0x8000;
 }
 
-message GamepadInfo {
+message GamepadState {
   uint32 buttons = 1;
   uint32 left_trigger = 2;
   uint32 right_trigger = 3;
@@ -174,5 +174,5 @@ message Message {
   KeyEvent key_event = 8;
   MouseEvent mouse_event = 9;
   CursorInfoSync cursor_info_sync = 10;
-  GamepadInfo gamepad_info = 11;
+  GamepadState gamepad_state = 11;
 }

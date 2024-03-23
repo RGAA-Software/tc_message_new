@@ -152,7 +152,7 @@ struct CursorInfoSyncDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
-PROTOBUF_CONSTEXPR GamepadInfo::GamepadInfo(
+PROTOBUF_CONSTEXPR GamepadState::GamepadState(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.buttons_)*/0u
   , /*decltype(_impl_.left_trigger_)*/0u
@@ -162,15 +162,15 @@ PROTOBUF_CONSTEXPR GamepadInfo::GamepadInfo(
   , /*decltype(_impl_.thumb_rx_)*/0
   , /*decltype(_impl_.thumb_ry_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct GamepadInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GamepadInfoDefaultTypeInternal()
+struct GamepadStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GamepadStateDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GamepadInfoDefaultTypeInternal() {}
+  ~GamepadStateDefaultTypeInternal() {}
   union {
-    GamepadInfo _instance;
+    GamepadState _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadInfoDefaultTypeInternal _GamepadInfo_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadStateDefaultTypeInternal _GamepadState_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.hello_)*/nullptr
@@ -181,7 +181,7 @@ PROTOBUF_CONSTEXPR Message::Message(
   , /*decltype(_impl_.key_event_)*/nullptr
   , /*decltype(_impl_.mouse_event_)*/nullptr
   , /*decltype(_impl_.cursor_info_sync_)*/nullptr
-  , /*decltype(_impl_.gamepad_info_)*/nullptr
+  , /*decltype(_impl_.gamepad_state_)*/nullptr
   , /*decltype(_impl_.send_time_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -286,18 +286,18 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.height_),
   PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.bitmap_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.buttons_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.left_trigger_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.right_trigger_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.thumb_lx_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.thumb_ly_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.thumb_rx_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadInfo, _impl_.thumb_ry_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.buttons_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.left_trigger_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.right_trigger_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_lx_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ly_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_rx_),
+  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ry_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -314,7 +314,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.key_event_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.mouse_event_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.cursor_info_sync_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_info_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_state_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -325,7 +325,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 43, -1, -1, sizeof(::tc::KeyEvent)},
   { 55, -1, -1, sizeof(::tc::MouseEvent)},
   { 71, -1, -1, sizeof(::tc::CursorInfoSync)},
-  { 85, -1, -1, sizeof(::tc::GamepadInfo)},
+  { 85, -1, -1, sizeof(::tc::GamepadState)},
   { 98, -1, -1, sizeof(::tc::Message)},
 };
 
@@ -338,7 +338,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_KeyEvent_default_instance_._instance,
   &::tc::_MouseEvent_default_instance_._instance,
   &::tc::_CursorInfoSync_default_instance_._instance,
-  &::tc::_GamepadInfo_default_instance_._instance,
+  &::tc::_GamepadState_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -366,49 +366,49 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "isible\030\001 \001(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\021\n\tho"
   "tspot_x\030\004 \001(\r\022\021\n\thotspot_y\030\005 \001(\r\022\r\n\005widt"
   "h\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\""
-  "\223\001\n\013GamepadInfo\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left"
-  "_trigger\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n"
-  "\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thu"
-  "mb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\363\002\n\007Messag"
-  "e\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend"
-  "_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n"
-  "\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\0132"
-  "\r.tc.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016.tc"
-  ".VideoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.Au"
-  "dioFrame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEven"
-  "t\022#\n\013mouse_event\030\t \001(\0132\016.tc.MouseEvent\022,"
-  "\n\020cursor_info_sync\030\n \001(\0132\022.tc.CursorInfo"
-  "Sync\022%\n\014gamepad_info\030\013 \001(\0132\017.tc.GamepadI"
-  "nfo*\235\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020"
-  "\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kA"
-  "udioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEven"
-  "t\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadStat"
-  "e\020\010*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHe"
-  "vc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNo"
-  "ne\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n"
-  "\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMo"
-  "useButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022"
-  "\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMove\020\200"
-  "\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEvent"
-  "fHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n"
-  "\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightMous"
-  "eButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_U"
-  "NKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022"
-  "\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_X"
-  "INPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_G"
-  "AMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD"
-  "_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034"
-  "GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XIN"
-  "PUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_"
-  "GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GA"
-  "MEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAM"
-  "EPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023G"
-  "P_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAME"
-  "PAD_Y\020\200\200\002b\006proto3"
+  "\224\001\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014lef"
+  "t_trigger\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020"
+  "\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010th"
+  "umb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\365\002\n\007Messa"
+  "ge\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsen"
+  "d_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024"
+  "\n\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\013"
+  "2\r.tc.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016.t"
+  "c.VideoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.A"
+  "udioFrame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEve"
+  "nt\022#\n\013mouse_event\030\t \001(\0132\016.tc.MouseEvent\022"
+  ",\n\020cursor_info_sync\030\n \001(\0132\022.tc.CursorInf"
+  "oSync\022\'\n\rgamepad_state\030\013 \001(\0132\020.tc.Gamepa"
+  "dState*\235\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kA"
+  "ck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n"
+  "\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseE"
+  "vent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadS"
+  "tate\020\010*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNe"
+  "tHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005"
+  "kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002"
+  "\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLef"
+  "tMouseButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp"
+  "\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMov"
+  "e\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEv"
+  "entfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010"
+  "\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightM"
+  "ouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nG"
+  "P_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP"
+  "\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033G"
+  "P_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPU"
+  "T_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAME"
+  "PAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022"
+  " \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_"
+  "XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINP"
+  "UT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT"
+  "_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_"
+  "GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031"
+  "\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_G"
+  "AMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2457, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2460, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -2585,19 +2585,19 @@ void CursorInfoSync::InternalSwap(CursorInfoSync* other) {
 
 // ===================================================================
 
-class GamepadInfo::_Internal {
+class GamepadState::_Internal {
  public:
 };
 
-GamepadInfo::GamepadInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+GamepadState::GamepadState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:tc.GamepadInfo)
+  // @@protoc_insertion_point(arena_constructor:tc.GamepadState)
 }
-GamepadInfo::GamepadInfo(const GamepadInfo& from)
+GamepadState::GamepadState(const GamepadState& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GamepadInfo* const _this = this; (void)_this;
+  GamepadState* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.buttons_){}
     , decltype(_impl_.left_trigger_){}
@@ -2612,10 +2612,10 @@ GamepadInfo::GamepadInfo(const GamepadInfo& from)
   ::memcpy(&_impl_.buttons_, &from._impl_.buttons_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.thumb_ry_) -
     reinterpret_cast<char*>(&_impl_.buttons_)) + sizeof(_impl_.thumb_ry_));
-  // @@protoc_insertion_point(copy_constructor:tc.GamepadInfo)
+  // @@protoc_insertion_point(copy_constructor:tc.GamepadState)
 }
 
-inline void GamepadInfo::SharedCtor(
+inline void GamepadState::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -2631,8 +2631,8 @@ inline void GamepadInfo::SharedCtor(
   };
 }
 
-GamepadInfo::~GamepadInfo() {
-  // @@protoc_insertion_point(destructor:tc.GamepadInfo)
+GamepadState::~GamepadState() {
+  // @@protoc_insertion_point(destructor:tc.GamepadState)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2640,16 +2640,16 @@ GamepadInfo::~GamepadInfo() {
   SharedDtor();
 }
 
-inline void GamepadInfo::SharedDtor() {
+inline void GamepadState::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void GamepadInfo::SetCachedSize(int size) const {
+void GamepadState::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void GamepadInfo::Clear() {
-// @@protoc_insertion_point(message_clear_start:tc.GamepadInfo)
+void GamepadState::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.GamepadState)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2660,7 +2660,7 @@ void GamepadInfo::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GamepadInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* GamepadState::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -2745,9 +2745,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* GamepadInfo::_InternalSerialize(
+uint8_t* GamepadState::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:tc.GamepadInfo)
+  // @@protoc_insertion_point(serialize_to_array_start:tc.GamepadState)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2797,12 +2797,12 @@ uint8_t* GamepadInfo::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:tc.GamepadInfo)
+  // @@protoc_insertion_point(serialize_to_array_end:tc.GamepadState)
   return target;
 }
 
-size_t GamepadInfo::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tc.GamepadInfo)
+size_t GamepadState::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.GamepadState)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -2847,17 +2847,17 @@ size_t GamepadInfo::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GamepadInfo::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GamepadState::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    GamepadInfo::MergeImpl
+    GamepadState::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GamepadInfo::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GamepadState::GetClassData() const { return &_class_data_; }
 
 
-void GamepadInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GamepadInfo*>(&to_msg);
-  auto& from = static_cast<const GamepadInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:tc.GamepadInfo)
+void GamepadState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<GamepadState*>(&to_msg);
+  auto& from = static_cast<const GamepadState&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.GamepadState)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2886,29 +2886,29 @@ void GamepadInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PR
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GamepadInfo::CopyFrom(const GamepadInfo& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tc.GamepadInfo)
+void GamepadState::CopyFrom(const GamepadState& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.GamepadState)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GamepadInfo::IsInitialized() const {
+bool GamepadState::IsInitialized() const {
   return true;
 }
 
-void GamepadInfo::InternalSwap(GamepadInfo* other) {
+void GamepadState::InternalSwap(GamepadState* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(GamepadInfo, _impl_.thumb_ry_)
-      + sizeof(GamepadInfo::_impl_.thumb_ry_)
-      - PROTOBUF_FIELD_OFFSET(GamepadInfo, _impl_.buttons_)>(
+      PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_ry_)
+      + sizeof(GamepadState::_impl_.thumb_ry_)
+      - PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.buttons_)>(
           reinterpret_cast<char*>(&_impl_.buttons_),
           reinterpret_cast<char*>(&other->_impl_.buttons_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GamepadInfo::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GamepadState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[8]);
@@ -2926,7 +2926,7 @@ class Message::_Internal {
   static const ::tc::KeyEvent& key_event(const Message* msg);
   static const ::tc::MouseEvent& mouse_event(const Message* msg);
   static const ::tc::CursorInfoSync& cursor_info_sync(const Message* msg);
-  static const ::tc::GamepadInfo& gamepad_info(const Message* msg);
+  static const ::tc::GamepadState& gamepad_state(const Message* msg);
 };
 
 const ::tc::Hello&
@@ -2961,9 +2961,9 @@ const ::tc::CursorInfoSync&
 Message::_Internal::cursor_info_sync(const Message* msg) {
   return *msg->_impl_.cursor_info_sync_;
 }
-const ::tc::GamepadInfo&
-Message::_Internal::gamepad_info(const Message* msg) {
-  return *msg->_impl_.gamepad_info_;
+const ::tc::GamepadState&
+Message::_Internal::gamepad_state(const Message* msg) {
+  return *msg->_impl_.gamepad_state_;
 }
 Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -2983,7 +2983,7 @@ Message::Message(const Message& from)
     , decltype(_impl_.key_event_){nullptr}
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.gamepad_info_){nullptr}
+    , decltype(_impl_.gamepad_state_){nullptr}
     , decltype(_impl_.send_time_){}
     , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -3013,8 +3013,8 @@ Message::Message(const Message& from)
   if (from._internal_has_cursor_info_sync()) {
     _this->_impl_.cursor_info_sync_ = new ::tc::CursorInfoSync(*from._impl_.cursor_info_sync_);
   }
-  if (from._internal_has_gamepad_info()) {
-    _this->_impl_.gamepad_info_ = new ::tc::GamepadInfo(*from._impl_.gamepad_info_);
+  if (from._internal_has_gamepad_state()) {
+    _this->_impl_.gamepad_state_ = new ::tc::GamepadState(*from._impl_.gamepad_state_);
   }
   ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
@@ -3035,7 +3035,7 @@ inline void Message::SharedCtor(
     , decltype(_impl_.key_event_){nullptr}
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.gamepad_info_){nullptr}
+    , decltype(_impl_.gamepad_state_){nullptr}
     , decltype(_impl_.send_time_){uint64_t{0u}}
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -3061,7 +3061,7 @@ inline void Message::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.key_event_;
   if (this != internal_default_instance()) delete _impl_.mouse_event_;
   if (this != internal_default_instance()) delete _impl_.cursor_info_sync_;
-  if (this != internal_default_instance()) delete _impl_.gamepad_info_;
+  if (this != internal_default_instance()) delete _impl_.gamepad_state_;
 }
 
 void Message::SetCachedSize(int size) const {
@@ -3106,10 +3106,10 @@ void Message::Clear() {
     delete _impl_.cursor_info_sync_;
   }
   _impl_.cursor_info_sync_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.gamepad_info_ != nullptr) {
-    delete _impl_.gamepad_info_;
+  if (GetArenaForAllocation() == nullptr && _impl_.gamepad_state_ != nullptr) {
+    delete _impl_.gamepad_state_;
   }
-  _impl_.gamepad_info_ = nullptr;
+  _impl_.gamepad_state_ = nullptr;
   ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -3203,10 +3203,10 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // .tc.GamepadInfo gamepad_info = 11;
+      // .tc.GamepadState gamepad_state = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
-          ptr = ctx->ParseMessage(_internal_mutable_gamepad_info(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_gamepad_state(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3309,11 +3309,11 @@ uint8_t* Message::_InternalSerialize(
         _Internal::cursor_info_sync(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.GamepadInfo gamepad_info = 11;
-  if (this->_internal_has_gamepad_info()) {
+  // .tc.GamepadState gamepad_state = 11;
+  if (this->_internal_has_gamepad_state()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(11, _Internal::gamepad_info(this),
-        _Internal::gamepad_info(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(11, _Internal::gamepad_state(this),
+        _Internal::gamepad_state(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3388,11 +3388,11 @@ size_t Message::ByteSizeLong() const {
         *_impl_.cursor_info_sync_);
   }
 
-  // .tc.GamepadInfo gamepad_info = 11;
-  if (this->_internal_has_gamepad_info()) {
+  // .tc.GamepadState gamepad_state = 11;
+  if (this->_internal_has_gamepad_state()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.gamepad_info_);
+        *_impl_.gamepad_state_);
   }
 
   // uint64 send_time = 2;
@@ -3456,9 +3456,9 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
     _this->_internal_mutable_cursor_info_sync()->::tc::CursorInfoSync::MergeFrom(
         from._internal_cursor_info_sync());
   }
-  if (from._internal_has_gamepad_info()) {
-    _this->_internal_mutable_gamepad_info()->::tc::GamepadInfo::MergeFrom(
-        from._internal_gamepad_info());
+  if (from._internal_has_gamepad_state()) {
+    _this->_internal_mutable_gamepad_state()->::tc::GamepadState::MergeFrom(
+        from._internal_gamepad_state());
   }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
@@ -3532,9 +3532,9 @@ template<> PROTOBUF_NOINLINE ::tc::CursorInfoSync*
 Arena::CreateMaybeMessage< ::tc::CursorInfoSync >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::CursorInfoSync >(arena);
 }
-template<> PROTOBUF_NOINLINE ::tc::GamepadInfo*
-Arena::CreateMaybeMessage< ::tc::GamepadInfo >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::GamepadInfo >(arena);
+template<> PROTOBUF_NOINLINE ::tc::GamepadState*
+Arena::CreateMaybeMessage< ::tc::GamepadState >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tc::GamepadState >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {

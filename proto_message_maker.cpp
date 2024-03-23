@@ -8,7 +8,7 @@ namespace tc
                                                     int32_t thumb_ly, int32_t thumb_rx, int32_t thumb_ry) {
         tc::Message msg;
         msg.set_type(tc::MessageType::kGamepadState);
-        auto gs = msg.mutable_gamepad_info();
+        auto gs = msg.mutable_gamepad_state();
         gs->set_buttons(buttons);
         gs->set_left_trigger(left_trigger);
         gs->set_right_trigger(right_trigger);
