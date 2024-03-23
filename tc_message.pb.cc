@@ -196,7 +196,7 @@ struct MessageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
 static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[10];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[4];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
 const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -392,11 +392,23 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEvent"
   "fHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n"
   "\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightMous"
-  "eButtonDown\020\200 b\006proto3"
+  "eButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_U"
+  "NKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022"
+  "\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_X"
+  "INPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_G"
+  "AMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD"
+  "_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034"
+  "GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XIN"
+  "PUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_"
+  "GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GA"
+  "MEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAM"
+  "EPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023G"
+  "P_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAME"
+  "PAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 1982, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2457, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -489,6 +501,33 @@ bool EButtonFlag_IsValid(int value) {
     case 1024:
     case 2048:
     case 4096:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadButton_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
+}
+bool GamepadButton_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 4:
+    case 8:
+    case 16:
+    case 32:
+    case 64:
+    case 128:
+    case 256:
+    case 512:
+    case 4096:
+    case 8192:
+    case 16384:
+    case 32768:
       return true;
     default:
       return false;

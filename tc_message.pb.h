@@ -213,6 +213,44 @@ inline bool EButtonFlag_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<EButtonFlag>(
     EButtonFlag_descriptor(), name, value);
 }
+enum GamepadButton : int {
+  GP_UNKNOWN = 0,
+  GP_XINPUT_GAMEPAD_DPAD_UP = 1,
+  GP_XINPUT_GAMEPAD_DPAD_DOWN = 2,
+  GP_XINPUT_GAMEPAD_DPAD_LEFT = 4,
+  GP_XINPUT_GAMEPAD_DPAD_RIGHT = 8,
+  GP_XINPUT_GAMEPAD_START = 16,
+  GP_XINPUT_GAMEPAD_BACK = 32,
+  GP_XINPUT_GAMEPAD_LEFT_THUMB = 64,
+  GP_XINPUT_GAMEPAD_RIGHT_THUMB = 128,
+  GP_XINPUT_GAMEPAD_LEFT_SHOULDER = 256,
+  GP_XINPUT_GAMEPAD_RIGHT_SHOULDER = 512,
+  GP_XINPUT_GAMEPAD_A = 4096,
+  GP_XINPUT_GAMEPAD_B = 8192,
+  GP_XINPUT_GAMEPAD_X = 16384,
+  GP_XINPUT_GAMEPAD_Y = 32768,
+  GamepadButton_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  GamepadButton_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool GamepadButton_IsValid(int value);
+constexpr GamepadButton GamepadButton_MIN = GP_UNKNOWN;
+constexpr GamepadButton GamepadButton_MAX = GP_XINPUT_GAMEPAD_Y;
+constexpr int GamepadButton_ARRAYSIZE = GamepadButton_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadButton_descriptor();
+template<typename T>
+inline const std::string& GamepadButton_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, GamepadButton>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function GamepadButton_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    GamepadButton_descriptor(), enum_t_value);
+}
+inline bool GamepadButton_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, GamepadButton* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<GamepadButton>(
+    GamepadButton_descriptor(), name, value);
+}
 // ===================================================================
 
 class Ack final :
@@ -4192,6 +4230,11 @@ template <> struct is_proto_enum< ::tc::EButtonFlag> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::EButtonFlag>() {
   return ::tc::EButtonFlag_descriptor();
+}
+template <> struct is_proto_enum< ::tc::GamepadButton> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::GamepadButton>() {
+  return ::tc::GamepadButton_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
