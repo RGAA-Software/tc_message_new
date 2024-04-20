@@ -171,6 +171,22 @@ struct GamepadStateDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadStateDefaultTypeInternal _GamepadState_default_instance_;
+PROTOBUF_CONSTEXPR CaptureStatistics::CaptureStatistics(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.video_frame_gaps_)*/{}
+  , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.encode_durations_)*/{}
+  , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct CaptureStatisticsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CaptureStatisticsDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CaptureStatisticsDefaultTypeInternal() {}
+  union {
+    CaptureStatistics _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureStatisticsDefaultTypeInternal _CaptureStatistics_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.hello_)*/nullptr
@@ -182,6 +198,7 @@ PROTOBUF_CONSTEXPR Message::Message(
   , /*decltype(_impl_.mouse_event_)*/nullptr
   , /*decltype(_impl_.cursor_info_sync_)*/nullptr
   , /*decltype(_impl_.gamepad_state_)*/nullptr
+  , /*decltype(_impl_.capture_statistics_)*/nullptr
   , /*decltype(_impl_.send_time_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -195,7 +212,7 @@ struct MessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[10];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[11];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
@@ -299,6 +316,14 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_rx_),
   PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ry_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.video_frame_gaps_),
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.encode_durations_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -315,6 +340,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.mouse_event_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.cursor_info_sync_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_state_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.capture_statistics_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -326,7 +352,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 55, -1, -1, sizeof(::tc::MouseEvent)},
   { 71, -1, -1, sizeof(::tc::CursorInfoSync)},
   { 85, -1, -1, sizeof(::tc::GamepadState)},
-  { 98, -1, -1, sizeof(::tc::Message)},
+  { 98, -1, -1, sizeof(::tc::CaptureStatistics)},
+  { 106, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -339,6 +366,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_MouseEvent_default_instance_._instance,
   &::tc::_CursorInfoSync_default_instance_._instance,
   &::tc::_GamepadState_default_instance_._instance,
+  &::tc::_CaptureStatistics_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -369,48 +397,52 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "\224\001\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014lef"
   "t_trigger\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020"
   "\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010th"
-  "umb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\365\002\n\007Messa"
-  "ge\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsen"
-  "d_time\030\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024"
-  "\n\003ack\030\004 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\013"
-  "2\r.tc.HeartBeat\022#\n\013video_frame\030\006 \001(\0132\016.t"
-  "c.VideoFrame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.A"
-  "udioFrame\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEve"
-  "nt\022#\n\013mouse_event\030\t \001(\0132\016.tc.MouseEvent\022"
-  ",\n\020cursor_info_sync\030\n \001(\0132\022.tc.CursorInf"
-  "oSync\022\'\n\rgamepad_state\030\013 \001(\0132\020.tc.Gamepa"
-  "dState*\235\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kA"
-  "ck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n"
-  "\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseE"
-  "vent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadS"
-  "tate\020\010*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNe"
-  "tHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005"
-  "kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002"
-  "\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLef"
-  "tMouseButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp"
-  "\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMov"
-  "e\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEv"
-  "entfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010"
-  "\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightM"
-  "ouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nG"
-  "P_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP"
-  "\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033G"
-  "P_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPU"
-  "T_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAME"
-  "PAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022"
-  " \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_"
-  "XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINP"
-  "UT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT"
-  "_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_"
-  "GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031"
-  "\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_G"
-  "AMEPAD_Y\020\200\200\002b\006proto3"
+  "umb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\"G\n\021Captur"
+  "eStatistics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n"
+  "\020encode_durations\030\002 \003(\r\"\250\003\n\007Message\022\035\n\004t"
+  "ype\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030"
+  "\002 \001(\004\022\030\n\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n\003ack\030\004"
+  " \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\005 \001(\0132\r.tc.H"
+  "eartBeat\022#\n\013video_frame\030\006 \001(\0132\016.tc.Video"
+  "Frame\022#\n\013audio_frame\030\007 \001(\0132\016.tc.AudioFra"
+  "me\022\037\n\tkey_event\030\010 \001(\0132\014.tc.KeyEvent\022#\n\013m"
+  "ouse_event\030\t \001(\0132\016.tc.MouseEvent\022,\n\020curs"
+  "or_info_sync\030\n \001(\0132\022.tc.CursorInfoSync\022\'"
+  "\n\rgamepad_state\030\013 \001(\0132\020.tc.GamepadState\022"
+  "1\n\022capture_statistics\030\014 \001(\0132\025.tc.Capture"
+  "Statistics*\265\001\n\013MessageType\022\n\n\006kHello\020\000\022\010"
+  "\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020"
+  "\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMo"
+  "useEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGame"
+  "padState\020\010\022\026\n\022kCaptureStatistics\020\t*4\n\tVi"
+  "deoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007k"
+  "NetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013k"
+  "CapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControl"
+  "Down\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButton"
+  "Up\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRight"
+  "MouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMou"
+  "seEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200"
+  "\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddleM"
+  "ouseButtonDown\020\200\020\022\032\n\025kRightMouseButtonDo"
+  "wn\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022"
+  "\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XIN"
+  "PUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAM"
+  "EPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DP"
+  "AD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022"
+  "\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT"
+  "_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEP"
+  "AD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_L"
+  "EFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIG"
+  "HT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 "
+  "\022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_"
+  "GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002"
+  "b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2460, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2608, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 10,
+    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 11,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
     file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
@@ -460,6 +492,7 @@ bool MessageType_IsValid(int value) {
     case 6:
     case 7:
     case 8:
+    case 9:
       return true;
     default:
       return false;
@@ -2916,6 +2949,241 @@ void GamepadState::InternalSwap(GamepadState* other) {
 
 // ===================================================================
 
+class CaptureStatistics::_Internal {
+ public:
+};
+
+CaptureStatistics::CaptureStatistics(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:tc.CaptureStatistics)
+}
+CaptureStatistics::CaptureStatistics(const CaptureStatistics& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CaptureStatistics* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.video_frame_gaps_){from._impl_.video_frame_gaps_}
+    , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
+    , decltype(_impl_.encode_durations_){from._impl_.encode_durations_}
+    , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:tc.CaptureStatistics)
+}
+
+inline void CaptureStatistics::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.video_frame_gaps_){arena}
+    , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
+    , decltype(_impl_.encode_durations_){arena}
+    , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+CaptureStatistics::~CaptureStatistics() {
+  // @@protoc_insertion_point(destructor:tc.CaptureStatistics)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CaptureStatistics::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.video_frame_gaps_.~RepeatedField();
+  _impl_.encode_durations_.~RepeatedField();
+}
+
+void CaptureStatistics::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void CaptureStatistics::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.CaptureStatistics)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.video_frame_gaps_.Clear();
+  _impl_.encode_durations_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CaptureStatistics::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated uint32 video_frame_gaps = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_video_frame_gaps(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 8) {
+          _internal_add_video_frame_gaps(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated uint32 encode_durations = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_encode_durations(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 16) {
+          _internal_add_encode_durations(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CaptureStatistics::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.CaptureStatistics)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated uint32 video_frame_gaps = 1;
+  {
+    int byte_size = _impl_._video_frame_gaps_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteUInt32Packed(
+          1, _internal_video_frame_gaps(), byte_size, target);
+    }
+  }
+
+  // repeated uint32 encode_durations = 2;
+  {
+    int byte_size = _impl_._encode_durations_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteUInt32Packed(
+          2, _internal_encode_durations(), byte_size, target);
+    }
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.CaptureStatistics)
+  return target;
+}
+
+size_t CaptureStatistics::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.CaptureStatistics)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated uint32 video_frame_gaps = 1;
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.video_frame_gaps_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._video_frame_gaps_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated uint32 encode_durations = 2;
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt32Size(this->_impl_.encode_durations_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._encode_durations_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CaptureStatistics::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    CaptureStatistics::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CaptureStatistics::GetClassData() const { return &_class_data_; }
+
+
+void CaptureStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CaptureStatistics*>(&to_msg);
+  auto& from = static_cast<const CaptureStatistics&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.CaptureStatistics)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.video_frame_gaps_.MergeFrom(from._impl_.video_frame_gaps_);
+  _this->_impl_.encode_durations_.MergeFrom(from._impl_.encode_durations_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CaptureStatistics::CopyFrom(const CaptureStatistics& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.CaptureStatistics)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CaptureStatistics::IsInitialized() const {
+  return true;
+}
+
+void CaptureStatistics::InternalSwap(CaptureStatistics* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.video_frame_gaps_.InternalSwap(&other->_impl_.video_frame_gaps_);
+  _impl_.encode_durations_.InternalSwap(&other->_impl_.encode_durations_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CaptureStatistics::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[9]);
+}
+
+// ===================================================================
+
 class Message::_Internal {
  public:
   static const ::tc::Hello& hello(const Message* msg);
@@ -2927,6 +3195,7 @@ class Message::_Internal {
   static const ::tc::MouseEvent& mouse_event(const Message* msg);
   static const ::tc::CursorInfoSync& cursor_info_sync(const Message* msg);
   static const ::tc::GamepadState& gamepad_state(const Message* msg);
+  static const ::tc::CaptureStatistics& capture_statistics(const Message* msg);
 };
 
 const ::tc::Hello&
@@ -2965,6 +3234,10 @@ const ::tc::GamepadState&
 Message::_Internal::gamepad_state(const Message* msg) {
   return *msg->_impl_.gamepad_state_;
 }
+const ::tc::CaptureStatistics&
+Message::_Internal::capture_statistics(const Message* msg) {
+  return *msg->_impl_.capture_statistics_;
+}
 Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -2984,6 +3257,7 @@ Message::Message(const Message& from)
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
     , decltype(_impl_.gamepad_state_){nullptr}
+    , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.send_time_){}
     , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -3016,6 +3290,9 @@ Message::Message(const Message& from)
   if (from._internal_has_gamepad_state()) {
     _this->_impl_.gamepad_state_ = new ::tc::GamepadState(*from._impl_.gamepad_state_);
   }
+  if (from._internal_has_capture_statistics()) {
+    _this->_impl_.capture_statistics_ = new ::tc::CaptureStatistics(*from._impl_.capture_statistics_);
+  }
   ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
     reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -3036,6 +3313,7 @@ inline void Message::SharedCtor(
     , decltype(_impl_.mouse_event_){nullptr}
     , decltype(_impl_.cursor_info_sync_){nullptr}
     , decltype(_impl_.gamepad_state_){nullptr}
+    , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.send_time_){uint64_t{0u}}
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -3062,6 +3340,7 @@ inline void Message::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.mouse_event_;
   if (this != internal_default_instance()) delete _impl_.cursor_info_sync_;
   if (this != internal_default_instance()) delete _impl_.gamepad_state_;
+  if (this != internal_default_instance()) delete _impl_.capture_statistics_;
 }
 
 void Message::SetCachedSize(int size) const {
@@ -3110,6 +3389,10 @@ void Message::Clear() {
     delete _impl_.gamepad_state_;
   }
   _impl_.gamepad_state_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.capture_statistics_ != nullptr) {
+    delete _impl_.capture_statistics_;
+  }
+  _impl_.capture_statistics_ = nullptr;
   ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -3207,6 +3490,14 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
           ptr = ctx->ParseMessage(_internal_mutable_gamepad_state(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .tc.CaptureStatistics capture_statistics = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+          ptr = ctx->ParseMessage(_internal_mutable_capture_statistics(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3316,6 +3607,13 @@ uint8_t* Message::_InternalSerialize(
         _Internal::gamepad_state(this).GetCachedSize(), target, stream);
   }
 
+  // .tc.CaptureStatistics capture_statistics = 12;
+  if (this->_internal_has_capture_statistics()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(12, _Internal::capture_statistics(this),
+        _Internal::capture_statistics(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3395,6 +3693,13 @@ size_t Message::ByteSizeLong() const {
         *_impl_.gamepad_state_);
   }
 
+  // .tc.CaptureStatistics capture_statistics = 12;
+  if (this->_internal_has_capture_statistics()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.capture_statistics_);
+  }
+
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
@@ -3460,6 +3765,10 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
     _this->_internal_mutable_gamepad_state()->::tc::GamepadState::MergeFrom(
         from._internal_gamepad_state());
   }
+  if (from._internal_has_capture_statistics()) {
+    _this->_internal_mutable_capture_statistics()->::tc::CaptureStatistics::MergeFrom(
+        from._internal_capture_statistics());
+  }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
   }
@@ -3494,7 +3803,7 @@ void Message::InternalSwap(Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[9]);
+      file_level_metadata_tc_5fmessage_2eproto[10]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3535,6 +3844,10 @@ Arena::CreateMaybeMessage< ::tc::CursorInfoSync >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::tc::GamepadState*
 Arena::CreateMaybeMessage< ::tc::GamepadState >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::GamepadState >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tc::CaptureStatistics*
+Arena::CreateMaybeMessage< ::tc::CaptureStatistics >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tc::CaptureStatistics >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {

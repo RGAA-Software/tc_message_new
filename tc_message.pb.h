@@ -53,6 +53,9 @@ extern AckDefaultTypeInternal _Ack_default_instance_;
 class AudioFrame;
 struct AudioFrameDefaultTypeInternal;
 extern AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
+class CaptureStatistics;
+struct CaptureStatisticsDefaultTypeInternal;
+extern CaptureStatisticsDefaultTypeInternal _CaptureStatistics_default_instance_;
 class CursorInfoSync;
 struct CursorInfoSyncDefaultTypeInternal;
 extern CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
@@ -81,6 +84,7 @@ extern VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tc::Ack* Arena::CreateMaybeMessage<::tc::Ack>(Arena*);
 template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*);
+template<> ::tc::CaptureStatistics* Arena::CreateMaybeMessage<::tc::CaptureStatistics>(Arena*);
 template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
 template<> ::tc::GamepadState* Arena::CreateMaybeMessage<::tc::GamepadState>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
@@ -128,12 +132,13 @@ enum MessageType : int {
   kMouseEvent = 6,
   kCursorInfoSync = 7,
   kGamepadState = 8,
+  kCaptureStatistics = 9,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kGamepadState;
+constexpr MessageType MessageType_MAX = kCaptureStatistics;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -1979,6 +1984,193 @@ class GamepadState final :
 };
 // -------------------------------------------------------------------
 
+class CaptureStatistics final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.CaptureStatistics) */ {
+ public:
+  inline CaptureStatistics() : CaptureStatistics(nullptr) {}
+  ~CaptureStatistics() override;
+  explicit PROTOBUF_CONSTEXPR CaptureStatistics(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CaptureStatistics(const CaptureStatistics& from);
+  CaptureStatistics(CaptureStatistics&& from) noexcept
+    : CaptureStatistics() {
+    *this = ::std::move(from);
+  }
+
+  inline CaptureStatistics& operator=(const CaptureStatistics& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CaptureStatistics& operator=(CaptureStatistics&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CaptureStatistics& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CaptureStatistics* internal_default_instance() {
+    return reinterpret_cast<const CaptureStatistics*>(
+               &_CaptureStatistics_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(CaptureStatistics& a, CaptureStatistics& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CaptureStatistics* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CaptureStatistics* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CaptureStatistics* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CaptureStatistics>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CaptureStatistics& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CaptureStatistics& from) {
+    CaptureStatistics::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CaptureStatistics* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.CaptureStatistics";
+  }
+  protected:
+  explicit CaptureStatistics(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVideoFrameGapsFieldNumber = 1,
+    kEncodeDurationsFieldNumber = 2,
+  };
+  // repeated uint32 video_frame_gaps = 1;
+  int video_frame_gaps_size() const;
+  private:
+  int _internal_video_frame_gaps_size() const;
+  public:
+  void clear_video_frame_gaps();
+  private:
+  uint32_t _internal_video_frame_gaps(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_video_frame_gaps() const;
+  void _internal_add_video_frame_gaps(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_video_frame_gaps();
+  public:
+  uint32_t video_frame_gaps(int index) const;
+  void set_video_frame_gaps(int index, uint32_t value);
+  void add_video_frame_gaps(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      video_frame_gaps() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_video_frame_gaps();
+
+  // repeated uint32 encode_durations = 2;
+  int encode_durations_size() const;
+  private:
+  int _internal_encode_durations_size() const;
+  public:
+  void clear_encode_durations();
+  private:
+  uint32_t _internal_encode_durations(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_encode_durations() const;
+  void _internal_add_encode_durations(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_encode_durations();
+  public:
+  uint32_t encode_durations(int index) const;
+  void set_encode_durations(int index, uint32_t value);
+  void add_encode_durations(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      encode_durations() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_encode_durations();
+
+  // @@protoc_insertion_point(class_scope:tc.CaptureStatistics)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > video_frame_gaps_;
+    mutable std::atomic<int> _video_frame_gaps_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > encode_durations_;
+    mutable std::atomic<int> _encode_durations_cached_byte_size_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -2027,7 +2219,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2109,6 +2301,7 @@ class Message final :
     kMouseEventFieldNumber = 9,
     kCursorInfoSyncFieldNumber = 10,
     kGamepadStateFieldNumber = 11,
+    kCaptureStatisticsFieldNumber = 12,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -2274,6 +2467,24 @@ class Message final :
       ::tc::GamepadState* gamepad_state);
   ::tc::GamepadState* unsafe_arena_release_gamepad_state();
 
+  // .tc.CaptureStatistics capture_statistics = 12;
+  bool has_capture_statistics() const;
+  private:
+  bool _internal_has_capture_statistics() const;
+  public:
+  void clear_capture_statistics();
+  const ::tc::CaptureStatistics& capture_statistics() const;
+  PROTOBUF_NODISCARD ::tc::CaptureStatistics* release_capture_statistics();
+  ::tc::CaptureStatistics* mutable_capture_statistics();
+  void set_allocated_capture_statistics(::tc::CaptureStatistics* capture_statistics);
+  private:
+  const ::tc::CaptureStatistics& _internal_capture_statistics() const;
+  ::tc::CaptureStatistics* _internal_mutable_capture_statistics();
+  public:
+  void unsafe_arena_set_allocated_capture_statistics(
+      ::tc::CaptureStatistics* capture_statistics);
+  ::tc::CaptureStatistics* unsafe_arena_release_capture_statistics();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -2309,6 +2520,7 @@ class Message final :
     ::tc::MouseEvent* mouse_event_;
     ::tc::CursorInfoSync* cursor_info_sync_;
     ::tc::GamepadState* gamepad_state_;
+    ::tc::CaptureStatistics* capture_statistics_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3331,6 +3543,104 @@ inline void GamepadState::set_thumb_ry(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// CaptureStatistics
+
+// repeated uint32 video_frame_gaps = 1;
+inline int CaptureStatistics::_internal_video_frame_gaps_size() const {
+  return _impl_.video_frame_gaps_.size();
+}
+inline int CaptureStatistics::video_frame_gaps_size() const {
+  return _internal_video_frame_gaps_size();
+}
+inline void CaptureStatistics::clear_video_frame_gaps() {
+  _impl_.video_frame_gaps_.Clear();
+}
+inline uint32_t CaptureStatistics::_internal_video_frame_gaps(int index) const {
+  return _impl_.video_frame_gaps_.Get(index);
+}
+inline uint32_t CaptureStatistics::video_frame_gaps(int index) const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.video_frame_gaps)
+  return _internal_video_frame_gaps(index);
+}
+inline void CaptureStatistics::set_video_frame_gaps(int index, uint32_t value) {
+  _impl_.video_frame_gaps_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.video_frame_gaps)
+}
+inline void CaptureStatistics::_internal_add_video_frame_gaps(uint32_t value) {
+  _impl_.video_frame_gaps_.Add(value);
+}
+inline void CaptureStatistics::add_video_frame_gaps(uint32_t value) {
+  _internal_add_video_frame_gaps(value);
+  // @@protoc_insertion_point(field_add:tc.CaptureStatistics.video_frame_gaps)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::_internal_video_frame_gaps() const {
+  return _impl_.video_frame_gaps_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::video_frame_gaps() const {
+  // @@protoc_insertion_point(field_list:tc.CaptureStatistics.video_frame_gaps)
+  return _internal_video_frame_gaps();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::_internal_mutable_video_frame_gaps() {
+  return &_impl_.video_frame_gaps_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::mutable_video_frame_gaps() {
+  // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.video_frame_gaps)
+  return _internal_mutable_video_frame_gaps();
+}
+
+// repeated uint32 encode_durations = 2;
+inline int CaptureStatistics::_internal_encode_durations_size() const {
+  return _impl_.encode_durations_.size();
+}
+inline int CaptureStatistics::encode_durations_size() const {
+  return _internal_encode_durations_size();
+}
+inline void CaptureStatistics::clear_encode_durations() {
+  _impl_.encode_durations_.Clear();
+}
+inline uint32_t CaptureStatistics::_internal_encode_durations(int index) const {
+  return _impl_.encode_durations_.Get(index);
+}
+inline uint32_t CaptureStatistics::encode_durations(int index) const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.encode_durations)
+  return _internal_encode_durations(index);
+}
+inline void CaptureStatistics::set_encode_durations(int index, uint32_t value) {
+  _impl_.encode_durations_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.encode_durations)
+}
+inline void CaptureStatistics::_internal_add_encode_durations(uint32_t value) {
+  _impl_.encode_durations_.Add(value);
+}
+inline void CaptureStatistics::add_encode_durations(uint32_t value) {
+  _internal_add_encode_durations(value);
+  // @@protoc_insertion_point(field_add:tc.CaptureStatistics.encode_durations)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::_internal_encode_durations() const {
+  return _impl_.encode_durations_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::encode_durations() const {
+  // @@protoc_insertion_point(field_list:tc.CaptureStatistics.encode_durations)
+  return _internal_encode_durations();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::_internal_mutable_encode_durations() {
+  return &_impl_.encode_durations_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::mutable_encode_durations() {
+  // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.encode_durations)
+  return _internal_mutable_encode_durations();
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -4183,9 +4493,101 @@ inline void Message::set_allocated_gamepad_state(::tc::GamepadState* gamepad_sta
   // @@protoc_insertion_point(field_set_allocated:tc.Message.gamepad_state)
 }
 
+// .tc.CaptureStatistics capture_statistics = 12;
+inline bool Message::_internal_has_capture_statistics() const {
+  return this != internal_default_instance() && _impl_.capture_statistics_ != nullptr;
+}
+inline bool Message::has_capture_statistics() const {
+  return _internal_has_capture_statistics();
+}
+inline void Message::clear_capture_statistics() {
+  if (GetArenaForAllocation() == nullptr && _impl_.capture_statistics_ != nullptr) {
+    delete _impl_.capture_statistics_;
+  }
+  _impl_.capture_statistics_ = nullptr;
+}
+inline const ::tc::CaptureStatistics& Message::_internal_capture_statistics() const {
+  const ::tc::CaptureStatistics* p = _impl_.capture_statistics_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::CaptureStatistics&>(
+      ::tc::_CaptureStatistics_default_instance_);
+}
+inline const ::tc::CaptureStatistics& Message::capture_statistics() const {
+  // @@protoc_insertion_point(field_get:tc.Message.capture_statistics)
+  return _internal_capture_statistics();
+}
+inline void Message::unsafe_arena_set_allocated_capture_statistics(
+    ::tc::CaptureStatistics* capture_statistics) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.capture_statistics_);
+  }
+  _impl_.capture_statistics_ = capture_statistics;
+  if (capture_statistics) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.capture_statistics)
+}
+inline ::tc::CaptureStatistics* Message::release_capture_statistics() {
+  
+  ::tc::CaptureStatistics* temp = _impl_.capture_statistics_;
+  _impl_.capture_statistics_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::CaptureStatistics* Message::unsafe_arena_release_capture_statistics() {
+  // @@protoc_insertion_point(field_release:tc.Message.capture_statistics)
+  
+  ::tc::CaptureStatistics* temp = _impl_.capture_statistics_;
+  _impl_.capture_statistics_ = nullptr;
+  return temp;
+}
+inline ::tc::CaptureStatistics* Message::_internal_mutable_capture_statistics() {
+  
+  if (_impl_.capture_statistics_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::CaptureStatistics>(GetArenaForAllocation());
+    _impl_.capture_statistics_ = p;
+  }
+  return _impl_.capture_statistics_;
+}
+inline ::tc::CaptureStatistics* Message::mutable_capture_statistics() {
+  ::tc::CaptureStatistics* _msg = _internal_mutable_capture_statistics();
+  // @@protoc_insertion_point(field_mutable:tc.Message.capture_statistics)
+  return _msg;
+}
+inline void Message::set_allocated_capture_statistics(::tc::CaptureStatistics* capture_statistics) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.capture_statistics_;
+  }
+  if (capture_statistics) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(capture_statistics);
+    if (message_arena != submessage_arena) {
+      capture_statistics = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, capture_statistics, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.capture_statistics_ = capture_statistics;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.capture_statistics)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -10,10 +10,12 @@ enum MessageType {
   kAudioFrame = 4;
   kKeyEvent = 5;
   kMouseEvent = 6;
-  // server->client 服务器光标信息同步
+  // server -> client
   kCursorInfoSync = 7;
-  // client -> server 手柄信息
+  // client -> server
   kGamepadState = 8;
+  // capture server -> host panel
+  kCaptureStatistics = 9;
 }
 
 enum VideoType {
@@ -138,19 +140,19 @@ message CursorInfoSync {
 enum GamepadButton {
   GP_UNKNOWN = 0;
   GP_XINPUT_GAMEPAD_DPAD_UP = 0x0001;
-  GP_XINPUT_GAMEPAD_DPAD_DOWN =	0x0002;
-  GP_XINPUT_GAMEPAD_DPAD_LEFT =	0x0004;
-  GP_XINPUT_GAMEPAD_DPAD_RIGHT =	0x0008;
-  GP_XINPUT_GAMEPAD_START =	0x0010;
-  GP_XINPUT_GAMEPAD_BACK =	0x0020;
-  GP_XINPUT_GAMEPAD_LEFT_THUMB =	0x0040;
-  GP_XINPUT_GAMEPAD_RIGHT_THUMB =	0x0080;
-  GP_XINPUT_GAMEPAD_LEFT_SHOULDER =	0x0100;
-  GP_XINPUT_GAMEPAD_RIGHT_SHOULDER =	0x0200;
-  GP_XINPUT_GAMEPAD_A =	0x1000;
-  GP_XINPUT_GAMEPAD_B =	0x2000;
-  GP_XINPUT_GAMEPAD_X =	0x4000;
-  GP_XINPUT_GAMEPAD_Y =	0x8000;
+  GP_XINPUT_GAMEPAD_DPAD_DOWN = 0x0002;
+  GP_XINPUT_GAMEPAD_DPAD_LEFT = 0x0004;
+  GP_XINPUT_GAMEPAD_DPAD_RIGHT = 0x0008;
+  GP_XINPUT_GAMEPAD_START = 0x0010;
+  GP_XINPUT_GAMEPAD_BACK = 0x0020;
+  GP_XINPUT_GAMEPAD_LEFT_THUMB = 0x0040;
+  GP_XINPUT_GAMEPAD_RIGHT_THUMB = 0x0080;
+  GP_XINPUT_GAMEPAD_LEFT_SHOULDER = 0x0100;
+  GP_XINPUT_GAMEPAD_RIGHT_SHOULDER = 0x0200;
+  GP_XINPUT_GAMEPAD_A = 0x1000;
+  GP_XINPUT_GAMEPAD_B = 0x2000;
+  GP_XINPUT_GAMEPAD_X = 0x4000;
+  GP_XINPUT_GAMEPAD_Y = 0x8000;
 }
 
 message GamepadState {
@@ -161,6 +163,11 @@ message GamepadState {
   int32 thumb_ly = 5;
   int32 thumb_rx = 6;
   int32 thumb_ry = 7;
+}
+
+message CaptureStatistics {
+  repeated uint32 video_frame_gaps = 1;
+  repeated uint32 encode_durations = 2;
 }
 
 message Message {
@@ -175,4 +182,5 @@ message Message {
   MouseEvent mouse_event = 9;
   CursorInfoSync cursor_info_sync = 10;
   GamepadState gamepad_state = 11;
+  CaptureStatistics capture_statistics = 12;
 }
