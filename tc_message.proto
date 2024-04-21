@@ -170,6 +170,7 @@ message GamepadState {
 message CaptureStatistics {
   repeated uint32 video_frame_gaps = 1;
   repeated uint32 encode_durations = 2;
+  repeated uint32 decode_durations = 3;
 }
 
 message ClientStatistics {

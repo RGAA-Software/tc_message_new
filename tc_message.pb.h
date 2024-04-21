@@ -2112,6 +2112,7 @@ class CaptureStatistics final :
   enum : int {
     kVideoFrameGapsFieldNumber = 1,
     kEncodeDurationsFieldNumber = 2,
+    kDecodeDurationsFieldNumber = 3,
   };
   // repeated uint32 video_frame_gaps = 1;
   int video_frame_gaps_size() const;
@@ -2157,6 +2158,28 @@ class CaptureStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_encode_durations();
 
+  // repeated uint32 decode_durations = 3;
+  int decode_durations_size() const;
+  private:
+  int _internal_decode_durations_size() const;
+  public:
+  void clear_decode_durations();
+  private:
+  uint32_t _internal_decode_durations(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_decode_durations() const;
+  void _internal_add_decode_durations(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_decode_durations();
+  public:
+  uint32_t decode_durations(int index) const;
+  void set_decode_durations(int index, uint32_t value);
+  void add_decode_durations(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      decode_durations() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_decode_durations();
+
   // @@protoc_insertion_point(class_scope:tc.CaptureStatistics)
  private:
   class _Internal;
@@ -2169,6 +2192,8 @@ class CaptureStatistics final :
     mutable std::atomic<int> _video_frame_gaps_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > encode_durations_;
     mutable std::atomic<int> _encode_durations_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > decode_durations_;
+    mutable std::atomic<int> _decode_durations_cached_byte_size_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3824,6 +3849,53 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
 CaptureStatistics::mutable_encode_durations() {
   // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.encode_durations)
   return _internal_mutable_encode_durations();
+}
+
+// repeated uint32 decode_durations = 3;
+inline int CaptureStatistics::_internal_decode_durations_size() const {
+  return _impl_.decode_durations_.size();
+}
+inline int CaptureStatistics::decode_durations_size() const {
+  return _internal_decode_durations_size();
+}
+inline void CaptureStatistics::clear_decode_durations() {
+  _impl_.decode_durations_.Clear();
+}
+inline uint32_t CaptureStatistics::_internal_decode_durations(int index) const {
+  return _impl_.decode_durations_.Get(index);
+}
+inline uint32_t CaptureStatistics::decode_durations(int index) const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.decode_durations)
+  return _internal_decode_durations(index);
+}
+inline void CaptureStatistics::set_decode_durations(int index, uint32_t value) {
+  _impl_.decode_durations_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.decode_durations)
+}
+inline void CaptureStatistics::_internal_add_decode_durations(uint32_t value) {
+  _impl_.decode_durations_.Add(value);
+}
+inline void CaptureStatistics::add_decode_durations(uint32_t value) {
+  _internal_add_decode_durations(value);
+  // @@protoc_insertion_point(field_add:tc.CaptureStatistics.decode_durations)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::_internal_decode_durations() const {
+  return _impl_.decode_durations_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::decode_durations() const {
+  // @@protoc_insertion_point(field_list:tc.CaptureStatistics.decode_durations)
+  return _internal_decode_durations();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::_internal_mutable_decode_durations() {
+  return &_impl_.decode_durations_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::mutable_decode_durations() {
+  // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.decode_durations)
+  return _internal_mutable_decode_durations();
 }
 
 // -------------------------------------------------------------------
