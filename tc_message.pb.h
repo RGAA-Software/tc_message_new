@@ -56,6 +56,9 @@ extern AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
 class CaptureStatistics;
 struct CaptureStatisticsDefaultTypeInternal;
 extern CaptureStatisticsDefaultTypeInternal _CaptureStatistics_default_instance_;
+class ClientStatistics;
+struct ClientStatisticsDefaultTypeInternal;
+extern ClientStatisticsDefaultTypeInternal _ClientStatistics_default_instance_;
 class CursorInfoSync;
 struct CursorInfoSyncDefaultTypeInternal;
 extern CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
@@ -85,6 +88,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::tc::Ack* Arena::CreateMaybeMessage<::tc::Ack>(Arena*);
 template<> ::tc::AudioFrame* Arena::CreateMaybeMessage<::tc::AudioFrame>(Arena*);
 template<> ::tc::CaptureStatistics* Arena::CreateMaybeMessage<::tc::CaptureStatistics>(Arena*);
+template<> ::tc::ClientStatistics* Arena::CreateMaybeMessage<::tc::ClientStatistics>(Arena*);
 template<> ::tc::CursorInfoSync* Arena::CreateMaybeMessage<::tc::CursorInfoSync>(Arena*);
 template<> ::tc::GamepadState* Arena::CreateMaybeMessage<::tc::GamepadState>(Arena*);
 template<> ::tc::HeartBeat* Arena::CreateMaybeMessage<::tc::HeartBeat>(Arena*);
@@ -133,12 +137,13 @@ enum MessageType : int {
   kCursorInfoSync = 7,
   kGamepadState = 8,
   kCaptureStatistics = 9,
+  kClientStatistics = 10,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kCaptureStatistics;
+constexpr MessageType MessageType_MAX = kClientStatistics;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -2171,6 +2176,168 @@ class CaptureStatistics final :
 };
 // -------------------------------------------------------------------
 
+class ClientStatistics final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.ClientStatistics) */ {
+ public:
+  inline ClientStatistics() : ClientStatistics(nullptr) {}
+  ~ClientStatistics() override;
+  explicit PROTOBUF_CONSTEXPR ClientStatistics(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ClientStatistics(const ClientStatistics& from);
+  ClientStatistics(ClientStatistics&& from) noexcept
+    : ClientStatistics() {
+    *this = ::std::move(from);
+  }
+
+  inline ClientStatistics& operator=(const ClientStatistics& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ClientStatistics& operator=(ClientStatistics&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ClientStatistics& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ClientStatistics* internal_default_instance() {
+    return reinterpret_cast<const ClientStatistics*>(
+               &_ClientStatistics_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(ClientStatistics& a, ClientStatistics& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ClientStatistics* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ClientStatistics* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ClientStatistics* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ClientStatistics>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ClientStatistics& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ClientStatistics& from) {
+    ClientStatistics::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ClientStatistics* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.ClientStatistics";
+  }
+  protected:
+  explicit ClientStatistics(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDecodeDurationsFieldNumber = 1,
+  };
+  // repeated uint32 decode_durations = 1;
+  int decode_durations_size() const;
+  private:
+  int _internal_decode_durations_size() const;
+  public:
+  void clear_decode_durations();
+  private:
+  uint32_t _internal_decode_durations(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_decode_durations() const;
+  void _internal_add_decode_durations(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_decode_durations();
+  public:
+  uint32_t decode_durations(int index) const;
+  void set_decode_durations(int index, uint32_t value);
+  void add_decode_durations(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      decode_durations() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_decode_durations();
+
+  // @@protoc_insertion_point(class_scope:tc.ClientStatistics)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > decode_durations_;
+    mutable std::atomic<int> _decode_durations_cached_byte_size_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -2219,7 +2386,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2302,6 +2469,7 @@ class Message final :
     kCursorInfoSyncFieldNumber = 10,
     kGamepadStateFieldNumber = 11,
     kCaptureStatisticsFieldNumber = 12,
+    kClientStatisticsFieldNumber = 13,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -2485,6 +2653,24 @@ class Message final :
       ::tc::CaptureStatistics* capture_statistics);
   ::tc::CaptureStatistics* unsafe_arena_release_capture_statistics();
 
+  // .tc.ClientStatistics client_statistics = 13;
+  bool has_client_statistics() const;
+  private:
+  bool _internal_has_client_statistics() const;
+  public:
+  void clear_client_statistics();
+  const ::tc::ClientStatistics& client_statistics() const;
+  PROTOBUF_NODISCARD ::tc::ClientStatistics* release_client_statistics();
+  ::tc::ClientStatistics* mutable_client_statistics();
+  void set_allocated_client_statistics(::tc::ClientStatistics* client_statistics);
+  private:
+  const ::tc::ClientStatistics& _internal_client_statistics() const;
+  ::tc::ClientStatistics* _internal_mutable_client_statistics();
+  public:
+  void unsafe_arena_set_allocated_client_statistics(
+      ::tc::ClientStatistics* client_statistics);
+  ::tc::ClientStatistics* unsafe_arena_release_client_statistics();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -2521,6 +2707,7 @@ class Message final :
     ::tc::CursorInfoSync* cursor_info_sync_;
     ::tc::GamepadState* gamepad_state_;
     ::tc::CaptureStatistics* capture_statistics_;
+    ::tc::ClientStatistics* client_statistics_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -3641,6 +3828,57 @@ CaptureStatistics::mutable_encode_durations() {
 
 // -------------------------------------------------------------------
 
+// ClientStatistics
+
+// repeated uint32 decode_durations = 1;
+inline int ClientStatistics::_internal_decode_durations_size() const {
+  return _impl_.decode_durations_.size();
+}
+inline int ClientStatistics::decode_durations_size() const {
+  return _internal_decode_durations_size();
+}
+inline void ClientStatistics::clear_decode_durations() {
+  _impl_.decode_durations_.Clear();
+}
+inline uint32_t ClientStatistics::_internal_decode_durations(int index) const {
+  return _impl_.decode_durations_.Get(index);
+}
+inline uint32_t ClientStatistics::decode_durations(int index) const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.decode_durations)
+  return _internal_decode_durations(index);
+}
+inline void ClientStatistics::set_decode_durations(int index, uint32_t value) {
+  _impl_.decode_durations_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.decode_durations)
+}
+inline void ClientStatistics::_internal_add_decode_durations(uint32_t value) {
+  _impl_.decode_durations_.Add(value);
+}
+inline void ClientStatistics::add_decode_durations(uint32_t value) {
+  _internal_add_decode_durations(value);
+  // @@protoc_insertion_point(field_add:tc.ClientStatistics.decode_durations)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+ClientStatistics::_internal_decode_durations() const {
+  return _impl_.decode_durations_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+ClientStatistics::decode_durations() const {
+  // @@protoc_insertion_point(field_list:tc.ClientStatistics.decode_durations)
+  return _internal_decode_durations();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+ClientStatistics::_internal_mutable_decode_durations() {
+  return &_impl_.decode_durations_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+ClientStatistics::mutable_decode_durations() {
+  // @@protoc_insertion_point(field_mutable_list:tc.ClientStatistics.decode_durations)
+  return _internal_mutable_decode_durations();
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -4583,9 +4821,101 @@ inline void Message::set_allocated_capture_statistics(::tc::CaptureStatistics* c
   // @@protoc_insertion_point(field_set_allocated:tc.Message.capture_statistics)
 }
 
+// .tc.ClientStatistics client_statistics = 13;
+inline bool Message::_internal_has_client_statistics() const {
+  return this != internal_default_instance() && _impl_.client_statistics_ != nullptr;
+}
+inline bool Message::has_client_statistics() const {
+  return _internal_has_client_statistics();
+}
+inline void Message::clear_client_statistics() {
+  if (GetArenaForAllocation() == nullptr && _impl_.client_statistics_ != nullptr) {
+    delete _impl_.client_statistics_;
+  }
+  _impl_.client_statistics_ = nullptr;
+}
+inline const ::tc::ClientStatistics& Message::_internal_client_statistics() const {
+  const ::tc::ClientStatistics* p = _impl_.client_statistics_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::ClientStatistics&>(
+      ::tc::_ClientStatistics_default_instance_);
+}
+inline const ::tc::ClientStatistics& Message::client_statistics() const {
+  // @@protoc_insertion_point(field_get:tc.Message.client_statistics)
+  return _internal_client_statistics();
+}
+inline void Message::unsafe_arena_set_allocated_client_statistics(
+    ::tc::ClientStatistics* client_statistics) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.client_statistics_);
+  }
+  _impl_.client_statistics_ = client_statistics;
+  if (client_statistics) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.client_statistics)
+}
+inline ::tc::ClientStatistics* Message::release_client_statistics() {
+  
+  ::tc::ClientStatistics* temp = _impl_.client_statistics_;
+  _impl_.client_statistics_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::ClientStatistics* Message::unsafe_arena_release_client_statistics() {
+  // @@protoc_insertion_point(field_release:tc.Message.client_statistics)
+  
+  ::tc::ClientStatistics* temp = _impl_.client_statistics_;
+  _impl_.client_statistics_ = nullptr;
+  return temp;
+}
+inline ::tc::ClientStatistics* Message::_internal_mutable_client_statistics() {
+  
+  if (_impl_.client_statistics_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::ClientStatistics>(GetArenaForAllocation());
+    _impl_.client_statistics_ = p;
+  }
+  return _impl_.client_statistics_;
+}
+inline ::tc::ClientStatistics* Message::mutable_client_statistics() {
+  ::tc::ClientStatistics* _msg = _internal_mutable_client_statistics();
+  // @@protoc_insertion_point(field_mutable:tc.Message.client_statistics)
+  return _msg;
+}
+inline void Message::set_allocated_client_statistics(::tc::ClientStatistics* client_statistics) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.client_statistics_;
+  }
+  if (client_statistics) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(client_statistics);
+    if (message_arena != submessage_arena) {
+      client_statistics = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, client_statistics, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.client_statistics_ = client_statistics;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.client_statistics)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

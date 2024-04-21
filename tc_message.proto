@@ -16,6 +16,8 @@ enum MessageType {
   kGamepadState = 8;
   // capture server -> host panel
   kCaptureStatistics = 9;
+  // client statistics
+  kClientStatistics = 10;
 }
 
 enum VideoType {
@@ -170,6 +172,10 @@ message CaptureStatistics {
   repeated uint32 encode_durations = 2;
 }
 
+message ClientStatistics {
+  repeated uint32 decode_durations = 1;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -183,4 +189,5 @@ message Message {
   CursorInfoSync cursor_info_sync = 10;
   GamepadState gamepad_state = 11;
   CaptureStatistics capture_statistics = 12;
+  ClientStatistics client_statistics = 13;
 }
