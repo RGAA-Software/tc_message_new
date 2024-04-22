@@ -2144,11 +2144,12 @@ class CaptureStatistics final :
   enum : int {
     kVideoFrameGapsFieldNumber = 1,
     kEncodeDurationsFieldNumber = 2,
-    kDecodeDurationsFieldNumber = 3,
-    kClientVideoRecvGapsFieldNumber = 4,
-    kClientFpsVideoRecvFieldNumber = 5,
-    kClientFpsRenderFieldNumber = 6,
-    kClientRecvMediaDataFieldNumber = 7,
+    kAudioFrameGapsFieldNumber = 3,
+    kDecodeDurationsFieldNumber = 4,
+    kClientVideoRecvGapsFieldNumber = 5,
+    kClientFpsVideoRecvFieldNumber = 6,
+    kClientFpsRenderFieldNumber = 7,
+    kClientRecvMediaDataFieldNumber = 8,
   };
   // repeated uint32 video_frame_gaps = 1;
   int video_frame_gaps_size() const;
@@ -2194,7 +2195,29 @@ class CaptureStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_encode_durations();
 
-  // repeated uint32 decode_durations = 3;
+  // repeated uint32 audio_frame_gaps = 3;
+  int audio_frame_gaps_size() const;
+  private:
+  int _internal_audio_frame_gaps_size() const;
+  public:
+  void clear_audio_frame_gaps();
+  private:
+  uint32_t _internal_audio_frame_gaps(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_audio_frame_gaps() const;
+  void _internal_add_audio_frame_gaps(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_audio_frame_gaps();
+  public:
+  uint32_t audio_frame_gaps(int index) const;
+  void set_audio_frame_gaps(int index, uint32_t value);
+  void add_audio_frame_gaps(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      audio_frame_gaps() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_audio_frame_gaps();
+
+  // repeated uint32 decode_durations = 4;
   int decode_durations_size() const;
   private:
   int _internal_decode_durations_size() const;
@@ -2216,7 +2239,7 @@ class CaptureStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_decode_durations();
 
-  // repeated uint32 client_video_recv_gaps = 4;
+  // repeated uint32 client_video_recv_gaps = 5;
   int client_video_recv_gaps_size() const;
   private:
   int _internal_client_video_recv_gaps_size() const;
@@ -2238,7 +2261,7 @@ class CaptureStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_client_video_recv_gaps();
 
-  // uint32 client_fps_video_recv = 5;
+  // uint32 client_fps_video_recv = 6;
   void clear_client_fps_video_recv();
   uint32_t client_fps_video_recv() const;
   void set_client_fps_video_recv(uint32_t value);
@@ -2247,7 +2270,7 @@ class CaptureStatistics final :
   void _internal_set_client_fps_video_recv(uint32_t value);
   public:
 
-  // uint32 client_fps_render = 6;
+  // uint32 client_fps_render = 7;
   void clear_client_fps_render();
   uint32_t client_fps_render() const;
   void set_client_fps_render(uint32_t value);
@@ -2256,7 +2279,7 @@ class CaptureStatistics final :
   void _internal_set_client_fps_render(uint32_t value);
   public:
 
-  // int64 client_recv_media_data = 7;
+  // int64 client_recv_media_data = 8;
   void clear_client_recv_media_data();
   int64_t client_recv_media_data() const;
   void set_client_recv_media_data(int64_t value);
@@ -2277,6 +2300,8 @@ class CaptureStatistics final :
     mutable std::atomic<int> _video_frame_gaps_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > encode_durations_;
     mutable std::atomic<int> _encode_durations_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > audio_frame_gaps_;
+    mutable std::atomic<int> _audio_frame_gaps_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > decode_durations_;
     mutable std::atomic<int> _decode_durations_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > client_video_recv_gaps_;
@@ -4115,7 +4140,54 @@ CaptureStatistics::mutable_encode_durations() {
   return _internal_mutable_encode_durations();
 }
 
-// repeated uint32 decode_durations = 3;
+// repeated uint32 audio_frame_gaps = 3;
+inline int CaptureStatistics::_internal_audio_frame_gaps_size() const {
+  return _impl_.audio_frame_gaps_.size();
+}
+inline int CaptureStatistics::audio_frame_gaps_size() const {
+  return _internal_audio_frame_gaps_size();
+}
+inline void CaptureStatistics::clear_audio_frame_gaps() {
+  _impl_.audio_frame_gaps_.Clear();
+}
+inline uint32_t CaptureStatistics::_internal_audio_frame_gaps(int index) const {
+  return _impl_.audio_frame_gaps_.Get(index);
+}
+inline uint32_t CaptureStatistics::audio_frame_gaps(int index) const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.audio_frame_gaps)
+  return _internal_audio_frame_gaps(index);
+}
+inline void CaptureStatistics::set_audio_frame_gaps(int index, uint32_t value) {
+  _impl_.audio_frame_gaps_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.audio_frame_gaps)
+}
+inline void CaptureStatistics::_internal_add_audio_frame_gaps(uint32_t value) {
+  _impl_.audio_frame_gaps_.Add(value);
+}
+inline void CaptureStatistics::add_audio_frame_gaps(uint32_t value) {
+  _internal_add_audio_frame_gaps(value);
+  // @@protoc_insertion_point(field_add:tc.CaptureStatistics.audio_frame_gaps)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::_internal_audio_frame_gaps() const {
+  return _impl_.audio_frame_gaps_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::audio_frame_gaps() const {
+  // @@protoc_insertion_point(field_list:tc.CaptureStatistics.audio_frame_gaps)
+  return _internal_audio_frame_gaps();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::_internal_mutable_audio_frame_gaps() {
+  return &_impl_.audio_frame_gaps_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::mutable_audio_frame_gaps() {
+  // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.audio_frame_gaps)
+  return _internal_mutable_audio_frame_gaps();
+}
+
+// repeated uint32 decode_durations = 4;
 inline int CaptureStatistics::_internal_decode_durations_size() const {
   return _impl_.decode_durations_.size();
 }
@@ -4162,7 +4234,7 @@ CaptureStatistics::mutable_decode_durations() {
   return _internal_mutable_decode_durations();
 }
 
-// repeated uint32 client_video_recv_gaps = 4;
+// repeated uint32 client_video_recv_gaps = 5;
 inline int CaptureStatistics::_internal_client_video_recv_gaps_size() const {
   return _impl_.client_video_recv_gaps_.size();
 }
@@ -4209,7 +4281,7 @@ CaptureStatistics::mutable_client_video_recv_gaps() {
   return _internal_mutable_client_video_recv_gaps();
 }
 
-// uint32 client_fps_video_recv = 5;
+// uint32 client_fps_video_recv = 6;
 inline void CaptureStatistics::clear_client_fps_video_recv() {
   _impl_.client_fps_video_recv_ = 0u;
 }
@@ -4229,7 +4301,7 @@ inline void CaptureStatistics::set_client_fps_video_recv(uint32_t value) {
   // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_fps_video_recv)
 }
 
-// uint32 client_fps_render = 6;
+// uint32 client_fps_render = 7;
 inline void CaptureStatistics::clear_client_fps_render() {
   _impl_.client_fps_render_ = 0u;
 }
@@ -4249,7 +4321,7 @@ inline void CaptureStatistics::set_client_fps_render(uint32_t value) {
   // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_fps_render)
 }
 
-// int64 client_recv_media_data = 7;
+// int64 client_recv_media_data = 8;
 inline void CaptureStatistics::clear_client_recv_media_data() {
   _impl_.client_recv_media_data_ = int64_t{0};
 }
