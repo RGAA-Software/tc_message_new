@@ -2145,6 +2145,10 @@ class CaptureStatistics final :
     kVideoFrameGapsFieldNumber = 1,
     kEncodeDurationsFieldNumber = 2,
     kDecodeDurationsFieldNumber = 3,
+    kClientVideoRecvGapsFieldNumber = 4,
+    kClientFpsVideoRecvFieldNumber = 5,
+    kClientFpsRenderFieldNumber = 6,
+    kClientRecvMediaDataFieldNumber = 7,
   };
   // repeated uint32 video_frame_gaps = 1;
   int video_frame_gaps_size() const;
@@ -2212,6 +2216,55 @@ class CaptureStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_decode_durations();
 
+  // repeated uint32 client_video_recv_gaps = 4;
+  int client_video_recv_gaps_size() const;
+  private:
+  int _internal_client_video_recv_gaps_size() const;
+  public:
+  void clear_client_video_recv_gaps();
+  private:
+  uint32_t _internal_client_video_recv_gaps(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_client_video_recv_gaps() const;
+  void _internal_add_client_video_recv_gaps(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_client_video_recv_gaps();
+  public:
+  uint32_t client_video_recv_gaps(int index) const;
+  void set_client_video_recv_gaps(int index, uint32_t value);
+  void add_client_video_recv_gaps(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      client_video_recv_gaps() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_client_video_recv_gaps();
+
+  // uint32 client_fps_video_recv = 5;
+  void clear_client_fps_video_recv();
+  uint32_t client_fps_video_recv() const;
+  void set_client_fps_video_recv(uint32_t value);
+  private:
+  uint32_t _internal_client_fps_video_recv() const;
+  void _internal_set_client_fps_video_recv(uint32_t value);
+  public:
+
+  // uint32 client_fps_render = 6;
+  void clear_client_fps_render();
+  uint32_t client_fps_render() const;
+  void set_client_fps_render(uint32_t value);
+  private:
+  uint32_t _internal_client_fps_render() const;
+  void _internal_set_client_fps_render(uint32_t value);
+  public:
+
+  // int64 client_recv_media_data = 7;
+  void clear_client_recv_media_data();
+  int64_t client_recv_media_data() const;
+  void set_client_recv_media_data(int64_t value);
+  private:
+  int64_t _internal_client_recv_media_data() const;
+  void _internal_set_client_recv_media_data(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.CaptureStatistics)
  private:
   class _Internal;
@@ -2226,6 +2279,11 @@ class CaptureStatistics final :
     mutable std::atomic<int> _encode_durations_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > decode_durations_;
     mutable std::atomic<int> _decode_durations_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > client_video_recv_gaps_;
+    mutable std::atomic<int> _client_video_recv_gaps_cached_byte_size_;
+    uint32_t client_fps_video_recv_;
+    uint32_t client_fps_render_;
+    int64_t client_recv_media_data_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2355,6 +2413,10 @@ class ClientStatistics final :
 
   enum : int {
     kDecodeDurationsFieldNumber = 1,
+    kVideoRecvGapsFieldNumber = 2,
+    kFpsVideoRecvFieldNumber = 3,
+    kFpsRenderFieldNumber = 4,
+    kRecvMediaDataFieldNumber = 5,
   };
   // repeated uint32 decode_durations = 1;
   int decode_durations_size() const;
@@ -2378,6 +2440,55 @@ class ClientStatistics final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
       mutable_decode_durations();
 
+  // repeated uint32 video_recv_gaps = 2;
+  int video_recv_gaps_size() const;
+  private:
+  int _internal_video_recv_gaps_size() const;
+  public:
+  void clear_video_recv_gaps();
+  private:
+  uint32_t _internal_video_recv_gaps(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      _internal_video_recv_gaps() const;
+  void _internal_add_video_recv_gaps(uint32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      _internal_mutable_video_recv_gaps();
+  public:
+  uint32_t video_recv_gaps(int index) const;
+  void set_video_recv_gaps(int index, uint32_t value);
+  void add_video_recv_gaps(uint32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+      video_recv_gaps() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+      mutable_video_recv_gaps();
+
+  // uint32 fps_video_recv = 3;
+  void clear_fps_video_recv();
+  uint32_t fps_video_recv() const;
+  void set_fps_video_recv(uint32_t value);
+  private:
+  uint32_t _internal_fps_video_recv() const;
+  void _internal_set_fps_video_recv(uint32_t value);
+  public:
+
+  // uint32 fps_render = 4;
+  void clear_fps_render();
+  uint32_t fps_render() const;
+  void set_fps_render(uint32_t value);
+  private:
+  uint32_t _internal_fps_render() const;
+  void _internal_set_fps_render(uint32_t value);
+  public:
+
+  // int64 recv_media_data = 5;
+  void clear_recv_media_data();
+  int64_t recv_media_data() const;
+  void set_recv_media_data(int64_t value);
+  private:
+  int64_t _internal_recv_media_data() const;
+  void _internal_set_recv_media_data(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.ClientStatistics)
  private:
   class _Internal;
@@ -2388,6 +2499,11 @@ class ClientStatistics final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > decode_durations_;
     mutable std::atomic<int> _decode_durations_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t > video_recv_gaps_;
+    mutable std::atomic<int> _video_recv_gaps_cached_byte_size_;
+    uint32_t fps_video_recv_;
+    uint32_t fps_render_;
+    int64_t recv_media_data_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4046,6 +4162,113 @@ CaptureStatistics::mutable_decode_durations() {
   return _internal_mutable_decode_durations();
 }
 
+// repeated uint32 client_video_recv_gaps = 4;
+inline int CaptureStatistics::_internal_client_video_recv_gaps_size() const {
+  return _impl_.client_video_recv_gaps_.size();
+}
+inline int CaptureStatistics::client_video_recv_gaps_size() const {
+  return _internal_client_video_recv_gaps_size();
+}
+inline void CaptureStatistics::clear_client_video_recv_gaps() {
+  _impl_.client_video_recv_gaps_.Clear();
+}
+inline uint32_t CaptureStatistics::_internal_client_video_recv_gaps(int index) const {
+  return _impl_.client_video_recv_gaps_.Get(index);
+}
+inline uint32_t CaptureStatistics::client_video_recv_gaps(int index) const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.client_video_recv_gaps)
+  return _internal_client_video_recv_gaps(index);
+}
+inline void CaptureStatistics::set_client_video_recv_gaps(int index, uint32_t value) {
+  _impl_.client_video_recv_gaps_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_video_recv_gaps)
+}
+inline void CaptureStatistics::_internal_add_client_video_recv_gaps(uint32_t value) {
+  _impl_.client_video_recv_gaps_.Add(value);
+}
+inline void CaptureStatistics::add_client_video_recv_gaps(uint32_t value) {
+  _internal_add_client_video_recv_gaps(value);
+  // @@protoc_insertion_point(field_add:tc.CaptureStatistics.client_video_recv_gaps)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::_internal_client_video_recv_gaps() const {
+  return _impl_.client_video_recv_gaps_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+CaptureStatistics::client_video_recv_gaps() const {
+  // @@protoc_insertion_point(field_list:tc.CaptureStatistics.client_video_recv_gaps)
+  return _internal_client_video_recv_gaps();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::_internal_mutable_client_video_recv_gaps() {
+  return &_impl_.client_video_recv_gaps_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+CaptureStatistics::mutable_client_video_recv_gaps() {
+  // @@protoc_insertion_point(field_mutable_list:tc.CaptureStatistics.client_video_recv_gaps)
+  return _internal_mutable_client_video_recv_gaps();
+}
+
+// uint32 client_fps_video_recv = 5;
+inline void CaptureStatistics::clear_client_fps_video_recv() {
+  _impl_.client_fps_video_recv_ = 0u;
+}
+inline uint32_t CaptureStatistics::_internal_client_fps_video_recv() const {
+  return _impl_.client_fps_video_recv_;
+}
+inline uint32_t CaptureStatistics::client_fps_video_recv() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.client_fps_video_recv)
+  return _internal_client_fps_video_recv();
+}
+inline void CaptureStatistics::_internal_set_client_fps_video_recv(uint32_t value) {
+  
+  _impl_.client_fps_video_recv_ = value;
+}
+inline void CaptureStatistics::set_client_fps_video_recv(uint32_t value) {
+  _internal_set_client_fps_video_recv(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_fps_video_recv)
+}
+
+// uint32 client_fps_render = 6;
+inline void CaptureStatistics::clear_client_fps_render() {
+  _impl_.client_fps_render_ = 0u;
+}
+inline uint32_t CaptureStatistics::_internal_client_fps_render() const {
+  return _impl_.client_fps_render_;
+}
+inline uint32_t CaptureStatistics::client_fps_render() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.client_fps_render)
+  return _internal_client_fps_render();
+}
+inline void CaptureStatistics::_internal_set_client_fps_render(uint32_t value) {
+  
+  _impl_.client_fps_render_ = value;
+}
+inline void CaptureStatistics::set_client_fps_render(uint32_t value) {
+  _internal_set_client_fps_render(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_fps_render)
+}
+
+// int64 client_recv_media_data = 7;
+inline void CaptureStatistics::clear_client_recv_media_data() {
+  _impl_.client_recv_media_data_ = int64_t{0};
+}
+inline int64_t CaptureStatistics::_internal_client_recv_media_data() const {
+  return _impl_.client_recv_media_data_;
+}
+inline int64_t CaptureStatistics::client_recv_media_data() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.client_recv_media_data)
+  return _internal_client_recv_media_data();
+}
+inline void CaptureStatistics::_internal_set_client_recv_media_data(int64_t value) {
+  
+  _impl_.client_recv_media_data_ = value;
+}
+inline void CaptureStatistics::set_client_recv_media_data(int64_t value) {
+  _internal_set_client_recv_media_data(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_recv_media_data)
+}
+
 // -------------------------------------------------------------------
 
 // ClientStatistics
@@ -4095,6 +4318,113 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
 ClientStatistics::mutable_decode_durations() {
   // @@protoc_insertion_point(field_mutable_list:tc.ClientStatistics.decode_durations)
   return _internal_mutable_decode_durations();
+}
+
+// repeated uint32 video_recv_gaps = 2;
+inline int ClientStatistics::_internal_video_recv_gaps_size() const {
+  return _impl_.video_recv_gaps_.size();
+}
+inline int ClientStatistics::video_recv_gaps_size() const {
+  return _internal_video_recv_gaps_size();
+}
+inline void ClientStatistics::clear_video_recv_gaps() {
+  _impl_.video_recv_gaps_.Clear();
+}
+inline uint32_t ClientStatistics::_internal_video_recv_gaps(int index) const {
+  return _impl_.video_recv_gaps_.Get(index);
+}
+inline uint32_t ClientStatistics::video_recv_gaps(int index) const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.video_recv_gaps)
+  return _internal_video_recv_gaps(index);
+}
+inline void ClientStatistics::set_video_recv_gaps(int index, uint32_t value) {
+  _impl_.video_recv_gaps_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.video_recv_gaps)
+}
+inline void ClientStatistics::_internal_add_video_recv_gaps(uint32_t value) {
+  _impl_.video_recv_gaps_.Add(value);
+}
+inline void ClientStatistics::add_video_recv_gaps(uint32_t value) {
+  _internal_add_video_recv_gaps(value);
+  // @@protoc_insertion_point(field_add:tc.ClientStatistics.video_recv_gaps)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+ClientStatistics::_internal_video_recv_gaps() const {
+  return _impl_.video_recv_gaps_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >&
+ClientStatistics::video_recv_gaps() const {
+  // @@protoc_insertion_point(field_list:tc.ClientStatistics.video_recv_gaps)
+  return _internal_video_recv_gaps();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+ClientStatistics::_internal_mutable_video_recv_gaps() {
+  return &_impl_.video_recv_gaps_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint32_t >*
+ClientStatistics::mutable_video_recv_gaps() {
+  // @@protoc_insertion_point(field_mutable_list:tc.ClientStatistics.video_recv_gaps)
+  return _internal_mutable_video_recv_gaps();
+}
+
+// uint32 fps_video_recv = 3;
+inline void ClientStatistics::clear_fps_video_recv() {
+  _impl_.fps_video_recv_ = 0u;
+}
+inline uint32_t ClientStatistics::_internal_fps_video_recv() const {
+  return _impl_.fps_video_recv_;
+}
+inline uint32_t ClientStatistics::fps_video_recv() const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.fps_video_recv)
+  return _internal_fps_video_recv();
+}
+inline void ClientStatistics::_internal_set_fps_video_recv(uint32_t value) {
+  
+  _impl_.fps_video_recv_ = value;
+}
+inline void ClientStatistics::set_fps_video_recv(uint32_t value) {
+  _internal_set_fps_video_recv(value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.fps_video_recv)
+}
+
+// uint32 fps_render = 4;
+inline void ClientStatistics::clear_fps_render() {
+  _impl_.fps_render_ = 0u;
+}
+inline uint32_t ClientStatistics::_internal_fps_render() const {
+  return _impl_.fps_render_;
+}
+inline uint32_t ClientStatistics::fps_render() const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.fps_render)
+  return _internal_fps_render();
+}
+inline void ClientStatistics::_internal_set_fps_render(uint32_t value) {
+  
+  _impl_.fps_render_ = value;
+}
+inline void ClientStatistics::set_fps_render(uint32_t value) {
+  _internal_set_fps_render(value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.fps_render)
+}
+
+// int64 recv_media_data = 5;
+inline void ClientStatistics::clear_recv_media_data() {
+  _impl_.recv_media_data_ = int64_t{0};
+}
+inline int64_t ClientStatistics::_internal_recv_media_data() const {
+  return _impl_.recv_media_data_;
+}
+inline int64_t ClientStatistics::recv_media_data() const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.recv_media_data)
+  return _internal_recv_media_data();
+}
+inline void ClientStatistics::_internal_set_recv_media_data(int64_t value) {
+  
+  _impl_.recv_media_data_ = value;
+}
+inline void ClientStatistics::set_recv_media_data(int64_t value) {
+  _internal_set_recv_media_data(value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.recv_media_data)
 }
 
 // -------------------------------------------------------------------
