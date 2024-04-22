@@ -60,6 +60,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR VideoFrame::VideoFrame(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_.key_)*/false
   , /*decltype(_impl_.frame_index_)*/uint64_t{0u}
@@ -78,6 +79,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR AudioFrame::AudioFrame(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.samples_)*/0
   , /*decltype(_impl_.channels_)*/0
   , /*decltype(_impl_.bits_)*/0
@@ -267,6 +269,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.key_),
   PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_width_),
   PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_height_),
+  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -278,6 +281,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.bits_),
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.frame_size_),
   PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.data_),
+  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.extra_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -375,14 +379,14 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 8, -1, -1, sizeof(::tc::Hello)},
   { 14, -1, -1, sizeof(::tc::HeartBeat)},
   { 20, -1, -1, sizeof(::tc::VideoFrame)},
-  { 32, -1, -1, sizeof(::tc::AudioFrame)},
-  { 43, -1, -1, sizeof(::tc::KeyEvent)},
-  { 55, -1, -1, sizeof(::tc::MouseEvent)},
-  { 71, -1, -1, sizeof(::tc::CursorInfoSync)},
-  { 85, -1, -1, sizeof(::tc::GamepadState)},
-  { 98, -1, -1, sizeof(::tc::CaptureStatistics)},
-  { 107, -1, -1, sizeof(::tc::ClientStatistics)},
-  { 114, -1, -1, sizeof(::tc::Message)},
+  { 33, -1, -1, sizeof(::tc::AudioFrame)},
+  { 45, -1, -1, sizeof(::tc::KeyEvent)},
+  { 57, -1, -1, sizeof(::tc::MouseEvent)},
+  { 73, -1, -1, sizeof(::tc::CursorInfoSync)},
+  { 87, -1, -1, sizeof(::tc::GamepadState)},
+  { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
+  { 109, -1, -1, sizeof(::tc::ClientStatistics)},
+  { 116, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -403,78 +407,78 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\020tc_message.proto\022\002tc\"7\n\003Ack\022\035\n\004type\030\001 "
   "\001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\""
-  "\007\n\005Hello\"\013\n\tHeartBeat\"\204\001\n\nVideoFrame\022\033\n\004"
+  "\007\n\005Hello\"\013\n\tHeartBeat\"\223\001\n\nVideoFrame\022\033\n\004"
   "type\030\001 \001(\0162\r.tc.VideoType\022\014\n\004data\030\002 \001(\014\022"
   "\023\n\013frame_index\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013fra"
-  "me_width\030\005 \001(\005\022\024\n\014frame_height\030\006 \001(\005\"_\n\n"
-  "AudioFrame\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030"
-  "\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022"
-  "\014\n\004data\030\005 \001(\014\"\372\001\n\010KeyEvent\022\020\n\010key_code\030\001"
-  " \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_status\030\003 "
-  "\001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014status_"
-  "check\030\005 \001(\0162\037.tc.KeyEvent.LockKeyStatusC"
-  "heck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKeyStatus"
-  "Check\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkCheckNum"
-  "Lock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMouseEven"
-  "t\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001("
-  "\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004da"
-  "ta\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007delta_x\030\007"
-  " \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030\t \001(\010\022\020"
-  "\n\010released\030\n \001(\010\"\214\001\n\016CursorInfoSync\022\017\n\007v"
-  "isible\030\001 \001(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\021\n\tho"
-  "tspot_x\030\004 \001(\r\022\021\n\thotspot_y\030\005 \001(\r\022\r\n\005widt"
-  "h\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\""
-  "\224\001\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014lef"
-  "t_trigger\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020"
-  "\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010th"
-  "umb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\"a\n\021Captur"
-  "eStatistics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n"
-  "\020encode_durations\030\002 \003(\r\022\030\n\020decode_durati"
-  "ons\030\003 \003(\r\",\n\020ClientStatistics\022\030\n\020decode_"
-  "durations\030\001 \003(\r\"\350\003\n\007Message\022\035\n\004type\030\001 \001("
-  "\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n"
-  "\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024"
-  "\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\013"
-  "2\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.t"
-  "c.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.A"
-  "udioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEve"
-  "nt\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022"
-  ",\n\020cursor_info_sync\030\013 \001(\0132\022.tc.CursorInf"
-  "oSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.Gamepa"
-  "dState\0221\n\022capture_statistics\030\r \001(\0132\025.tc."
-  "CaptureStatistics\022/\n\021client_statistics\030\016"
-  " \001(\0132\024.tc.ClientStatistics*\314\001\n\013MessageTy"
-  "pe\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002"
-  "\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkK"
-  "eyEvent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInf"
-  "oSync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureSt"
-  "atistics\020\t\022\025\n\021kClientStatistics\020\n*4\n\tVid"
-  "eoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kN"
-  "etVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kC"
-  "apsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlD"
-  "own\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonU"
-  "p\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightM"
-  "ouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMous"
-  "eEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004"
-  "\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddleMo"
-  "useButtonDown\020\200\020\022\032\n\025kRightMouseButtonDow"
-  "n\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035"
-  "\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINP"
-  "UT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAME"
-  "PAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPA"
-  "D_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032"
-  "\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_"
-  "GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPA"
-  "D_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LE"
-  "FT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGH"
-  "T_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022"
-  "\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_G"
-  "AMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b"
-  "\006proto3"
+  "me_width\030\005 \001(\005\022\024\n\014frame_height\030\006 \001(\005\022\r\n\005"
+  "extra\030\007 \001(\t\"n\n\nAudioFrame\022\017\n\007samples\030\001 \001"
+  "(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\022\n\nfr"
+  "ame_size\030\004 \001(\005\022\014\n\004data\030\005 \001(\014\022\r\n\005extra\030\006 "
+  "\001(\t\"\372\001\n\010KeyEvent\022\020\n\010key_code\030\001 \001(\r\022\014\n\004do"
+  "wn\030\002 \001(\010\022\027\n\017num_lock_status\030\003 \001(\005\022\030\n\020cap"
+  "s_lock_status\030\004 \001(\005\0225\n\014status_check\030\005 \001("
+  "\0162\037.tc.KeyEvent.LockKeyStatusCheck\022\021\n\tti"
+  "mestamp\030\006 \001(\003\"Q\n\022LockKeyStatusCheck\022\024\n\020k"
+  "DontCareLockKey\020\000\022\021\n\rkCheckNumLock\020\001\022\022\n\016"
+  "kCheckCapsLock\020\002\"\273\001\n\nMouseEvent\022\025\n\rmonit"
+  "or_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001(\002\022\017\n\007y_rat"
+  "io\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004data\030\005 \001(\005\022\021"
+  "\n\ttimestamp\030\006 \001(\003\022\017\n\007delta_x\030\007 \001(\005\022\017\n\007de"
+  "lta_y\030\010 \001(\005\022\017\n\007pressed\030\t \001(\010\022\020\n\010released"
+  "\030\n \001(\010\"\214\001\n\016CursorInfoSync\022\017\n\007visible\030\001 \001"
+  "(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\021\n\thotspot_x\030\004 "
+  "\001(\r\022\021\n\thotspot_y\030\005 \001(\r\022\r\n\005width\030\006 \001(\r\022\016\n"
+  "\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\"\224\001\n\014Gamepa"
+  "dState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left_trigger\030"
+  "\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n\010thumb_lx"
+  "\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030\006 \001"
+  "(\005\022\020\n\010thumb_ry\030\007 \001(\005\"a\n\021CaptureStatistic"
+  "s\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encode_du"
+  "rations\030\002 \003(\r\022\030\n\020decode_durations\030\003 \003(\r\""
+  ",\n\020ClientStatistics\022\030\n\020decode_durations\030"
+  "\001 \003(\r\"\350\003\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.Mes"
+  "sageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extra\030\003 \001"
+  "(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001("
+  "\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc.Hear"
+  "tBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.VideoFra"
+  "me\022#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioFrame\022"
+  "\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#\n\013mous"
+  "e_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cursor_"
+  "info_sync\030\013 \001(\0132\022.tc.CursorInfoSync\022\'\n\rg"
+  "amepad_state\030\014 \001(\0132\020.tc.GamepadState\0221\n\022"
+  "capture_statistics\030\r \001(\0132\025.tc.CaptureSta"
+  "tistics\022/\n\021client_statistics\030\016 \001(\0132\024.tc."
+  "ClientStatistics*\314\001\n\013MessageType\022\n\n\006kHel"
+  "lo\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideo"
+  "Frame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022"
+  "\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n"
+  "\rkGamepadState\020\010\022\026\n\022kCaptureStatistics\020\t"
+  "\022\025\n\021kClientStatistics\020\n*4\n\tVideoType\022\014\n\010"
+  "kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002"
+  "\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020"
+  "\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020\004\022\014\n\010k"
+  "AltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024kMi"
+  "ddleMouseButtonUp\020 \022\027\n\023kRightMouseButton"
+  "Up\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMouseEventfWhe"
+  "el\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004\022\031\n\024kLeftM"
+  "ouseButtonDown\020\200\010\022\033\n\026kMiddleMouseButtonD"
+  "own\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *\330\003\n\rG"
+  "amepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPU"
+  "T_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD"
+  "_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_L"
+  "EFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022"
+  "\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPU"
+  "T_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LE"
+  "FT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_TH"
+  "UMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDE"
+  "R\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT_SHOULDER"
+  "\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINP"
+  "UT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200"
+  "\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2767, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2797, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -914,6 +918,7 @@ VideoFrame::VideoFrame(const VideoFrame& from)
   VideoFrame* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.data_){}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.type_){}
     , decltype(_impl_.key_){}
     , decltype(_impl_.frame_index_){}
@@ -930,6 +935,14 @@ VideoFrame::VideoFrame(const VideoFrame& from)
     _this->_impl_.data_.Set(from._internal_data(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_extra().empty()) {
+    _this->_impl_.extra_.Set(from._internal_extra(), 
+      _this->GetArenaForAllocation());
+  }
   ::memcpy(&_impl_.type_, &from._impl_.type_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.frame_height_) -
     reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.frame_height_));
@@ -942,6 +955,7 @@ inline void VideoFrame::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.data_){}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.type_){0}
     , decltype(_impl_.key_){false}
     , decltype(_impl_.frame_index_){uint64_t{0u}}
@@ -952,6 +966,10 @@ inline void VideoFrame::SharedCtor(
   _impl_.data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -967,6 +985,7 @@ VideoFrame::~VideoFrame() {
 inline void VideoFrame::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.data_.Destroy();
+  _impl_.extra_.Destroy();
 }
 
 void VideoFrame::SetCachedSize(int size) const {
@@ -980,6 +999,7 @@ void VideoFrame::Clear() {
   (void) cached_has_bits;
 
   _impl_.data_.ClearToEmpty();
+  _impl_.extra_.ClearToEmpty();
   ::memset(&_impl_.type_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.frame_height_) -
       reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.frame_height_));
@@ -1039,6 +1059,16 @@ const char* VideoFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
           _impl_.frame_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string extra = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_extra();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "tc.VideoFrame.extra"));
         } else
           goto handle_unusual;
         continue;
@@ -1108,6 +1138,16 @@ uint8_t* VideoFrame::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_frame_height(), target);
   }
 
+  // string extra = 7;
+  if (!this->_internal_extra().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tc.VideoFrame.extra");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_extra(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1129,6 +1169,13 @@ size_t VideoFrame::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_data());
+  }
+
+  // string extra = 7;
+  if (!this->_internal_extra().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_extra());
   }
 
   // .tc.VideoType type = 1;
@@ -1178,6 +1225,9 @@ void VideoFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (!from._internal_data().empty()) {
     _this->_internal_set_data(from._internal_data());
   }
+  if (!from._internal_extra().empty()) {
+    _this->_internal_set_extra(from._internal_extra());
+  }
   if (from._internal_type() != 0) {
     _this->_internal_set_type(from._internal_type());
   }
@@ -1216,6 +1266,10 @@ void VideoFrame::InternalSwap(VideoFrame* other) {
       &_impl_.data_, lhs_arena,
       &other->_impl_.data_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.extra_, lhs_arena,
+      &other->_impl_.extra_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_height_)
       + sizeof(VideoFrame::_impl_.frame_height_)
@@ -1247,6 +1301,7 @@ AudioFrame::AudioFrame(const AudioFrame& from)
   AudioFrame* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.data_){}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.samples_){}
     , decltype(_impl_.channels_){}
     , decltype(_impl_.bits_){}
@@ -1262,6 +1317,14 @@ AudioFrame::AudioFrame(const AudioFrame& from)
     _this->_impl_.data_.Set(from._internal_data(), 
       _this->GetArenaForAllocation());
   }
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_extra().empty()) {
+    _this->_impl_.extra_.Set(from._internal_extra(), 
+      _this->GetArenaForAllocation());
+  }
   ::memcpy(&_impl_.samples_, &from._impl_.samples_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.frame_size_) -
     reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
@@ -1274,6 +1337,7 @@ inline void AudioFrame::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.data_){}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.samples_){0}
     , decltype(_impl_.channels_){0}
     , decltype(_impl_.bits_){0}
@@ -1283,6 +1347,10 @@ inline void AudioFrame::SharedCtor(
   _impl_.data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -1298,6 +1366,7 @@ AudioFrame::~AudioFrame() {
 inline void AudioFrame::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.data_.Destroy();
+  _impl_.extra_.Destroy();
 }
 
 void AudioFrame::SetCachedSize(int size) const {
@@ -1311,6 +1380,7 @@ void AudioFrame::Clear() {
   (void) cached_has_bits;
 
   _impl_.data_.ClearToEmpty();
+  _impl_.extra_.ClearToEmpty();
   ::memset(&_impl_.samples_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.frame_size_) -
       reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
@@ -1361,6 +1431,16 @@ const char* AudioFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
           auto str = _internal_mutable_data();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string extra = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_extra();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "tc.AudioFrame.extra"));
         } else
           goto handle_unusual;
         continue;
@@ -1423,6 +1503,16 @@ uint8_t* AudioFrame::_InternalSerialize(
         5, this->_internal_data(), target);
   }
 
+  // string extra = 6;
+  if (!this->_internal_extra().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tc.AudioFrame.extra");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_extra(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1444,6 +1534,13 @@ size_t AudioFrame::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_data());
+  }
+
+  // string extra = 6;
+  if (!this->_internal_extra().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_extra());
   }
 
   // int32 samples = 1;
@@ -1487,6 +1584,9 @@ void AudioFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (!from._internal_data().empty()) {
     _this->_internal_set_data(from._internal_data());
   }
+  if (!from._internal_extra().empty()) {
+    _this->_internal_set_extra(from._internal_extra());
+  }
   if (from._internal_samples() != 0) {
     _this->_internal_set_samples(from._internal_samples());
   }
@@ -1521,6 +1621,10 @@ void AudioFrame::InternalSwap(AudioFrame* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.data_, lhs_arena,
       &other->_impl_.data_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.extra_, lhs_arena,
+      &other->_impl_.extra_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.frame_size_)

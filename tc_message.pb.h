@@ -780,6 +780,7 @@ class VideoFrame final :
 
   enum : int {
     kDataFieldNumber = 2,
+    kExtraFieldNumber = 7,
     kTypeFieldNumber = 1,
     kKeyFieldNumber = 4,
     kFrameIndexFieldNumber = 3,
@@ -798,6 +799,20 @@ class VideoFrame final :
   const std::string& _internal_data() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
   std::string* _internal_mutable_data();
+  public:
+
+  // string extra = 7;
+  void clear_extra();
+  const std::string& extra() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_extra(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_extra();
+  PROTOBUF_NODISCARD std::string* release_extra();
+  void set_allocated_extra(std::string* extra);
+  private:
+  const std::string& _internal_extra() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_extra(const std::string& value);
+  std::string* _internal_mutable_extra();
   public:
 
   // .tc.VideoType type = 1;
@@ -854,6 +869,7 @@ class VideoFrame final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr extra_;
     int type_;
     bool key_;
     uint64_t frame_index_;
@@ -988,6 +1004,7 @@ class AudioFrame final :
 
   enum : int {
     kDataFieldNumber = 5,
+    kExtraFieldNumber = 6,
     kSamplesFieldNumber = 1,
     kChannelsFieldNumber = 2,
     kBitsFieldNumber = 3,
@@ -1005,6 +1022,20 @@ class AudioFrame final :
   const std::string& _internal_data() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
   std::string* _internal_mutable_data();
+  public:
+
+  // string extra = 6;
+  void clear_extra();
+  const std::string& extra() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_extra(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_extra();
+  PROTOBUF_NODISCARD std::string* release_extra();
+  void set_allocated_extra(std::string* extra);
+  private:
+  const std::string& _internal_extra() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_extra(const std::string& value);
+  std::string* _internal_mutable_extra();
   public:
 
   // int32 samples = 1;
@@ -1052,6 +1083,7 @@ class AudioFrame final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr extra_;
     int32_t samples_;
     int32_t channels_;
     int32_t bits_;
@@ -2969,6 +3001,56 @@ inline void VideoFrame::set_frame_height(int32_t value) {
   // @@protoc_insertion_point(field_set:tc.VideoFrame.frame_height)
 }
 
+// string extra = 7;
+inline void VideoFrame::clear_extra() {
+  _impl_.extra_.ClearToEmpty();
+}
+inline const std::string& VideoFrame::extra() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.extra)
+  return _internal_extra();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void VideoFrame::set_extra(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.extra_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.extra)
+}
+inline std::string* VideoFrame::mutable_extra() {
+  std::string* _s = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:tc.VideoFrame.extra)
+  return _s;
+}
+inline const std::string& VideoFrame::_internal_extra() const {
+  return _impl_.extra_.Get();
+}
+inline void VideoFrame::_internal_set_extra(const std::string& value) {
+  
+  _impl_.extra_.Set(value, GetArenaForAllocation());
+}
+inline std::string* VideoFrame::_internal_mutable_extra() {
+  
+  return _impl_.extra_.Mutable(GetArenaForAllocation());
+}
+inline std::string* VideoFrame::release_extra() {
+  // @@protoc_insertion_point(field_release:tc.VideoFrame.extra)
+  return _impl_.extra_.Release();
+}
+inline void VideoFrame::set_allocated_extra(std::string* extra) {
+  if (extra != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.extra_.SetAllocated(extra, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.extra_.IsDefault()) {
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.VideoFrame.extra)
+}
+
 // -------------------------------------------------------------------
 
 // AudioFrame
@@ -3101,6 +3183,56 @@ inline void AudioFrame::set_allocated_data(std::string* data) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:tc.AudioFrame.data)
+}
+
+// string extra = 6;
+inline void AudioFrame::clear_extra() {
+  _impl_.extra_.ClearToEmpty();
+}
+inline const std::string& AudioFrame::extra() const {
+  // @@protoc_insertion_point(field_get:tc.AudioFrame.extra)
+  return _internal_extra();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void AudioFrame::set_extra(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.extra_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.AudioFrame.extra)
+}
+inline std::string* AudioFrame::mutable_extra() {
+  std::string* _s = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:tc.AudioFrame.extra)
+  return _s;
+}
+inline const std::string& AudioFrame::_internal_extra() const {
+  return _impl_.extra_.Get();
+}
+inline void AudioFrame::_internal_set_extra(const std::string& value) {
+  
+  _impl_.extra_.Set(value, GetArenaForAllocation());
+}
+inline std::string* AudioFrame::_internal_mutable_extra() {
+  
+  return _impl_.extra_.Mutable(GetArenaForAllocation());
+}
+inline std::string* AudioFrame::release_extra() {
+  // @@protoc_insertion_point(field_release:tc.AudioFrame.extra)
+  return _impl_.extra_.Release();
+}
+inline void AudioFrame::set_allocated_extra(std::string* extra) {
+  if (extra != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.extra_.SetAllocated(extra, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.extra_.IsDefault()) {
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.AudioFrame.extra)
 }
 
 // -------------------------------------------------------------------

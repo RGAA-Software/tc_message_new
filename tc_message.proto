@@ -64,6 +64,7 @@ message VideoFrame {
   bool key = 4;
   int32 frame_width = 5;
   int32 frame_height = 6;
+  string extra = 7;
 }
 
 message AudioFrame {
@@ -72,6 +73,7 @@ message AudioFrame {
   int32 bits = 3;
   int32 frame_size = 4;
   bytes data = 5;
+  string extra = 6;
 }
 
 message KeyEvent
