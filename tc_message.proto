@@ -180,15 +180,16 @@ message ClientStatistics {
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
-  Hello hello = 3;
-  Ack ack = 4;
-  HeartBeat heart_beat = 5;
-  VideoFrame video_frame = 6;
-  AudioFrame audio_frame = 7;
-  KeyEvent key_event = 8;
-  MouseEvent mouse_event = 9;
-  CursorInfoSync cursor_info_sync = 10;
-  GamepadState gamepad_state = 11;
-  CaptureStatistics capture_statistics = 12;
-  ClientStatistics client_statistics = 13;
+  string extra = 3;
+  Hello hello = 4;
+  Ack ack = 5;
+  HeartBeat heart_beat = 6;
+  VideoFrame video_frame = 7;
+  AudioFrame audio_frame = 8;
+  KeyEvent key_event = 9;
+  MouseEvent mouse_event = 10;
+  CursorInfoSync cursor_info_sync = 11;
+  GamepadState gamepad_state = 12;
+  CaptureStatistics capture_statistics = 13;
+  ClientStatistics client_statistics = 14;
 }

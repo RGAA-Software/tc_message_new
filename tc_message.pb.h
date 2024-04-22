@@ -2484,21 +2484,36 @@ class Message final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kHelloFieldNumber = 3,
-    kAckFieldNumber = 4,
-    kHeartBeatFieldNumber = 5,
-    kVideoFrameFieldNumber = 6,
-    kAudioFrameFieldNumber = 7,
-    kKeyEventFieldNumber = 8,
-    kMouseEventFieldNumber = 9,
-    kCursorInfoSyncFieldNumber = 10,
-    kGamepadStateFieldNumber = 11,
-    kCaptureStatisticsFieldNumber = 12,
-    kClientStatisticsFieldNumber = 13,
+    kExtraFieldNumber = 3,
+    kHelloFieldNumber = 4,
+    kAckFieldNumber = 5,
+    kHeartBeatFieldNumber = 6,
+    kVideoFrameFieldNumber = 7,
+    kAudioFrameFieldNumber = 8,
+    kKeyEventFieldNumber = 9,
+    kMouseEventFieldNumber = 10,
+    kCursorInfoSyncFieldNumber = 11,
+    kGamepadStateFieldNumber = 12,
+    kCaptureStatisticsFieldNumber = 13,
+    kClientStatisticsFieldNumber = 14,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
-  // .tc.Hello hello = 3;
+  // string extra = 3;
+  void clear_extra();
+  const std::string& extra() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_extra(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_extra();
+  PROTOBUF_NODISCARD std::string* release_extra();
+  void set_allocated_extra(std::string* extra);
+  private:
+  const std::string& _internal_extra() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_extra(const std::string& value);
+  std::string* _internal_mutable_extra();
+  public:
+
+  // .tc.Hello hello = 4;
   bool has_hello() const;
   private:
   bool _internal_has_hello() const;
@@ -2516,7 +2531,7 @@ class Message final :
       ::tc::Hello* hello);
   ::tc::Hello* unsafe_arena_release_hello();
 
-  // .tc.Ack ack = 4;
+  // .tc.Ack ack = 5;
   bool has_ack() const;
   private:
   bool _internal_has_ack() const;
@@ -2534,7 +2549,7 @@ class Message final :
       ::tc::Ack* ack);
   ::tc::Ack* unsafe_arena_release_ack();
 
-  // .tc.HeartBeat heart_beat = 5;
+  // .tc.HeartBeat heart_beat = 6;
   bool has_heart_beat() const;
   private:
   bool _internal_has_heart_beat() const;
@@ -2552,7 +2567,7 @@ class Message final :
       ::tc::HeartBeat* heart_beat);
   ::tc::HeartBeat* unsafe_arena_release_heart_beat();
 
-  // .tc.VideoFrame video_frame = 6;
+  // .tc.VideoFrame video_frame = 7;
   bool has_video_frame() const;
   private:
   bool _internal_has_video_frame() const;
@@ -2570,7 +2585,7 @@ class Message final :
       ::tc::VideoFrame* video_frame);
   ::tc::VideoFrame* unsafe_arena_release_video_frame();
 
-  // .tc.AudioFrame audio_frame = 7;
+  // .tc.AudioFrame audio_frame = 8;
   bool has_audio_frame() const;
   private:
   bool _internal_has_audio_frame() const;
@@ -2588,7 +2603,7 @@ class Message final :
       ::tc::AudioFrame* audio_frame);
   ::tc::AudioFrame* unsafe_arena_release_audio_frame();
 
-  // .tc.KeyEvent key_event = 8;
+  // .tc.KeyEvent key_event = 9;
   bool has_key_event() const;
   private:
   bool _internal_has_key_event() const;
@@ -2606,7 +2621,7 @@ class Message final :
       ::tc::KeyEvent* key_event);
   ::tc::KeyEvent* unsafe_arena_release_key_event();
 
-  // .tc.MouseEvent mouse_event = 9;
+  // .tc.MouseEvent mouse_event = 10;
   bool has_mouse_event() const;
   private:
   bool _internal_has_mouse_event() const;
@@ -2624,7 +2639,7 @@ class Message final :
       ::tc::MouseEvent* mouse_event);
   ::tc::MouseEvent* unsafe_arena_release_mouse_event();
 
-  // .tc.CursorInfoSync cursor_info_sync = 10;
+  // .tc.CursorInfoSync cursor_info_sync = 11;
   bool has_cursor_info_sync() const;
   private:
   bool _internal_has_cursor_info_sync() const;
@@ -2642,7 +2657,7 @@ class Message final :
       ::tc::CursorInfoSync* cursor_info_sync);
   ::tc::CursorInfoSync* unsafe_arena_release_cursor_info_sync();
 
-  // .tc.GamepadState gamepad_state = 11;
+  // .tc.GamepadState gamepad_state = 12;
   bool has_gamepad_state() const;
   private:
   bool _internal_has_gamepad_state() const;
@@ -2660,7 +2675,7 @@ class Message final :
       ::tc::GamepadState* gamepad_state);
   ::tc::GamepadState* unsafe_arena_release_gamepad_state();
 
-  // .tc.CaptureStatistics capture_statistics = 12;
+  // .tc.CaptureStatistics capture_statistics = 13;
   bool has_capture_statistics() const;
   private:
   bool _internal_has_capture_statistics() const;
@@ -2678,7 +2693,7 @@ class Message final :
       ::tc::CaptureStatistics* capture_statistics);
   ::tc::CaptureStatistics* unsafe_arena_release_capture_statistics();
 
-  // .tc.ClientStatistics client_statistics = 13;
+  // .tc.ClientStatistics client_statistics = 14;
   bool has_client_statistics() const;
   private:
   bool _internal_has_client_statistics() const;
@@ -2722,6 +2737,7 @@ class Message final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr extra_;
     ::tc::Hello* hello_;
     ::tc::Ack* ack_;
     ::tc::HeartBeat* heart_beat_;
@@ -3993,7 +4009,57 @@ inline void Message::set_send_time(uint64_t value) {
   // @@protoc_insertion_point(field_set:tc.Message.send_time)
 }
 
-// .tc.Hello hello = 3;
+// string extra = 3;
+inline void Message::clear_extra() {
+  _impl_.extra_.ClearToEmpty();
+}
+inline const std::string& Message::extra() const {
+  // @@protoc_insertion_point(field_get:tc.Message.extra)
+  return _internal_extra();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Message::set_extra(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.extra_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.Message.extra)
+}
+inline std::string* Message::mutable_extra() {
+  std::string* _s = _internal_mutable_extra();
+  // @@protoc_insertion_point(field_mutable:tc.Message.extra)
+  return _s;
+}
+inline const std::string& Message::_internal_extra() const {
+  return _impl_.extra_.Get();
+}
+inline void Message::_internal_set_extra(const std::string& value) {
+  
+  _impl_.extra_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Message::_internal_mutable_extra() {
+  
+  return _impl_.extra_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Message::release_extra() {
+  // @@protoc_insertion_point(field_release:tc.Message.extra)
+  return _impl_.extra_.Release();
+}
+inline void Message::set_allocated_extra(std::string* extra) {
+  if (extra != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.extra_.SetAllocated(extra, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.extra_.IsDefault()) {
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.extra)
+}
+
+// .tc.Hello hello = 4;
 inline bool Message::_internal_has_hello() const {
   return this != internal_default_instance() && _impl_.hello_ != nullptr;
 }
@@ -4083,7 +4149,7 @@ inline void Message::set_allocated_hello(::tc::Hello* hello) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.hello)
 }
 
-// .tc.Ack ack = 4;
+// .tc.Ack ack = 5;
 inline bool Message::_internal_has_ack() const {
   return this != internal_default_instance() && _impl_.ack_ != nullptr;
 }
@@ -4173,7 +4239,7 @@ inline void Message::set_allocated_ack(::tc::Ack* ack) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.ack)
 }
 
-// .tc.HeartBeat heart_beat = 5;
+// .tc.HeartBeat heart_beat = 6;
 inline bool Message::_internal_has_heart_beat() const {
   return this != internal_default_instance() && _impl_.heart_beat_ != nullptr;
 }
@@ -4263,7 +4329,7 @@ inline void Message::set_allocated_heart_beat(::tc::HeartBeat* heart_beat) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.heart_beat)
 }
 
-// .tc.VideoFrame video_frame = 6;
+// .tc.VideoFrame video_frame = 7;
 inline bool Message::_internal_has_video_frame() const {
   return this != internal_default_instance() && _impl_.video_frame_ != nullptr;
 }
@@ -4353,7 +4419,7 @@ inline void Message::set_allocated_video_frame(::tc::VideoFrame* video_frame) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.video_frame)
 }
 
-// .tc.AudioFrame audio_frame = 7;
+// .tc.AudioFrame audio_frame = 8;
 inline bool Message::_internal_has_audio_frame() const {
   return this != internal_default_instance() && _impl_.audio_frame_ != nullptr;
 }
@@ -4443,7 +4509,7 @@ inline void Message::set_allocated_audio_frame(::tc::AudioFrame* audio_frame) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.audio_frame)
 }
 
-// .tc.KeyEvent key_event = 8;
+// .tc.KeyEvent key_event = 9;
 inline bool Message::_internal_has_key_event() const {
   return this != internal_default_instance() && _impl_.key_event_ != nullptr;
 }
@@ -4533,7 +4599,7 @@ inline void Message::set_allocated_key_event(::tc::KeyEvent* key_event) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.key_event)
 }
 
-// .tc.MouseEvent mouse_event = 9;
+// .tc.MouseEvent mouse_event = 10;
 inline bool Message::_internal_has_mouse_event() const {
   return this != internal_default_instance() && _impl_.mouse_event_ != nullptr;
 }
@@ -4623,7 +4689,7 @@ inline void Message::set_allocated_mouse_event(::tc::MouseEvent* mouse_event) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.mouse_event)
 }
 
-// .tc.CursorInfoSync cursor_info_sync = 10;
+// .tc.CursorInfoSync cursor_info_sync = 11;
 inline bool Message::_internal_has_cursor_info_sync() const {
   return this != internal_default_instance() && _impl_.cursor_info_sync_ != nullptr;
 }
@@ -4713,7 +4779,7 @@ inline void Message::set_allocated_cursor_info_sync(::tc::CursorInfoSync* cursor
   // @@protoc_insertion_point(field_set_allocated:tc.Message.cursor_info_sync)
 }
 
-// .tc.GamepadState gamepad_state = 11;
+// .tc.GamepadState gamepad_state = 12;
 inline bool Message::_internal_has_gamepad_state() const {
   return this != internal_default_instance() && _impl_.gamepad_state_ != nullptr;
 }
@@ -4803,7 +4869,7 @@ inline void Message::set_allocated_gamepad_state(::tc::GamepadState* gamepad_sta
   // @@protoc_insertion_point(field_set_allocated:tc.Message.gamepad_state)
 }
 
-// .tc.CaptureStatistics capture_statistics = 12;
+// .tc.CaptureStatistics capture_statistics = 13;
 inline bool Message::_internal_has_capture_statistics() const {
   return this != internal_default_instance() && _impl_.capture_statistics_ != nullptr;
 }
@@ -4893,7 +4959,7 @@ inline void Message::set_allocated_capture_statistics(::tc::CaptureStatistics* c
   // @@protoc_insertion_point(field_set_allocated:tc.Message.capture_statistics)
 }
 
-// .tc.ClientStatistics client_statistics = 13;
+// .tc.ClientStatistics client_statistics = 14;
 inline bool Message::_internal_has_client_statistics() const {
   return this != internal_default_instance() && _impl_.client_statistics_ != nullptr;
 }

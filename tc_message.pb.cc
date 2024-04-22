@@ -205,7 +205,8 @@ struct ClientStatisticsDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientStatisticsDefaultTypeInternal _ClientStatistics_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.hello_)*/nullptr
+    /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.hello_)*/nullptr
   , /*decltype(_impl_.ack_)*/nullptr
   , /*decltype(_impl_.heart_beat_)*/nullptr
   , /*decltype(_impl_.video_frame_)*/nullptr
@@ -356,6 +357,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.type_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.send_time_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.extra_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.hello_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ack_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.heart_beat_),
@@ -429,49 +431,50 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "eStatistics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n"
   "\020encode_durations\030\002 \003(\r\022\030\n\020decode_durati"
   "ons\030\003 \003(\r\",\n\020ClientStatistics\022\030\n\020decode_"
-  "durations\030\001 \003(\r\"\331\003\n\007Message\022\035\n\004type\030\001 \001("
-  "\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\030\n"
-  "\005hello\030\003 \001(\0132\t.tc.Hello\022\024\n\003ack\030\004 \001(\0132\007.t"
-  "c.Ack\022!\n\nheart_beat\030\005 \001(\0132\r.tc.HeartBeat"
-  "\022#\n\013video_frame\030\006 \001(\0132\016.tc.VideoFrame\022#\n"
-  "\013audio_frame\030\007 \001(\0132\016.tc.AudioFrame\022\037\n\tke"
-  "y_event\030\010 \001(\0132\014.tc.KeyEvent\022#\n\013mouse_eve"
-  "nt\030\t \001(\0132\016.tc.MouseEvent\022,\n\020cursor_info_"
-  "sync\030\n \001(\0132\022.tc.CursorInfoSync\022\'\n\rgamepa"
-  "d_state\030\013 \001(\0132\020.tc.GamepadState\0221\n\022captu"
-  "re_statistics\030\014 \001(\0132\025.tc.CaptureStatisti"
-  "cs\022/\n\021client_statistics\030\r \001(\0132\024.tc.Clien"
-  "tStatistics*\314\001\n\013MessageType\022\n\n\006kHello\020\000\022"
-  "\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame"
-  "\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kM"
-  "ouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGam"
-  "epadState\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021k"
-  "ClientStatistics\020\n*4\n\tVideoType\022\014\n\010kNetH"
-  "264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EBu"
-  "ttonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\n"
-  "kShiftDown\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDo"
-  "wn\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024kMiddleM"
-  "ouseButtonUp\020 \022\027\n\023kRightMouseButtonUp\020@\022"
-  "\017\n\nkMouseMove\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002"
-  "\022\027\n\022kMouseEventfHWheel\020\200\004\022\031\n\024kLeftMouseB"
-  "uttonDown\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200"
-  "\020\022\032\n\025kRightMouseButtonDown\020\200 *\330\003\n\rGamepa"
-  "dButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAM"
-  "EPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD"
-  "_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004"
-  "\022 \n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP"
-  "_XINPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAM"
-  "EPAD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_TH"
-  "UMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200"
-  "\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022"
-  "%\n GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030"
-  "\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GA"
-  "MEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n"
-  "\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
+  "durations\030\001 \003(\r\"\350\003\n\007Message\022\035\n\004type\030\001 \001("
+  "\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n"
+  "\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024"
+  "\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\013"
+  "2\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.t"
+  "c.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.A"
+  "udioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEve"
+  "nt\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022"
+  ",\n\020cursor_info_sync\030\013 \001(\0132\022.tc.CursorInf"
+  "oSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.Gamepa"
+  "dState\0221\n\022capture_statistics\030\r \001(\0132\025.tc."
+  "CaptureStatistics\022/\n\021client_statistics\030\016"
+  " \001(\0132\024.tc.ClientStatistics*\314\001\n\013MessageTy"
+  "pe\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002"
+  "\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkK"
+  "eyEvent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInf"
+  "oSync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureSt"
+  "atistics\020\t\022\025\n\021kClientStatistics\020\n*4\n\tVid"
+  "eoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kN"
+  "etVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kC"
+  "apsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlD"
+  "own\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonU"
+  "p\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightM"
+  "ouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMous"
+  "eEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004"
+  "\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddleMo"
+  "useButtonDown\020\200\020\022\032\n\025kRightMouseButtonDow"
+  "n\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035"
+  "\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINP"
+  "UT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAME"
+  "PAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPA"
+  "D_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032"
+  "\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_"
+  "GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPA"
+  "D_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LE"
+  "FT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGH"
+  "T_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022"
+  "\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_G"
+  "AMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b"
+  "\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 2752, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 2767, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -3520,7 +3523,8 @@ Message::Message(const Message& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   Message* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.hello_){nullptr}
+      decltype(_impl_.extra_){}
+    , decltype(_impl_.hello_){nullptr}
     , decltype(_impl_.ack_){nullptr}
     , decltype(_impl_.heart_beat_){nullptr}
     , decltype(_impl_.video_frame_){nullptr}
@@ -3536,6 +3540,14 @@ Message::Message(const Message& from)
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_extra().empty()) {
+    _this->_impl_.extra_.Set(from._internal_extra(), 
+      _this->GetArenaForAllocation());
+  }
   if (from._internal_has_hello()) {
     _this->_impl_.hello_ = new ::tc::Hello(*from._impl_.hello_);
   }
@@ -3580,7 +3592,8 @@ inline void Message::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.hello_){nullptr}
+      decltype(_impl_.extra_){}
+    , decltype(_impl_.hello_){nullptr}
     , decltype(_impl_.ack_){nullptr}
     , decltype(_impl_.heart_beat_){nullptr}
     , decltype(_impl_.video_frame_){nullptr}
@@ -3595,6 +3608,10 @@ inline void Message::SharedCtor(
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
+  _impl_.extra_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.extra_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 Message::~Message() {
@@ -3608,6 +3625,7 @@ Message::~Message() {
 
 inline void Message::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.extra_.Destroy();
   if (this != internal_default_instance()) delete _impl_.hello_;
   if (this != internal_default_instance()) delete _impl_.ack_;
   if (this != internal_default_instance()) delete _impl_.heart_beat_;
@@ -3631,6 +3649,7 @@ void Message::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.extra_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.hello_ != nullptr) {
     delete _impl_.hello_;
   }
@@ -3704,89 +3723,99 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // .tc.Hello hello = 3;
+      // string extra = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_extra();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "tc.Message.extra"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .tc.Hello hello = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_hello(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.Ack ack = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+      // .tc.Ack ack = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_ack(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.HeartBeat heart_beat = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+      // .tc.HeartBeat heart_beat = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_heart_beat(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.VideoFrame video_frame = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+      // .tc.VideoFrame video_frame = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr = ctx->ParseMessage(_internal_mutable_video_frame(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.AudioFrame audio_frame = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+      // .tc.AudioFrame audio_frame = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_audio_frame(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.KeyEvent key_event = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+      // .tc.KeyEvent key_event = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
           ptr = ctx->ParseMessage(_internal_mutable_key_event(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.MouseEvent mouse_event = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+      // .tc.MouseEvent mouse_event = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr = ctx->ParseMessage(_internal_mutable_mouse_event(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.CursorInfoSync cursor_info_sync = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+      // .tc.CursorInfoSync cursor_info_sync = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
           ptr = ctx->ParseMessage(_internal_mutable_cursor_info_sync(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.GamepadState gamepad_state = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+      // .tc.GamepadState gamepad_state = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
           ptr = ctx->ParseMessage(_internal_mutable_gamepad_state(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.CaptureStatistics capture_statistics = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
+      // .tc.CaptureStatistics capture_statistics = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
           ptr = ctx->ParseMessage(_internal_mutable_capture_statistics(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // .tc.ClientStatistics client_statistics = 13;
-      case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
+      // .tc.ClientStatistics client_statistics = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
           ptr = ctx->ParseMessage(_internal_mutable_client_statistics(), ptr);
           CHK_(ptr);
         } else
@@ -3834,80 +3863,90 @@ uint8_t* Message::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_send_time(), target);
   }
 
-  // .tc.Hello hello = 3;
+  // string extra = 3;
+  if (!this->_internal_extra().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tc.Message.extra");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_extra(), target);
+  }
+
+  // .tc.Hello hello = 4;
   if (this->_internal_has_hello()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::hello(this),
+      InternalWriteMessage(4, _Internal::hello(this),
         _Internal::hello(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.Ack ack = 4;
+  // .tc.Ack ack = 5;
   if (this->_internal_has_ack()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::ack(this),
+      InternalWriteMessage(5, _Internal::ack(this),
         _Internal::ack(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.HeartBeat heart_beat = 5;
+  // .tc.HeartBeat heart_beat = 6;
   if (this->_internal_has_heart_beat()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, _Internal::heart_beat(this),
+      InternalWriteMessage(6, _Internal::heart_beat(this),
         _Internal::heart_beat(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.VideoFrame video_frame = 6;
+  // .tc.VideoFrame video_frame = 7;
   if (this->_internal_has_video_frame()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(6, _Internal::video_frame(this),
+      InternalWriteMessage(7, _Internal::video_frame(this),
         _Internal::video_frame(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.AudioFrame audio_frame = 7;
+  // .tc.AudioFrame audio_frame = 8;
   if (this->_internal_has_audio_frame()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(7, _Internal::audio_frame(this),
+      InternalWriteMessage(8, _Internal::audio_frame(this),
         _Internal::audio_frame(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.KeyEvent key_event = 8;
+  // .tc.KeyEvent key_event = 9;
   if (this->_internal_has_key_event()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(8, _Internal::key_event(this),
+      InternalWriteMessage(9, _Internal::key_event(this),
         _Internal::key_event(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.MouseEvent mouse_event = 9;
+  // .tc.MouseEvent mouse_event = 10;
   if (this->_internal_has_mouse_event()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::mouse_event(this),
+      InternalWriteMessage(10, _Internal::mouse_event(this),
         _Internal::mouse_event(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.CursorInfoSync cursor_info_sync = 10;
+  // .tc.CursorInfoSync cursor_info_sync = 11;
   if (this->_internal_has_cursor_info_sync()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(10, _Internal::cursor_info_sync(this),
+      InternalWriteMessage(11, _Internal::cursor_info_sync(this),
         _Internal::cursor_info_sync(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.GamepadState gamepad_state = 11;
+  // .tc.GamepadState gamepad_state = 12;
   if (this->_internal_has_gamepad_state()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(11, _Internal::gamepad_state(this),
+      InternalWriteMessage(12, _Internal::gamepad_state(this),
         _Internal::gamepad_state(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.CaptureStatistics capture_statistics = 12;
+  // .tc.CaptureStatistics capture_statistics = 13;
   if (this->_internal_has_capture_statistics()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(12, _Internal::capture_statistics(this),
+      InternalWriteMessage(13, _Internal::capture_statistics(this),
         _Internal::capture_statistics(this).GetCachedSize(), target, stream);
   }
 
-  // .tc.ClientStatistics client_statistics = 13;
+  // .tc.ClientStatistics client_statistics = 14;
   if (this->_internal_has_client_statistics()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(13, _Internal::client_statistics(this),
+      InternalWriteMessage(14, _Internal::client_statistics(this),
         _Internal::client_statistics(this).GetCachedSize(), target, stream);
   }
 
@@ -3927,77 +3966,84 @@ size_t Message::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .tc.Hello hello = 3;
+  // string extra = 3;
+  if (!this->_internal_extra().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_extra());
+  }
+
+  // .tc.Hello hello = 4;
   if (this->_internal_has_hello()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.hello_);
   }
 
-  // .tc.Ack ack = 4;
+  // .tc.Ack ack = 5;
   if (this->_internal_has_ack()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.ack_);
   }
 
-  // .tc.HeartBeat heart_beat = 5;
+  // .tc.HeartBeat heart_beat = 6;
   if (this->_internal_has_heart_beat()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.heart_beat_);
   }
 
-  // .tc.VideoFrame video_frame = 6;
+  // .tc.VideoFrame video_frame = 7;
   if (this->_internal_has_video_frame()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.video_frame_);
   }
 
-  // .tc.AudioFrame audio_frame = 7;
+  // .tc.AudioFrame audio_frame = 8;
   if (this->_internal_has_audio_frame()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.audio_frame_);
   }
 
-  // .tc.KeyEvent key_event = 8;
+  // .tc.KeyEvent key_event = 9;
   if (this->_internal_has_key_event()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.key_event_);
   }
 
-  // .tc.MouseEvent mouse_event = 9;
+  // .tc.MouseEvent mouse_event = 10;
   if (this->_internal_has_mouse_event()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.mouse_event_);
   }
 
-  // .tc.CursorInfoSync cursor_info_sync = 10;
+  // .tc.CursorInfoSync cursor_info_sync = 11;
   if (this->_internal_has_cursor_info_sync()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.cursor_info_sync_);
   }
 
-  // .tc.GamepadState gamepad_state = 11;
+  // .tc.GamepadState gamepad_state = 12;
   if (this->_internal_has_gamepad_state()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.gamepad_state_);
   }
 
-  // .tc.CaptureStatistics capture_statistics = 12;
+  // .tc.CaptureStatistics capture_statistics = 13;
   if (this->_internal_has_capture_statistics()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *_impl_.capture_statistics_);
   }
 
-  // .tc.ClientStatistics client_statistics = 13;
+  // .tc.ClientStatistics client_statistics = 14;
   if (this->_internal_has_client_statistics()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -4033,6 +4079,9 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_extra().empty()) {
+    _this->_internal_set_extra(from._internal_extra());
+  }
   if (from._internal_has_hello()) {
     _this->_internal_mutable_hello()->::tc::Hello::MergeFrom(
         from._internal_hello());
@@ -4099,7 +4148,13 @@ bool Message::IsInitialized() const {
 
 void Message::InternalSwap(Message* other) {
   using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.extra_, lhs_arena,
+      &other->_impl_.extra_, rhs_arena
+  );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Message, _impl_.type_)
       + sizeof(Message::_impl_.type_)
