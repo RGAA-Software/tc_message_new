@@ -2150,6 +2150,9 @@ class CaptureStatistics final :
     kClientFpsVideoRecvFieldNumber = 6,
     kClientFpsRenderFieldNumber = 7,
     kClientRecvMediaDataFieldNumber = 8,
+    kFpsVideoEncodeFieldNumber = 9,
+    kAppRunningTimeFieldNumber = 10,
+    kServerSendMediaDataFieldNumber = 11,
   };
   // repeated uint32 video_frame_gaps = 1;
   int video_frame_gaps_size() const;
@@ -2288,6 +2291,33 @@ class CaptureStatistics final :
   void _internal_set_client_recv_media_data(int64_t value);
   public:
 
+  // int32 fps_video_encode = 9;
+  void clear_fps_video_encode();
+  int32_t fps_video_encode() const;
+  void set_fps_video_encode(int32_t value);
+  private:
+  int32_t _internal_fps_video_encode() const;
+  void _internal_set_fps_video_encode(int32_t value);
+  public:
+
+  // int32 app_running_time = 10;
+  void clear_app_running_time();
+  int32_t app_running_time() const;
+  void set_app_running_time(int32_t value);
+  private:
+  int32_t _internal_app_running_time() const;
+  void _internal_set_app_running_time(int32_t value);
+  public:
+
+  // int64 server_send_media_data = 11;
+  void clear_server_send_media_data();
+  int64_t server_send_media_data() const;
+  void set_server_send_media_data(int64_t value);
+  private:
+  int64_t _internal_server_send_media_data() const;
+  void _internal_set_server_send_media_data(int64_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.CaptureStatistics)
  private:
   class _Internal;
@@ -2309,6 +2339,9 @@ class CaptureStatistics final :
     uint32_t client_fps_video_recv_;
     uint32_t client_fps_render_;
     int64_t client_recv_media_data_;
+    int32_t fps_video_encode_;
+    int32_t app_running_time_;
+    int64_t server_send_media_data_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4339,6 +4372,66 @@ inline void CaptureStatistics::_internal_set_client_recv_media_data(int64_t valu
 inline void CaptureStatistics::set_client_recv_media_data(int64_t value) {
   _internal_set_client_recv_media_data(value);
   // @@protoc_insertion_point(field_set:tc.CaptureStatistics.client_recv_media_data)
+}
+
+// int32 fps_video_encode = 9;
+inline void CaptureStatistics::clear_fps_video_encode() {
+  _impl_.fps_video_encode_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_fps_video_encode() const {
+  return _impl_.fps_video_encode_;
+}
+inline int32_t CaptureStatistics::fps_video_encode() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.fps_video_encode)
+  return _internal_fps_video_encode();
+}
+inline void CaptureStatistics::_internal_set_fps_video_encode(int32_t value) {
+  
+  _impl_.fps_video_encode_ = value;
+}
+inline void CaptureStatistics::set_fps_video_encode(int32_t value) {
+  _internal_set_fps_video_encode(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.fps_video_encode)
+}
+
+// int32 app_running_time = 10;
+inline void CaptureStatistics::clear_app_running_time() {
+  _impl_.app_running_time_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_app_running_time() const {
+  return _impl_.app_running_time_;
+}
+inline int32_t CaptureStatistics::app_running_time() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.app_running_time)
+  return _internal_app_running_time();
+}
+inline void CaptureStatistics::_internal_set_app_running_time(int32_t value) {
+  
+  _impl_.app_running_time_ = value;
+}
+inline void CaptureStatistics::set_app_running_time(int32_t value) {
+  _internal_set_app_running_time(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.app_running_time)
+}
+
+// int64 server_send_media_data = 11;
+inline void CaptureStatistics::clear_server_send_media_data() {
+  _impl_.server_send_media_data_ = int64_t{0};
+}
+inline int64_t CaptureStatistics::_internal_server_send_media_data() const {
+  return _impl_.server_send_media_data_;
+}
+inline int64_t CaptureStatistics::server_send_media_data() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.server_send_media_data)
+  return _internal_server_send_media_data();
+}
+inline void CaptureStatistics::_internal_set_server_send_media_data(int64_t value) {
+  
+  _impl_.server_send_media_data_ = value;
+}
+inline void CaptureStatistics::set_server_send_media_data(int64_t value) {
+  _internal_set_server_send_media_data(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.server_send_media_data)
 }
 
 // -------------------------------------------------------------------

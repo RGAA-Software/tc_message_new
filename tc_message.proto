@@ -187,6 +187,14 @@ message CaptureStatistics {
   uint32 client_fps_render = 7;
   // from client
   int64 client_recv_media_data = 8;
+
+  // from inner server
+  int32 fps_video_encode = 9;
+  // from inner server
+  int32 app_running_time = 10;
+  // from inner server
+  int64 server_send_media_data = 11;
+
 }
 
 message ClientStatistics {
