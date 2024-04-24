@@ -191,6 +191,10 @@ PROTOBUF_CONSTEXPR CaptureStatistics::CaptureStatistics(
   , /*decltype(_impl_.fps_video_encode_)*/0
   , /*decltype(_impl_.app_running_time_)*/0
   , /*decltype(_impl_.server_send_media_data_)*/int64_t{0}
+  , /*decltype(_impl_.render_width_)*/0
+  , /*decltype(_impl_.render_height_)*/0
+  , /*decltype(_impl_.capture_width_)*/0
+  , /*decltype(_impl_.capture_height_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CaptureStatisticsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CaptureStatisticsDefaultTypeInternal()
@@ -210,6 +214,8 @@ PROTOBUF_CONSTEXPR ClientStatistics::ClientStatistics(
   , /*decltype(_impl_.fps_video_recv_)*/0u
   , /*decltype(_impl_.fps_render_)*/0u
   , /*decltype(_impl_.recv_media_data_)*/int64_t{0}
+  , /*decltype(_impl_.render_width_)*/0
+  , /*decltype(_impl_.render_height_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ClientStatisticsDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ClientStatisticsDefaultTypeInternal()
@@ -369,6 +375,10 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.fps_video_encode_),
   PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.app_running_time_),
   PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.server_send_media_data_),
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_width_),
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_height_),
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_width_),
+  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_height_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -380,6 +390,8 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_video_recv_),
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_render_),
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.recv_media_data_),
+  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_width_),
+  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_height_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -412,8 +424,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 73, -1, -1, sizeof(::tc::CursorInfoSync)},
   { 87, -1, -1, sizeof(::tc::GamepadState)},
   { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
-  { 117, -1, -1, sizeof(::tc::ClientStatistics)},
-  { 128, -1, -1, sizeof(::tc::Message)},
+  { 121, -1, -1, sizeof(::tc::ClientStatistics)},
+  { 134, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -459,7 +471,7 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "dState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left_trigger\030"
   "\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n\010thumb_lx"
   "\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030\006 \001"
-  "(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\311\002\n\021CaptureStatisti"
+  "(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\245\003\n\021CaptureStatisti"
   "cs\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encode_d"
   "urations\030\002 \003(\r\022\030\n\020audio_frame_gaps\030\003 \003(\r"
   "\022\030\n\020decode_durations\030\004 \003(\r\022\036\n\026client_vid"
@@ -467,54 +479,57 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "ecv\030\006 \001(\r\022\031\n\021client_fps_render\030\007 \001(\r\022\036\n\026"
   "client_recv_media_data\030\010 \001(\003\022\030\n\020fps_vide"
   "o_encode\030\t \001(\005\022\030\n\020app_running_time\030\n \001(\005"
-  "\022\036\n\026server_send_media_data\030\013 \001(\003\"\212\001\n\020Cli"
-  "entStatistics\022\030\n\020decode_durations\030\001 \003(\r\022"
-  "\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016fps_video_re"
-  "cv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r\022\027\n\017recv_med"
-  "ia_data\030\005 \001(\003\"\350\003\n\007Message\022\035\n\004type\030\001 \001(\0162"
-  "\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005e"
-  "xtra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003"
-  "ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r"
-  ".tc.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc."
-  "VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.Aud"
-  "ioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent"
-  "\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n"
-  "\020cursor_info_sync\030\013 \001(\0132\022.tc.CursorInfoS"
-  "ync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadS"
-  "tate\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Ca"
-  "ptureStatistics\022/\n\021client_statistics\030\016 \001"
-  "(\0132\024.tc.ClientStatistics*\314\001\n\013MessageType"
-  "\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017"
-  "\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKey"
-  "Event\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoS"
-  "ync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureStat"
-  "istics\020\t\022\025\n\021kClientStatistics\020\n*4\n\tVideo"
-  "Type\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNet"
-  "Vp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCap"
-  "sLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDow"
-  "n\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020"
-  "\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMou"
-  "seButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMouseE"
-  "ventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020\200\004\022\031"
-  "\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddleMous"
-  "eButtonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020"
-  "\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031"
-  "GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT"
-  "_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPA"
-  "D_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD_"
-  "RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n\026"
-  "GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_GA"
-  "MEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_"
-  "RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT"
-  "_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT_"
-  "SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n"
-  "\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAM"
-  "EPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006p"
-  "roto3"
+  "\022\036\n\026server_send_media_data\030\013 \001(\003\022\024\n\014rend"
+  "er_width\030\014 \001(\005\022\025\n\rrender_height\030\r \001(\005\022\025\n"
+  "\rcapture_width\030\016 \001(\005\022\026\n\016capture_height\030\017"
+  " \001(\005\"\267\001\n\020ClientStatistics\022\030\n\020decode_dura"
+  "tions\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016"
+  "fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r"
+  "\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_widt"
+  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"\350\003\n\007Messa"
+  "ge\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsen"
+  "d_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001"
+  "(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nh"
+  "eart_beat\030\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_"
+  "frame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013audio_fra"
+  "me\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030\t "
+  "\001(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030\n \001(\0132\016"
+  ".tc.MouseEvent\022,\n\020cursor_info_sync\030\013 \001(\013"
+  "2\022.tc.CursorInfoSync\022\'\n\rgamepad_state\030\014 "
+  "\001(\0132\020.tc.GamepadState\0221\n\022capture_statist"
+  "ics\030\r \001(\0132\025.tc.CaptureStatistics\022/\n\021clie"
+  "nt_statistics\030\016 \001(\0132\024.tc.ClientStatistic"
+  "s*\314\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022"
+  "\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAud"
+  "ioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020"
+  "\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020"
+  "\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStat"
+  "istics\020\n*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010k"
+  "NetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t"
+  "\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown"
+  "\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kL"
+  "eftMouseButtonUp\020\020\022\030\n\024kMiddleMouseButton"
+  "Up\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseM"
+  "ove\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouse"
+  "EventfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020"
+  "\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRigh"
+  "tMouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n"
+  "\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_"
+  "UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n"
+  "\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XIN"
+  "PUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GA"
+  "MEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020"
+  " \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035G"
+  "P_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XI"
+  "NPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINP"
+  "UT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPU"
+  "T_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@"
+  "\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT"
+  "_GAMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 3125, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 3262, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -3154,12 +3169,16 @@ CaptureStatistics::CaptureStatistics(const CaptureStatistics& from)
     , decltype(_impl_.fps_video_encode_){}
     , decltype(_impl_.app_running_time_){}
     , decltype(_impl_.server_send_media_data_){}
+    , decltype(_impl_.render_width_){}
+    , decltype(_impl_.render_height_){}
+    , decltype(_impl_.capture_width_){}
+    , decltype(_impl_.capture_height_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.client_fps_video_recv_, &from._impl_.client_fps_video_recv_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.server_send_media_data_) -
-    reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.server_send_media_data_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.capture_height_) -
+    reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.capture_height_));
   // @@protoc_insertion_point(copy_constructor:tc.CaptureStatistics)
 }
 
@@ -3184,6 +3203,10 @@ inline void CaptureStatistics::SharedCtor(
     , decltype(_impl_.fps_video_encode_){0}
     , decltype(_impl_.app_running_time_){0}
     , decltype(_impl_.server_send_media_data_){int64_t{0}}
+    , decltype(_impl_.render_width_){0}
+    , decltype(_impl_.render_height_){0}
+    , decltype(_impl_.capture_width_){0}
+    , decltype(_impl_.capture_height_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -3222,8 +3245,8 @@ void CaptureStatistics::Clear() {
   _impl_.decode_durations_.Clear();
   _impl_.client_video_recv_gaps_.Clear();
   ::memset(&_impl_.client_fps_video_recv_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.server_send_media_data_) -
-      reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.server_send_media_data_));
+      reinterpret_cast<char*>(&_impl_.capture_height_) -
+      reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.capture_height_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3336,6 +3359,38 @@ const char* CaptureStatistics::_InternalParse(const char* ptr, ::_pbi::ParseCont
         } else
           goto handle_unusual;
         continue;
+      // int32 render_width = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          _impl_.render_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 render_height = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
+          _impl_.render_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 capture_width = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
+          _impl_.capture_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 capture_height = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
+          _impl_.capture_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -3444,6 +3499,30 @@ uint8_t* CaptureStatistics::_InternalSerialize(
   if (this->_internal_server_send_media_data() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(11, this->_internal_server_send_media_data(), target);
+  }
+
+  // int32 render_width = 12;
+  if (this->_internal_render_width() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(12, this->_internal_render_width(), target);
+  }
+
+  // int32 render_height = 13;
+  if (this->_internal_render_height() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(13, this->_internal_render_height(), target);
+  }
+
+  // int32 capture_width = 14;
+  if (this->_internal_capture_width() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(14, this->_internal_capture_width(), target);
+  }
+
+  // int32 capture_height = 15;
+  if (this->_internal_capture_height() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(15, this->_internal_capture_height(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3562,6 +3641,26 @@ size_t CaptureStatistics::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_server_send_media_data());
   }
 
+  // int32 render_width = 12;
+  if (this->_internal_render_width() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_width());
+  }
+
+  // int32 render_height = 13;
+  if (this->_internal_render_height() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_height());
+  }
+
+  // int32 capture_width = 14;
+  if (this->_internal_capture_width() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_width());
+  }
+
+  // int32 capture_height = 15;
+  if (this->_internal_capture_height() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_height());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3603,6 +3702,18 @@ void CaptureStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   if (from._internal_server_send_media_data() != 0) {
     _this->_internal_set_server_send_media_data(from._internal_server_send_media_data());
   }
+  if (from._internal_render_width() != 0) {
+    _this->_internal_set_render_width(from._internal_render_width());
+  }
+  if (from._internal_render_height() != 0) {
+    _this->_internal_set_render_height(from._internal_render_height());
+  }
+  if (from._internal_capture_width() != 0) {
+    _this->_internal_set_capture_width(from._internal_capture_width());
+  }
+  if (from._internal_capture_height() != 0) {
+    _this->_internal_set_capture_height(from._internal_capture_height());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3626,8 +3737,8 @@ void CaptureStatistics::InternalSwap(CaptureStatistics* other) {
   _impl_.decode_durations_.InternalSwap(&other->_impl_.decode_durations_);
   _impl_.client_video_recv_gaps_.InternalSwap(&other->_impl_.client_video_recv_gaps_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.server_send_media_data_)
-      + sizeof(CaptureStatistics::_impl_.server_send_media_data_)
+      PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_height_)
+      + sizeof(CaptureStatistics::_impl_.capture_height_)
       - PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_video_recv_)>(
           reinterpret_cast<char*>(&_impl_.client_fps_video_recv_),
           reinterpret_cast<char*>(&other->_impl_.client_fps_video_recv_));
@@ -3662,12 +3773,14 @@ ClientStatistics::ClientStatistics(const ClientStatistics& from)
     , decltype(_impl_.fps_video_recv_){}
     , decltype(_impl_.fps_render_){}
     , decltype(_impl_.recv_media_data_){}
+    , decltype(_impl_.render_width_){}
+    , decltype(_impl_.render_height_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.fps_video_recv_, &from._impl_.fps_video_recv_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.recv_media_data_) -
-    reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.recv_media_data_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.render_height_) -
+    reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.render_height_));
   // @@protoc_insertion_point(copy_constructor:tc.ClientStatistics)
 }
 
@@ -3683,6 +3796,8 @@ inline void ClientStatistics::SharedCtor(
     , decltype(_impl_.fps_video_recv_){0u}
     , decltype(_impl_.fps_render_){0u}
     , decltype(_impl_.recv_media_data_){int64_t{0}}
+    , decltype(_impl_.render_width_){0}
+    , decltype(_impl_.render_height_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -3715,8 +3830,8 @@ void ClientStatistics::Clear() {
   _impl_.decode_durations_.Clear();
   _impl_.video_recv_gaps_.Clear();
   ::memset(&_impl_.fps_video_recv_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.recv_media_data_) -
-      reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.recv_media_data_));
+      reinterpret_cast<char*>(&_impl_.render_height_) -
+      reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.render_height_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3768,6 +3883,22 @@ const char* ClientStatistics::_InternalParse(const char* ptr, ::_pbi::ParseConte
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.recv_media_data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 render_width = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.render_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 render_height = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _impl_.render_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -3837,6 +3968,18 @@ uint8_t* ClientStatistics::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(5, this->_internal_recv_media_data(), target);
   }
 
+  // int32 render_width = 6;
+  if (this->_internal_render_width() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_render_width(), target);
+  }
+
+  // int32 render_height = 7;
+  if (this->_internal_render_height() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_render_height(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3896,6 +4039,16 @@ size_t ClientStatistics::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_recv_media_data());
   }
 
+  // int32 render_width = 6;
+  if (this->_internal_render_width() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_width());
+  }
+
+  // int32 render_height = 7;
+  if (this->_internal_render_height() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_height());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3925,6 +4078,12 @@ void ClientStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const
   if (from._internal_recv_media_data() != 0) {
     _this->_internal_set_recv_media_data(from._internal_recv_media_data());
   }
+  if (from._internal_render_width() != 0) {
+    _this->_internal_set_render_width(from._internal_render_width());
+  }
+  if (from._internal_render_height() != 0) {
+    _this->_internal_set_render_height(from._internal_render_height());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3945,8 +4104,8 @@ void ClientStatistics::InternalSwap(ClientStatistics* other) {
   _impl_.decode_durations_.InternalSwap(&other->_impl_.decode_durations_);
   _impl_.video_recv_gaps_.InternalSwap(&other->_impl_.video_recv_gaps_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.recv_media_data_)
-      + sizeof(ClientStatistics::_impl_.recv_media_data_)
+      PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_height_)
+      + sizeof(ClientStatistics::_impl_.render_height_)
       - PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_video_recv_)>(
           reinterpret_cast<char*>(&_impl_.fps_video_recv_),
           reinterpret_cast<char*>(&other->_impl_.fps_video_recv_));

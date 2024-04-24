@@ -195,6 +195,14 @@ message CaptureStatistics {
   // from inner server
   int64 server_send_media_data = 11;
 
+  // from client
+  int32 render_width = 12;
+  // from client
+  int32 render_height = 13;
+  // from inner server
+  int32 capture_width = 14;
+  // from inner server
+  int32 capture_height = 15;
 }
 
 message ClientStatistics {
@@ -203,6 +211,8 @@ message ClientStatistics {
   uint32 fps_video_recv = 3;
   uint32 fps_render = 4;
   int64 recv_media_data = 5;
+  int32 render_width = 6;
+  int32 render_height = 7;
 }
 
 message Message {

@@ -2153,6 +2153,10 @@ class CaptureStatistics final :
     kFpsVideoEncodeFieldNumber = 9,
     kAppRunningTimeFieldNumber = 10,
     kServerSendMediaDataFieldNumber = 11,
+    kRenderWidthFieldNumber = 12,
+    kRenderHeightFieldNumber = 13,
+    kCaptureWidthFieldNumber = 14,
+    kCaptureHeightFieldNumber = 15,
   };
   // repeated uint32 video_frame_gaps = 1;
   int video_frame_gaps_size() const;
@@ -2318,6 +2322,42 @@ class CaptureStatistics final :
   void _internal_set_server_send_media_data(int64_t value);
   public:
 
+  // int32 render_width = 12;
+  void clear_render_width();
+  int32_t render_width() const;
+  void set_render_width(int32_t value);
+  private:
+  int32_t _internal_render_width() const;
+  void _internal_set_render_width(int32_t value);
+  public:
+
+  // int32 render_height = 13;
+  void clear_render_height();
+  int32_t render_height() const;
+  void set_render_height(int32_t value);
+  private:
+  int32_t _internal_render_height() const;
+  void _internal_set_render_height(int32_t value);
+  public:
+
+  // int32 capture_width = 14;
+  void clear_capture_width();
+  int32_t capture_width() const;
+  void set_capture_width(int32_t value);
+  private:
+  int32_t _internal_capture_width() const;
+  void _internal_set_capture_width(int32_t value);
+  public:
+
+  // int32 capture_height = 15;
+  void clear_capture_height();
+  int32_t capture_height() const;
+  void set_capture_height(int32_t value);
+  private:
+  int32_t _internal_capture_height() const;
+  void _internal_set_capture_height(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.CaptureStatistics)
  private:
   class _Internal;
@@ -2342,6 +2382,10 @@ class CaptureStatistics final :
     int32_t fps_video_encode_;
     int32_t app_running_time_;
     int64_t server_send_media_data_;
+    int32_t render_width_;
+    int32_t render_height_;
+    int32_t capture_width_;
+    int32_t capture_height_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2475,6 +2519,8 @@ class ClientStatistics final :
     kFpsVideoRecvFieldNumber = 3,
     kFpsRenderFieldNumber = 4,
     kRecvMediaDataFieldNumber = 5,
+    kRenderWidthFieldNumber = 6,
+    kRenderHeightFieldNumber = 7,
   };
   // repeated uint32 decode_durations = 1;
   int decode_durations_size() const;
@@ -2547,6 +2593,24 @@ class ClientStatistics final :
   void _internal_set_recv_media_data(int64_t value);
   public:
 
+  // int32 render_width = 6;
+  void clear_render_width();
+  int32_t render_width() const;
+  void set_render_width(int32_t value);
+  private:
+  int32_t _internal_render_width() const;
+  void _internal_set_render_width(int32_t value);
+  public:
+
+  // int32 render_height = 7;
+  void clear_render_height();
+  int32_t render_height() const;
+  void set_render_height(int32_t value);
+  private:
+  int32_t _internal_render_height() const;
+  void _internal_set_render_height(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.ClientStatistics)
  private:
   class _Internal;
@@ -2562,6 +2626,8 @@ class ClientStatistics final :
     uint32_t fps_video_recv_;
     uint32_t fps_render_;
     int64_t recv_media_data_;
+    int32_t render_width_;
+    int32_t render_height_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4434,6 +4500,86 @@ inline void CaptureStatistics::set_server_send_media_data(int64_t value) {
   // @@protoc_insertion_point(field_set:tc.CaptureStatistics.server_send_media_data)
 }
 
+// int32 render_width = 12;
+inline void CaptureStatistics::clear_render_width() {
+  _impl_.render_width_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_render_width() const {
+  return _impl_.render_width_;
+}
+inline int32_t CaptureStatistics::render_width() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.render_width)
+  return _internal_render_width();
+}
+inline void CaptureStatistics::_internal_set_render_width(int32_t value) {
+  
+  _impl_.render_width_ = value;
+}
+inline void CaptureStatistics::set_render_width(int32_t value) {
+  _internal_set_render_width(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.render_width)
+}
+
+// int32 render_height = 13;
+inline void CaptureStatistics::clear_render_height() {
+  _impl_.render_height_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_render_height() const {
+  return _impl_.render_height_;
+}
+inline int32_t CaptureStatistics::render_height() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.render_height)
+  return _internal_render_height();
+}
+inline void CaptureStatistics::_internal_set_render_height(int32_t value) {
+  
+  _impl_.render_height_ = value;
+}
+inline void CaptureStatistics::set_render_height(int32_t value) {
+  _internal_set_render_height(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.render_height)
+}
+
+// int32 capture_width = 14;
+inline void CaptureStatistics::clear_capture_width() {
+  _impl_.capture_width_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_capture_width() const {
+  return _impl_.capture_width_;
+}
+inline int32_t CaptureStatistics::capture_width() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.capture_width)
+  return _internal_capture_width();
+}
+inline void CaptureStatistics::_internal_set_capture_width(int32_t value) {
+  
+  _impl_.capture_width_ = value;
+}
+inline void CaptureStatistics::set_capture_width(int32_t value) {
+  _internal_set_capture_width(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.capture_width)
+}
+
+// int32 capture_height = 15;
+inline void CaptureStatistics::clear_capture_height() {
+  _impl_.capture_height_ = 0;
+}
+inline int32_t CaptureStatistics::_internal_capture_height() const {
+  return _impl_.capture_height_;
+}
+inline int32_t CaptureStatistics::capture_height() const {
+  // @@protoc_insertion_point(field_get:tc.CaptureStatistics.capture_height)
+  return _internal_capture_height();
+}
+inline void CaptureStatistics::_internal_set_capture_height(int32_t value) {
+  
+  _impl_.capture_height_ = value;
+}
+inline void CaptureStatistics::set_capture_height(int32_t value) {
+  _internal_set_capture_height(value);
+  // @@protoc_insertion_point(field_set:tc.CaptureStatistics.capture_height)
+}
+
 // -------------------------------------------------------------------
 
 // ClientStatistics
@@ -4590,6 +4736,46 @@ inline void ClientStatistics::_internal_set_recv_media_data(int64_t value) {
 inline void ClientStatistics::set_recv_media_data(int64_t value) {
   _internal_set_recv_media_data(value);
   // @@protoc_insertion_point(field_set:tc.ClientStatistics.recv_media_data)
+}
+
+// int32 render_width = 6;
+inline void ClientStatistics::clear_render_width() {
+  _impl_.render_width_ = 0;
+}
+inline int32_t ClientStatistics::_internal_render_width() const {
+  return _impl_.render_width_;
+}
+inline int32_t ClientStatistics::render_width() const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.render_width)
+  return _internal_render_width();
+}
+inline void ClientStatistics::_internal_set_render_width(int32_t value) {
+  
+  _impl_.render_width_ = value;
+}
+inline void ClientStatistics::set_render_width(int32_t value) {
+  _internal_set_render_width(value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.render_width)
+}
+
+// int32 render_height = 7;
+inline void ClientStatistics::clear_render_height() {
+  _impl_.render_height_ = 0;
+}
+inline int32_t ClientStatistics::_internal_render_height() const {
+  return _impl_.render_height_;
+}
+inline int32_t ClientStatistics::render_height() const {
+  // @@protoc_insertion_point(field_get:tc.ClientStatistics.render_height)
+  return _internal_render_height();
+}
+inline void ClientStatistics::_internal_set_render_height(int32_t value) {
+  
+  _impl_.render_height_ = value;
+}
+inline void ClientStatistics::set_render_height(int32_t value) {
+  _internal_set_render_height(value);
+  // @@protoc_insertion_point(field_set:tc.ClientStatistics.render_height)
 }
 
 // -------------------------------------------------------------------
