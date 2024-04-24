@@ -226,6 +226,20 @@ struct ClientStatisticsDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientStatisticsDefaultTypeInternal _ClientStatistics_default_instance_;
+PROTOBUF_CONSTEXPR ServerAudioSpectrum::ServerAudioSpectrum(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.left_spectrum_)*/{}
+  , /*decltype(_impl_.right_spectrum_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ServerAudioSpectrumDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ServerAudioSpectrumDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ServerAudioSpectrumDefaultTypeInternal() {}
+  union {
+    ServerAudioSpectrum _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
@@ -240,6 +254,7 @@ PROTOBUF_CONSTEXPR Message::Message(
   , /*decltype(_impl_.gamepad_state_)*/nullptr
   , /*decltype(_impl_.capture_statistics_)*/nullptr
   , /*decltype(_impl_.client_statistics_)*/nullptr
+  , /*decltype(_impl_.server_audio_spectrum_)*/nullptr
   , /*decltype(_impl_.send_time_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -253,7 +268,7 @@ struct MessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[12];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[13];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
@@ -393,6 +408,14 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_width_),
   PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_height_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.left_spectrum_),
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.right_spectrum_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -412,6 +435,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_state_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.capture_statistics_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.client_statistics_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -425,7 +449,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 87, -1, -1, sizeof(::tc::GamepadState)},
   { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
   { 121, -1, -1, sizeof(::tc::ClientStatistics)},
-  { 134, -1, -1, sizeof(::tc::Message)},
+  { 134, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
+  { 142, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -440,6 +465,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_GamepadState_default_instance_._instance,
   &::tc::_CaptureStatistics_default_instance_._instance,
   &::tc::_ClientStatistics_default_instance_._instance,
+  &::tc::_ServerAudioSpectrum_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -486,52 +512,56 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "tions\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016"
   "fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r"
   "\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_widt"
-  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"\350\003\n\007Messa"
-  "ge\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsen"
-  "d_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001"
-  "(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nh"
-  "eart_beat\030\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_"
-  "frame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013audio_fra"
-  "me\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030\t "
-  "\001(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030\n \001(\0132\016"
-  ".tc.MouseEvent\022,\n\020cursor_info_sync\030\013 \001(\013"
-  "2\022.tc.CursorInfoSync\022\'\n\rgamepad_state\030\014 "
-  "\001(\0132\020.tc.GamepadState\0221\n\022capture_statist"
-  "ics\030\r \001(\0132\025.tc.CaptureStatistics\022/\n\021clie"
-  "nt_statistics\030\016 \001(\0132\024.tc.ClientStatistic"
-  "s*\314\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022"
-  "\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAud"
-  "ioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020"
-  "\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020"
-  "\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStat"
-  "istics\020\n*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010k"
-  "NetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t"
-  "\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown"
-  "\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kL"
-  "eftMouseButtonUp\020\020\022\030\n\024kMiddleMouseButton"
-  "Up\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseM"
-  "ove\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouse"
-  "EventfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020"
-  "\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRigh"
-  "tMouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016\n"
-  "\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_"
-  "UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n"
-  "\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XIN"
-  "PUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GA"
-  "MEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020"
-  " \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035G"
-  "P_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XI"
-  "NPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINP"
-  "UT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPU"
-  "T_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@"
-  "\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT"
-  "_GAMEPAD_Y\020\200\200\002b\006proto3"
+  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"D\n\023Server"
+  "AudioSpectrum\022\025\n\rleft_spectrum\030\001 \003(\001\022\026\n\016"
+  "right_spectrum\030\002 \003(\001\"\240\004\n\007Message\022\035\n\004type"
+  "\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001"
+  "(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.He"
+  "llo\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030"
+  "\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001("
+  "\0132\016.tc.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016"
+  ".tc.AudioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.K"
+  "eyEvent\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseE"
+  "vent\022,\n\020cursor_info_sync\030\013 \001(\0132\022.tc.Curs"
+  "orInfoSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.G"
+  "amepadState\0221\n\022capture_statistics\030\r \001(\0132"
+  "\025.tc.CaptureStatistics\022/\n\021client_statist"
+  "ics\030\016 \001(\0132\024.tc.ClientStatistics\0226\n\025serve"
+  "r_audio_spectrum\030\017 \001(\0132\027.tc.ServerAudioS"
+  "pectrum*\346\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004k"
+  "Ack\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017"
+  "\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouse"
+  "Event\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepad"
+  "State\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021kClie"
+  "ntStatistics\020\n\022\030\n\024kServerAudioSpectrum\020\013"
+  "*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020"
+  "\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020"
+  "\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kC"
+  "ontrolDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouse"
+  "ButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023"
+  "kRightMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026"
+  "\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEventfHW"
+  "heel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kM"
+  "iddleMouseButtonDown\020\200\020\022\032\n\025kRightMouseBu"
+  "ttonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKN"
+  "OWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033"
+  "GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINP"
+  "UT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAME"
+  "PAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_ST"
+  "ART\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_"
+  "XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT"
+  "_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAM"
+  "EPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEP"
+  "AD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPA"
+  "D_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_X"
+  "INPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD"
+  "_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 3262, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 3414, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 12,
+    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 13,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
     file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
@@ -583,6 +613,7 @@ bool MessageType_IsValid(int value) {
     case 8:
     case 9:
     case 10:
+    case 11:
       return true;
     default:
       return false;
@@ -4119,6 +4150,223 @@ void ClientStatistics::InternalSwap(ClientStatistics* other) {
 
 // ===================================================================
 
+class ServerAudioSpectrum::_Internal {
+ public:
+};
+
+ServerAudioSpectrum::ServerAudioSpectrum(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:tc.ServerAudioSpectrum)
+}
+ServerAudioSpectrum::ServerAudioSpectrum(const ServerAudioSpectrum& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ServerAudioSpectrum* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.left_spectrum_){from._impl_.left_spectrum_}
+    , decltype(_impl_.right_spectrum_){from._impl_.right_spectrum_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:tc.ServerAudioSpectrum)
+}
+
+inline void ServerAudioSpectrum::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.left_spectrum_){arena}
+    , decltype(_impl_.right_spectrum_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+ServerAudioSpectrum::~ServerAudioSpectrum() {
+  // @@protoc_insertion_point(destructor:tc.ServerAudioSpectrum)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ServerAudioSpectrum::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.left_spectrum_.~RepeatedField();
+  _impl_.right_spectrum_.~RepeatedField();
+}
+
+void ServerAudioSpectrum::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ServerAudioSpectrum::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.ServerAudioSpectrum)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.left_spectrum_.Clear();
+  _impl_.right_spectrum_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ServerAudioSpectrum::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated double left_spectrum = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_left_spectrum(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 9) {
+          _internal_add_left_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated double right_spectrum = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_right_spectrum(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 17) {
+          _internal_add_right_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ServerAudioSpectrum::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.ServerAudioSpectrum)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated double left_spectrum = 1;
+  if (this->_internal_left_spectrum_size() > 0) {
+    target = stream->WriteFixedPacked(1, _internal_left_spectrum(), target);
+  }
+
+  // repeated double right_spectrum = 2;
+  if (this->_internal_right_spectrum_size() > 0) {
+    target = stream->WriteFixedPacked(2, _internal_right_spectrum(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.ServerAudioSpectrum)
+  return target;
+}
+
+size_t ServerAudioSpectrum::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.ServerAudioSpectrum)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated double left_spectrum = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_left_spectrum_size());
+    size_t data_size = 8UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated double right_spectrum = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_right_spectrum_size());
+    size_t data_size = 8UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ServerAudioSpectrum::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ServerAudioSpectrum::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ServerAudioSpectrum::GetClassData() const { return &_class_data_; }
+
+
+void ServerAudioSpectrum::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ServerAudioSpectrum*>(&to_msg);
+  auto& from = static_cast<const ServerAudioSpectrum&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.ServerAudioSpectrum)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.left_spectrum_.MergeFrom(from._impl_.left_spectrum_);
+  _this->_impl_.right_spectrum_.MergeFrom(from._impl_.right_spectrum_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ServerAudioSpectrum::CopyFrom(const ServerAudioSpectrum& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.ServerAudioSpectrum)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ServerAudioSpectrum::IsInitialized() const {
+  return true;
+}
+
+void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.left_spectrum_.InternalSwap(&other->_impl_.left_spectrum_);
+  _impl_.right_spectrum_.InternalSwap(&other->_impl_.right_spectrum_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ServerAudioSpectrum::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[11]);
+}
+
+// ===================================================================
+
 class Message::_Internal {
  public:
   static const ::tc::Hello& hello(const Message* msg);
@@ -4132,6 +4380,7 @@ class Message::_Internal {
   static const ::tc::GamepadState& gamepad_state(const Message* msg);
   static const ::tc::CaptureStatistics& capture_statistics(const Message* msg);
   static const ::tc::ClientStatistics& client_statistics(const Message* msg);
+  static const ::tc::ServerAudioSpectrum& server_audio_spectrum(const Message* msg);
 };
 
 const ::tc::Hello&
@@ -4178,6 +4427,10 @@ const ::tc::ClientStatistics&
 Message::_Internal::client_statistics(const Message* msg) {
   return *msg->_impl_.client_statistics_;
 }
+const ::tc::ServerAudioSpectrum&
+Message::_Internal::server_audio_spectrum(const Message* msg) {
+  return *msg->_impl_.server_audio_spectrum_;
+}
 Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -4200,6 +4453,7 @@ Message::Message(const Message& from)
     , decltype(_impl_.gamepad_state_){nullptr}
     , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.client_statistics_){nullptr}
+    , decltype(_impl_.server_audio_spectrum_){nullptr}
     , decltype(_impl_.send_time_){}
     , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -4246,6 +4500,9 @@ Message::Message(const Message& from)
   if (from._internal_has_client_statistics()) {
     _this->_impl_.client_statistics_ = new ::tc::ClientStatistics(*from._impl_.client_statistics_);
   }
+  if (from._internal_has_server_audio_spectrum()) {
+    _this->_impl_.server_audio_spectrum_ = new ::tc::ServerAudioSpectrum(*from._impl_.server_audio_spectrum_);
+  }
   ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
     reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -4269,6 +4526,7 @@ inline void Message::SharedCtor(
     , decltype(_impl_.gamepad_state_){nullptr}
     , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.client_statistics_){nullptr}
+    , decltype(_impl_.server_audio_spectrum_){nullptr}
     , decltype(_impl_.send_time_){uint64_t{0u}}
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -4302,6 +4560,7 @@ inline void Message::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.gamepad_state_;
   if (this != internal_default_instance()) delete _impl_.capture_statistics_;
   if (this != internal_default_instance()) delete _impl_.client_statistics_;
+  if (this != internal_default_instance()) delete _impl_.server_audio_spectrum_;
 }
 
 void Message::SetCachedSize(int size) const {
@@ -4359,6 +4618,10 @@ void Message::Clear() {
     delete _impl_.client_statistics_;
   }
   _impl_.client_statistics_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.server_audio_spectrum_ != nullptr) {
+    delete _impl_.server_audio_spectrum_;
+  }
+  _impl_.server_audio_spectrum_ = nullptr;
   ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -4482,6 +4745,14 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
           ptr = ctx->ParseMessage(_internal_mutable_client_statistics(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_server_audio_spectrum(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4615,6 +4886,13 @@ uint8_t* Message::_InternalSerialize(
         _Internal::client_statistics(this).GetCachedSize(), target, stream);
   }
 
+  // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+  if (this->_internal_has_server_audio_spectrum()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(15, _Internal::server_audio_spectrum(this),
+        _Internal::server_audio_spectrum(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4715,6 +4993,13 @@ size_t Message::ByteSizeLong() const {
         *_impl_.client_statistics_);
   }
 
+  // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+  if (this->_internal_has_server_audio_spectrum()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.server_audio_spectrum_);
+  }
+
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
@@ -4791,6 +5076,10 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
     _this->_internal_mutable_client_statistics()->::tc::ClientStatistics::MergeFrom(
         from._internal_client_statistics());
   }
+  if (from._internal_has_server_audio_spectrum()) {
+    _this->_internal_mutable_server_audio_spectrum()->::tc::ServerAudioSpectrum::MergeFrom(
+        from._internal_server_audio_spectrum());
+  }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
   }
@@ -4831,7 +5120,7 @@ void Message::InternalSwap(Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[11]);
+      file_level_metadata_tc_5fmessage_2eproto[12]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4880,6 +5169,10 @@ Arena::CreateMaybeMessage< ::tc::CaptureStatistics >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::tc::ClientStatistics*
 Arena::CreateMaybeMessage< ::tc::ClientStatistics >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::ClientStatistics >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tc::ServerAudioSpectrum*
+Arena::CreateMaybeMessage< ::tc::ServerAudioSpectrum >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tc::ServerAudioSpectrum >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {

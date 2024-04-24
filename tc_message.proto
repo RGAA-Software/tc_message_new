@@ -18,6 +18,8 @@ enum MessageType {
   kCaptureStatistics = 9;
   // client statistics
   kClientStatistics = 10;
+  // capture server -> host panel
+  kServerAudioSpectrum = 11;
 }
 
 enum VideoType {
@@ -215,6 +217,12 @@ message ClientStatistics {
   int32 render_height = 7;
 }
 
+message ServerAudioSpectrum {
+  // from inner server
+  repeated double left_spectrum = 1;
+  repeated double right_spectrum = 2;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -230,4 +238,5 @@ message Message {
   GamepadState gamepad_state = 12;
   CaptureStatistics capture_statistics = 13;
   ClientStatistics client_statistics = 14;
+  ServerAudioSpectrum server_audio_spectrum = 15;
 }

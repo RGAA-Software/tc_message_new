@@ -80,6 +80,9 @@ extern MessageDefaultTypeInternal _Message_default_instance_;
 class MouseEvent;
 struct MouseEventDefaultTypeInternal;
 extern MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
+class ServerAudioSpectrum;
+struct ServerAudioSpectrumDefaultTypeInternal;
+extern ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
 class VideoFrame;
 struct VideoFrameDefaultTypeInternal;
 extern VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
@@ -96,6 +99,7 @@ template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
 template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
 template<> ::tc::MouseEvent* Arena::CreateMaybeMessage<::tc::MouseEvent>(Arena*);
+template<> ::tc::ServerAudioSpectrum* Arena::CreateMaybeMessage<::tc::ServerAudioSpectrum>(Arena*);
 template<> ::tc::VideoFrame* Arena::CreateMaybeMessage<::tc::VideoFrame>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tc {
@@ -138,12 +142,13 @@ enum MessageType : int {
   kGamepadState = 8,
   kCaptureStatistics = 9,
   kClientStatistics = 10,
+  kServerAudioSpectrum = 11,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kClientStatistics;
+constexpr MessageType MessageType_MAX = kServerAudioSpectrum;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -2635,6 +2640,191 @@ class ClientStatistics final :
 };
 // -------------------------------------------------------------------
 
+class ServerAudioSpectrum final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.ServerAudioSpectrum) */ {
+ public:
+  inline ServerAudioSpectrum() : ServerAudioSpectrum(nullptr) {}
+  ~ServerAudioSpectrum() override;
+  explicit PROTOBUF_CONSTEXPR ServerAudioSpectrum(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ServerAudioSpectrum(const ServerAudioSpectrum& from);
+  ServerAudioSpectrum(ServerAudioSpectrum&& from) noexcept
+    : ServerAudioSpectrum() {
+    *this = ::std::move(from);
+  }
+
+  inline ServerAudioSpectrum& operator=(const ServerAudioSpectrum& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ServerAudioSpectrum& operator=(ServerAudioSpectrum&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ServerAudioSpectrum& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ServerAudioSpectrum* internal_default_instance() {
+    return reinterpret_cast<const ServerAudioSpectrum*>(
+               &_ServerAudioSpectrum_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(ServerAudioSpectrum& a, ServerAudioSpectrum& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ServerAudioSpectrum* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ServerAudioSpectrum* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ServerAudioSpectrum* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ServerAudioSpectrum>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ServerAudioSpectrum& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const ServerAudioSpectrum& from) {
+    ServerAudioSpectrum::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ServerAudioSpectrum* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.ServerAudioSpectrum";
+  }
+  protected:
+  explicit ServerAudioSpectrum(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLeftSpectrumFieldNumber = 1,
+    kRightSpectrumFieldNumber = 2,
+  };
+  // repeated double left_spectrum = 1;
+  int left_spectrum_size() const;
+  private:
+  int _internal_left_spectrum_size() const;
+  public:
+  void clear_left_spectrum();
+  private:
+  double _internal_left_spectrum(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_left_spectrum() const;
+  void _internal_add_left_spectrum(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_left_spectrum();
+  public:
+  double left_spectrum(int index) const;
+  void set_left_spectrum(int index, double value);
+  void add_left_spectrum(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      left_spectrum() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_left_spectrum();
+
+  // repeated double right_spectrum = 2;
+  int right_spectrum_size() const;
+  private:
+  int _internal_right_spectrum_size() const;
+  public:
+  void clear_right_spectrum();
+  private:
+  double _internal_right_spectrum(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_right_spectrum() const;
+  void _internal_add_right_spectrum(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_right_spectrum();
+  public:
+  double right_spectrum(int index) const;
+  void set_right_spectrum(int index, double value);
+  void add_right_spectrum(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      right_spectrum() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_right_spectrum();
+
+  // @@protoc_insertion_point(class_scope:tc.ServerAudioSpectrum)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > left_spectrum_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > right_spectrum_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -2683,7 +2873,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2768,6 +2958,7 @@ class Message final :
     kGamepadStateFieldNumber = 12,
     kCaptureStatisticsFieldNumber = 13,
     kClientStatisticsFieldNumber = 14,
+    kServerAudioSpectrumFieldNumber = 15,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -2983,6 +3174,24 @@ class Message final :
       ::tc::ClientStatistics* client_statistics);
   ::tc::ClientStatistics* unsafe_arena_release_client_statistics();
 
+  // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+  bool has_server_audio_spectrum() const;
+  private:
+  bool _internal_has_server_audio_spectrum() const;
+  public:
+  void clear_server_audio_spectrum();
+  const ::tc::ServerAudioSpectrum& server_audio_spectrum() const;
+  PROTOBUF_NODISCARD ::tc::ServerAudioSpectrum* release_server_audio_spectrum();
+  ::tc::ServerAudioSpectrum* mutable_server_audio_spectrum();
+  void set_allocated_server_audio_spectrum(::tc::ServerAudioSpectrum* server_audio_spectrum);
+  private:
+  const ::tc::ServerAudioSpectrum& _internal_server_audio_spectrum() const;
+  ::tc::ServerAudioSpectrum* _internal_mutable_server_audio_spectrum();
+  public:
+  void unsafe_arena_set_allocated_server_audio_spectrum(
+      ::tc::ServerAudioSpectrum* server_audio_spectrum);
+  ::tc::ServerAudioSpectrum* unsafe_arena_release_server_audio_spectrum();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -3021,6 +3230,7 @@ class Message final :
     ::tc::GamepadState* gamepad_state_;
     ::tc::CaptureStatistics* capture_statistics_;
     ::tc::ClientStatistics* client_statistics_;
+    ::tc::ServerAudioSpectrum* server_audio_spectrum_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -4780,6 +4990,104 @@ inline void ClientStatistics::set_render_height(int32_t value) {
 
 // -------------------------------------------------------------------
 
+// ServerAudioSpectrum
+
+// repeated double left_spectrum = 1;
+inline int ServerAudioSpectrum::_internal_left_spectrum_size() const {
+  return _impl_.left_spectrum_.size();
+}
+inline int ServerAudioSpectrum::left_spectrum_size() const {
+  return _internal_left_spectrum_size();
+}
+inline void ServerAudioSpectrum::clear_left_spectrum() {
+  _impl_.left_spectrum_.Clear();
+}
+inline double ServerAudioSpectrum::_internal_left_spectrum(int index) const {
+  return _impl_.left_spectrum_.Get(index);
+}
+inline double ServerAudioSpectrum::left_spectrum(int index) const {
+  // @@protoc_insertion_point(field_get:tc.ServerAudioSpectrum.left_spectrum)
+  return _internal_left_spectrum(index);
+}
+inline void ServerAudioSpectrum::set_left_spectrum(int index, double value) {
+  _impl_.left_spectrum_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.ServerAudioSpectrum.left_spectrum)
+}
+inline void ServerAudioSpectrum::_internal_add_left_spectrum(double value) {
+  _impl_.left_spectrum_.Add(value);
+}
+inline void ServerAudioSpectrum::add_left_spectrum(double value) {
+  _internal_add_left_spectrum(value);
+  // @@protoc_insertion_point(field_add:tc.ServerAudioSpectrum.left_spectrum)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+ServerAudioSpectrum::_internal_left_spectrum() const {
+  return _impl_.left_spectrum_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+ServerAudioSpectrum::left_spectrum() const {
+  // @@protoc_insertion_point(field_list:tc.ServerAudioSpectrum.left_spectrum)
+  return _internal_left_spectrum();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+ServerAudioSpectrum::_internal_mutable_left_spectrum() {
+  return &_impl_.left_spectrum_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+ServerAudioSpectrum::mutable_left_spectrum() {
+  // @@protoc_insertion_point(field_mutable_list:tc.ServerAudioSpectrum.left_spectrum)
+  return _internal_mutable_left_spectrum();
+}
+
+// repeated double right_spectrum = 2;
+inline int ServerAudioSpectrum::_internal_right_spectrum_size() const {
+  return _impl_.right_spectrum_.size();
+}
+inline int ServerAudioSpectrum::right_spectrum_size() const {
+  return _internal_right_spectrum_size();
+}
+inline void ServerAudioSpectrum::clear_right_spectrum() {
+  _impl_.right_spectrum_.Clear();
+}
+inline double ServerAudioSpectrum::_internal_right_spectrum(int index) const {
+  return _impl_.right_spectrum_.Get(index);
+}
+inline double ServerAudioSpectrum::right_spectrum(int index) const {
+  // @@protoc_insertion_point(field_get:tc.ServerAudioSpectrum.right_spectrum)
+  return _internal_right_spectrum(index);
+}
+inline void ServerAudioSpectrum::set_right_spectrum(int index, double value) {
+  _impl_.right_spectrum_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tc.ServerAudioSpectrum.right_spectrum)
+}
+inline void ServerAudioSpectrum::_internal_add_right_spectrum(double value) {
+  _impl_.right_spectrum_.Add(value);
+}
+inline void ServerAudioSpectrum::add_right_spectrum(double value) {
+  _internal_add_right_spectrum(value);
+  // @@protoc_insertion_point(field_add:tc.ServerAudioSpectrum.right_spectrum)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+ServerAudioSpectrum::_internal_right_spectrum() const {
+  return _impl_.right_spectrum_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+ServerAudioSpectrum::right_spectrum() const {
+  // @@protoc_insertion_point(field_list:tc.ServerAudioSpectrum.right_spectrum)
+  return _internal_right_spectrum();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+ServerAudioSpectrum::_internal_mutable_right_spectrum() {
+  return &_impl_.right_spectrum_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+ServerAudioSpectrum::mutable_right_spectrum() {
+  // @@protoc_insertion_point(field_mutable_list:tc.ServerAudioSpectrum.right_spectrum)
+  return _internal_mutable_right_spectrum();
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -5862,9 +6170,101 @@ inline void Message::set_allocated_client_statistics(::tc::ClientStatistics* cli
   // @@protoc_insertion_point(field_set_allocated:tc.Message.client_statistics)
 }
 
+// .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+inline bool Message::_internal_has_server_audio_spectrum() const {
+  return this != internal_default_instance() && _impl_.server_audio_spectrum_ != nullptr;
+}
+inline bool Message::has_server_audio_spectrum() const {
+  return _internal_has_server_audio_spectrum();
+}
+inline void Message::clear_server_audio_spectrum() {
+  if (GetArenaForAllocation() == nullptr && _impl_.server_audio_spectrum_ != nullptr) {
+    delete _impl_.server_audio_spectrum_;
+  }
+  _impl_.server_audio_spectrum_ = nullptr;
+}
+inline const ::tc::ServerAudioSpectrum& Message::_internal_server_audio_spectrum() const {
+  const ::tc::ServerAudioSpectrum* p = _impl_.server_audio_spectrum_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::ServerAudioSpectrum&>(
+      ::tc::_ServerAudioSpectrum_default_instance_);
+}
+inline const ::tc::ServerAudioSpectrum& Message::server_audio_spectrum() const {
+  // @@protoc_insertion_point(field_get:tc.Message.server_audio_spectrum)
+  return _internal_server_audio_spectrum();
+}
+inline void Message::unsafe_arena_set_allocated_server_audio_spectrum(
+    ::tc::ServerAudioSpectrum* server_audio_spectrum) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.server_audio_spectrum_);
+  }
+  _impl_.server_audio_spectrum_ = server_audio_spectrum;
+  if (server_audio_spectrum) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.server_audio_spectrum)
+}
+inline ::tc::ServerAudioSpectrum* Message::release_server_audio_spectrum() {
+  
+  ::tc::ServerAudioSpectrum* temp = _impl_.server_audio_spectrum_;
+  _impl_.server_audio_spectrum_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::ServerAudioSpectrum* Message::unsafe_arena_release_server_audio_spectrum() {
+  // @@protoc_insertion_point(field_release:tc.Message.server_audio_spectrum)
+  
+  ::tc::ServerAudioSpectrum* temp = _impl_.server_audio_spectrum_;
+  _impl_.server_audio_spectrum_ = nullptr;
+  return temp;
+}
+inline ::tc::ServerAudioSpectrum* Message::_internal_mutable_server_audio_spectrum() {
+  
+  if (_impl_.server_audio_spectrum_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::ServerAudioSpectrum>(GetArenaForAllocation());
+    _impl_.server_audio_spectrum_ = p;
+  }
+  return _impl_.server_audio_spectrum_;
+}
+inline ::tc::ServerAudioSpectrum* Message::mutable_server_audio_spectrum() {
+  ::tc::ServerAudioSpectrum* _msg = _internal_mutable_server_audio_spectrum();
+  // @@protoc_insertion_point(field_mutable:tc.Message.server_audio_spectrum)
+  return _msg;
+}
+inline void Message::set_allocated_server_audio_spectrum(::tc::ServerAudioSpectrum* server_audio_spectrum) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.server_audio_spectrum_;
+  }
+  if (server_audio_spectrum) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(server_audio_spectrum);
+    if (message_arena != submessage_arena) {
+      server_audio_spectrum = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, server_audio_spectrum, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.server_audio_spectrum_ = server_audio_spectrum;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.server_audio_spectrum)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
