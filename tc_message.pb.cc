@@ -230,6 +230,9 @@ PROTOBUF_CONSTEXPR ServerAudioSpectrum::ServerAudioSpectrum(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.left_spectrum_)*/{}
   , /*decltype(_impl_.right_spectrum_)*/{}
+  , /*decltype(_impl_.samples_)*/0
+  , /*decltype(_impl_.channels_)*/0
+  , /*decltype(_impl_.bits_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ServerAudioSpectrumDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ServerAudioSpectrumDefaultTypeInternal()
@@ -413,6 +416,9 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.samples_),
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.channels_),
+  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.bits_),
   PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.left_spectrum_),
   PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.right_spectrum_),
   ~0u,  // no _has_bits_
@@ -450,7 +456,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
   { 121, -1, -1, sizeof(::tc::ClientStatistics)},
   { 134, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-  { 142, -1, -1, sizeof(::tc::Message)},
+  { 145, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -512,54 +518,55 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "tions\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016"
   "fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r"
   "\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_widt"
-  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"D\n\023Server"
-  "AudioSpectrum\022\025\n\rleft_spectrum\030\001 \003(\001\022\026\n\016"
-  "right_spectrum\030\002 \003(\001\"\240\004\n\007Message\022\035\n\004type"
-  "\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001"
-  "(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.He"
-  "llo\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030"
-  "\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001("
-  "\0132\016.tc.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016"
-  ".tc.AudioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.K"
-  "eyEvent\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseE"
-  "vent\022,\n\020cursor_info_sync\030\013 \001(\0132\022.tc.Curs"
-  "orInfoSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.G"
-  "amepadState\0221\n\022capture_statistics\030\r \001(\0132"
-  "\025.tc.CaptureStatistics\022/\n\021client_statist"
-  "ics\030\016 \001(\0132\024.tc.ClientStatistics\0226\n\025serve"
-  "r_audio_spectrum\030\017 \001(\0132\027.tc.ServerAudioS"
-  "pectrum*\346\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004k"
-  "Ack\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017"
-  "\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouse"
-  "Event\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepad"
-  "State\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021kClie"
-  "ntStatistics\020\n\022\030\n\024kServerAudioSpectrum\020\013"
-  "*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020"
-  "\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020"
-  "\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kC"
-  "ontrolDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouse"
-  "ButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023"
-  "kRightMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026"
-  "\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMouseEventfHW"
-  "heel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kM"
-  "iddleMouseButtonDown\020\200\020\022\032\n\025kRightMouseBu"
-  "ttonDown\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKN"
-  "OWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033"
-  "GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINP"
-  "UT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAME"
-  "PAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_ST"
-  "ART\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_"
-  "XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT"
-  "_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAM"
-  "EPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEP"
-  "AD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPA"
-  "D_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_X"
-  "INPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD"
-  "_Y\020\200\200\002b\006proto3"
+  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Server"
+  "AudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010channe"
+  "ls\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectrum\030"
+  "\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"\240\004\n\007Messag"
+  "e\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend"
+  "_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001("
+  "\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nhe"
+  "art_beat\030\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_f"
+  "rame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013audio_fram"
+  "e\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030\t \001"
+  "(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030\n \001(\0132\016."
+  "tc.MouseEvent\022,\n\020cursor_info_sync\030\013 \001(\0132"
+  "\022.tc.CursorInfoSync\022\'\n\rgamepad_state\030\014 \001"
+  "(\0132\020.tc.GamepadState\0221\n\022capture_statisti"
+  "cs\030\r \001(\0132\025.tc.CaptureStatistics\022/\n\021clien"
+  "t_statistics\030\016 \001(\0132\024.tc.ClientStatistics"
+  "\0226\n\025server_audio_spectrum\030\017 \001(\0132\027.tc.Ser"
+  "verAudioSpectrum*\346\001\n\013MessageType\022\n\n\006kHel"
+  "lo\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideo"
+  "Frame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022"
+  "\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n"
+  "\rkGamepadState\020\010\022\026\n\022kCaptureStatistics\020\t"
+  "\022\025\n\021kClientStatistics\020\n\022\030\n\024kServerAudioS"
+  "pectrum\020\013*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010"
+  "kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022"
+  "\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDow"
+  "n\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022k"
+  "LeftMouseButtonUp\020\020\022\030\n\024kMiddleMouseButto"
+  "nUp\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouse"
+  "Move\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMous"
+  "eEventfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown"
+  "\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRig"
+  "htMouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016"
+  "\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD"
+  "_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037"
+  "\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XI"
+  "NPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_G"
+  "AMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK"
+  "\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035"
+  "GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_X"
+  "INPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XIN"
+  "PUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINP"
+  "UT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200"
+  "@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPU"
+  "T_GAMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 3414, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 3463, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 13,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -4166,9 +4173,15 @@ ServerAudioSpectrum::ServerAudioSpectrum(const ServerAudioSpectrum& from)
   new (&_impl_) Impl_{
       decltype(_impl_.left_spectrum_){from._impl_.left_spectrum_}
     , decltype(_impl_.right_spectrum_){from._impl_.right_spectrum_}
+    , decltype(_impl_.samples_){}
+    , decltype(_impl_.channels_){}
+    , decltype(_impl_.bits_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.samples_, &from._impl_.samples_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.bits_) -
+    reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.bits_));
   // @@protoc_insertion_point(copy_constructor:tc.ServerAudioSpectrum)
 }
 
@@ -4179,6 +4192,9 @@ inline void ServerAudioSpectrum::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.left_spectrum_){arena}
     , decltype(_impl_.right_spectrum_){arena}
+    , decltype(_impl_.samples_){0}
+    , decltype(_impl_.channels_){0}
+    , decltype(_impl_.bits_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -4210,6 +4226,9 @@ void ServerAudioSpectrum::Clear() {
 
   _impl_.left_spectrum_.Clear();
   _impl_.right_spectrum_.Clear();
+  ::memset(&_impl_.samples_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.bits_) -
+      reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.bits_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4219,23 +4238,47 @@ const char* ServerAudioSpectrum::_InternalParse(const char* ptr, ::_pbi::ParseCo
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated double left_spectrum = 1;
+      // int32 samples = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.samples_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 channels = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.channels_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 bits = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.bits_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated double left_spectrum = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_left_spectrum(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 9) {
+        } else if (static_cast<uint8_t>(tag) == 33) {
           _internal_add_left_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
           ptr += sizeof(double);
         } else
           goto handle_unusual;
         continue;
-      // repeated double right_spectrum = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+      // repeated double right_spectrum = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_right_spectrum(), ptr, ctx);
           CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 17) {
+        } else if (static_cast<uint8_t>(tag) == 41) {
           _internal_add_right_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
           ptr += sizeof(double);
         } else
@@ -4270,14 +4313,32 @@ uint8_t* ServerAudioSpectrum::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated double left_spectrum = 1;
-  if (this->_internal_left_spectrum_size() > 0) {
-    target = stream->WriteFixedPacked(1, _internal_left_spectrum(), target);
+  // int32 samples = 1;
+  if (this->_internal_samples() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_samples(), target);
   }
 
-  // repeated double right_spectrum = 2;
+  // int32 channels = 2;
+  if (this->_internal_channels() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_channels(), target);
+  }
+
+  // int32 bits = 3;
+  if (this->_internal_bits() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_bits(), target);
+  }
+
+  // repeated double left_spectrum = 4;
+  if (this->_internal_left_spectrum_size() > 0) {
+    target = stream->WriteFixedPacked(4, _internal_left_spectrum(), target);
+  }
+
+  // repeated double right_spectrum = 5;
   if (this->_internal_right_spectrum_size() > 0) {
-    target = stream->WriteFixedPacked(2, _internal_right_spectrum(), target);
+    target = stream->WriteFixedPacked(5, _internal_right_spectrum(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4296,7 +4357,7 @@ size_t ServerAudioSpectrum::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated double left_spectrum = 1;
+  // repeated double left_spectrum = 4;
   {
     unsigned int count = static_cast<unsigned int>(this->_internal_left_spectrum_size());
     size_t data_size = 8UL * count;
@@ -4307,7 +4368,7 @@ size_t ServerAudioSpectrum::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated double right_spectrum = 2;
+  // repeated double right_spectrum = 5;
   {
     unsigned int count = static_cast<unsigned int>(this->_internal_right_spectrum_size());
     size_t data_size = 8UL * count;
@@ -4316,6 +4377,21 @@ size_t ServerAudioSpectrum::ByteSizeLong() const {
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     total_size += data_size;
+  }
+
+  // int32 samples = 1;
+  if (this->_internal_samples() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_samples());
+  }
+
+  // int32 channels = 2;
+  if (this->_internal_channels() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_channels());
+  }
+
+  // int32 bits = 3;
+  if (this->_internal_bits() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_bits());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -4338,6 +4414,15 @@ void ServerAudioSpectrum::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
 
   _this->_impl_.left_spectrum_.MergeFrom(from._impl_.left_spectrum_);
   _this->_impl_.right_spectrum_.MergeFrom(from._impl_.right_spectrum_);
+  if (from._internal_samples() != 0) {
+    _this->_internal_set_samples(from._internal_samples());
+  }
+  if (from._internal_channels() != 0) {
+    _this->_internal_set_channels(from._internal_channels());
+  }
+  if (from._internal_bits() != 0) {
+    _this->_internal_set_bits(from._internal_bits());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -4357,6 +4442,12 @@ void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.left_spectrum_.InternalSwap(&other->_impl_.left_spectrum_);
   _impl_.right_spectrum_.InternalSwap(&other->_impl_.right_spectrum_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.bits_)
+      + sizeof(ServerAudioSpectrum::_impl_.bits_)
+      - PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.samples_)>(
+          reinterpret_cast<char*>(&_impl_.samples_),
+          reinterpret_cast<char*>(&other->_impl_.samples_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ServerAudioSpectrum::GetMetadata() const {

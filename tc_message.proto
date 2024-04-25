@@ -219,8 +219,11 @@ message ClientStatistics {
 
 message ServerAudioSpectrum {
   // from inner server
-  repeated double left_spectrum = 1;
-  repeated double right_spectrum = 2;
+  int32 samples = 1;
+  int32 channels = 2;
+  int32 bits = 3;
+  repeated double left_spectrum = 4;
+  repeated double right_spectrum = 5;
 }
 
 message Message {

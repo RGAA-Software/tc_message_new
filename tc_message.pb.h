@@ -2761,10 +2761,13 @@ class ServerAudioSpectrum final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kLeftSpectrumFieldNumber = 1,
-    kRightSpectrumFieldNumber = 2,
+    kLeftSpectrumFieldNumber = 4,
+    kRightSpectrumFieldNumber = 5,
+    kSamplesFieldNumber = 1,
+    kChannelsFieldNumber = 2,
+    kBitsFieldNumber = 3,
   };
-  // repeated double left_spectrum = 1;
+  // repeated double left_spectrum = 4;
   int left_spectrum_size() const;
   private:
   int _internal_left_spectrum_size() const;
@@ -2786,7 +2789,7 @@ class ServerAudioSpectrum final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
       mutable_left_spectrum();
 
-  // repeated double right_spectrum = 2;
+  // repeated double right_spectrum = 5;
   int right_spectrum_size() const;
   private:
   int _internal_right_spectrum_size() const;
@@ -2808,6 +2811,33 @@ class ServerAudioSpectrum final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
       mutable_right_spectrum();
 
+  // int32 samples = 1;
+  void clear_samples();
+  int32_t samples() const;
+  void set_samples(int32_t value);
+  private:
+  int32_t _internal_samples() const;
+  void _internal_set_samples(int32_t value);
+  public:
+
+  // int32 channels = 2;
+  void clear_channels();
+  int32_t channels() const;
+  void set_channels(int32_t value);
+  private:
+  int32_t _internal_channels() const;
+  void _internal_set_channels(int32_t value);
+  public:
+
+  // int32 bits = 3;
+  void clear_bits();
+  int32_t bits() const;
+  void set_bits(int32_t value);
+  private:
+  int32_t _internal_bits() const;
+  void _internal_set_bits(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.ServerAudioSpectrum)
  private:
   class _Internal;
@@ -2818,6 +2848,9 @@ class ServerAudioSpectrum final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > left_spectrum_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > right_spectrum_;
+    int32_t samples_;
+    int32_t channels_;
+    int32_t bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4992,7 +5025,67 @@ inline void ClientStatistics::set_render_height(int32_t value) {
 
 // ServerAudioSpectrum
 
-// repeated double left_spectrum = 1;
+// int32 samples = 1;
+inline void ServerAudioSpectrum::clear_samples() {
+  _impl_.samples_ = 0;
+}
+inline int32_t ServerAudioSpectrum::_internal_samples() const {
+  return _impl_.samples_;
+}
+inline int32_t ServerAudioSpectrum::samples() const {
+  // @@protoc_insertion_point(field_get:tc.ServerAudioSpectrum.samples)
+  return _internal_samples();
+}
+inline void ServerAudioSpectrum::_internal_set_samples(int32_t value) {
+  
+  _impl_.samples_ = value;
+}
+inline void ServerAudioSpectrum::set_samples(int32_t value) {
+  _internal_set_samples(value);
+  // @@protoc_insertion_point(field_set:tc.ServerAudioSpectrum.samples)
+}
+
+// int32 channels = 2;
+inline void ServerAudioSpectrum::clear_channels() {
+  _impl_.channels_ = 0;
+}
+inline int32_t ServerAudioSpectrum::_internal_channels() const {
+  return _impl_.channels_;
+}
+inline int32_t ServerAudioSpectrum::channels() const {
+  // @@protoc_insertion_point(field_get:tc.ServerAudioSpectrum.channels)
+  return _internal_channels();
+}
+inline void ServerAudioSpectrum::_internal_set_channels(int32_t value) {
+  
+  _impl_.channels_ = value;
+}
+inline void ServerAudioSpectrum::set_channels(int32_t value) {
+  _internal_set_channels(value);
+  // @@protoc_insertion_point(field_set:tc.ServerAudioSpectrum.channels)
+}
+
+// int32 bits = 3;
+inline void ServerAudioSpectrum::clear_bits() {
+  _impl_.bits_ = 0;
+}
+inline int32_t ServerAudioSpectrum::_internal_bits() const {
+  return _impl_.bits_;
+}
+inline int32_t ServerAudioSpectrum::bits() const {
+  // @@protoc_insertion_point(field_get:tc.ServerAudioSpectrum.bits)
+  return _internal_bits();
+}
+inline void ServerAudioSpectrum::_internal_set_bits(int32_t value) {
+  
+  _impl_.bits_ = value;
+}
+inline void ServerAudioSpectrum::set_bits(int32_t value) {
+  _internal_set_bits(value);
+  // @@protoc_insertion_point(field_set:tc.ServerAudioSpectrum.bits)
+}
+
+// repeated double left_spectrum = 4;
 inline int ServerAudioSpectrum::_internal_left_spectrum_size() const {
   return _impl_.left_spectrum_.size();
 }
@@ -5039,7 +5132,7 @@ ServerAudioSpectrum::mutable_left_spectrum() {
   return _internal_mutable_left_spectrum();
 }
 
-// repeated double right_spectrum = 2;
+// repeated double right_spectrum = 5;
 inline int ServerAudioSpectrum::_internal_right_spectrum_size() const {
   return _impl_.right_spectrum_.size();
 }
