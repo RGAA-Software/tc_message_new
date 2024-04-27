@@ -20,6 +20,8 @@ enum MessageType {
   kClientStatistics = 10;
   // capture server -> host panel
   kServerAudioSpectrum = 11;
+  // host panel -> client
+  kOnlineGames = 12;
 }
 
 enum VideoType {
@@ -226,6 +228,10 @@ message ServerAudioSpectrum {
   repeated double right_spectrum = 5;
 }
 
+message OnlineGames {
+
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -242,4 +248,5 @@ message Message {
   CaptureStatistics capture_statistics = 13;
   ClientStatistics client_statistics = 14;
   ServerAudioSpectrum server_audio_spectrum = 15;
+  OnlineGames online_games = 16;
 }
