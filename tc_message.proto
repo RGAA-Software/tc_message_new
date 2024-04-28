@@ -228,8 +228,9 @@ message ServerAudioSpectrum {
   repeated double right_spectrum = 5;
 }
 
-message OnlineGames {
-
+message OnlineGame {
+  int32 game_id = 1;
+  string game_exes = 2;
 }
 
 message Message {
@@ -248,5 +249,5 @@ message Message {
   CaptureStatistics capture_statistics = 13;
   ClientStatistics client_statistics = 14;
   ServerAudioSpectrum server_audio_spectrum = 15;
-  OnlineGames online_games = 16;
+  repeated OnlineGame online_games = 16;
 }

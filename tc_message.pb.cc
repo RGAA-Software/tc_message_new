@@ -243,9 +243,24 @@ struct ServerAudioSpectrumDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
+PROTOBUF_CONSTEXPR OnlineGame::OnlineGame(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.game_exes_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.game_id_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct OnlineGameDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR OnlineGameDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~OnlineGameDefaultTypeInternal() {}
+  union {
+    OnlineGame _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.online_games_)*/{}
+  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.hello_)*/nullptr
   , /*decltype(_impl_.ack_)*/nullptr
   , /*decltype(_impl_.heart_beat_)*/nullptr
@@ -271,7 +286,7 @@ struct MessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[13];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[14];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
@@ -422,6 +437,14 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.left_spectrum_),
   PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.right_spectrum_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_id_),
+  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_exes_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -442,6 +465,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.capture_statistics_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.client_statistics_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.online_games_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -456,7 +480,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
   { 121, -1, -1, sizeof(::tc::ClientStatistics)},
   { 134, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-  { 145, -1, -1, sizeof(::tc::Message)},
+  { 145, -1, -1, sizeof(::tc::OnlineGame)},
+  { 153, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -472,6 +497,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_CaptureStatistics_default_instance_._instance,
   &::tc::_ClientStatistics_default_instance_._instance,
   &::tc::_ServerAudioSpectrum_default_instance_._instance,
+  &::tc::_OnlineGame_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -521,54 +547,57 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Server"
   "AudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010channe"
   "ls\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectrum\030"
-  "\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"\240\004\n\007Messag"
-  "e\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend"
-  "_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001("
-  "\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nhe"
-  "art_beat\030\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_f"
-  "rame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013audio_fram"
-  "e\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030\t \001"
-  "(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030\n \001(\0132\016."
-  "tc.MouseEvent\022,\n\020cursor_info_sync\030\013 \001(\0132"
-  "\022.tc.CursorInfoSync\022\'\n\rgamepad_state\030\014 \001"
-  "(\0132\020.tc.GamepadState\0221\n\022capture_statisti"
-  "cs\030\r \001(\0132\025.tc.CaptureStatistics\022/\n\021clien"
-  "t_statistics\030\016 \001(\0132\024.tc.ClientStatistics"
-  "\0226\n\025server_audio_spectrum\030\017 \001(\0132\027.tc.Ser"
-  "verAudioSpectrum*\346\001\n\013MessageType\022\n\n\006kHel"
-  "lo\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideo"
-  "Frame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022"
-  "\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n"
-  "\rkGamepadState\020\010\022\026\n\022kCaptureStatistics\020\t"
-  "\022\025\n\021kClientStatistics\020\n\022\030\n\024kServerAudioS"
-  "pectrum\020\013*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010"
-  "kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButtonFlag\022"
-  "\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDow"
-  "n\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022k"
-  "LeftMouseButtonUp\020\020\022\030\n\024kMiddleMouseButto"
-  "nUp\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouse"
-  "Move\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n\022kMous"
-  "eEventfHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown"
-  "\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRig"
-  "htMouseButtonDown\020\200 *\330\003\n\rGamepadButton\022\016"
-  "\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD"
-  "_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037"
-  "\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XI"
-  "NPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_G"
-  "AMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK"
-  "\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035"
-  "GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_X"
-  "INPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XIN"
-  "PUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINP"
-  "UT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200"
-  "@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPU"
-  "T_GAMEPAD_Y\020\200\200\002b\006proto3"
+  "\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnlineG"
+  "ame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001(\t\""
+  "\306\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.MessageTy"
+  "pe\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005"
+  "hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc"
+  ".Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc.HeartBeat\022"
+  "#\n\013video_frame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013"
+  "audio_frame\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey"
+  "_event\030\t \001(\0132\014.tc.KeyEvent\022#\n\013mouse_even"
+  "t\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cursor_info_s"
+  "ync\030\013 \001(\0132\022.tc.CursorInfoSync\022\'\n\rgamepad"
+  "_state\030\014 \001(\0132\020.tc.GamepadState\0221\n\022captur"
+  "e_statistics\030\r \001(\0132\025.tc.CaptureStatistic"
+  "s\022/\n\021client_statistics\030\016 \001(\0132\024.tc.Client"
+  "Statistics\0226\n\025server_audio_spectrum\030\017 \001("
+  "\0132\027.tc.ServerAudioSpectrum\022$\n\014online_gam"
+  "es\030\020 \003(\0132\016.tc.OnlineGame*\370\001\n\013MessageType"
+  "\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017"
+  "\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKey"
+  "Event\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoS"
+  "ync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureStat"
+  "istics\020\t\022\025\n\021kClientStatistics\020\n\022\030\n\024kServ"
+  "erAudioSpectrum\020\013\022\020\n\014kOnlineGames\020\014*4\n\tV"
+  "ideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007"
+  "kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013"
+  "kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kContro"
+  "lDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButto"
+  "nUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRigh"
+  "tMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMo"
+  "useEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020"
+  "\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddle"
+  "MouseButtonDown\020\200\020\022\032\n\025kRightMouseButtonD"
+  "own\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000"
+  "\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XI"
+  "NPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GA"
+  "MEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_D"
+  "PAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020"
+  "\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPU"
+  "T_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAME"
+  "PAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_"
+  "LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RI"
+  "GHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200"
+  " \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT"
+  "_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200"
+  "\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 3463, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 3569, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 13,
+    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 14,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
     file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
@@ -621,6 +650,7 @@ bool MessageType_IsValid(int value) {
     case 9:
     case 10:
     case 11:
+    case 12:
       return true;
     default:
       return false;
@@ -4458,6 +4488,236 @@ void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* other) {
 
 // ===================================================================
 
+class OnlineGame::_Internal {
+ public:
+};
+
+OnlineGame::OnlineGame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:tc.OnlineGame)
+}
+OnlineGame::OnlineGame(const OnlineGame& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  OnlineGame* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.game_exes_){}
+    , decltype(_impl_.game_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.game_exes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.game_exes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_game_exes().empty()) {
+    _this->_impl_.game_exes_.Set(from._internal_game_exes(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.game_id_ = from._impl_.game_id_;
+  // @@protoc_insertion_point(copy_constructor:tc.OnlineGame)
+}
+
+inline void OnlineGame::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.game_exes_){}
+    , decltype(_impl_.game_id_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.game_exes_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.game_exes_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+OnlineGame::~OnlineGame() {
+  // @@protoc_insertion_point(destructor:tc.OnlineGame)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void OnlineGame::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.game_exes_.Destroy();
+}
+
+void OnlineGame::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void OnlineGame::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.OnlineGame)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.game_exes_.ClearToEmpty();
+  _impl_.game_id_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* OnlineGame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 game_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.game_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string game_exes = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_game_exes();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "tc.OnlineGame.game_exes"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* OnlineGame::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.OnlineGame)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 game_id = 1;
+  if (this->_internal_game_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_game_id(), target);
+  }
+
+  // string game_exes = 2;
+  if (!this->_internal_game_exes().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_game_exes().data(), static_cast<int>(this->_internal_game_exes().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tc.OnlineGame.game_exes");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_game_exes(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.OnlineGame)
+  return target;
+}
+
+size_t OnlineGame::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.OnlineGame)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string game_exes = 2;
+  if (!this->_internal_game_exes().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_game_exes());
+  }
+
+  // int32 game_id = 1;
+  if (this->_internal_game_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_game_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData OnlineGame::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    OnlineGame::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*OnlineGame::GetClassData() const { return &_class_data_; }
+
+
+void OnlineGame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<OnlineGame*>(&to_msg);
+  auto& from = static_cast<const OnlineGame&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.OnlineGame)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_game_exes().empty()) {
+    _this->_internal_set_game_exes(from._internal_game_exes());
+  }
+  if (from._internal_game_id() != 0) {
+    _this->_internal_set_game_id(from._internal_game_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void OnlineGame::CopyFrom(const OnlineGame& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.OnlineGame)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OnlineGame::IsInitialized() const {
+  return true;
+}
+
+void OnlineGame::InternalSwap(OnlineGame* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.game_exes_, lhs_arena,
+      &other->_impl_.game_exes_, rhs_arena
+  );
+  swap(_impl_.game_id_, other->_impl_.game_id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata OnlineGame::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[12]);
+}
+
+// ===================================================================
+
 class Message::_Internal {
  public:
   static const ::tc::Hello& hello(const Message* msg);
@@ -4532,7 +4792,8 @@ Message::Message(const Message& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   Message* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.extra_){}
+      decltype(_impl_.online_games_){from._impl_.online_games_}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.hello_){nullptr}
     , decltype(_impl_.ack_){nullptr}
     , decltype(_impl_.heart_beat_){nullptr}
@@ -4605,7 +4866,8 @@ inline void Message::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.extra_){}
+      decltype(_impl_.online_games_){arena}
+    , decltype(_impl_.extra_){}
     , decltype(_impl_.hello_){nullptr}
     , decltype(_impl_.ack_){nullptr}
     , decltype(_impl_.heart_beat_){nullptr}
@@ -4639,6 +4901,7 @@ Message::~Message() {
 
 inline void Message::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.online_games_.~RepeatedPtrField();
   _impl_.extra_.Destroy();
   if (this != internal_default_instance()) delete _impl_.hello_;
   if (this != internal_default_instance()) delete _impl_.ack_;
@@ -4664,6 +4927,7 @@ void Message::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.online_games_.Clear();
   _impl_.extra_.ClearToEmpty();
   if (GetArenaForAllocation() == nullptr && _impl_.hello_ != nullptr) {
     delete _impl_.hello_;
@@ -4848,6 +5112,19 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
+      // repeated .tc.OnlineGame online_games = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 130)) {
+          ptr -= 2;
+          do {
+            ptr += 2;
+            ptr = ctx->ParseMessage(_internal_add_online_games(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<130>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -4984,6 +5261,14 @@ uint8_t* Message::_InternalSerialize(
         _Internal::server_audio_spectrum(this).GetCachedSize(), target, stream);
   }
 
+  // repeated .tc.OnlineGame online_games = 16;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_online_games_size()); i < n; i++) {
+    const auto& repfield = this->_internal_online_games(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(16, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -4999,6 +5284,13 @@ size_t Message::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .tc.OnlineGame online_games = 16;
+  total_size += 2UL * this->_internal_online_games_size();
+  for (const auto& msg : this->_impl_.online_games_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
 
   // string extra = 3;
   if (!this->_internal_extra().empty()) {
@@ -5120,6 +5412,7 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_impl_.online_games_.MergeFrom(from._impl_.online_games_);
   if (!from._internal_extra().empty()) {
     _this->_internal_set_extra(from._internal_extra());
   }
@@ -5196,6 +5489,7 @@ void Message::InternalSwap(Message* other) {
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.online_games_.InternalSwap(&other->_impl_.online_games_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.extra_, lhs_arena,
       &other->_impl_.extra_, rhs_arena
@@ -5211,7 +5505,7 @@ void Message::InternalSwap(Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[12]);
+      file_level_metadata_tc_5fmessage_2eproto[13]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -5264,6 +5558,10 @@ Arena::CreateMaybeMessage< ::tc::ClientStatistics >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::tc::ServerAudioSpectrum*
 Arena::CreateMaybeMessage< ::tc::ServerAudioSpectrum >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::ServerAudioSpectrum >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tc::OnlineGame*
+Arena::CreateMaybeMessage< ::tc::OnlineGame >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tc::OnlineGame >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {

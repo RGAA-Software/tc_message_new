@@ -80,6 +80,9 @@ extern MessageDefaultTypeInternal _Message_default_instance_;
 class MouseEvent;
 struct MouseEventDefaultTypeInternal;
 extern MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
+class OnlineGame;
+struct OnlineGameDefaultTypeInternal;
+extern OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
 class ServerAudioSpectrum;
 struct ServerAudioSpectrumDefaultTypeInternal;
 extern ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
@@ -99,6 +102,7 @@ template<> ::tc::Hello* Arena::CreateMaybeMessage<::tc::Hello>(Arena*);
 template<> ::tc::KeyEvent* Arena::CreateMaybeMessage<::tc::KeyEvent>(Arena*);
 template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
 template<> ::tc::MouseEvent* Arena::CreateMaybeMessage<::tc::MouseEvent>(Arena*);
+template<> ::tc::OnlineGame* Arena::CreateMaybeMessage<::tc::OnlineGame>(Arena*);
 template<> ::tc::ServerAudioSpectrum* Arena::CreateMaybeMessage<::tc::ServerAudioSpectrum>(Arena*);
 template<> ::tc::VideoFrame* Arena::CreateMaybeMessage<::tc::VideoFrame>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -143,12 +147,13 @@ enum MessageType : int {
   kCaptureStatistics = 9,
   kClientStatistics = 10,
   kServerAudioSpectrum = 11,
+  kOnlineGames = 12,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kServerAudioSpectrum;
+constexpr MessageType MessageType_MAX = kOnlineGames;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -2858,6 +2863,170 @@ class ServerAudioSpectrum final :
 };
 // -------------------------------------------------------------------
 
+class OnlineGame final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.OnlineGame) */ {
+ public:
+  inline OnlineGame() : OnlineGame(nullptr) {}
+  ~OnlineGame() override;
+  explicit PROTOBUF_CONSTEXPR OnlineGame(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  OnlineGame(const OnlineGame& from);
+  OnlineGame(OnlineGame&& from) noexcept
+    : OnlineGame() {
+    *this = ::std::move(from);
+  }
+
+  inline OnlineGame& operator=(const OnlineGame& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OnlineGame& operator=(OnlineGame&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OnlineGame& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OnlineGame* internal_default_instance() {
+    return reinterpret_cast<const OnlineGame*>(
+               &_OnlineGame_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(OnlineGame& a, OnlineGame& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OnlineGame* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OnlineGame* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  OnlineGame* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<OnlineGame>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const OnlineGame& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const OnlineGame& from) {
+    OnlineGame::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OnlineGame* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.OnlineGame";
+  }
+  protected:
+  explicit OnlineGame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGameExesFieldNumber = 2,
+    kGameIdFieldNumber = 1,
+  };
+  // string game_exes = 2;
+  void clear_game_exes();
+  const std::string& game_exes() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_game_exes(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_game_exes();
+  PROTOBUF_NODISCARD std::string* release_game_exes();
+  void set_allocated_game_exes(std::string* game_exes);
+  private:
+  const std::string& _internal_game_exes() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_game_exes(const std::string& value);
+  std::string* _internal_mutable_game_exes();
+  public:
+
+  // int32 game_id = 1;
+  void clear_game_id();
+  int32_t game_id() const;
+  void set_game_id(int32_t value);
+  private:
+  int32_t _internal_game_id() const;
+  void _internal_set_game_id(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.OnlineGame)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr game_exes_;
+    int32_t game_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -2906,7 +3075,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -2979,6 +3148,7 @@ class Message final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kOnlineGamesFieldNumber = 16,
     kExtraFieldNumber = 3,
     kHelloFieldNumber = 4,
     kAckFieldNumber = 5,
@@ -2995,6 +3165,24 @@ class Message final :
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
+  // repeated .tc.OnlineGame online_games = 16;
+  int online_games_size() const;
+  private:
+  int _internal_online_games_size() const;
+  public:
+  void clear_online_games();
+  ::tc::OnlineGame* mutable_online_games(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tc::OnlineGame >*
+      mutable_online_games();
+  private:
+  const ::tc::OnlineGame& _internal_online_games(int index) const;
+  ::tc::OnlineGame* _internal_add_online_games();
+  public:
+  const ::tc::OnlineGame& online_games(int index) const;
+  ::tc::OnlineGame* add_online_games();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tc::OnlineGame >&
+      online_games() const;
+
   // string extra = 3;
   void clear_extra();
   const std::string& extra() const;
@@ -3251,6 +3439,7 @@ class Message final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tc::OnlineGame > online_games_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr extra_;
     ::tc::Hello* hello_;
     ::tc::Ack* ack_;
@@ -5181,6 +5370,80 @@ ServerAudioSpectrum::mutable_right_spectrum() {
 
 // -------------------------------------------------------------------
 
+// OnlineGame
+
+// int32 game_id = 1;
+inline void OnlineGame::clear_game_id() {
+  _impl_.game_id_ = 0;
+}
+inline int32_t OnlineGame::_internal_game_id() const {
+  return _impl_.game_id_;
+}
+inline int32_t OnlineGame::game_id() const {
+  // @@protoc_insertion_point(field_get:tc.OnlineGame.game_id)
+  return _internal_game_id();
+}
+inline void OnlineGame::_internal_set_game_id(int32_t value) {
+  
+  _impl_.game_id_ = value;
+}
+inline void OnlineGame::set_game_id(int32_t value) {
+  _internal_set_game_id(value);
+  // @@protoc_insertion_point(field_set:tc.OnlineGame.game_id)
+}
+
+// string game_exes = 2;
+inline void OnlineGame::clear_game_exes() {
+  _impl_.game_exes_.ClearToEmpty();
+}
+inline const std::string& OnlineGame::game_exes() const {
+  // @@protoc_insertion_point(field_get:tc.OnlineGame.game_exes)
+  return _internal_game_exes();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void OnlineGame::set_game_exes(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.game_exes_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.OnlineGame.game_exes)
+}
+inline std::string* OnlineGame::mutable_game_exes() {
+  std::string* _s = _internal_mutable_game_exes();
+  // @@protoc_insertion_point(field_mutable:tc.OnlineGame.game_exes)
+  return _s;
+}
+inline const std::string& OnlineGame::_internal_game_exes() const {
+  return _impl_.game_exes_.Get();
+}
+inline void OnlineGame::_internal_set_game_exes(const std::string& value) {
+  
+  _impl_.game_exes_.Set(value, GetArenaForAllocation());
+}
+inline std::string* OnlineGame::_internal_mutable_game_exes() {
+  
+  return _impl_.game_exes_.Mutable(GetArenaForAllocation());
+}
+inline std::string* OnlineGame::release_game_exes() {
+  // @@protoc_insertion_point(field_release:tc.OnlineGame.game_exes)
+  return _impl_.game_exes_.Release();
+}
+inline void OnlineGame::set_allocated_game_exes(std::string* game_exes) {
+  if (game_exes != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.game_exes_.SetAllocated(game_exes, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.game_exes_.IsDefault()) {
+    _impl_.game_exes_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.OnlineGame.game_exes)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -6353,9 +6616,51 @@ inline void Message::set_allocated_server_audio_spectrum(::tc::ServerAudioSpectr
   // @@protoc_insertion_point(field_set_allocated:tc.Message.server_audio_spectrum)
 }
 
+// repeated .tc.OnlineGame online_games = 16;
+inline int Message::_internal_online_games_size() const {
+  return _impl_.online_games_.size();
+}
+inline int Message::online_games_size() const {
+  return _internal_online_games_size();
+}
+inline void Message::clear_online_games() {
+  _impl_.online_games_.Clear();
+}
+inline ::tc::OnlineGame* Message::mutable_online_games(int index) {
+  // @@protoc_insertion_point(field_mutable:tc.Message.online_games)
+  return _impl_.online_games_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tc::OnlineGame >*
+Message::mutable_online_games() {
+  // @@protoc_insertion_point(field_mutable_list:tc.Message.online_games)
+  return &_impl_.online_games_;
+}
+inline const ::tc::OnlineGame& Message::_internal_online_games(int index) const {
+  return _impl_.online_games_.Get(index);
+}
+inline const ::tc::OnlineGame& Message::online_games(int index) const {
+  // @@protoc_insertion_point(field_get:tc.Message.online_games)
+  return _internal_online_games(index);
+}
+inline ::tc::OnlineGame* Message::_internal_add_online_games() {
+  return _impl_.online_games_.Add();
+}
+inline ::tc::OnlineGame* Message::add_online_games() {
+  ::tc::OnlineGame* _add = _internal_add_online_games();
+  // @@protoc_insertion_point(field_add:tc.Message.online_games)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tc::OnlineGame >&
+Message::online_games() const {
+  // @@protoc_insertion_point(field_list:tc.Message.online_games)
+  return _impl_.online_games_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
