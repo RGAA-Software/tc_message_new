@@ -36,7 +36,9 @@ struct AckDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AckDefaultTypeInternal _Ack_default_instance_;
 PROTOBUF_CONSTEXPR Hello::Hello(
-    ::_pbi::ConstantInitialized) {}
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.only_audio_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
 struct HelloDefaultTypeInternal {
   PROTOBUF_CONSTEXPR HelloDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -305,6 +307,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.only_audio_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::HeartBeat, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -470,18 +473,18 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
   { 8, -1, -1, sizeof(::tc::Hello)},
-  { 14, -1, -1, sizeof(::tc::HeartBeat)},
-  { 20, -1, -1, sizeof(::tc::VideoFrame)},
-  { 33, -1, -1, sizeof(::tc::AudioFrame)},
-  { 45, -1, -1, sizeof(::tc::KeyEvent)},
-  { 57, -1, -1, sizeof(::tc::MouseEvent)},
-  { 73, -1, -1, sizeof(::tc::CursorInfoSync)},
-  { 87, -1, -1, sizeof(::tc::GamepadState)},
-  { 100, -1, -1, sizeof(::tc::CaptureStatistics)},
-  { 121, -1, -1, sizeof(::tc::ClientStatistics)},
-  { 134, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-  { 145, -1, -1, sizeof(::tc::OnlineGame)},
-  { 153, -1, -1, sizeof(::tc::Message)},
+  { 15, -1, -1, sizeof(::tc::HeartBeat)},
+  { 21, -1, -1, sizeof(::tc::VideoFrame)},
+  { 34, -1, -1, sizeof(::tc::AudioFrame)},
+  { 46, -1, -1, sizeof(::tc::KeyEvent)},
+  { 58, -1, -1, sizeof(::tc::MouseEvent)},
+  { 74, -1, -1, sizeof(::tc::CursorInfoSync)},
+  { 88, -1, -1, sizeof(::tc::GamepadState)},
+  { 101, -1, -1, sizeof(::tc::CaptureStatistics)},
+  { 122, -1, -1, sizeof(::tc::ClientStatistics)},
+  { 135, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
+  { 146, -1, -1, sizeof(::tc::OnlineGame)},
+  { 154, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -504,98 +507,98 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\020tc_message.proto\022\002tc\"7\n\003Ack\022\035\n\004type\030\001 "
   "\001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\""
-  "\007\n\005Hello\"\013\n\tHeartBeat\"\223\001\n\nVideoFrame\022\033\n\004"
-  "type\030\001 \001(\0162\r.tc.VideoType\022\014\n\004data\030\002 \001(\014\022"
-  "\023\n\013frame_index\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013fra"
-  "me_width\030\005 \001(\005\022\024\n\014frame_height\030\006 \001(\005\022\r\n\005"
-  "extra\030\007 \001(\t\"n\n\nAudioFrame\022\017\n\007samples\030\001 \001"
-  "(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\022\n\nfr"
-  "ame_size\030\004 \001(\005\022\014\n\004data\030\005 \001(\014\022\r\n\005extra\030\006 "
-  "\001(\t\"\372\001\n\010KeyEvent\022\020\n\010key_code\030\001 \001(\r\022\014\n\004do"
-  "wn\030\002 \001(\010\022\027\n\017num_lock_status\030\003 \001(\005\022\030\n\020cap"
-  "s_lock_status\030\004 \001(\005\0225\n\014status_check\030\005 \001("
-  "\0162\037.tc.KeyEvent.LockKeyStatusCheck\022\021\n\tti"
-  "mestamp\030\006 \001(\003\"Q\n\022LockKeyStatusCheck\022\024\n\020k"
-  "DontCareLockKey\020\000\022\021\n\rkCheckNumLock\020\001\022\022\n\016"
-  "kCheckCapsLock\020\002\"\273\001\n\nMouseEvent\022\025\n\rmonit"
-  "or_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001(\002\022\017\n\007y_rat"
-  "io\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004data\030\005 \001(\005\022\021"
-  "\n\ttimestamp\030\006 \001(\003\022\017\n\007delta_x\030\007 \001(\005\022\017\n\007de"
-  "lta_y\030\010 \001(\005\022\017\n\007pressed\030\t \001(\010\022\020\n\010released"
-  "\030\n \001(\010\"\214\001\n\016CursorInfoSync\022\017\n\007visible\030\001 \001"
-  "(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\021\n\thotspot_x\030\004 "
-  "\001(\r\022\021\n\thotspot_y\030\005 \001(\r\022\r\n\005width\030\006 \001(\r\022\016\n"
-  "\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\"\224\001\n\014Gamepa"
-  "dState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left_trigger\030"
-  "\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n\010thumb_lx"
-  "\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030\006 \001"
-  "(\005\022\020\n\010thumb_ry\030\007 \001(\005\"\245\003\n\021CaptureStatisti"
-  "cs\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encode_d"
-  "urations\030\002 \003(\r\022\030\n\020audio_frame_gaps\030\003 \003(\r"
-  "\022\030\n\020decode_durations\030\004 \003(\r\022\036\n\026client_vid"
-  "eo_recv_gaps\030\005 \003(\r\022\035\n\025client_fps_video_r"
-  "ecv\030\006 \001(\r\022\031\n\021client_fps_render\030\007 \001(\r\022\036\n\026"
-  "client_recv_media_data\030\010 \001(\003\022\030\n\020fps_vide"
-  "o_encode\030\t \001(\005\022\030\n\020app_running_time\030\n \001(\005"
-  "\022\036\n\026server_send_media_data\030\013 \001(\003\022\024\n\014rend"
-  "er_width\030\014 \001(\005\022\025\n\rrender_height\030\r \001(\005\022\025\n"
-  "\rcapture_width\030\016 \001(\005\022\026\n\016capture_height\030\017"
-  " \001(\005\"\267\001\n\020ClientStatistics\022\030\n\020decode_dura"
-  "tions\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016"
-  "fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r"
-  "\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_widt"
-  "h\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Server"
-  "AudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010channe"
-  "ls\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectrum\030"
-  "\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnlineG"
-  "ame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001(\t\""
-  "\306\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.MessageTy"
-  "pe\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005"
-  "hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc"
-  ".Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc.HeartBeat\022"
-  "#\n\013video_frame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013"
-  "audio_frame\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey"
-  "_event\030\t \001(\0132\014.tc.KeyEvent\022#\n\013mouse_even"
-  "t\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cursor_info_s"
-  "ync\030\013 \001(\0132\022.tc.CursorInfoSync\022\'\n\rgamepad"
-  "_state\030\014 \001(\0132\020.tc.GamepadState\0221\n\022captur"
-  "e_statistics\030\r \001(\0132\025.tc.CaptureStatistic"
-  "s\022/\n\021client_statistics\030\016 \001(\0132\024.tc.Client"
-  "Statistics\0226\n\025server_audio_spectrum\030\017 \001("
-  "\0132\027.tc.ServerAudioSpectrum\022$\n\014online_gam"
-  "es\030\020 \003(\0132\016.tc.OnlineGame*\370\001\n\013MessageType"
-  "\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017"
-  "\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKey"
-  "Event\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoS"
-  "ync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureStat"
-  "istics\020\t\022\025\n\021kClientStatistics\020\n\022\030\n\024kServ"
-  "erAudioSpectrum\020\013\022\020\n\014kOnlineGames\020\014*4\n\tV"
-  "ideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007"
-  "kNetVp9\020\002*\272\002\n\013EButtonFlag\022\t\n\005kNone\020\000\022\017\n\013"
-  "kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kContro"
-  "lDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButto"
-  "nUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRigh"
-  "tMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\026\n\021kMo"
-  "useEventfWheel\020\200\002\022\027\n\022kMouseEventfHWheel\020"
-  "\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddle"
-  "MouseButtonDown\020\200\020\022\032\n\025kRightMouseButtonD"
-  "own\020\200 *\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000"
-  "\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XI"
-  "NPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GA"
-  "MEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_D"
-  "PAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020"
-  "\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPU"
-  "T_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAME"
-  "PAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_"
-  "LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RI"
-  "GHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200"
-  " \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT"
-  "_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200"
-  "\002b\006proto3"
+  "\033\n\005Hello\022\022\n\nonly_audio\030\001 \001(\010\"\013\n\tHeartBea"
+  "t\"\223\001\n\nVideoFrame\022\033\n\004type\030\001 \001(\0162\r.tc.Vide"
+  "oType\022\014\n\004data\030\002 \001(\014\022\023\n\013frame_index\030\003 \001(\004"
+  "\022\013\n\003key\030\004 \001(\010\022\023\n\013frame_width\030\005 \001(\005\022\024\n\014fr"
+  "ame_height\030\006 \001(\005\022\r\n\005extra\030\007 \001(\t\"n\n\nAudio"
+  "Frame\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005"
+  "\022\014\n\004bits\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022\014\n\004da"
+  "ta\030\005 \001(\014\022\r\n\005extra\030\006 \001(\t\"\372\001\n\010KeyEvent\022\020\n\010"
+  "key_code\030\001 \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock"
+  "_status\030\003 \001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\022"
+  "5\n\014status_check\030\005 \001(\0162\037.tc.KeyEvent.Lock"
+  "KeyStatusCheck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022Loc"
+  "kKeyStatusCheck\022\024\n\020kDontCareLockKey\020\000\022\021\n"
+  "\rkCheckNumLock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n"
+  "\nMouseEvent\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_"
+  "ratio\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004"
+  " \001(\005\022\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n"
+  "\007delta_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007press"
+  "ed\030\t \001(\010\022\020\n\010released\030\n \001(\010\"\214\001\n\016CursorInf"
+  "oSync\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003"
+  " \001(\r\022\021\n\thotspot_x\030\004 \001(\r\022\021\n\thotspot_y\030\005 \001"
+  "(\r\022\r\n\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bit"
+  "map\030\010 \001(\014\"\224\001\n\014GamepadState\022\017\n\007buttons\030\001 "
+  "\001(\r\022\024\n\014left_trigger\030\002 \001(\r\022\025\n\rright_trigg"
+  "er\030\003 \001(\r\022\020\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005"
+  " \001(\005\022\020\n\010thumb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005"
+  "\"\245\003\n\021CaptureStatistics\022\030\n\020video_frame_ga"
+  "ps\030\001 \003(\r\022\030\n\020encode_durations\030\002 \003(\r\022\030\n\020au"
+  "dio_frame_gaps\030\003 \003(\r\022\030\n\020decode_durations"
+  "\030\004 \003(\r\022\036\n\026client_video_recv_gaps\030\005 \003(\r\022\035"
+  "\n\025client_fps_video_recv\030\006 \001(\r\022\031\n\021client_"
+  "fps_render\030\007 \001(\r\022\036\n\026client_recv_media_da"
+  "ta\030\010 \001(\003\022\030\n\020fps_video_encode\030\t \001(\005\022\030\n\020ap"
+  "p_running_time\030\n \001(\005\022\036\n\026server_send_medi"
+  "a_data\030\013 \001(\003\022\024\n\014render_width\030\014 \001(\005\022\025\n\rre"
+  "nder_height\030\r \001(\005\022\025\n\rcapture_width\030\016 \001(\005"
+  "\022\026\n\016capture_height\030\017 \001(\005\"\267\001\n\020ClientStati"
+  "stics\022\030\n\020decode_durations\030\001 \003(\r\022\027\n\017video"
+  "_recv_gaps\030\002 \003(\r\022\026\n\016fps_video_recv\030\003 \001(\r"
+  "\022\022\n\nfps_render\030\004 \001(\r\022\027\n\017recv_media_data\030"
+  "\005 \001(\003\022\024\n\014render_width\030\006 \001(\005\022\025\n\rrender_he"
+  "ight\030\007 \001(\005\"u\n\023ServerAudioSpectrum\022\017\n\007sam"
+  "ples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004bits\030\003 \001"
+  "(\005\022\025\n\rleft_spectrum\030\004 \003(\001\022\026\n\016right_spect"
+  "rum\030\005 \003(\001\"0\n\nOnlineGame\022\017\n\007game_id\030\001 \001(\005"
+  "\022\021\n\tgame_exes\030\002 \001(\t\"\306\004\n\007Message\022\035\n\004type\030"
+  "\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001("
+  "\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hel"
+  "lo\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006"
+  " \001(\0132\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001(\013"
+  "2\016.tc.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016."
+  "tc.AudioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.Ke"
+  "yEvent\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEv"
+  "ent\022,\n\020cursor_info_sync\030\013 \001(\0132\022.tc.Curso"
+  "rInfoSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.Ga"
+  "mepadState\0221\n\022capture_statistics\030\r \001(\0132\025"
+  ".tc.CaptureStatistics\022/\n\021client_statisti"
+  "cs\030\016 \001(\0132\024.tc.ClientStatistics\0226\n\025server"
+  "_audio_spectrum\030\017 \001(\0132\027.tc.ServerAudioSp"
+  "ectrum\022$\n\014online_games\030\020 \003(\0132\016.tc.Online"
+  "Game*\370\001\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck"
+  "\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013k"
+  "AudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEve"
+  "nt\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadSta"
+  "te\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientS"
+  "tatistics\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n"
+  "\014kOnlineGames\020\014*4\n\tVideoType\022\014\n\010kNetH264"
+  "\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\272\002\n\013EButto"
+  "nFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkSh"
+  "iftDown\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020"
+  "\010\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024kMiddleMous"
+  "eButtonUp\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\n"
+  "kMouseMove\020\200\001\022\026\n\021kMouseEventfWheel\020\200\002\022\027\n"
+  "\022kMouseEventfHWheel\020\200\004\022\031\n\024kLeftMouseButt"
+  "onDown\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032"
+  "\n\025kRightMouseButtonDown\020\200 *\330\003\n\rGamepadBu"
+  "tton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEPA"
+  "D_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_DO"
+  "WN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 \n"
+  "\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XI"
+  "NPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEPA"
+  "D_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUMB"
+  "\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022$"
+  "\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n "
+  "GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023G"
+  "P_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAMEP"
+  "AD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP"
+  "_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 3569, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 3589, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 14,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
@@ -948,31 +951,169 @@ class Hello::_Internal {
 
 Hello::Hello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:tc.Hello)
 }
 Hello::Hello(const Hello& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   Hello* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.only_audio_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.only_audio_ = from._impl_.only_audio_;
   // @@protoc_insertion_point(copy_constructor:tc.Hello)
 }
 
+inline void Hello::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.only_audio_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
 
+Hello::~Hello() {
+  // @@protoc_insertion_point(destructor:tc.Hello)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
 
+inline void Hello::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
 
+void Hello::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void Hello::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.Hello)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.only_audio_ = false;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Hello::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // bool only_audio = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.only_audio_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Hello::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.Hello)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bool only_audio = 1;
+  if (this->_internal_only_audio() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_only_audio(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.Hello)
+  return target;
+}
+
+size_t Hello::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.Hello)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bool only_audio = 1;
+  if (this->_internal_only_audio() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Hello::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    Hello::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Hello::GetClassData() const { return &_class_data_; }
 
 
+void Hello::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Hello*>(&to_msg);
+  auto& from = static_cast<const Hello&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.Hello)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
 
+  if (from._internal_only_audio() != 0) {
+    _this->_internal_set_only_audio(from._internal_only_audio());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
 
+void Hello::CopyFrom(const Hello& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.Hello)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
 
+bool Hello::IsInitialized() const {
+  return true;
+}
 
+void Hello::InternalSwap(Hello* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.only_audio_, other->_impl_.only_audio_);
+}
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Hello::GetMetadata() const {
   return ::_pbi::AssignDescriptors(

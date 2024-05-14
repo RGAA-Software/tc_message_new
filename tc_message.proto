@@ -30,8 +30,7 @@ enum VideoType {
   kNetVp9 = 2;
 }
 
-enum EButtonFlag
-{
+enum EButtonFlag {
   kNone = 0;
   kCapsLockOn = 1;
   kShiftDown = 2;
@@ -54,7 +53,7 @@ message Ack {
 }
 
 message Hello {
-
+  bool only_audio = 1;
 }
 
 message HeartBeat {
@@ -80,8 +79,7 @@ message AudioFrame {
   string extra = 6;
 }
 
-message KeyEvent
-{
+message KeyEvent {
   enum LockKeyStatusCheck {
     kDontCareLockKey = 0;
     kCheckNumLock = 1;
@@ -105,8 +103,7 @@ message KeyEvent
   int64 timestamp = 6;
 }
 
-message MouseEvent
-{
+message MouseEvent {
   //to do 当服务端采集方式为采集屏幕的时候，当前鼠标事件对应的屏幕索引
   int32 monitor_index = 1;
 

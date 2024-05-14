@@ -433,9 +433,10 @@ class Ack final :
 // -------------------------------------------------------------------
 
 class Hello final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:tc.Hello) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Hello) */ {
  public:
   inline Hello() : Hello(nullptr) {}
+  ~Hello() override;
   explicit PROTOBUF_CONSTEXPR Hello(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
   Hello(const Hello& from);
@@ -508,15 +509,29 @@ class Hello final :
   Hello* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<Hello>(arena);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Hello& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Hello& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Hello& from) {
+    Hello::MergeImpl(*this, from);
   }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Hello& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Hello* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
@@ -537,6 +552,18 @@ class Hello final :
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kOnlyAudioFieldNumber = 1,
+  };
+  // bool only_audio = 1;
+  void clear_only_audio();
+  bool only_audio() const;
+  void set_only_audio(bool value);
+  private:
+  bool _internal_only_audio() const;
+  void _internal_set_only_audio(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.Hello)
  private:
   class _Internal;
@@ -545,7 +572,10 @@ class Hello final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    bool only_audio_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_tc_5fmessage_2eproto;
 };
 // -------------------------------------------------------------------
@@ -3514,6 +3544,26 @@ inline void Ack::set_send_time(uint64_t value) {
 // -------------------------------------------------------------------
 
 // Hello
+
+// bool only_audio = 1;
+inline void Hello::clear_only_audio() {
+  _impl_.only_audio_ = false;
+}
+inline bool Hello::_internal_only_audio() const {
+  return _impl_.only_audio_;
+}
+inline bool Hello::only_audio() const {
+  // @@protoc_insertion_point(field_get:tc.Hello.only_audio)
+  return _internal_only_audio();
+}
+inline void Hello::_internal_set_only_audio(bool value) {
+  
+  _impl_.only_audio_ = value;
+}
+inline void Hello::set_only_audio(bool value) {
+  _internal_set_only_audio(value);
+  // @@protoc_insertion_point(field_set:tc.Hello.only_audio)
+}
 
 // -------------------------------------------------------------------
 
