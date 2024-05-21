@@ -196,7 +196,7 @@ inline bool VideoType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<VideoType>(
     VideoType_descriptor(), name, value);
 }
-enum EButtonFlag : int {
+enum ButtonFlag : int {
   kNone = 0,
   kCapsLockOn = 1,
   kShiftDown = 2,
@@ -206,32 +206,60 @@ enum EButtonFlag : int {
   kMiddleMouseButtonUp = 32,
   kRightMouseButtonUp = 64,
   kMouseMove = 128,
-  kMouseEventfWheel = 256,
-  kMouseEventfHWheel = 512,
+  kMouseEventWheel = 256,
+  kMouseEventHWheel = 512,
   kLeftMouseButtonDown = 1024,
   kMiddleMouseButtonDown = 2048,
   kRightMouseButtonDown = 4096,
-  EButtonFlag_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  EButtonFlag_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+  ButtonFlag_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ButtonFlag_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool EButtonFlag_IsValid(int value);
-constexpr EButtonFlag EButtonFlag_MIN = kNone;
-constexpr EButtonFlag EButtonFlag_MAX = kRightMouseButtonDown;
-constexpr int EButtonFlag_ARRAYSIZE = EButtonFlag_MAX + 1;
+bool ButtonFlag_IsValid(int value);
+constexpr ButtonFlag ButtonFlag_MIN = kNone;
+constexpr ButtonFlag ButtonFlag_MAX = kRightMouseButtonDown;
+constexpr int ButtonFlag_ARRAYSIZE = ButtonFlag_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* EButtonFlag_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ButtonFlag_descriptor();
 template<typename T>
-inline const std::string& EButtonFlag_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, EButtonFlag>::value ||
+inline const std::string& ButtonFlag_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ButtonFlag>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function EButtonFlag_Name.");
+    "Incorrect type passed to function ButtonFlag_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    EButtonFlag_descriptor(), enum_t_value);
+    ButtonFlag_descriptor(), enum_t_value);
 }
-inline bool EButtonFlag_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, EButtonFlag* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<EButtonFlag>(
-    EButtonFlag_descriptor(), name, value);
+inline bool ButtonFlag_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ButtonFlag* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ButtonFlag>(
+    ButtonFlag_descriptor(), name, value);
+}
+enum ClientType : int {
+  kWindows = 0,
+  kLinux = 1,
+  kMacOS = 2,
+  kAndroid = 3,
+  kiOS = 4,
+  ClientType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ClientType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ClientType_IsValid(int value);
+constexpr ClientType ClientType_MIN = kWindows;
+constexpr ClientType ClientType_MAX = kiOS;
+constexpr int ClientType_ARRAYSIZE = ClientType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ClientType_descriptor();
+template<typename T>
+inline const std::string& ClientType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ClientType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ClientType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ClientType_descriptor(), enum_t_value);
+}
+inline bool ClientType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ClientType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ClientType>(
+    ClientType_descriptor(), name, value);
 }
 enum GamepadButton : int {
   GP_UNKNOWN = 0,
@@ -554,6 +582,7 @@ class Hello final :
 
   enum : int {
     kOnlyAudioFieldNumber = 1,
+    kClientTypeFieldNumber = 2,
   };
   // bool only_audio = 1;
   void clear_only_audio();
@@ -562,6 +591,15 @@ class Hello final :
   private:
   bool _internal_only_audio() const;
   void _internal_set_only_audio(bool value);
+  public:
+
+  // .tc.ClientType client_type = 2;
+  void clear_client_type();
+  ::tc::ClientType client_type() const;
+  void set_client_type(::tc::ClientType value);
+  private:
+  ::tc::ClientType _internal_client_type() const;
+  void _internal_set_client_type(::tc::ClientType value);
   public:
 
   // @@protoc_insertion_point(class_scope:tc.Hello)
@@ -573,6 +611,7 @@ class Hello final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     bool only_audio_;
+    int client_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3563,6 +3602,26 @@ inline void Hello::_internal_set_only_audio(bool value) {
 inline void Hello::set_only_audio(bool value) {
   _internal_set_only_audio(value);
   // @@protoc_insertion_point(field_set:tc.Hello.only_audio)
+}
+
+// .tc.ClientType client_type = 2;
+inline void Hello::clear_client_type() {
+  _impl_.client_type_ = 0;
+}
+inline ::tc::ClientType Hello::_internal_client_type() const {
+  return static_cast< ::tc::ClientType >(_impl_.client_type_);
+}
+inline ::tc::ClientType Hello::client_type() const {
+  // @@protoc_insertion_point(field_get:tc.Hello.client_type)
+  return _internal_client_type();
+}
+inline void Hello::_internal_set_client_type(::tc::ClientType value) {
+  
+  _impl_.client_type_ = value;
+}
+inline void Hello::set_client_type(::tc::ClientType value) {
+  _internal_set_client_type(value);
+  // @@protoc_insertion_point(field_set:tc.Hello.client_type)
 }
 
 // -------------------------------------------------------------------
@@ -6757,10 +6816,15 @@ template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::VideoType>() {
   return ::tc::VideoType_descriptor();
 }
-template <> struct is_proto_enum< ::tc::EButtonFlag> : ::std::true_type {};
+template <> struct is_proto_enum< ::tc::ButtonFlag> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::tc::EButtonFlag>() {
-  return ::tc::EButtonFlag_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::ButtonFlag>() {
+  return ::tc::ButtonFlag_descriptor();
+}
+template <> struct is_proto_enum< ::tc::ClientType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::ClientType>() {
+  return ::tc::ClientType_descriptor();
 }
 template <> struct is_proto_enum< ::tc::GamepadButton> : ::std::true_type {};
 template <>

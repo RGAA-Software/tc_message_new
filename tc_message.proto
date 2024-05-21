@@ -3,6 +3,7 @@ syntax = "proto3";
 package tc;
 
 enum MessageType {
+  // client -> server
   kHello = 0;
   kAck = 1;
   kHeartBeat = 2;
@@ -30,7 +31,7 @@ enum VideoType {
   kNetVp9 = 2;
 }
 
-enum EButtonFlag {
+enum ButtonFlag {
   kNone = 0;
   kCapsLockOn = 1;
   kShiftDown = 2;
@@ -39,12 +40,20 @@ enum EButtonFlag {
   kLeftMouseButtonUp = 16;
   kMiddleMouseButtonUp = 32;
   kRightMouseButtonUp = 64;
-  kMouseMove = 128; //表示鼠标移动
-  kMouseEventfWheel = 256; //表示鼠标滚轮滚动
-  kMouseEventfHWheel = 512; //表示鼠标滚轮滚动
+  kMouseMove = 128;
+  kMouseEventWheel = 256;
+  kMouseEventHWheel = 512;
   kLeftMouseButtonDown = 1024;
   kMiddleMouseButtonDown = 2048;
   kRightMouseButtonDown = 4096;
+}
+
+enum ClientType {
+  kWindows = 0;
+  kLinux = 1;
+  kMacOS = 2;
+  kAndroid = 3;
+  kiOS = 4;
 }
 
 message Ack {
@@ -54,6 +63,7 @@ message Ack {
 
 message Hello {
   bool only_audio = 1;
+  ClientType client_type = 2;
 }
 
 message HeartBeat {
@@ -86,42 +96,27 @@ message KeyEvent {
     kCheckCapsLock = 2;
   }
 
-  // 虚拟键盘码,参考msdn文档的虚拟键码表: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+  // see: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
   uint32 key_code = 1;
-
-  // 按下还是松开
   bool down = 2;
-
-  // 按键当前的状态 GetKeyState()获取
+  // by GetKeyState()
   int32  num_lock_status = 3;
-
   int32  caps_lock_status = 4;
-
   LockKeyStatusCheck status_check = 5;
-
-  // 当前毫秒值时间戳
   int64 timestamp = 6;
 }
 
 message MouseEvent {
-  //to do 当服务端采集方式为采集屏幕的时候，当前鼠标事件对应的屏幕索引
+  // to do
   int32 monitor_index = 1;
-
-  // 当前鼠标x值，占窗口宽度的比值
   float x_ratio = 2;
-
-  // 当前鼠标y值，占窗口高度度的比值
   float y_ratio = 3;
 
-  // 按键掩码, 用来表示摁下了什么按键、抬起了什么按键 ref: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
+  // see: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
   int32 button = 4;
-
-  // 鼠标data，滚轮等数据
+  // wheel
   int32 data = 5;
-
-  // 当前毫秒值时间戳
   int64 timestamp = 6;
-
   int32 delta_x = 7;
   int32 delta_y = 8;
   bool pressed = 9;
@@ -129,7 +124,6 @@ message MouseEvent {
 }
 
 message CursorInfoSync {
-  // 是否可见
   bool visible = 1;
   uint32 x = 2;
   uint32 y = 3;
@@ -137,11 +131,10 @@ message CursorInfoSync {
   uint32 hotspot_y = 5;
   uint32 width = 6;
   uint32 height = 7;
-  // 位图信息
   bytes bitmap = 8;
 }
 
-//https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad
+// see: https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad
 enum GamepadButton {
   GP_UNKNOWN = 0;
   GP_XINPUT_GAMEPAD_DPAD_UP = 0x0001;
