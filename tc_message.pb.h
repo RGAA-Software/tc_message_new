@@ -134,6 +134,34 @@ inline bool KeyEvent_LockKeyStatusCheck_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<KeyEvent_LockKeyStatusCheck>(
     KeyEvent_LockKeyStatusCheck_descriptor(), name, value);
 }
+enum GamepadState_GamepadType : int {
+  GamepadState_GamepadType_kButtons = 0,
+  GamepadState_GamepadType_kLeftTrigger = 1,
+  GamepadState_GamepadType_kRightTrigger = 2,
+  GamepadState_GamepadType_kLeftThumb = 3,
+  GamepadState_GamepadType_kRightThumb = 4,
+  GamepadState_GamepadType_GamepadState_GamepadType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  GamepadState_GamepadType_GamepadState_GamepadType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool GamepadState_GamepadType_IsValid(int value);
+constexpr GamepadState_GamepadType GamepadState_GamepadType_GamepadType_MIN = GamepadState_GamepadType_kButtons;
+constexpr GamepadState_GamepadType GamepadState_GamepadType_GamepadType_MAX = GamepadState_GamepadType_kRightThumb;
+constexpr int GamepadState_GamepadType_GamepadType_ARRAYSIZE = GamepadState_GamepadType_GamepadType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadState_GamepadType_descriptor();
+template<typename T>
+inline const std::string& GamepadState_GamepadType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, GamepadState_GamepadType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function GamepadState_GamepadType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    GamepadState_GamepadType_descriptor(), enum_t_value);
+}
+inline bool GamepadState_GamepadType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, GamepadState_GamepadType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<GamepadState_GamepadType>(
+    GamepadState_GamepadType_descriptor(), name, value);
+}
 enum MessageType : int {
   kHello = 0,
   kAck = 1,
@@ -2004,6 +2032,42 @@ class GamepadState final :
 
   // nested types ----------------------------------------------------
 
+  typedef GamepadState_GamepadType GamepadType;
+  static constexpr GamepadType kButtons =
+    GamepadState_GamepadType_kButtons;
+  static constexpr GamepadType kLeftTrigger =
+    GamepadState_GamepadType_kLeftTrigger;
+  static constexpr GamepadType kRightTrigger =
+    GamepadState_GamepadType_kRightTrigger;
+  static constexpr GamepadType kLeftThumb =
+    GamepadState_GamepadType_kLeftThumb;
+  static constexpr GamepadType kRightThumb =
+    GamepadState_GamepadType_kRightThumb;
+  static inline bool GamepadType_IsValid(int value) {
+    return GamepadState_GamepadType_IsValid(value);
+  }
+  static constexpr GamepadType GamepadType_MIN =
+    GamepadState_GamepadType_GamepadType_MIN;
+  static constexpr GamepadType GamepadType_MAX =
+    GamepadState_GamepadType_GamepadType_MAX;
+  static constexpr int GamepadType_ARRAYSIZE =
+    GamepadState_GamepadType_GamepadType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  GamepadType_descriptor() {
+    return GamepadState_GamepadType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& GamepadType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, GamepadType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function GamepadType_Name.");
+    return GamepadState_GamepadType_Name(enum_t_value);
+  }
+  static inline bool GamepadType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      GamepadType* value) {
+    return GamepadState_GamepadType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -2014,6 +2078,7 @@ class GamepadState final :
     kThumbLyFieldNumber = 5,
     kThumbRxFieldNumber = 6,
     kThumbRyFieldNumber = 7,
+    kGpTypeFieldNumber = 8,
   };
   // uint32 buttons = 1;
   void clear_buttons();
@@ -2078,6 +2143,15 @@ class GamepadState final :
   void _internal_set_thumb_ry(int32_t value);
   public:
 
+  // .tc.GamepadState.GamepadType gp_type = 8;
+  void clear_gp_type();
+  ::tc::GamepadState_GamepadType gp_type() const;
+  void set_gp_type(::tc::GamepadState_GamepadType value);
+  private:
+  ::tc::GamepadState_GamepadType _internal_gp_type() const;
+  void _internal_set_gp_type(::tc::GamepadState_GamepadType value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.GamepadState)
  private:
   class _Internal;
@@ -2093,6 +2167,7 @@ class GamepadState final :
     int32_t thumb_ly_;
     int32_t thumb_rx_;
     int32_t thumb_ry_;
+    int gp_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4682,6 +4757,26 @@ inline void GamepadState::set_thumb_ry(int32_t value) {
   // @@protoc_insertion_point(field_set:tc.GamepadState.thumb_ry)
 }
 
+// .tc.GamepadState.GamepadType gp_type = 8;
+inline void GamepadState::clear_gp_type() {
+  _impl_.gp_type_ = 0;
+}
+inline ::tc::GamepadState_GamepadType GamepadState::_internal_gp_type() const {
+  return static_cast< ::tc::GamepadState_GamepadType >(_impl_.gp_type_);
+}
+inline ::tc::GamepadState_GamepadType GamepadState::gp_type() const {
+  // @@protoc_insertion_point(field_get:tc.GamepadState.gp_type)
+  return _internal_gp_type();
+}
+inline void GamepadState::_internal_set_gp_type(::tc::GamepadState_GamepadType value) {
+  
+  _impl_.gp_type_ = value;
+}
+inline void GamepadState::set_gp_type(::tc::GamepadState_GamepadType value) {
+  _internal_set_gp_type(value);
+  // @@protoc_insertion_point(field_set:tc.GamepadState.gp_type)
+}
+
 // -------------------------------------------------------------------
 
 // CaptureStatistics
@@ -6805,6 +6900,11 @@ template <> struct is_proto_enum< ::tc::KeyEvent_LockKeyStatusCheck> : ::std::tr
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::KeyEvent_LockKeyStatusCheck>() {
   return ::tc::KeyEvent_LockKeyStatusCheck_descriptor();
+}
+template <> struct is_proto_enum< ::tc::GamepadState_GamepadType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::GamepadState_GamepadType>() {
+  return ::tc::GamepadState_GamepadType_descriptor();
 }
 template <> struct is_proto_enum< ::tc::MessageType> : ::std::true_type {};
 template <>
