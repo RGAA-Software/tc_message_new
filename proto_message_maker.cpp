@@ -23,6 +23,7 @@ namespace tc
         tc::Message msg;
         msg.set_type(tc::MessageType::kGamepadState);
         auto gs = msg.mutable_gamepad_state();
+        gs->set_gp_type(GamepadState::kButtons);
         gs->set_buttons(buttons);
         return msg.SerializeAsString();
     }
@@ -31,6 +32,12 @@ namespace tc
         tc::Message msg;
         msg.set_type(tc::MessageType::kGamepadState);
         auto gs = msg.mutable_gamepad_state();
+        gs->set_gp_type(left ? GamepadState::kLeftTrigger : GamepadState::kRightTrigger);
+        if (left) {
+            gs->set_left_trigger(trigger_value);
+        } else {
+            gs->set_right_trigger(trigger_value);
+        }
         return msg.SerializeAsString();
     }
 
@@ -38,6 +45,14 @@ namespace tc
         tc::Message msg;
         msg.set_type(tc::MessageType::kGamepadState);
         auto gs = msg.mutable_gamepad_state();
+        gs->set_gp_type(left ? GamepadState::kLeftThumb : GamepadState::kRightThumb);
+        if (left) {
+            gs->set_thumb_lx(thumb_x);
+            gs->set_thumb_ly(thumb_y);
+        } else {
+            gs->set_thumb_rx(thumb_x);
+            gs->set_thumb_ry(thumb_y);
+        }
         return msg.SerializeAsString();
     }
 
