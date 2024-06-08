@@ -64,6 +64,7 @@ message Ack {
 message Hello {
   bool only_audio = 1;
   ClientType client_type = 2;
+  bool enable_controller = 3;
 }
 
 message HeartBeat {
