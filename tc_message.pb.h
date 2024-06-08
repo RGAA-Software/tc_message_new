@@ -609,9 +609,19 @@ class Hello final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kOnlyAudioFieldNumber = 1,
     kClientTypeFieldNumber = 2,
+    kOnlyAudioFieldNumber = 1,
+    kEnableControllerFieldNumber = 3,
   };
+  // .tc.ClientType client_type = 2;
+  void clear_client_type();
+  ::tc::ClientType client_type() const;
+  void set_client_type(::tc::ClientType value);
+  private:
+  ::tc::ClientType _internal_client_type() const;
+  void _internal_set_client_type(::tc::ClientType value);
+  public:
+
   // bool only_audio = 1;
   void clear_only_audio();
   bool only_audio() const;
@@ -621,13 +631,13 @@ class Hello final :
   void _internal_set_only_audio(bool value);
   public:
 
-  // .tc.ClientType client_type = 2;
-  void clear_client_type();
-  ::tc::ClientType client_type() const;
-  void set_client_type(::tc::ClientType value);
+  // bool enable_controller = 3;
+  void clear_enable_controller();
+  bool enable_controller() const;
+  void set_enable_controller(bool value);
   private:
-  ::tc::ClientType _internal_client_type() const;
-  void _internal_set_client_type(::tc::ClientType value);
+  bool _internal_enable_controller() const;
+  void _internal_set_enable_controller(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:tc.Hello)
@@ -638,8 +648,9 @@ class Hello final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    bool only_audio_;
     int client_type_;
+    bool only_audio_;
+    bool enable_controller_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3697,6 +3708,26 @@ inline void Hello::_internal_set_client_type(::tc::ClientType value) {
 inline void Hello::set_client_type(::tc::ClientType value) {
   _internal_set_client_type(value);
   // @@protoc_insertion_point(field_set:tc.Hello.client_type)
+}
+
+// bool enable_controller = 3;
+inline void Hello::clear_enable_controller() {
+  _impl_.enable_controller_ = false;
+}
+inline bool Hello::_internal_enable_controller() const {
+  return _impl_.enable_controller_;
+}
+inline bool Hello::enable_controller() const {
+  // @@protoc_insertion_point(field_get:tc.Hello.enable_controller)
+  return _internal_enable_controller();
+}
+inline void Hello::_internal_set_enable_controller(bool value) {
+  
+  _impl_.enable_controller_ = value;
+}
+inline void Hello::set_enable_controller(bool value) {
+  _internal_set_enable_controller(value);
+  // @@protoc_insertion_point(field_set:tc.Hello.enable_controller)
 }
 
 // -------------------------------------------------------------------
