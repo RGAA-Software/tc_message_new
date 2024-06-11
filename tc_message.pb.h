@@ -609,35 +609,45 @@ class Hello final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kClientTypeFieldNumber = 2,
-    kOnlyAudioFieldNumber = 1,
-    kEnableControllerFieldNumber = 3,
+    kEnableAudioFieldNumber = 1,
+    kEnableVideoFieldNumber = 2,
+    kEnableControllerFieldNumber = 4,
+    kClientTypeFieldNumber = 3,
   };
-  // .tc.ClientType client_type = 2;
-  void clear_client_type();
-  ::tc::ClientType client_type() const;
-  void set_client_type(::tc::ClientType value);
+  // bool enable_audio = 1;
+  void clear_enable_audio();
+  bool enable_audio() const;
+  void set_enable_audio(bool value);
   private:
-  ::tc::ClientType _internal_client_type() const;
-  void _internal_set_client_type(::tc::ClientType value);
+  bool _internal_enable_audio() const;
+  void _internal_set_enable_audio(bool value);
   public:
 
-  // bool only_audio = 1;
-  void clear_only_audio();
-  bool only_audio() const;
-  void set_only_audio(bool value);
+  // bool enable_video = 2;
+  void clear_enable_video();
+  bool enable_video() const;
+  void set_enable_video(bool value);
   private:
-  bool _internal_only_audio() const;
-  void _internal_set_only_audio(bool value);
+  bool _internal_enable_video() const;
+  void _internal_set_enable_video(bool value);
   public:
 
-  // bool enable_controller = 3;
+  // bool enable_controller = 4;
   void clear_enable_controller();
   bool enable_controller() const;
   void set_enable_controller(bool value);
   private:
   bool _internal_enable_controller() const;
   void _internal_set_enable_controller(bool value);
+  public:
+
+  // .tc.ClientType client_type = 3;
+  void clear_client_type();
+  ::tc::ClientType client_type() const;
+  void set_client_type(::tc::ClientType value);
+  private:
+  ::tc::ClientType _internal_client_type() const;
+  void _internal_set_client_type(::tc::ClientType value);
   public:
 
   // @@protoc_insertion_point(class_scope:tc.Hello)
@@ -648,9 +658,10 @@ class Hello final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    int client_type_;
-    bool only_audio_;
+    bool enable_audio_;
+    bool enable_video_;
     bool enable_controller_;
+    int client_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3670,27 +3681,47 @@ inline void Ack::set_send_time(uint64_t value) {
 
 // Hello
 
-// bool only_audio = 1;
-inline void Hello::clear_only_audio() {
-  _impl_.only_audio_ = false;
+// bool enable_audio = 1;
+inline void Hello::clear_enable_audio() {
+  _impl_.enable_audio_ = false;
 }
-inline bool Hello::_internal_only_audio() const {
-  return _impl_.only_audio_;
+inline bool Hello::_internal_enable_audio() const {
+  return _impl_.enable_audio_;
 }
-inline bool Hello::only_audio() const {
-  // @@protoc_insertion_point(field_get:tc.Hello.only_audio)
-  return _internal_only_audio();
+inline bool Hello::enable_audio() const {
+  // @@protoc_insertion_point(field_get:tc.Hello.enable_audio)
+  return _internal_enable_audio();
 }
-inline void Hello::_internal_set_only_audio(bool value) {
+inline void Hello::_internal_set_enable_audio(bool value) {
   
-  _impl_.only_audio_ = value;
+  _impl_.enable_audio_ = value;
 }
-inline void Hello::set_only_audio(bool value) {
-  _internal_set_only_audio(value);
-  // @@protoc_insertion_point(field_set:tc.Hello.only_audio)
+inline void Hello::set_enable_audio(bool value) {
+  _internal_set_enable_audio(value);
+  // @@protoc_insertion_point(field_set:tc.Hello.enable_audio)
 }
 
-// .tc.ClientType client_type = 2;
+// bool enable_video = 2;
+inline void Hello::clear_enable_video() {
+  _impl_.enable_video_ = false;
+}
+inline bool Hello::_internal_enable_video() const {
+  return _impl_.enable_video_;
+}
+inline bool Hello::enable_video() const {
+  // @@protoc_insertion_point(field_get:tc.Hello.enable_video)
+  return _internal_enable_video();
+}
+inline void Hello::_internal_set_enable_video(bool value) {
+  
+  _impl_.enable_video_ = value;
+}
+inline void Hello::set_enable_video(bool value) {
+  _internal_set_enable_video(value);
+  // @@protoc_insertion_point(field_set:tc.Hello.enable_video)
+}
+
+// .tc.ClientType client_type = 3;
 inline void Hello::clear_client_type() {
   _impl_.client_type_ = 0;
 }
@@ -3710,7 +3741,7 @@ inline void Hello::set_client_type(::tc::ClientType value) {
   // @@protoc_insertion_point(field_set:tc.Hello.client_type)
 }
 
-// bool enable_controller = 3;
+// bool enable_controller = 4;
 inline void Hello::clear_enable_controller() {
   _impl_.enable_controller_ = false;
 }
