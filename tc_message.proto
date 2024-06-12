@@ -80,6 +80,12 @@ message VideoFrame {
   int32 frame_width = 5;
   int32 frame_height = 6;
   string extra = 7;
+  int32 mon_idx = 8;
+  string mon_name = 9;
+  int32 mon_left = 10;
+  int32 mon_top = 11;
+  int32 mon_right = 12;
+  int32 mon_bottom = 13;
 }
 
 message AudioFrame {

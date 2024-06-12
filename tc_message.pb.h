@@ -910,11 +910,17 @@ class VideoFrame final :
   enum : int {
     kDataFieldNumber = 2,
     kExtraFieldNumber = 7,
+    kMonNameFieldNumber = 9,
     kTypeFieldNumber = 1,
     kKeyFieldNumber = 4,
     kFrameIndexFieldNumber = 3,
     kFrameWidthFieldNumber = 5,
     kFrameHeightFieldNumber = 6,
+    kMonIdxFieldNumber = 8,
+    kMonLeftFieldNumber = 10,
+    kMonTopFieldNumber = 11,
+    kMonRightFieldNumber = 12,
+    kMonBottomFieldNumber = 13,
   };
   // bytes data = 2;
   void clear_data();
@@ -942,6 +948,20 @@ class VideoFrame final :
   const std::string& _internal_extra() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_extra(const std::string& value);
   std::string* _internal_mutable_extra();
+  public:
+
+  // string mon_name = 9;
+  void clear_mon_name();
+  const std::string& mon_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_mon_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_mon_name();
+  PROTOBUF_NODISCARD std::string* release_mon_name();
+  void set_allocated_mon_name(std::string* mon_name);
+  private:
+  const std::string& _internal_mon_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_mon_name(const std::string& value);
+  std::string* _internal_mutable_mon_name();
   public:
 
   // .tc.VideoType type = 1;
@@ -989,6 +1009,51 @@ class VideoFrame final :
   void _internal_set_frame_height(int32_t value);
   public:
 
+  // int32 mon_idx = 8;
+  void clear_mon_idx();
+  int32_t mon_idx() const;
+  void set_mon_idx(int32_t value);
+  private:
+  int32_t _internal_mon_idx() const;
+  void _internal_set_mon_idx(int32_t value);
+  public:
+
+  // int32 mon_left = 10;
+  void clear_mon_left();
+  int32_t mon_left() const;
+  void set_mon_left(int32_t value);
+  private:
+  int32_t _internal_mon_left() const;
+  void _internal_set_mon_left(int32_t value);
+  public:
+
+  // int32 mon_top = 11;
+  void clear_mon_top();
+  int32_t mon_top() const;
+  void set_mon_top(int32_t value);
+  private:
+  int32_t _internal_mon_top() const;
+  void _internal_set_mon_top(int32_t value);
+  public:
+
+  // int32 mon_right = 12;
+  void clear_mon_right();
+  int32_t mon_right() const;
+  void set_mon_right(int32_t value);
+  private:
+  int32_t _internal_mon_right() const;
+  void _internal_set_mon_right(int32_t value);
+  public:
+
+  // int32 mon_bottom = 13;
+  void clear_mon_bottom();
+  int32_t mon_bottom() const;
+  void set_mon_bottom(int32_t value);
+  private:
+  int32_t _internal_mon_bottom() const;
+  void _internal_set_mon_bottom(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tc.VideoFrame)
  private:
   class _Internal;
@@ -999,11 +1064,17 @@ class VideoFrame final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr extra_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mon_name_;
     int type_;
     bool key_;
     uint64_t frame_index_;
     int32_t frame_width_;
     int32_t frame_height_;
+    int32_t mon_idx_;
+    int32_t mon_left_;
+    int32_t mon_top_;
+    int32_t mon_right_;
+    int32_t mon_bottom_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3967,6 +4038,156 @@ inline void VideoFrame::set_allocated_extra(std::string* extra) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:tc.VideoFrame.extra)
+}
+
+// int32 mon_idx = 8;
+inline void VideoFrame::clear_mon_idx() {
+  _impl_.mon_idx_ = 0;
+}
+inline int32_t VideoFrame::_internal_mon_idx() const {
+  return _impl_.mon_idx_;
+}
+inline int32_t VideoFrame::mon_idx() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_idx)
+  return _internal_mon_idx();
+}
+inline void VideoFrame::_internal_set_mon_idx(int32_t value) {
+  
+  _impl_.mon_idx_ = value;
+}
+inline void VideoFrame::set_mon_idx(int32_t value) {
+  _internal_set_mon_idx(value);
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_idx)
+}
+
+// string mon_name = 9;
+inline void VideoFrame::clear_mon_name() {
+  _impl_.mon_name_.ClearToEmpty();
+}
+inline const std::string& VideoFrame::mon_name() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_name)
+  return _internal_mon_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void VideoFrame::set_mon_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.mon_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_name)
+}
+inline std::string* VideoFrame::mutable_mon_name() {
+  std::string* _s = _internal_mutable_mon_name();
+  // @@protoc_insertion_point(field_mutable:tc.VideoFrame.mon_name)
+  return _s;
+}
+inline const std::string& VideoFrame::_internal_mon_name() const {
+  return _impl_.mon_name_.Get();
+}
+inline void VideoFrame::_internal_set_mon_name(const std::string& value) {
+  
+  _impl_.mon_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* VideoFrame::_internal_mutable_mon_name() {
+  
+  return _impl_.mon_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* VideoFrame::release_mon_name() {
+  // @@protoc_insertion_point(field_release:tc.VideoFrame.mon_name)
+  return _impl_.mon_name_.Release();
+}
+inline void VideoFrame::set_allocated_mon_name(std::string* mon_name) {
+  if (mon_name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.mon_name_.SetAllocated(mon_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.mon_name_.IsDefault()) {
+    _impl_.mon_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.VideoFrame.mon_name)
+}
+
+// int32 mon_left = 10;
+inline void VideoFrame::clear_mon_left() {
+  _impl_.mon_left_ = 0;
+}
+inline int32_t VideoFrame::_internal_mon_left() const {
+  return _impl_.mon_left_;
+}
+inline int32_t VideoFrame::mon_left() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_left)
+  return _internal_mon_left();
+}
+inline void VideoFrame::_internal_set_mon_left(int32_t value) {
+  
+  _impl_.mon_left_ = value;
+}
+inline void VideoFrame::set_mon_left(int32_t value) {
+  _internal_set_mon_left(value);
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_left)
+}
+
+// int32 mon_top = 11;
+inline void VideoFrame::clear_mon_top() {
+  _impl_.mon_top_ = 0;
+}
+inline int32_t VideoFrame::_internal_mon_top() const {
+  return _impl_.mon_top_;
+}
+inline int32_t VideoFrame::mon_top() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_top)
+  return _internal_mon_top();
+}
+inline void VideoFrame::_internal_set_mon_top(int32_t value) {
+  
+  _impl_.mon_top_ = value;
+}
+inline void VideoFrame::set_mon_top(int32_t value) {
+  _internal_set_mon_top(value);
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_top)
+}
+
+// int32 mon_right = 12;
+inline void VideoFrame::clear_mon_right() {
+  _impl_.mon_right_ = 0;
+}
+inline int32_t VideoFrame::_internal_mon_right() const {
+  return _impl_.mon_right_;
+}
+inline int32_t VideoFrame::mon_right() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_right)
+  return _internal_mon_right();
+}
+inline void VideoFrame::_internal_set_mon_right(int32_t value) {
+  
+  _impl_.mon_right_ = value;
+}
+inline void VideoFrame::set_mon_right(int32_t value) {
+  _internal_set_mon_right(value);
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_right)
+}
+
+// int32 mon_bottom = 13;
+inline void VideoFrame::clear_mon_bottom() {
+  _impl_.mon_bottom_ = 0;
+}
+inline int32_t VideoFrame::_internal_mon_bottom() const {
+  return _impl_.mon_bottom_;
+}
+inline int32_t VideoFrame::mon_bottom() const {
+  // @@protoc_insertion_point(field_get:tc.VideoFrame.mon_bottom)
+  return _internal_mon_bottom();
+}
+inline void VideoFrame::_internal_set_mon_bottom(int32_t value) {
+  
+  _impl_.mon_bottom_ = value;
+}
+inline void VideoFrame::set_mon_bottom(int32_t value) {
+  _internal_set_mon_bottom(value);
+  // @@protoc_insertion_point(field_set:tc.VideoFrame.mon_bottom)
 }
 
 // -------------------------------------------------------------------
