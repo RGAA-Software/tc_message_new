@@ -19,42 +19,23 @@ namespace tc
         return msg.SerializeAsString();
     }
 
-    std::string ProtoMessageMaker::MakeGamepadButtonMessage(int32_t buttons) {
+    std::string ProtoMessageMaker::MakeMouseEventFromTouch(int32_t event, uint32_t mon_idx, float x_ratio, float y_ratio) {
         tc::Message msg;
-        msg.set_type(tc::MessageType::kGamepadState);
-        auto gs = msg.mutable_gamepad_state();
-        gs->set_gp_type(GamepadState::kButtons);
-        gs->set_buttons(buttons);
-        return msg.SerializeAsString();
-    }
-
-    std::string ProtoMessageMaker::MakeGamepadTriggerMessage(bool left, int trigger_value) {
-        tc::Message msg;
-        msg.set_type(tc::MessageType::kGamepadState);
-        auto gs = msg.mutable_gamepad_state();
-        gs->set_gp_type(left ? GamepadState::kLeftTrigger : GamepadState::kRightTrigger);
-        if (left) {
-            gs->set_left_trigger(trigger_value);
-        } else {
-            gs->set_right_trigger(trigger_value);
+        msg.set_type(tc::MessageType::kMouseEvent);
+        auto me = msg.mutable_mouse_event();
+        if (event == 0) { // MotionEvent.ACTION_DOWN
+            me->set_button(ButtonFlag::kLeftMouseButtonDown);
+            me->set_pressed(true);
+        } else if (event == 1) { // MotionEvent.ACTION_UP
+            me->set_button(ButtonFlag::kLeftMouseButtonUp);
+            me->set_released(true);
+        } else if (event == 2) { // MotionEvent.ACTION_MOVE
+            me->set_button(ButtonFlag::kMouseMove);
         }
+        me->set_monitor_index(mon_idx);
+        me->set_x_ratio(x_ratio);
+        me->set_y_ratio(y_ratio);
         return msg.SerializeAsString();
     }
-
-    std::string ProtoMessageMaker::MakeGamepadThumbMessage(bool left, int thumb_x, int thumb_y) {
-        tc::Message msg;
-        msg.set_type(tc::MessageType::kGamepadState);
-        auto gs = msg.mutable_gamepad_state();
-        gs->set_gp_type(left ? GamepadState::kLeftThumb : GamepadState::kRightThumb);
-        if (left) {
-            gs->set_thumb_lx(thumb_x);
-            gs->set_thumb_ly(thumb_y);
-        } else {
-            gs->set_thumb_rx(thumb_x);
-            gs->set_thumb_ry(thumb_y);
-        }
-        return msg.SerializeAsString();
-    }
-
 
 }
