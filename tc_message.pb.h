@@ -1930,40 +1930,40 @@ class CursorInfoSync final :
   void _internal_set_visible(bool value);
   public:
 
-  // uint32 x = 2;
+  // int32 x = 2;
   void clear_x();
-  uint32_t x() const;
-  void set_x(uint32_t value);
+  int32_t x() const;
+  void set_x(int32_t value);
   private:
-  uint32_t _internal_x() const;
-  void _internal_set_x(uint32_t value);
+  int32_t _internal_x() const;
+  void _internal_set_x(int32_t value);
   public:
 
-  // uint32 y = 3;
+  // int32 y = 3;
   void clear_y();
-  uint32_t y() const;
-  void set_y(uint32_t value);
+  int32_t y() const;
+  void set_y(int32_t value);
   private:
-  uint32_t _internal_y() const;
-  void _internal_set_y(uint32_t value);
+  int32_t _internal_y() const;
+  void _internal_set_y(int32_t value);
   public:
 
-  // uint32 hotspot_x = 4;
+  // int32 hotspot_x = 4;
   void clear_hotspot_x();
-  uint32_t hotspot_x() const;
-  void set_hotspot_x(uint32_t value);
+  int32_t hotspot_x() const;
+  void set_hotspot_x(int32_t value);
   private:
-  uint32_t _internal_hotspot_x() const;
-  void _internal_set_hotspot_x(uint32_t value);
+  int32_t _internal_hotspot_x() const;
+  void _internal_set_hotspot_x(int32_t value);
   public:
 
-  // uint32 hotspot_y = 5;
+  // int32 hotspot_y = 5;
   void clear_hotspot_y();
-  uint32_t hotspot_y() const;
-  void set_hotspot_y(uint32_t value);
+  int32_t hotspot_y() const;
+  void set_hotspot_y(int32_t value);
   private:
-  uint32_t _internal_hotspot_y() const;
-  void _internal_set_hotspot_y(uint32_t value);
+  int32_t _internal_hotspot_y() const;
+  void _internal_set_hotspot_y(int32_t value);
   public:
 
   // uint32 width = 6;
@@ -1994,10 +1994,10 @@ class CursorInfoSync final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr bitmap_;
     bool visible_;
-    uint32_t x_;
-    uint32_t y_;
-    uint32_t hotspot_x_;
-    uint32_t hotspot_y_;
+    int32_t x_;
+    int32_t y_;
+    int32_t hotspot_x_;
+    int32_t hotspot_y_;
     uint32_t width_;
     uint32_t height_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -4726,82 +4726,82 @@ inline void CursorInfoSync::set_visible(bool value) {
   // @@protoc_insertion_point(field_set:tc.CursorInfoSync.visible)
 }
 
-// uint32 x = 2;
+// int32 x = 2;
 inline void CursorInfoSync::clear_x() {
-  _impl_.x_ = 0u;
+  _impl_.x_ = 0;
 }
-inline uint32_t CursorInfoSync::_internal_x() const {
+inline int32_t CursorInfoSync::_internal_x() const {
   return _impl_.x_;
 }
-inline uint32_t CursorInfoSync::x() const {
+inline int32_t CursorInfoSync::x() const {
   // @@protoc_insertion_point(field_get:tc.CursorInfoSync.x)
   return _internal_x();
 }
-inline void CursorInfoSync::_internal_set_x(uint32_t value) {
+inline void CursorInfoSync::_internal_set_x(int32_t value) {
   
   _impl_.x_ = value;
 }
-inline void CursorInfoSync::set_x(uint32_t value) {
+inline void CursorInfoSync::set_x(int32_t value) {
   _internal_set_x(value);
   // @@protoc_insertion_point(field_set:tc.CursorInfoSync.x)
 }
 
-// uint32 y = 3;
+// int32 y = 3;
 inline void CursorInfoSync::clear_y() {
-  _impl_.y_ = 0u;
+  _impl_.y_ = 0;
 }
-inline uint32_t CursorInfoSync::_internal_y() const {
+inline int32_t CursorInfoSync::_internal_y() const {
   return _impl_.y_;
 }
-inline uint32_t CursorInfoSync::y() const {
+inline int32_t CursorInfoSync::y() const {
   // @@protoc_insertion_point(field_get:tc.CursorInfoSync.y)
   return _internal_y();
 }
-inline void CursorInfoSync::_internal_set_y(uint32_t value) {
+inline void CursorInfoSync::_internal_set_y(int32_t value) {
   
   _impl_.y_ = value;
 }
-inline void CursorInfoSync::set_y(uint32_t value) {
+inline void CursorInfoSync::set_y(int32_t value) {
   _internal_set_y(value);
   // @@protoc_insertion_point(field_set:tc.CursorInfoSync.y)
 }
 
-// uint32 hotspot_x = 4;
+// int32 hotspot_x = 4;
 inline void CursorInfoSync::clear_hotspot_x() {
-  _impl_.hotspot_x_ = 0u;
+  _impl_.hotspot_x_ = 0;
 }
-inline uint32_t CursorInfoSync::_internal_hotspot_x() const {
+inline int32_t CursorInfoSync::_internal_hotspot_x() const {
   return _impl_.hotspot_x_;
 }
-inline uint32_t CursorInfoSync::hotspot_x() const {
+inline int32_t CursorInfoSync::hotspot_x() const {
   // @@protoc_insertion_point(field_get:tc.CursorInfoSync.hotspot_x)
   return _internal_hotspot_x();
 }
-inline void CursorInfoSync::_internal_set_hotspot_x(uint32_t value) {
+inline void CursorInfoSync::_internal_set_hotspot_x(int32_t value) {
   
   _impl_.hotspot_x_ = value;
 }
-inline void CursorInfoSync::set_hotspot_x(uint32_t value) {
+inline void CursorInfoSync::set_hotspot_x(int32_t value) {
   _internal_set_hotspot_x(value);
   // @@protoc_insertion_point(field_set:tc.CursorInfoSync.hotspot_x)
 }
 
-// uint32 hotspot_y = 5;
+// int32 hotspot_y = 5;
 inline void CursorInfoSync::clear_hotspot_y() {
-  _impl_.hotspot_y_ = 0u;
+  _impl_.hotspot_y_ = 0;
 }
-inline uint32_t CursorInfoSync::_internal_hotspot_y() const {
+inline int32_t CursorInfoSync::_internal_hotspot_y() const {
   return _impl_.hotspot_y_;
 }
-inline uint32_t CursorInfoSync::hotspot_y() const {
+inline int32_t CursorInfoSync::hotspot_y() const {
   // @@protoc_insertion_point(field_get:tc.CursorInfoSync.hotspot_y)
   return _internal_hotspot_y();
 }
-inline void CursorInfoSync::_internal_set_hotspot_y(uint32_t value) {
+inline void CursorInfoSync::_internal_set_hotspot_y(int32_t value) {
   
   _impl_.hotspot_y_ = value;
 }
-inline void CursorInfoSync::set_hotspot_y(uint32_t value) {
+inline void CursorInfoSync::set_hotspot_y(int32_t value) {
   _internal_set_hotspot_y(value);
   // @@protoc_insertion_point(field_set:tc.CursorInfoSync.hotspot_y)
 }

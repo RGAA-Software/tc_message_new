@@ -133,10 +133,10 @@ message MouseEvent {
 
 message CursorInfoSync {
   bool visible = 1;
-  uint32 x = 2;
-  uint32 y = 3;
-  uint32 hotspot_x = 4;
-  uint32 hotspot_y = 5;
+  int32 x = 2;
+  int32 y = 3;
+  int32 hotspot_x = 4;
+  int32 hotspot_y = 5;
   uint32 width = 6;
   uint32 height = 7;
   bytes bitmap = 8;

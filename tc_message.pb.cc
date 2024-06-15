@@ -149,10 +149,10 @@ PROTOBUF_CONSTEXPR CursorInfoSync::CursorInfoSync(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.bitmap_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.visible_)*/false
-  , /*decltype(_impl_.x_)*/0u
-  , /*decltype(_impl_.y_)*/0u
-  , /*decltype(_impl_.hotspot_x_)*/0u
-  , /*decltype(_impl_.hotspot_y_)*/0u
+  , /*decltype(_impl_.x_)*/0
+  , /*decltype(_impl_.y_)*/0
+  , /*decltype(_impl_.hotspot_x_)*/0
+  , /*decltype(_impl_.hotspot_y_)*/0
   , /*decltype(_impl_.width_)*/0u
   , /*decltype(_impl_.height_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -551,8 +551,8 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "\005\022\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007de"
   "lta_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030"
   "\t \001(\010\022\020\n\010released\030\n \001(\010\"\214\001\n\016CursorInfoSy"
-  "nc\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001("
-  "\r\022\021\n\thotspot_x\030\004 \001(\r\022\021\n\thotspot_y\030\005 \001(\r\022"
+  "nc\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
+  "\005\022\021\n\thotspot_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022"
   "\r\n\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap"
   "\030\010 \001(\014\"\246\002\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r"
   "\022\024\n\014left_trigger\030\002 \001(\r\022\025\n\rright_trigger\030"
@@ -3014,10 +3014,10 @@ inline void CursorInfoSync::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.bitmap_){}
     , decltype(_impl_.visible_){false}
-    , decltype(_impl_.x_){0u}
-    , decltype(_impl_.y_){0u}
-    , decltype(_impl_.hotspot_x_){0u}
-    , decltype(_impl_.hotspot_y_){0u}
+    , decltype(_impl_.x_){0}
+    , decltype(_impl_.y_){0}
+    , decltype(_impl_.hotspot_x_){0}
+    , decltype(_impl_.hotspot_y_){0}
     , decltype(_impl_.width_){0u}
     , decltype(_impl_.height_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -3073,7 +3073,7 @@ const char* CursorInfoSync::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // uint32 x = 2;
+      // int32 x = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -3081,7 +3081,7 @@ const char* CursorInfoSync::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // uint32 y = 3;
+      // int32 y = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -3089,7 +3089,7 @@ const char* CursorInfoSync::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // uint32 hotspot_x = 4;
+      // int32 hotspot_x = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
           _impl_.hotspot_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -3097,7 +3097,7 @@ const char* CursorInfoSync::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // uint32 hotspot_y = 5;
+      // int32 hotspot_y = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.hotspot_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -3165,28 +3165,28 @@ uint8_t* CursorInfoSync::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_visible(), target);
   }
 
-  // uint32 x = 2;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_x(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_x(), target);
   }
 
-  // uint32 y = 3;
+  // int32 y = 3;
   if (this->_internal_y() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_y(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_y(), target);
   }
 
-  // uint32 hotspot_x = 4;
+  // int32 hotspot_x = 4;
   if (this->_internal_hotspot_x() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_hotspot_x(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_hotspot_x(), target);
   }
 
-  // uint32 hotspot_y = 5;
+  // int32 hotspot_y = 5;
   if (this->_internal_hotspot_y() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_hotspot_y(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_hotspot_y(), target);
   }
 
   // uint32 width = 6;
@@ -3235,24 +3235,24 @@ size_t CursorInfoSync::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  // uint32 x = 2;
+  // int32 x = 2;
   if (this->_internal_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_x());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_x());
   }
 
-  // uint32 y = 3;
+  // int32 y = 3;
   if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_y());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_y());
   }
 
-  // uint32 hotspot_x = 4;
+  // int32 hotspot_x = 4;
   if (this->_internal_hotspot_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_hotspot_x());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_hotspot_x());
   }
 
-  // uint32 hotspot_y = 5;
+  // int32 hotspot_y = 5;
   if (this->_internal_hotspot_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_hotspot_y());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_hotspot_y());
   }
 
   // uint32 width = 6;
