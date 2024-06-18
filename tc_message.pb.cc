@@ -269,6 +269,19 @@ struct OnlineGameDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
+PROTOBUF_CONSTEXPR UIServerHello::UIServerHello(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.type_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UIServerHelloDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UIServerHelloDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UIServerHelloDefaultTypeInternal() {}
+  union {
+    UIServerHello _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UIServerHelloDefaultTypeInternal _UIServerHello_default_instance_;
 PROTOBUF_CONSTEXPR Message::Message(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.online_games_)*/{}
@@ -285,6 +298,7 @@ PROTOBUF_CONSTEXPR Message::Message(
   , /*decltype(_impl_.capture_statistics_)*/nullptr
   , /*decltype(_impl_.client_statistics_)*/nullptr
   , /*decltype(_impl_.server_audio_spectrum_)*/nullptr
+  , /*decltype(_impl_.ui_server_hello_)*/nullptr
   , /*decltype(_impl_.send_time_)*/uint64_t{0u}
   , /*decltype(_impl_.type_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -298,8 +312,8 @@ struct MessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[14];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[7];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[15];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[8];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 
 const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -468,6 +482,13 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_id_),
   PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_exes_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _impl_.type_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -489,6 +510,7 @@ const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARI
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.client_statistics_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
   PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.online_games_),
+  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ui_server_hello_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::tc::Ack)},
@@ -504,7 +526,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 132, -1, -1, sizeof(::tc::ClientStatistics)},
   { 145, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
   { 156, -1, -1, sizeof(::tc::OnlineGame)},
-  { 164, -1, -1, sizeof(::tc::Message)},
+  { 164, -1, -1, sizeof(::tc::UIServerHello)},
+  { 171, -1, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -521,6 +544,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::tc::_ClientStatistics_default_instance_._instance,
   &::tc::_ServerAudioSpectrum_default_instance_._instance,
   &::tc::_OnlineGame_default_instance_._instance,
+  &::tc::_UIServerHello_default_instance_._instance,
   &::tc::_Message_default_instance_._instance,
 };
 
@@ -581,57 +605,61 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
   "nnels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectr"
   "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
   "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
-  "(\t\"\306\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.Messag"
-  "eType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022"
-  "\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007"
-  ".tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc.HeartBe"
-  "at\022#\n\013video_frame\030\007 \001(\0132\016.tc.VideoFrame\022"
-  "#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\t"
-  "key_event\030\t \001(\0132\014.tc.KeyEvent\022#\n\013mouse_e"
-  "vent\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cursor_inf"
-  "o_sync\030\013 \001(\0132\022.tc.CursorInfoSync\022\'\n\rgame"
-  "pad_state\030\014 \001(\0132\020.tc.GamepadState\0221\n\022cap"
-  "ture_statistics\030\r \001(\0132\025.tc.CaptureStatis"
-  "tics\022/\n\021client_statistics\030\016 \001(\0132\024.tc.Cli"
-  "entStatistics\0226\n\025server_audio_spectrum\030\017"
-  " \001(\0132\027.tc.ServerAudioSpectrum\022$\n\014online_"
-  "games\030\020 \003(\0132\016.tc.OnlineGame*\370\001\n\013MessageT"
-  "ype\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020"
-  "\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tk"
-  "KeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorIn"
-  "foSync\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureS"
-  "tatistics\020\t\022\025\n\021kClientStatistics\020\n\022\030\n\024kS"
-  "erverAudioSpectrum\020\013\022\020\n\014kOnlineGames\020\014*4"
-  "\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022"
-  "\013\n\007kNetVp9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017"
-  "\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kCont"
-  "rolDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseBut"
-  "tonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRi"
-  "ghtMouseButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020k"
-  "MouseEventWheel\020\200\002\022\026\n\021kMouseEventHWheel\020"
-  "\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026kMiddle"
-  "MouseButtonDown\020\200\020\022\032\n\025kRightMouseButtonD"
-  "own\020\200 *J\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kL"
-  "inux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS"
-  "\020\004*\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031"
-  "GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT"
-  "_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPA"
-  "D_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD_"
-  "RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n\026"
-  "GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_GA"
-  "MEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_"
-  "RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT"
-  "_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT_"
-  "SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n"
-  "\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAM"
-  "EPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006p"
-  "roto3"
+  "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
+  "essionType\"\362\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.t"
+  "c.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extr"
+  "a\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack"
+  "\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc"
+  ".HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.Vid"
+  "eoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioF"
+  "rame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#\n"
+  "\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cu"
+  "rsor_info_sync\030\013 \001(\0132\022.tc.CursorInfoSync"
+  "\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadStat"
+  "e\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Captu"
+  "reStatistics\022/\n\021client_statistics\030\016 \001(\0132"
+  "\024.tc.ClientStatistics\0226\n\025server_audio_sp"
+  "ectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum\022$\n"
+  "\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017u"
+  "i_server_hello\030\021 \001(\0132\021.tc.UIServerHello*"
+  "\214\002\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n"
+  "\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudio"
+  "Frame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022"
+  "\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020\010\022"
+  "\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStatis"
+  "tics\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n\014kOnl"
+  "ineGames\020\014\022\022\n\016kUIServerHello\020\r*4\n\tVideoT"
+  "ype\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetV"
+  "p9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
+  "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
+  "\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022"
+  "\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMouse"
+  "ButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020kMouseEve"
+  "ntWheel\020\200\002\022\026\n\021kMouseEventHWheel\020\200\004\022\031\n\024kL"
+  "eftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseBut"
+  "tonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *J"
+  "\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n"
+  "\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS\020\004*G\n\013Se"
+  "ssionType\022\020\n\014kInnerServer\020\000\022\022\n\016kAndroidC"
+  "lient\020\001\022\022\n\016kWindowsClient\020\002*\330\003\n\rGamepadB"
+  "utton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEP"
+  "AD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_D"
+  "OWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 "
+  "\n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_X"
+  "INPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEP"
+  "AD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUM"
+  "B\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022"
+  "$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n"
+  " GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023"
+  "GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAME"
+  "PAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023G"
+  "P_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 4005, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false, false, 4190, descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 14,
+    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 15,
     schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
     file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
@@ -712,6 +740,7 @@ bool MessageType_IsValid(int value) {
     case 10:
     case 11:
     case 12:
+    case 13:
       return true;
     default:
       return false;
@@ -776,9 +805,24 @@ bool ClientType_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadButton_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SessionType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
+}
+bool SessionType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadButton_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
 }
 bool GamepadButton_IsValid(int value) {
   switch (value) {
@@ -5215,6 +5259,187 @@ void OnlineGame::InternalSwap(OnlineGame* other) {
 
 // ===================================================================
 
+class UIServerHello::_Internal {
+ public:
+};
+
+UIServerHello::UIServerHello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:tc.UIServerHello)
+}
+UIServerHello::UIServerHello(const UIServerHello& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  UIServerHello* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_impl_.type_ = from._impl_.type_;
+  // @@protoc_insertion_point(copy_constructor:tc.UIServerHello)
+}
+
+inline void UIServerHello::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.type_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+UIServerHello::~UIServerHello() {
+  // @@protoc_insertion_point(destructor:tc.UIServerHello)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UIServerHello::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void UIServerHello::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void UIServerHello::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.UIServerHello)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.type_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UIServerHello::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .tc.SessionType type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::tc::SessionType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UIServerHello::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.UIServerHello)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tc.SessionType type = 1;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.UIServerHello)
+  return target;
+}
+
+size_t UIServerHello::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.UIServerHello)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .tc.SessionType type = 1;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UIServerHello::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    UIServerHello::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UIServerHello::GetClassData() const { return &_class_data_; }
+
+
+void UIServerHello::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<UIServerHello*>(&to_msg);
+  auto& from = static_cast<const UIServerHello&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.UIServerHello)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UIServerHello::CopyFrom(const UIServerHello& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.UIServerHello)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UIServerHello::IsInitialized() const {
+  return true;
+}
+
+void UIServerHello::InternalSwap(UIServerHello* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UIServerHello::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[13]);
+}
+
+// ===================================================================
+
 class Message::_Internal {
  public:
   static const ::tc::Hello& hello(const Message* msg);
@@ -5229,6 +5454,7 @@ class Message::_Internal {
   static const ::tc::CaptureStatistics& capture_statistics(const Message* msg);
   static const ::tc::ClientStatistics& client_statistics(const Message* msg);
   static const ::tc::ServerAudioSpectrum& server_audio_spectrum(const Message* msg);
+  static const ::tc::UIServerHello& ui_server_hello(const Message* msg);
 };
 
 const ::tc::Hello&
@@ -5279,6 +5505,10 @@ const ::tc::ServerAudioSpectrum&
 Message::_Internal::server_audio_spectrum(const Message* msg) {
   return *msg->_impl_.server_audio_spectrum_;
 }
+const ::tc::UIServerHello&
+Message::_Internal::ui_server_hello(const Message* msg) {
+  return *msg->_impl_.ui_server_hello_;
+}
 Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -5303,6 +5533,7 @@ Message::Message(const Message& from)
     , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.client_statistics_){nullptr}
     , decltype(_impl_.server_audio_spectrum_){nullptr}
+    , decltype(_impl_.ui_server_hello_){nullptr}
     , decltype(_impl_.send_time_){}
     , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -5352,6 +5583,9 @@ Message::Message(const Message& from)
   if (from._internal_has_server_audio_spectrum()) {
     _this->_impl_.server_audio_spectrum_ = new ::tc::ServerAudioSpectrum(*from._impl_.server_audio_spectrum_);
   }
+  if (from._internal_has_ui_server_hello()) {
+    _this->_impl_.ui_server_hello_ = new ::tc::UIServerHello(*from._impl_.ui_server_hello_);
+  }
   ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
     static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
     reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -5377,6 +5611,7 @@ inline void Message::SharedCtor(
     , decltype(_impl_.capture_statistics_){nullptr}
     , decltype(_impl_.client_statistics_){nullptr}
     , decltype(_impl_.server_audio_spectrum_){nullptr}
+    , decltype(_impl_.ui_server_hello_){nullptr}
     , decltype(_impl_.send_time_){uint64_t{0u}}
     , decltype(_impl_.type_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -5412,6 +5647,7 @@ inline void Message::SharedDtor() {
   if (this != internal_default_instance()) delete _impl_.capture_statistics_;
   if (this != internal_default_instance()) delete _impl_.client_statistics_;
   if (this != internal_default_instance()) delete _impl_.server_audio_spectrum_;
+  if (this != internal_default_instance()) delete _impl_.ui_server_hello_;
 }
 
 void Message::SetCachedSize(int size) const {
@@ -5474,6 +5710,10 @@ void Message::Clear() {
     delete _impl_.server_audio_spectrum_;
   }
   _impl_.server_audio_spectrum_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && _impl_.ui_server_hello_ != nullptr) {
+    delete _impl_.ui_server_hello_;
+  }
+  _impl_.ui_server_hello_ = nullptr;
   ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
@@ -5622,6 +5862,14 @@ const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
+      // .tc.UIServerHello ui_server_hello = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 138)) {
+          ptr = ctx->ParseMessage(_internal_mutable_ui_server_hello(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -5766,6 +6014,13 @@ uint8_t* Message::_InternalSerialize(
         InternalWriteMessage(16, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // .tc.UIServerHello ui_server_hello = 17;
+  if (this->_internal_has_ui_server_hello()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(17, _Internal::ui_server_hello(this),
+        _Internal::ui_server_hello(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -5880,6 +6135,13 @@ size_t Message::ByteSizeLong() const {
         *_impl_.server_audio_spectrum_);
   }
 
+  // .tc.UIServerHello ui_server_hello = 17;
+  if (this->_internal_has_ui_server_hello()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.ui_server_hello_);
+  }
+
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
@@ -5961,6 +6223,10 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
     _this->_internal_mutable_server_audio_spectrum()->::tc::ServerAudioSpectrum::MergeFrom(
         from._internal_server_audio_spectrum());
   }
+  if (from._internal_has_ui_server_hello()) {
+    _this->_internal_mutable_ui_server_hello()->::tc::UIServerHello::MergeFrom(
+        from._internal_ui_server_hello());
+  }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
   }
@@ -6002,7 +6268,7 @@ void Message::InternalSwap(Message* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[13]);
+      file_level_metadata_tc_5fmessage_2eproto[14]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -6059,6 +6325,10 @@ Arena::CreateMaybeMessage< ::tc::ServerAudioSpectrum >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::tc::OnlineGame*
 Arena::CreateMaybeMessage< ::tc::OnlineGame >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tc::OnlineGame >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tc::UIServerHello*
+Arena::CreateMaybeMessage< ::tc::UIServerHello >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tc::UIServerHello >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tc::Message*
 Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {

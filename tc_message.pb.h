@@ -86,6 +86,9 @@ extern OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
 class ServerAudioSpectrum;
 struct ServerAudioSpectrumDefaultTypeInternal;
 extern ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
+class UIServerHello;
+struct UIServerHelloDefaultTypeInternal;
+extern UIServerHelloDefaultTypeInternal _UIServerHello_default_instance_;
 class VideoFrame;
 struct VideoFrameDefaultTypeInternal;
 extern VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
@@ -104,6 +107,7 @@ template<> ::tc::Message* Arena::CreateMaybeMessage<::tc::Message>(Arena*);
 template<> ::tc::MouseEvent* Arena::CreateMaybeMessage<::tc::MouseEvent>(Arena*);
 template<> ::tc::OnlineGame* Arena::CreateMaybeMessage<::tc::OnlineGame>(Arena*);
 template<> ::tc::ServerAudioSpectrum* Arena::CreateMaybeMessage<::tc::ServerAudioSpectrum>(Arena*);
+template<> ::tc::UIServerHello* Arena::CreateMaybeMessage<::tc::UIServerHello>(Arena*);
 template<> ::tc::VideoFrame* Arena::CreateMaybeMessage<::tc::VideoFrame>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tc {
@@ -176,12 +180,13 @@ enum MessageType : int {
   kClientStatistics = 10,
   kServerAudioSpectrum = 11,
   kOnlineGames = 12,
+  kUIServerHello = 13,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MessageType_IsValid(int value);
 constexpr MessageType MessageType_MIN = kHello;
-constexpr MessageType MessageType_MAX = kOnlineGames;
+constexpr MessageType MessageType_MAX = kUIServerHello;
 constexpr int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor();
@@ -288,6 +293,32 @@ inline bool ClientType_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ClientType* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ClientType>(
     ClientType_descriptor(), name, value);
+}
+enum SessionType : int {
+  kInnerServer = 0,
+  kAndroidClient = 1,
+  kWindowsClient = 2,
+  SessionType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  SessionType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool SessionType_IsValid(int value);
+constexpr SessionType SessionType_MIN = kInnerServer;
+constexpr SessionType SessionType_MAX = kWindowsClient;
+constexpr int SessionType_ARRAYSIZE = SessionType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SessionType_descriptor();
+template<typename T>
+inline const std::string& SessionType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, SessionType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function SessionType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    SessionType_descriptor(), enum_t_value);
+}
+inline bool SessionType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, SessionType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<SessionType>(
+    SessionType_descriptor(), name, value);
 }
 enum GamepadButton : int {
   GP_UNKNOWN = 0,
@@ -3264,6 +3295,154 @@ class OnlineGame final :
 };
 // -------------------------------------------------------------------
 
+class UIServerHello final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.UIServerHello) */ {
+ public:
+  inline UIServerHello() : UIServerHello(nullptr) {}
+  ~UIServerHello() override;
+  explicit PROTOBUF_CONSTEXPR UIServerHello(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UIServerHello(const UIServerHello& from);
+  UIServerHello(UIServerHello&& from) noexcept
+    : UIServerHello() {
+    *this = ::std::move(from);
+  }
+
+  inline UIServerHello& operator=(const UIServerHello& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UIServerHello& operator=(UIServerHello&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UIServerHello& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UIServerHello* internal_default_instance() {
+    return reinterpret_cast<const UIServerHello*>(
+               &_UIServerHello_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(UIServerHello& a, UIServerHello& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UIServerHello* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UIServerHello* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UIServerHello* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UIServerHello>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UIServerHello& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UIServerHello& from) {
+    UIServerHello::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UIServerHello* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tc.UIServerHello";
+  }
+  protected:
+  explicit UIServerHello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTypeFieldNumber = 1,
+  };
+  // .tc.SessionType type = 1;
+  void clear_type();
+  ::tc::SessionType type() const;
+  void set_type(::tc::SessionType value);
+  private:
+  ::tc::SessionType _internal_type() const;
+  void _internal_set_type(::tc::SessionType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tc.UIServerHello)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int type_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Message final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tc.Message) */ {
  public:
@@ -3312,7 +3491,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -3399,6 +3578,7 @@ class Message final :
     kCaptureStatisticsFieldNumber = 13,
     kClientStatisticsFieldNumber = 14,
     kServerAudioSpectrumFieldNumber = 15,
+    kUiServerHelloFieldNumber = 17,
     kSendTimeFieldNumber = 2,
     kTypeFieldNumber = 1,
   };
@@ -3650,6 +3830,24 @@ class Message final :
       ::tc::ServerAudioSpectrum* server_audio_spectrum);
   ::tc::ServerAudioSpectrum* unsafe_arena_release_server_audio_spectrum();
 
+  // .tc.UIServerHello ui_server_hello = 17;
+  bool has_ui_server_hello() const;
+  private:
+  bool _internal_has_ui_server_hello() const;
+  public:
+  void clear_ui_server_hello();
+  const ::tc::UIServerHello& ui_server_hello() const;
+  PROTOBUF_NODISCARD ::tc::UIServerHello* release_ui_server_hello();
+  ::tc::UIServerHello* mutable_ui_server_hello();
+  void set_allocated_ui_server_hello(::tc::UIServerHello* ui_server_hello);
+  private:
+  const ::tc::UIServerHello& _internal_ui_server_hello() const;
+  ::tc::UIServerHello* _internal_mutable_ui_server_hello();
+  public:
+  void unsafe_arena_set_allocated_ui_server_hello(
+      ::tc::UIServerHello* ui_server_hello);
+  ::tc::UIServerHello* unsafe_arena_release_ui_server_hello();
+
   // uint64 send_time = 2;
   void clear_send_time();
   uint64_t send_time() const;
@@ -3690,6 +3888,7 @@ class Message final :
     ::tc::CaptureStatistics* capture_statistics_;
     ::tc::ClientStatistics* client_statistics_;
     ::tc::ServerAudioSpectrum* server_audio_spectrum_;
+    ::tc::UIServerHello* ui_server_hello_;
     uint64_t send_time_;
     int type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -5931,6 +6130,30 @@ inline void OnlineGame::set_allocated_game_exes(std::string* game_exes) {
 
 // -------------------------------------------------------------------
 
+// UIServerHello
+
+// .tc.SessionType type = 1;
+inline void UIServerHello::clear_type() {
+  _impl_.type_ = 0;
+}
+inline ::tc::SessionType UIServerHello::_internal_type() const {
+  return static_cast< ::tc::SessionType >(_impl_.type_);
+}
+inline ::tc::SessionType UIServerHello::type() const {
+  // @@protoc_insertion_point(field_get:tc.UIServerHello.type)
+  return _internal_type();
+}
+inline void UIServerHello::_internal_set_type(::tc::SessionType value) {
+  
+  _impl_.type_ = value;
+}
+inline void UIServerHello::set_type(::tc::SessionType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:tc.UIServerHello.type)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // .tc.MessageType type = 1;
@@ -7143,9 +7366,101 @@ Message::online_games() const {
   return _impl_.online_games_;
 }
 
+// .tc.UIServerHello ui_server_hello = 17;
+inline bool Message::_internal_has_ui_server_hello() const {
+  return this != internal_default_instance() && _impl_.ui_server_hello_ != nullptr;
+}
+inline bool Message::has_ui_server_hello() const {
+  return _internal_has_ui_server_hello();
+}
+inline void Message::clear_ui_server_hello() {
+  if (GetArenaForAllocation() == nullptr && _impl_.ui_server_hello_ != nullptr) {
+    delete _impl_.ui_server_hello_;
+  }
+  _impl_.ui_server_hello_ = nullptr;
+}
+inline const ::tc::UIServerHello& Message::_internal_ui_server_hello() const {
+  const ::tc::UIServerHello* p = _impl_.ui_server_hello_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::UIServerHello&>(
+      ::tc::_UIServerHello_default_instance_);
+}
+inline const ::tc::UIServerHello& Message::ui_server_hello() const {
+  // @@protoc_insertion_point(field_get:tc.Message.ui_server_hello)
+  return _internal_ui_server_hello();
+}
+inline void Message::unsafe_arena_set_allocated_ui_server_hello(
+    ::tc::UIServerHello* ui_server_hello) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.ui_server_hello_);
+  }
+  _impl_.ui_server_hello_ = ui_server_hello;
+  if (ui_server_hello) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.ui_server_hello)
+}
+inline ::tc::UIServerHello* Message::release_ui_server_hello() {
+  
+  ::tc::UIServerHello* temp = _impl_.ui_server_hello_;
+  _impl_.ui_server_hello_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::tc::UIServerHello* Message::unsafe_arena_release_ui_server_hello() {
+  // @@protoc_insertion_point(field_release:tc.Message.ui_server_hello)
+  
+  ::tc::UIServerHello* temp = _impl_.ui_server_hello_;
+  _impl_.ui_server_hello_ = nullptr;
+  return temp;
+}
+inline ::tc::UIServerHello* Message::_internal_mutable_ui_server_hello() {
+  
+  if (_impl_.ui_server_hello_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::UIServerHello>(GetArenaForAllocation());
+    _impl_.ui_server_hello_ = p;
+  }
+  return _impl_.ui_server_hello_;
+}
+inline ::tc::UIServerHello* Message::mutable_ui_server_hello() {
+  ::tc::UIServerHello* _msg = _internal_mutable_ui_server_hello();
+  // @@protoc_insertion_point(field_mutable:tc.Message.ui_server_hello)
+  return _msg;
+}
+inline void Message::set_allocated_ui_server_hello(::tc::UIServerHello* ui_server_hello) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete _impl_.ui_server_hello_;
+  }
+  if (ui_server_hello) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(ui_server_hello);
+    if (message_arena != submessage_arena) {
+      ui_server_hello = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ui_server_hello, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.ui_server_hello_ = ui_server_hello;
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.ui_server_hello)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -7208,6 +7523,11 @@ template <> struct is_proto_enum< ::tc::ClientType> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tc::ClientType>() {
   return ::tc::ClientType_descriptor();
+}
+template <> struct is_proto_enum< ::tc::SessionType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tc::SessionType>() {
+  return ::tc::SessionType_descriptor();
 }
 template <> struct is_proto_enum< ::tc::GamepadButton> : ::std::true_type {};
 template <>

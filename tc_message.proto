@@ -23,6 +23,8 @@ enum MessageType {
   kServerAudioSpectrum = 11;
   // host panel -> client
   kOnlineGames = 12;
+  // ui server hello
+  kUIServerHello = 13;
 }
 
 enum VideoType {
@@ -54,6 +56,13 @@ enum ClientType {
   kMacOS = 2;
   kAndroid = 3;
   kiOS = 4;
+}
+
+// UI server
+enum SessionType {
+    kInnerServer = 0;
+    kAndroidClient = 1;
+    kWindowsClient = 2;
 }
 
 message Ack {
@@ -239,6 +248,10 @@ message OnlineGame {
   string game_exes = 2;
 }
 
+message UIServerHello {
+  SessionType type = 1;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -256,4 +269,5 @@ message Message {
   ClientStatistics client_statistics = 14;
   ServerAudioSpectrum server_audio_spectrum = 15;
   repeated OnlineGame online_games = 16;
+  UIServerHello ui_server_hello = 17;
 }
