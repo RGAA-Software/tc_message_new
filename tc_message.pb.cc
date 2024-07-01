@@ -4,714 +4,877 @@
 #include "tc_message.pb.h"
 
 #include <algorithm>
-
-#include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/extension_set.h>
-#include <google/protobuf/wire_format_lite.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/extension_set.h"
+#include "google/protobuf/wire_format_lite.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/reflection_ops.h"
+#include "google/protobuf/wire_format.h"
+#include "google/protobuf/generated_message_tctable_impl.h"
 // @@protoc_insertion_point(includes)
-#include <google/protobuf/port_def.inc>
 
+// Must be included last.
+#include "google/protobuf/port_def.inc"
 PROTOBUF_PRAGMA_INIT_SEG
-
-namespace _pb = ::PROTOBUF_NAMESPACE_ID;
-namespace _pbi = _pb::internal;
-
+namespace _pb = ::google::protobuf;
+namespace _pbi = ::google::protobuf::internal;
+namespace _fl = ::google::protobuf::internal::field_layout;
 namespace tc {
-PROTOBUF_CONSTEXPR Ack::Ack(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.send_time_)*/uint64_t{0u}
-  , /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AckDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AckDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AckDefaultTypeInternal() {}
-  union {
-    Ack _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AckDefaultTypeInternal _Ack_default_instance_;
-PROTOBUF_CONSTEXPR Hello::Hello(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.enable_audio_)*/false
-  , /*decltype(_impl_.enable_video_)*/false
-  , /*decltype(_impl_.enable_controller_)*/false
-  , /*decltype(_impl_.client_type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct HelloDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HelloDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HelloDefaultTypeInternal() {}
-  union {
-    Hello _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HelloDefaultTypeInternal _Hello_default_instance_;
-PROTOBUF_CONSTEXPR HeartBeat::HeartBeat(
-    ::_pbi::ConstantInitialized) {}
-struct HeartBeatDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HeartBeatDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HeartBeatDefaultTypeInternal() {}
-  union {
-    HeartBeat _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
-PROTOBUF_CONSTEXPR VideoFrame::VideoFrame(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.mon_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_.key_)*/false
-  , /*decltype(_impl_.frame_index_)*/uint64_t{0u}
-  , /*decltype(_impl_.frame_width_)*/0
-  , /*decltype(_impl_.frame_height_)*/0
-  , /*decltype(_impl_.mon_idx_)*/0
-  , /*decltype(_impl_.mon_left_)*/0
-  , /*decltype(_impl_.mon_top_)*/0
-  , /*decltype(_impl_.mon_right_)*/0
-  , /*decltype(_impl_.mon_bottom_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+inline constexpr VideoFrame::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        mon_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::tc::VideoType >(0)},
+        key_{false},
+        frame_index_{::uint64_t{0u}},
+        frame_width_{0},
+        frame_height_{0},
+        mon_idx_{0},
+        mon_left_{0},
+        mon_top_{0},
+        mon_right_{0},
+        mon_bottom_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR VideoFrame::VideoFrame(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct VideoFrameDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR VideoFrameDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR VideoFrameDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~VideoFrameDefaultTypeInternal() {}
   union {
     VideoFrame _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
-PROTOBUF_CONSTEXPR AudioFrame::AudioFrame(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.samples_)*/0
-  , /*decltype(_impl_.channels_)*/0
-  , /*decltype(_impl_.bits_)*/0
-  , /*decltype(_impl_.frame_size_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct AudioFrameDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AudioFrameDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AudioFrameDefaultTypeInternal() {}
-  union {
-    AudioFrame _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
-PROTOBUF_CONSTEXPR KeyEvent::KeyEvent(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.key_code_)*/0u
-  , /*decltype(_impl_.down_)*/false
-  , /*decltype(_impl_.num_lock_status_)*/0
-  , /*decltype(_impl_.caps_lock_status_)*/0
-  , /*decltype(_impl_.timestamp_)*/int64_t{0}
-  , /*decltype(_impl_.status_check_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct KeyEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR KeyEventDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~KeyEventDefaultTypeInternal() {}
-  union {
-    KeyEvent _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KeyEventDefaultTypeInternal _KeyEvent_default_instance_;
-PROTOBUF_CONSTEXPR MouseEvent::MouseEvent(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.monitor_index_)*/0
-  , /*decltype(_impl_.x_ratio_)*/0
-  , /*decltype(_impl_.y_ratio_)*/0
-  , /*decltype(_impl_.button_)*/0
-  , /*decltype(_impl_.timestamp_)*/int64_t{0}
-  , /*decltype(_impl_.data_)*/0
-  , /*decltype(_impl_.delta_x_)*/0
-  , /*decltype(_impl_.delta_y_)*/0
-  , /*decltype(_impl_.pressed_)*/false
-  , /*decltype(_impl_.released_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct MouseEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MouseEventDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MouseEventDefaultTypeInternal() {}
-  union {
-    MouseEvent _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
-PROTOBUF_CONSTEXPR CursorInfoSync::CursorInfoSync(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.bitmap_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.visible_)*/false
-  , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
-  , /*decltype(_impl_.hotspot_x_)*/0
-  , /*decltype(_impl_.hotspot_y_)*/0
-  , /*decltype(_impl_.width_)*/0u
-  , /*decltype(_impl_.height_)*/0u
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct CursorInfoSyncDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CursorInfoSyncDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CursorInfoSyncDefaultTypeInternal() {}
-  union {
-    CursorInfoSync _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
-PROTOBUF_CONSTEXPR GamepadState::GamepadState(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.buttons_)*/0u
-  , /*decltype(_impl_.left_trigger_)*/0u
-  , /*decltype(_impl_.right_trigger_)*/0u
-  , /*decltype(_impl_.thumb_lx_)*/0
-  , /*decltype(_impl_.thumb_ly_)*/0
-  , /*decltype(_impl_.thumb_rx_)*/0
-  , /*decltype(_impl_.thumb_ry_)*/0
-  , /*decltype(_impl_.gp_type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct GamepadStateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GamepadStateDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GamepadStateDefaultTypeInternal() {}
-  union {
-    GamepadState _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadStateDefaultTypeInternal _GamepadState_default_instance_;
-PROTOBUF_CONSTEXPR CaptureStatistics::CaptureStatistics(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.video_frame_gaps_)*/{}
-  , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.encode_durations_)*/{}
-  , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.audio_frame_gaps_)*/{}
-  , /*decltype(_impl_._audio_frame_gaps_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.decode_durations_)*/{}
-  , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.client_video_recv_gaps_)*/{}
-  , /*decltype(_impl_._client_video_recv_gaps_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.client_fps_video_recv_)*/0u
-  , /*decltype(_impl_.client_fps_render_)*/0u
-  , /*decltype(_impl_.client_recv_media_data_)*/int64_t{0}
-  , /*decltype(_impl_.fps_video_encode_)*/0
-  , /*decltype(_impl_.app_running_time_)*/0
-  , /*decltype(_impl_.server_send_media_data_)*/int64_t{0}
-  , /*decltype(_impl_.render_width_)*/0
-  , /*decltype(_impl_.render_height_)*/0
-  , /*decltype(_impl_.capture_width_)*/0
-  , /*decltype(_impl_.capture_height_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct CaptureStatisticsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CaptureStatisticsDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CaptureStatisticsDefaultTypeInternal() {}
-  union {
-    CaptureStatistics _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureStatisticsDefaultTypeInternal _CaptureStatistics_default_instance_;
-PROTOBUF_CONSTEXPR ClientStatistics::ClientStatistics(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.decode_durations_)*/{}
-  , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.video_recv_gaps_)*/{}
-  , /*decltype(_impl_._video_recv_gaps_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.fps_video_recv_)*/0u
-  , /*decltype(_impl_.fps_render_)*/0u
-  , /*decltype(_impl_.recv_media_data_)*/int64_t{0}
-  , /*decltype(_impl_.render_width_)*/0
-  , /*decltype(_impl_.render_height_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct ClientStatisticsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ClientStatisticsDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ClientStatisticsDefaultTypeInternal() {}
-  union {
-    ClientStatistics _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientStatisticsDefaultTypeInternal _ClientStatistics_default_instance_;
-PROTOBUF_CONSTEXPR ServerAudioSpectrum::ServerAudioSpectrum(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.left_spectrum_)*/{}
-  , /*decltype(_impl_.right_spectrum_)*/{}
-  , /*decltype(_impl_.samples_)*/0
-  , /*decltype(_impl_.channels_)*/0
-  , /*decltype(_impl_.bits_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct ServerAudioSpectrumDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServerAudioSpectrumDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServerAudioSpectrumDefaultTypeInternal() {}
-  union {
-    ServerAudioSpectrum _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
-PROTOBUF_CONSTEXPR OnlineGame::OnlineGame(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.game_exes_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.game_id_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct OnlineGameDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR OnlineGameDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~OnlineGameDefaultTypeInternal() {}
-  union {
-    OnlineGame _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
-PROTOBUF_CONSTEXPR UIServerHello::UIServerHello(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VideoFrameDefaultTypeInternal _VideoFrame_default_instance_;
+
+inline constexpr UIServerHello::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : type_{static_cast< ::tc::SessionType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UIServerHello::UIServerHello(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct UIServerHelloDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UIServerHelloDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR UIServerHelloDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~UIServerHelloDefaultTypeInternal() {}
   union {
     UIServerHello _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UIServerHelloDefaultTypeInternal _UIServerHello_default_instance_;
-PROTOBUF_CONSTEXPR Message::Message(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.online_games_)*/{}
-  , /*decltype(_impl_.extra_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.hello_)*/nullptr
-  , /*decltype(_impl_.ack_)*/nullptr
-  , /*decltype(_impl_.heart_beat_)*/nullptr
-  , /*decltype(_impl_.video_frame_)*/nullptr
-  , /*decltype(_impl_.audio_frame_)*/nullptr
-  , /*decltype(_impl_.key_event_)*/nullptr
-  , /*decltype(_impl_.mouse_event_)*/nullptr
-  , /*decltype(_impl_.cursor_info_sync_)*/nullptr
-  , /*decltype(_impl_.gamepad_state_)*/nullptr
-  , /*decltype(_impl_.capture_statistics_)*/nullptr
-  , /*decltype(_impl_.client_statistics_)*/nullptr
-  , /*decltype(_impl_.server_audio_spectrum_)*/nullptr
-  , /*decltype(_impl_.ui_server_hello_)*/nullptr
-  , /*decltype(_impl_.send_time_)*/uint64_t{0u}
-  , /*decltype(_impl_.type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UIServerHelloDefaultTypeInternal _UIServerHello_default_instance_;
+
+inline constexpr ServerAudioSpectrum::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : left_spectrum_{},
+        right_spectrum_{},
+        samples_{0},
+        channels_{0},
+        bits_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ServerAudioSpectrum::ServerAudioSpectrum(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ServerAudioSpectrumDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ServerAudioSpectrumDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ServerAudioSpectrumDefaultTypeInternal() {}
+  union {
+    ServerAudioSpectrum _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
+
+inline constexpr OnlineGame::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : game_exes_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        game_id_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR OnlineGame::OnlineGame(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct OnlineGameDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR OnlineGameDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~OnlineGameDefaultTypeInternal() {}
+  union {
+    OnlineGame _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
+
+inline constexpr MouseEvent::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : monitor_index_{0},
+        x_ratio_{0},
+        y_ratio_{0},
+        button_{0},
+        timestamp_{::int64_t{0}},
+        data_{0},
+        delta_x_{0},
+        delta_y_{0},
+        pressed_{false},
+        released_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MouseEvent::MouseEvent(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MouseEventDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MouseEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MouseEventDefaultTypeInternal() {}
+  union {
+    MouseEvent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
+
+inline constexpr KeyEvent::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : key_code_{0u},
+        down_{false},
+        num_lock_status_{0},
+        caps_lock_status_{0},
+        timestamp_{::int64_t{0}},
+        status_check_{static_cast< ::tc::KeyEvent_LockKeyStatusCheck >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR KeyEvent::KeyEvent(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct KeyEventDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KeyEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KeyEventDefaultTypeInternal() {}
+  union {
+    KeyEvent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KeyEventDefaultTypeInternal _KeyEvent_default_instance_;
+
+inline constexpr Hello::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : enable_audio_{false},
+        enable_video_{false},
+        enable_controller_{false},
+        client_type_{static_cast< ::tc::ClientType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Hello::Hello(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct HelloDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HelloDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HelloDefaultTypeInternal() {}
+  union {
+    Hello _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HelloDefaultTypeInternal _Hello_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR HeartBeat::HeartBeat(::_pbi::ConstantInitialized) {}
+struct HeartBeatDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HeartBeatDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HeartBeatDefaultTypeInternal() {}
+  union {
+    HeartBeat _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
+
+inline constexpr GamepadState::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : buttons_{0u},
+        left_trigger_{0u},
+        right_trigger_{0u},
+        thumb_lx_{0},
+        thumb_ly_{0},
+        thumb_rx_{0},
+        thumb_ry_{0},
+        gp_type_{static_cast< ::tc::GamepadState_GamepadType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GamepadState::GamepadState(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GamepadStateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GamepadStateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GamepadStateDefaultTypeInternal() {}
+  union {
+    GamepadState _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadStateDefaultTypeInternal _GamepadState_default_instance_;
+
+inline constexpr CursorInfoSync::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : bitmap_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        visible_{false},
+        x_{0},
+        y_{0},
+        hotspot_x_{0},
+        hotspot_y_{0},
+        width_{0u},
+        height_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CursorInfoSync::CursorInfoSync(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct CursorInfoSyncDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CursorInfoSyncDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CursorInfoSyncDefaultTypeInternal() {}
+  union {
+    CursorInfoSync _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CursorInfoSyncDefaultTypeInternal _CursorInfoSync_default_instance_;
+
+inline constexpr ClientStatistics::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : decode_durations_{},
+        _decode_durations_cached_byte_size_{0},
+        video_recv_gaps_{},
+        _video_recv_gaps_cached_byte_size_{0},
+        fps_video_recv_{0u},
+        fps_render_{0u},
+        recv_media_data_{::int64_t{0}},
+        render_width_{0},
+        render_height_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ClientStatistics::ClientStatistics(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ClientStatisticsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientStatisticsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientStatisticsDefaultTypeInternal() {}
+  union {
+    ClientStatistics _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientStatisticsDefaultTypeInternal _ClientStatistics_default_instance_;
+
+inline constexpr CaptureStatistics::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : video_frame_gaps_{},
+        _video_frame_gaps_cached_byte_size_{0},
+        encode_durations_{},
+        _encode_durations_cached_byte_size_{0},
+        audio_frame_gaps_{},
+        _audio_frame_gaps_cached_byte_size_{0},
+        decode_durations_{},
+        _decode_durations_cached_byte_size_{0},
+        client_video_recv_gaps_{},
+        _client_video_recv_gaps_cached_byte_size_{0},
+        client_fps_video_recv_{0u},
+        client_fps_render_{0u},
+        client_recv_media_data_{::int64_t{0}},
+        fps_video_encode_{0},
+        app_running_time_{0},
+        server_send_media_data_{::int64_t{0}},
+        render_width_{0},
+        render_height_{0},
+        capture_width_{0},
+        capture_height_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR CaptureStatistics::CaptureStatistics(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct CaptureStatisticsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CaptureStatisticsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CaptureStatisticsDefaultTypeInternal() {}
+  union {
+    CaptureStatistics _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CaptureStatisticsDefaultTypeInternal _CaptureStatistics_default_instance_;
+
+inline constexpr AudioFrame::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        extra_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        samples_{0},
+        channels_{0},
+        bits_{0},
+        frame_size_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AudioFrame::AudioFrame(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AudioFrameDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AudioFrameDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AudioFrameDefaultTypeInternal() {}
+  union {
+    AudioFrame _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AudioFrameDefaultTypeInternal _AudioFrame_default_instance_;
+
+inline constexpr Ack::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : send_time_{::uint64_t{0u}},
+        type_{static_cast< ::tc::MessageType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Ack::Ack(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AckDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AckDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AckDefaultTypeInternal() {}
+  union {
+    Ack _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AckDefaultTypeInternal _Ack_default_instance_;
+
+inline constexpr Message::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        online_games_{},
+        extra_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        hello_{nullptr},
+        ack_{nullptr},
+        heart_beat_{nullptr},
+        video_frame_{nullptr},
+        audio_frame_{nullptr},
+        key_event_{nullptr},
+        mouse_event_{nullptr},
+        cursor_info_sync_{nullptr},
+        gamepad_state_{nullptr},
+        capture_statistics_{nullptr},
+        client_statistics_{nullptr},
+        server_audio_spectrum_{nullptr},
+        ui_server_hello_{nullptr},
+        send_time_{::uint64_t{0u}},
+        type_{static_cast< ::tc::MessageType >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Message::Message(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
 struct MessageDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MessageDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
+  PROTOBUF_CONSTEXPR MessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
   ~MessageDefaultTypeInternal() {}
   union {
     Message _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
 static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[15];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[8];
-static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
-
-const uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::Ack, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::Ack, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::tc::Ack, _impl_.send_time_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::Hello, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_audio_),
-  PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_video_),
-  PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.client_type_),
-  PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_controller_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::HeartBeat, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.data_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_index_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.key_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_width_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_height_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.extra_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_idx_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_name_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_left_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_top_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_right_),
-  PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_bottom_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.samples_),
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.channels_),
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.bits_),
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.frame_size_),
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.data_),
-  PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.extra_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.key_code_),
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.down_),
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.num_lock_status_),
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.caps_lock_status_),
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.status_check_),
-  PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.timestamp_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.monitor_index_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.x_ratio_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.y_ratio_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.button_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.data_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.timestamp_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_x_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_y_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.pressed_),
-  PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.released_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.visible_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.hotspot_x_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.hotspot_y_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.width_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.height_),
-  PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.bitmap_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.buttons_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.left_trigger_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.right_trigger_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_lx_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ly_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_rx_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ry_),
-  PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.gp_type_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.video_frame_gaps_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.encode_durations_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.audio_frame_gaps_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.decode_durations_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_video_recv_gaps_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_fps_video_recv_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_fps_render_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_recv_media_data_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.fps_video_encode_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.app_running_time_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.server_send_media_data_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_width_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_height_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_width_),
-  PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_height_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.decode_durations_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.video_recv_gaps_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_video_recv_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_render_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.recv_media_data_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_width_),
-  PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_height_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.samples_),
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.channels_),
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.bits_),
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.left_spectrum_),
-  PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.right_spectrum_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_id_),
-  PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_exes_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _impl_.type_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.type_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.send_time_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.extra_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.hello_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ack_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.heart_beat_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.video_frame_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.audio_frame_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.key_event_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.mouse_event_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.cursor_info_sync_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_state_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.capture_statistics_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.client_statistics_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.online_games_),
-  PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ui_server_hello_),
+static constexpr const ::_pb::ServiceDescriptor**
+    file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
+const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
+    protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::Ack, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::Ack, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::tc::Ack, _impl_.send_time_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::Hello, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_audio_),
+    PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_video_),
+    PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.client_type_),
+    PROTOBUF_FIELD_OFFSET(::tc::Hello, _impl_.enable_controller_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::HeartBeat, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.data_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_index_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.key_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_width_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.frame_height_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.extra_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_idx_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_name_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_left_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_top_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_right_),
+    PROTOBUF_FIELD_OFFSET(::tc::VideoFrame, _impl_.mon_bottom_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.samples_),
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.channels_),
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.bits_),
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.frame_size_),
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.data_),
+    PROTOBUF_FIELD_OFFSET(::tc::AudioFrame, _impl_.extra_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.key_code_),
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.down_),
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.num_lock_status_),
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.caps_lock_status_),
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.status_check_),
+    PROTOBUF_FIELD_OFFSET(::tc::KeyEvent, _impl_.timestamp_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.monitor_index_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.x_ratio_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.y_ratio_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.button_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.data_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.timestamp_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_x_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.delta_y_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.pressed_),
+    PROTOBUF_FIELD_OFFSET(::tc::MouseEvent, _impl_.released_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.visible_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.x_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.y_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.hotspot_x_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.hotspot_y_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.width_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.height_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.bitmap_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.buttons_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.left_trigger_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.right_trigger_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_lx_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ly_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_rx_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.thumb_ry_),
+    PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _impl_.gp_type_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.video_frame_gaps_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.encode_durations_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.audio_frame_gaps_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.decode_durations_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_video_recv_gaps_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_fps_video_recv_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_fps_render_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.client_recv_media_data_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.fps_video_encode_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.app_running_time_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.server_send_media_data_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_width_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.render_height_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_width_),
+    PROTOBUF_FIELD_OFFSET(::tc::CaptureStatistics, _impl_.capture_height_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.decode_durations_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.video_recv_gaps_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_video_recv_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.fps_render_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.recv_media_data_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_width_),
+    PROTOBUF_FIELD_OFFSET(::tc::ClientStatistics, _impl_.render_height_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.samples_),
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.channels_),
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.bits_),
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.left_spectrum_),
+    PROTOBUF_FIELD_OFFSET(::tc::ServerAudioSpectrum, _impl_.right_spectrum_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_id_),
+    PROTOBUF_FIELD_OFFSET(::tc::OnlineGame, _impl_.game_exes_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.send_time_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.extra_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.hello_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ack_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.heart_beat_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.video_frame_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.audio_frame_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.key_event_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.mouse_event_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.cursor_info_sync_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.gamepad_state_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.capture_statistics_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.client_statistics_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.online_games_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ui_server_hello_),
+    ~0u,
+    ~0u,
+    ~0u,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    ~0u,
+    12,
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::tc::Ack)},
-  { 8, -1, -1, sizeof(::tc::Hello)},
-  { 18, -1, -1, sizeof(::tc::HeartBeat)},
-  { 24, -1, -1, sizeof(::tc::VideoFrame)},
-  { 43, -1, -1, sizeof(::tc::AudioFrame)},
-  { 55, -1, -1, sizeof(::tc::KeyEvent)},
-  { 67, -1, -1, sizeof(::tc::MouseEvent)},
-  { 83, -1, -1, sizeof(::tc::CursorInfoSync)},
-  { 97, -1, -1, sizeof(::tc::GamepadState)},
-  { 111, -1, -1, sizeof(::tc::CaptureStatistics)},
-  { 132, -1, -1, sizeof(::tc::ClientStatistics)},
-  { 145, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-  { 156, -1, -1, sizeof(::tc::OnlineGame)},
-  { 164, -1, -1, sizeof(::tc::UIServerHello)},
-  { 171, -1, -1, sizeof(::tc::Message)},
+
+static const ::_pbi::MigrationSchema
+    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+        {0, -1, -1, sizeof(::tc::Ack)},
+        {10, -1, -1, sizeof(::tc::Hello)},
+        {22, -1, -1, sizeof(::tc::HeartBeat)},
+        {30, -1, -1, sizeof(::tc::VideoFrame)},
+        {51, -1, -1, sizeof(::tc::AudioFrame)},
+        {65, -1, -1, sizeof(::tc::KeyEvent)},
+        {79, -1, -1, sizeof(::tc::MouseEvent)},
+        {97, -1, -1, sizeof(::tc::CursorInfoSync)},
+        {113, -1, -1, sizeof(::tc::GamepadState)},
+        {129, -1, -1, sizeof(::tc::CaptureStatistics)},
+        {152, -1, -1, sizeof(::tc::ClientStatistics)},
+        {167, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
+        {180, -1, -1, sizeof(::tc::OnlineGame)},
+        {190, -1, -1, sizeof(::tc::UIServerHello)},
+        {199, 224, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::tc::_Ack_default_instance_._instance,
-  &::tc::_Hello_default_instance_._instance,
-  &::tc::_HeartBeat_default_instance_._instance,
-  &::tc::_VideoFrame_default_instance_._instance,
-  &::tc::_AudioFrame_default_instance_._instance,
-  &::tc::_KeyEvent_default_instance_._instance,
-  &::tc::_MouseEvent_default_instance_._instance,
-  &::tc::_CursorInfoSync_default_instance_._instance,
-  &::tc::_GamepadState_default_instance_._instance,
-  &::tc::_CaptureStatistics_default_instance_._instance,
-  &::tc::_ClientStatistics_default_instance_._instance,
-  &::tc::_ServerAudioSpectrum_default_instance_._instance,
-  &::tc::_OnlineGame_default_instance_._instance,
-  &::tc::_UIServerHello_default_instance_._instance,
-  &::tc::_Message_default_instance_._instance,
+    &::tc::_Ack_default_instance_._instance,
+    &::tc::_Hello_default_instance_._instance,
+    &::tc::_HeartBeat_default_instance_._instance,
+    &::tc::_VideoFrame_default_instance_._instance,
+    &::tc::_AudioFrame_default_instance_._instance,
+    &::tc::_KeyEvent_default_instance_._instance,
+    &::tc::_MouseEvent_default_instance_._instance,
+    &::tc::_CursorInfoSync_default_instance_._instance,
+    &::tc::_GamepadState_default_instance_._instance,
+    &::tc::_CaptureStatistics_default_instance_._instance,
+    &::tc::_ClientStatistics_default_instance_._instance,
+    &::tc::_ServerAudioSpectrum_default_instance_._instance,
+    &::tc::_OnlineGame_default_instance_._instance,
+    &::tc::_UIServerHello_default_instance_._instance,
+    &::tc::_Message_default_instance_._instance,
 };
-
-const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\020tc_message.proto\022\002tc\"7\n\003Ack\022\035\n\004type\030\001 "
-  "\001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\""
-  "s\n\005Hello\022\024\n\014enable_audio\030\001 \001(\010\022\024\n\014enable"
-  "_video\030\002 \001(\010\022#\n\013client_type\030\003 \001(\0162\016.tc.C"
-  "lientType\022\031\n\021enable_controller\030\004 \001(\010\"\013\n\t"
-  "HeartBeat\"\200\002\n\nVideoFrame\022\033\n\004type\030\001 \001(\0162\r"
-  ".tc.VideoType\022\014\n\004data\030\002 \001(\014\022\023\n\013frame_ind"
-  "ex\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013frame_width\030\005 \001"
-  "(\005\022\024\n\014frame_height\030\006 \001(\005\022\r\n\005extra\030\007 \001(\t\022"
-  "\017\n\007mon_idx\030\010 \001(\005\022\020\n\010mon_name\030\t \001(\t\022\020\n\010mo"
-  "n_left\030\n \001(\005\022\017\n\007mon_top\030\013 \001(\005\022\021\n\tmon_rig"
-  "ht\030\014 \001(\005\022\022\n\nmon_bottom\030\r \001(\005\"n\n\nAudioFra"
-  "me\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n"
-  "\004bits\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022\014\n\004data\030"
-  "\005 \001(\014\022\r\n\005extra\030\006 \001(\t\"\372\001\n\010KeyEvent\022\020\n\010key"
-  "_code\030\001 \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_st"
-  "atus\030\003 \001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014"
-  "status_check\030\005 \001(\0162\037.tc.KeyEvent.LockKey"
-  "StatusCheck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKe"
-  "yStatusCheck\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkC"
-  "heckNumLock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMo"
-  "useEvent\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_rat"
-  "io\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001("
-  "\005\022\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007de"
-  "lta_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030"
-  "\t \001(\010\022\020\n\010released\030\n \001(\010\"\214\001\n\016CursorInfoSy"
-  "nc\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
-  "\005\022\021\n\thotspot_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022"
-  "\r\n\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap"
-  "\030\010 \001(\014\"\246\002\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r"
-  "\022\024\n\014left_trigger\030\002 \001(\r\022\025\n\rright_trigger\030"
-  "\003 \001(\r\022\020\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001("
-  "\005\022\020\n\010thumb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\022-\n"
-  "\007gp_type\030\010 \001(\0162\034.tc.GamepadState.Gamepad"
-  "Type\"a\n\013GamepadType\022\014\n\010kButtons\020\000\022\020\n\014kLe"
-  "ftTrigger\020\001\022\021\n\rkRightTrigger\020\002\022\016\n\nkLeftT"
-  "humb\020\003\022\017\n\013kRightThumb\020\004\"\245\003\n\021CaptureStati"
-  "stics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encod"
-  "e_durations\030\002 \003(\r\022\030\n\020audio_frame_gaps\030\003 "
-  "\003(\r\022\030\n\020decode_durations\030\004 \003(\r\022\036\n\026client_"
-  "video_recv_gaps\030\005 \003(\r\022\035\n\025client_fps_vide"
-  "o_recv\030\006 \001(\r\022\031\n\021client_fps_render\030\007 \001(\r\022"
-  "\036\n\026client_recv_media_data\030\010 \001(\003\022\030\n\020fps_v"
-  "ideo_encode\030\t \001(\005\022\030\n\020app_running_time\030\n "
-  "\001(\005\022\036\n\026server_send_media_data\030\013 \001(\003\022\024\n\014r"
-  "ender_width\030\014 \001(\005\022\025\n\rrender_height\030\r \001(\005"
-  "\022\025\n\rcapture_width\030\016 \001(\005\022\026\n\016capture_heigh"
-  "t\030\017 \001(\005\"\267\001\n\020ClientStatistics\022\030\n\020decode_d"
-  "urations\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022"
-  "\026\n\016fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 "
-  "\001(\r\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_w"
-  "idth\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Ser"
-  "verAudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010cha"
-  "nnels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectr"
-  "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
-  "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
-  "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
-  "essionType\"\362\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.t"
-  "c.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extr"
-  "a\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack"
-  "\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc"
-  ".HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.Vid"
-  "eoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioF"
-  "rame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#\n"
-  "\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cu"
-  "rsor_info_sync\030\013 \001(\0132\022.tc.CursorInfoSync"
-  "\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadStat"
-  "e\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Captu"
-  "reStatistics\022/\n\021client_statistics\030\016 \001(\0132"
-  "\024.tc.ClientStatistics\0226\n\025server_audio_sp"
-  "ectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum\022$\n"
-  "\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017u"
-  "i_server_hello\030\021 \001(\0132\021.tc.UIServerHello*"
-  "\214\002\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n"
-  "\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudio"
-  "Frame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022"
-  "\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020\010\022"
-  "\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStatis"
-  "tics\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n\014kOnl"
-  "ineGames\020\014\022\022\n\016kUIServerHello\020\r*4\n\tVideoT"
-  "ype\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetV"
-  "p9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
-  "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
-  "\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022"
-  "\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMouse"
-  "ButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020kMouseEve"
-  "ntWheel\020\200\002\022\026\n\021kMouseEventHWheel\020\200\004\022\031\n\024kL"
-  "eftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseBut"
-  "tonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *J"
-  "\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n"
-  "\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS\020\004*G\n\013Se"
-  "ssionType\022\020\n\014kInnerServer\020\000\022\022\n\016kAndroidC"
-  "lient\020\001\022\022\n\016kWindowsClient\020\002*\330\003\n\rGamepadB"
-  "utton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEP"
-  "AD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_D"
-  "OWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 "
-  "\n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_X"
-  "INPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEP"
-  "AD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUM"
-  "B\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022"
-  "$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n"
-  " GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023"
-  "GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAME"
-  "PAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023G"
-  "P_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
-  ;
-static ::_pbi::once_flag descriptor_table_tc_5fmessage_2eproto_once;
+const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+    "\n\020tc_message.proto\022\002tc\"7\n\003Ack\022\035\n\004type\030\001 "
+    "\001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\""
+    "s\n\005Hello\022\024\n\014enable_audio\030\001 \001(\010\022\024\n\014enable"
+    "_video\030\002 \001(\010\022#\n\013client_type\030\003 \001(\0162\016.tc.C"
+    "lientType\022\031\n\021enable_controller\030\004 \001(\010\"\013\n\t"
+    "HeartBeat\"\200\002\n\nVideoFrame\022\033\n\004type\030\001 \001(\0162\r"
+    ".tc.VideoType\022\014\n\004data\030\002 \001(\014\022\023\n\013frame_ind"
+    "ex\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013frame_width\030\005 \001"
+    "(\005\022\024\n\014frame_height\030\006 \001(\005\022\r\n\005extra\030\007 \001(\t\022"
+    "\017\n\007mon_idx\030\010 \001(\005\022\020\n\010mon_name\030\t \001(\t\022\020\n\010mo"
+    "n_left\030\n \001(\005\022\017\n\007mon_top\030\013 \001(\005\022\021\n\tmon_rig"
+    "ht\030\014 \001(\005\022\022\n\nmon_bottom\030\r \001(\005\"n\n\nAudioFra"
+    "me\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n"
+    "\004bits\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022\014\n\004data\030"
+    "\005 \001(\014\022\r\n\005extra\030\006 \001(\t\"\372\001\n\010KeyEvent\022\020\n\010key"
+    "_code\030\001 \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_st"
+    "atus\030\003 \001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014"
+    "status_check\030\005 \001(\0162\037.tc.KeyEvent.LockKey"
+    "StatusCheck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKe"
+    "yStatusCheck\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkC"
+    "heckNumLock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMo"
+    "useEvent\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_rat"
+    "io\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001("
+    "\005\022\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007de"
+    "lta_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030"
+    "\t \001(\010\022\020\n\010released\030\n \001(\010\"\214\001\n\016CursorInfoSy"
+    "nc\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
+    "\005\022\021\n\thotspot_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022"
+    "\r\n\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap"
+    "\030\010 \001(\014\"\246\002\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r"
+    "\022\024\n\014left_trigger\030\002 \001(\r\022\025\n\rright_trigger\030"
+    "\003 \001(\r\022\020\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001("
+    "\005\022\020\n\010thumb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\022-\n"
+    "\007gp_type\030\010 \001(\0162\034.tc.GamepadState.Gamepad"
+    "Type\"a\n\013GamepadType\022\014\n\010kButtons\020\000\022\020\n\014kLe"
+    "ftTrigger\020\001\022\021\n\rkRightTrigger\020\002\022\016\n\nkLeftT"
+    "humb\020\003\022\017\n\013kRightThumb\020\004\"\245\003\n\021CaptureStati"
+    "stics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encod"
+    "e_durations\030\002 \003(\r\022\030\n\020audio_frame_gaps\030\003 "
+    "\003(\r\022\030\n\020decode_durations\030\004 \003(\r\022\036\n\026client_"
+    "video_recv_gaps\030\005 \003(\r\022\035\n\025client_fps_vide"
+    "o_recv\030\006 \001(\r\022\031\n\021client_fps_render\030\007 \001(\r\022"
+    "\036\n\026client_recv_media_data\030\010 \001(\003\022\030\n\020fps_v"
+    "ideo_encode\030\t \001(\005\022\030\n\020app_running_time\030\n "
+    "\001(\005\022\036\n\026server_send_media_data\030\013 \001(\003\022\024\n\014r"
+    "ender_width\030\014 \001(\005\022\025\n\rrender_height\030\r \001(\005"
+    "\022\025\n\rcapture_width\030\016 \001(\005\022\026\n\016capture_heigh"
+    "t\030\017 \001(\005\"\267\001\n\020ClientStatistics\022\030\n\020decode_d"
+    "urations\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022"
+    "\026\n\016fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 "
+    "\001(\r\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_w"
+    "idth\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Ser"
+    "verAudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010cha"
+    "nnels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectr"
+    "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
+    "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
+    "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
+    "essionType\"\362\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.t"
+    "c.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extr"
+    "a\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack"
+    "\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc"
+    ".HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.Vid"
+    "eoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioF"
+    "rame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#\n"
+    "\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cu"
+    "rsor_info_sync\030\013 \001(\0132\022.tc.CursorInfoSync"
+    "\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadStat"
+    "e\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Captu"
+    "reStatistics\022/\n\021client_statistics\030\016 \001(\0132"
+    "\024.tc.ClientStatistics\0226\n\025server_audio_sp"
+    "ectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum\022$\n"
+    "\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017u"
+    "i_server_hello\030\021 \001(\0132\021.tc.UIServerHello*"
+    "\214\002\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n"
+    "\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudio"
+    "Frame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022"
+    "\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020\010\022"
+    "\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStatis"
+    "tics\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n\014kOnl"
+    "ineGames\020\014\022\022\n\016kUIServerHello\020\r*4\n\tVideoT"
+    "ype\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetV"
+    "p9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
+    "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
+    "\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022"
+    "\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMouse"
+    "ButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020kMouseEve"
+    "ntWheel\020\200\002\022\026\n\021kMouseEventHWheel\020\200\004\022\031\n\024kL"
+    "eftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseBut"
+    "tonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *J"
+    "\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n"
+    "\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS\020\004*G\n\013Se"
+    "ssionType\022\020\n\014kInnerServer\020\000\022\022\n\016kAndroidC"
+    "lient\020\001\022\022\n\016kWindowsClient\020\002*\330\003\n\rGamepadB"
+    "utton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEP"
+    "AD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_D"
+    "OWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 "
+    "\n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_X"
+    "INPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEP"
+    "AD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUM"
+    "B\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022"
+    "$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n"
+    " GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023"
+    "GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAME"
+    "PAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023G"
+    "P_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
+};
+static ::absl::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
-    false, false, 4190, descriptor_table_protodef_tc_5fmessage_2eproto,
+    false,
+    false,
+    4190,
+    descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
-    &descriptor_table_tc_5fmessage_2eproto_once, nullptr, 0, 15,
-    schemas, file_default_instances, TableStruct_tc_5fmessage_2eproto::offsets,
-    file_level_metadata_tc_5fmessage_2eproto, file_level_enum_descriptors_tc_5fmessage_2eproto,
+    &descriptor_table_tc_5fmessage_2eproto_once,
+    nullptr,
+    0,
+    15,
+    schemas,
+    file_default_instances,
+    TableStruct_tc_5fmessage_2eproto::offsets,
+    file_level_metadata_tc_5fmessage_2eproto,
+    file_level_enum_descriptors_tc_5fmessage_2eproto,
     file_level_service_descriptors_tc_5fmessage_2eproto,
 };
+
+// This function exists to be marked as weak.
+// It can significantly speed up compilation by breaking up LLVM's SCC
+// in the .pb.cc translation units. Large translation units see a
+// reduction of more than 35% of walltime for optimized builds. Without
+// the weak attribute all the messages in the file, including all the
+// vtables and everything they use become part of the same SCC through
+// a cycle like:
+// GetMetadata -> descriptor table -> default instances ->
+//   vtables -> GetMetadata
+// By adding a weak function here we break the connection from the
+// individual vtables back into the descriptor table.
 PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_tc_5fmessage_2eproto_getter() {
   return &descriptor_table_tc_5fmessage_2eproto;
 }
-
 // Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_tc_5fmessage_2eproto(&descriptor_table_tc_5fmessage_2eproto);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
+static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_tc_5fmessage_2eproto(&descriptor_table_tc_5fmessage_2eproto);
 namespace tc {
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* KeyEvent_LockKeyStatusCheck_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* KeyEvent_LockKeyStatusCheck_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[0];
 }
+PROTOBUF_CONSTINIT const uint32_t KeyEvent_LockKeyStatusCheck_internal_data_[] = {
+    196608u, 0u, };
 bool KeyEvent_LockKeyStatusCheck_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 2;
 }
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr KeyEvent_LockKeyStatusCheck KeyEvent::kDontCareLockKey;
 constexpr KeyEvent_LockKeyStatusCheck KeyEvent::kCheckNumLock;
 constexpr KeyEvent_LockKeyStatusCheck KeyEvent::kCheckCapsLock;
 constexpr KeyEvent_LockKeyStatusCheck KeyEvent::LockKeyStatusCheck_MIN;
 constexpr KeyEvent_LockKeyStatusCheck KeyEvent::LockKeyStatusCheck_MAX;
 constexpr int KeyEvent::LockKeyStatusCheck_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadState_GamepadType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* GamepadState_GamepadType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[1];
 }
+PROTOBUF_CONSTINIT const uint32_t GamepadState_GamepadType_internal_data_[] = {
+    327680u, 0u, };
 bool GamepadState_GamepadType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 4;
 }
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr GamepadState_GamepadType GamepadState::kButtons;
 constexpr GamepadState_GamepadType GamepadState::kLeftTrigger;
 constexpr GamepadState_GamepadType GamepadState::kRightTrigger;
@@ -720,309 +883,226 @@ constexpr GamepadState_GamepadType GamepadState::kRightThumb;
 constexpr GamepadState_GamepadType GamepadState::GamepadType_MIN;
 constexpr GamepadState_GamepadType GamepadState::GamepadType_MAX;
 constexpr int GamepadState::GamepadType_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* MessageType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[2];
 }
+PROTOBUF_CONSTINIT const uint32_t MessageType_internal_data_[] = {
+    917504u, 0u, };
 bool MessageType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 13;
 }
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* VideoType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* VideoType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[3];
 }
+PROTOBUF_CONSTINIT const uint32_t VideoType_internal_data_[] = {
+    196608u, 0u, };
 bool VideoType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 2;
 }
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ButtonFlag_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* ButtonFlag_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
 }
+PROTOBUF_CONSTINIT const uint32_t ButtonFlag_internal_data_[] = {
+    196608u, 393280u, 536879138u, 536870912u, 1024u, 256u, 4096u, 128u, 512u, 2048u, };
 bool ButtonFlag_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 4:
-    case 8:
-    case 16:
-    case 32:
-    case 64:
-    case 128:
-    case 256:
-    case 512:
-    case 1024:
-    case 2048:
-    case 4096:
-      return true;
-    default:
-      return false;
-  }
+  return ::_pbi::ValidateEnum(value, ButtonFlag_internal_data_);
 }
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ClientType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* ClientType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 }
+PROTOBUF_CONSTINIT const uint32_t ClientType_internal_data_[] = {
+    327680u, 0u, };
 bool ClientType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 4;
 }
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* SessionType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* SessionType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
 }
+PROTOBUF_CONSTINIT const uint32_t SessionType_internal_data_[] = {
+    196608u, 0u, };
 bool SessionType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-      return true;
-    default:
-      return false;
-  }
+  return 0 <= value && value <= 2;
 }
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GamepadButton_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+const ::google::protobuf::EnumDescriptor* GamepadButton_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
 }
+PROTOBUF_CONSTINIT const uint32_t GamepadButton_internal_data_[] = {
+    196608u, 458816u, 536879138u, 536870912u, 4096u, 256u, 16384u, 128u, 512u, 8192u, 32768u, };
 bool GamepadButton_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 4:
-    case 8:
-    case 16:
-    case 32:
-    case 64:
-    case 128:
-    case 256:
-    case 512:
-    case 4096:
-    case 8192:
-    case 16384:
-    case 32768:
-      return true;
-    default:
-      return false;
-  }
+  return ::_pbi::ValidateEnum(value, GamepadButton_internal_data_);
 }
-
-
 // ===================================================================
 
 class Ack::_Internal {
  public:
 };
 
-Ack::Ack(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+Ack::Ack(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.Ack)
 }
-Ack::Ack(const Ack& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Ack* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.send_time_){}
-    , decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
-    reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
-  // @@protoc_insertion_point(copy_constructor:tc.Ack)
+Ack::Ack(
+    ::google::protobuf::Arena* arena, const Ack& from)
+    : Ack(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE Ack::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void Ack::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.send_time_){uint64_t{0u}}
-    , decltype(_impl_.type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Ack::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, send_time_),
+           0,
+           offsetof(Impl_, type_) -
+               offsetof(Impl_, send_time_) +
+               sizeof(Impl_::type_));
 }
-
 Ack::~Ack() {
   // @@protoc_insertion_point(destructor:tc.Ack)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void Ack::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void Ack::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Ack::Clear() {
+PROTOBUF_NOINLINE void Ack::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.Ack)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
+  ::memset(&_impl_.send_time_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Ack::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .tc.MessageType type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_type(static_cast<::tc::MessageType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 send_time = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.send_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* Ack::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* Ack::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Ack::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Ack_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // uint64 send_time = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Ack, _impl_.send_time_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Ack, _impl_.send_time_)}},
+    // .tc.MessageType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Ack, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Ack, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.MessageType type = 1;
+    {PROTOBUF_FIELD_OFFSET(Ack, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint64 send_time = 2;
+    {PROTOBUF_FIELD_OFFSET(Ack, _impl_.send_time_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* Ack::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.Ack)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // .tc.MessageType type = 1;
   if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_type(), target);
+        1, this->_internal_type(), target);
   }
 
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_send_time(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        2, this->_internal_send_time(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.Ack)
   return target;
 }
 
-size_t Ack::ByteSizeLong() const {
+::size_t Ack::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.Ack)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_send_time());
   }
 
   // .tc.MessageType type = 1;
   if (this->_internal_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Ack::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Ack::MergeImpl
+const ::google::protobuf::Message::ClassData Ack::_class_data_ = {
+    Ack::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Ack::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* Ack::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void Ack::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void Ack::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<Ack*>(&to_msg);
   auto& from = static_cast<const Ack&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.Ack)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_send_time() != 0) {
@@ -1031,7 +1111,7 @@ void Ack::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_N
   if (from._internal_type() != 0) {
     _this->_internal_set_type(from._internal_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Ack::CopyFrom(const Ack& from) {
@@ -1041,14 +1121,17 @@ void Ack::CopyFrom(const Ack& from) {
   MergeFrom(from);
 }
 
-bool Ack::IsInitialized() const {
+PROTOBUF_NOINLINE bool Ack::IsInitialized() const {
   return true;
 }
 
-void Ack::InternalSwap(Ack* other) {
+::_pbi::CachedSize* Ack::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Ack::InternalSwap(Ack* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Ack, _impl_.type_)
       + sizeof(Ack::_impl_.type_)
       - PROTOBUF_FIELD_OFFSET(Ack, _impl_.send_time_)>(
@@ -1056,229 +1139,209 @@ void Ack::InternalSwap(Ack* other) {
           reinterpret_cast<char*>(&other->_impl_.send_time_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Ack::GetMetadata() const {
+::google::protobuf::Metadata Ack::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[0]);
 }
-
 // ===================================================================
 
 class Hello::_Internal {
  public:
 };
 
-Hello::Hello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+Hello::Hello(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.Hello)
 }
-Hello::Hello(const Hello& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Hello* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.enable_audio_){}
-    , decltype(_impl_.enable_video_){}
-    , decltype(_impl_.enable_controller_){}
-    , decltype(_impl_.client_type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.enable_audio_, &from._impl_.enable_audio_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.client_type_) -
-    reinterpret_cast<char*>(&_impl_.enable_audio_)) + sizeof(_impl_.client_type_));
-  // @@protoc_insertion_point(copy_constructor:tc.Hello)
+Hello::Hello(
+    ::google::protobuf::Arena* arena, const Hello& from)
+    : Hello(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE Hello::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void Hello::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.enable_audio_){false}
-    , decltype(_impl_.enable_video_){false}
-    , decltype(_impl_.enable_controller_){false}
-    , decltype(_impl_.client_type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Hello::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, enable_audio_),
+           0,
+           offsetof(Impl_, client_type_) -
+               offsetof(Impl_, enable_audio_) +
+               sizeof(Impl_::client_type_));
 }
-
 Hello::~Hello() {
   // @@protoc_insertion_point(destructor:tc.Hello)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void Hello::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void Hello::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Hello::Clear() {
+PROTOBUF_NOINLINE void Hello::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.Hello)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.enable_audio_, 0, static_cast<size_t>(
+  ::memset(&_impl_.enable_audio_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.client_type_) -
       reinterpret_cast<char*>(&_impl_.enable_audio_)) + sizeof(_impl_.client_type_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Hello::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool enable_audio = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.enable_audio_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool enable_video = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.enable_video_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.ClientType client_type = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_client_type(static_cast<::tc::ClientType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // bool enable_controller = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.enable_controller_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* Hello::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* Hello::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> Hello::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_Hello_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool enable_controller = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Hello, _impl_.enable_controller_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_controller_)}},
+    // bool enable_audio = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Hello, _impl_.enable_audio_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_audio_)}},
+    // bool enable_video = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Hello, _impl_.enable_video_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_video_)}},
+    // .tc.ClientType client_type = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Hello, _impl_.client_type_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Hello, _impl_.client_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool enable_audio = 1;
+    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_audio_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool enable_video = 2;
+    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_video_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // .tc.ClientType client_type = 3;
+    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.client_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // bool enable_controller = 4;
+    {PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_controller_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* Hello::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.Hello)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // bool enable_audio = 1;
   if (this->_internal_enable_audio() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_enable_audio(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_enable_audio(), target);
   }
 
   // bool enable_video = 2;
   if (this->_internal_enable_video() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_enable_video(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_enable_video(), target);
   }
 
   // .tc.ClientType client_type = 3;
   if (this->_internal_client_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      3, this->_internal_client_type(), target);
+        3, this->_internal_client_type(), target);
   }
 
   // bool enable_controller = 4;
   if (this->_internal_enable_controller() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_enable_controller(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        4, this->_internal_enable_controller(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.Hello)
   return target;
 }
 
-size_t Hello::ByteSizeLong() const {
+::size_t Hello::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.Hello)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // bool enable_audio = 1;
   if (this->_internal_enable_audio() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool enable_video = 2;
   if (this->_internal_enable_video() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool enable_controller = 4;
   if (this->_internal_enable_controller() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // .tc.ClientType client_type = 3;
   if (this->_internal_client_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_client_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_client_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Hello::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Hello::MergeImpl
+const ::google::protobuf::Message::ClassData Hello::_class_data_ = {
+    Hello::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Hello::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* Hello::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void Hello::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void Hello::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<Hello*>(&to_msg);
   auto& from = static_cast<const Hello&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.Hello)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_enable_audio() != 0) {
@@ -1293,7 +1356,7 @@ void Hello::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF
   if (from._internal_client_type() != 0) {
     _this->_internal_set_client_type(from._internal_client_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Hello::CopyFrom(const Hello& from) {
@@ -1303,14 +1366,17 @@ void Hello::CopyFrom(const Hello& from) {
   MergeFrom(from);
 }
 
-bool Hello::IsInitialized() const {
+PROTOBUF_NOINLINE bool Hello::IsInitialized() const {
   return true;
 }
 
-void Hello::InternalSwap(Hello* other) {
+::_pbi::CachedSize* Hello::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Hello::InternalSwap(Hello* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Hello, _impl_.client_type_)
       + sizeof(Hello::_impl_.client_type_)
       - PROTOBUF_FIELD_OFFSET(Hello, _impl_.enable_audio_)>(
@@ -1318,27 +1384,30 @@ void Hello::InternalSwap(Hello* other) {
           reinterpret_cast<char*>(&other->_impl_.enable_audio_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Hello::GetMetadata() const {
+::google::protobuf::Metadata Hello::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[1]);
 }
-
 // ===================================================================
 
 class HeartBeat::_Internal {
  public:
 };
 
-HeartBeat::HeartBeat(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+HeartBeat::HeartBeat(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
   // @@protoc_insertion_point(arena_constructor:tc.HeartBeat)
 }
-HeartBeat::HeartBeat(const HeartBeat& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  HeartBeat* const _this = this; (void)_this;
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+HeartBeat::HeartBeat(
+    ::google::protobuf::Arena* arena,
+    const HeartBeat& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  HeartBeat* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
   // @@protoc_insertion_point(copy_constructor:tc.HeartBeat)
 }
 
@@ -1346,491 +1415,425 @@ HeartBeat::HeartBeat(const HeartBeat& from)
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData HeartBeat::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*HeartBeat::GetClassData() const { return &_class_data_; }
 
 
 
 
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata HeartBeat::GetMetadata() const {
+::google::protobuf::Metadata HeartBeat::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[2]);
 }
-
 // ===================================================================
 
 class VideoFrame::_Internal {
  public:
 };
 
-VideoFrame::VideoFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+VideoFrame::VideoFrame(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.VideoFrame)
 }
-VideoFrame::VideoFrame(const VideoFrame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  VideoFrame* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.mon_name_){}
-    , decltype(_impl_.type_){}
-    , decltype(_impl_.key_){}
-    , decltype(_impl_.frame_index_){}
-    , decltype(_impl_.frame_width_){}
-    , decltype(_impl_.frame_height_){}
-    , decltype(_impl_.mon_idx_){}
-    , decltype(_impl_.mon_left_){}
-    , decltype(_impl_.mon_top_){}
-    , decltype(_impl_.mon_right_){}
-    , decltype(_impl_.mon_bottom_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE VideoFrame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : data_(arena, from.data_),
+        extra_(arena, from.extra_),
+        mon_name_(arena, from.mon_name_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_data().empty()) {
-    _this->_impl_.data_.Set(from._internal_data(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_extra().empty()) {
-    _this->_impl_.extra_.Set(from._internal_extra(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.mon_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mon_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_mon_name().empty()) {
-    _this->_impl_.mon_name_.Set(from._internal_mon_name(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.type_, &from._impl_.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.mon_bottom_) -
-    reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.mon_bottom_));
+VideoFrame::VideoFrame(
+    ::google::protobuf::Arena* arena,
+    const VideoFrame& from)
+    : ::google::protobuf::Message(arena) {
+  VideoFrame* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, type_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, type_),
+           offsetof(Impl_, mon_bottom_) -
+               offsetof(Impl_, type_) +
+               sizeof(Impl_::mon_bottom_));
+
   // @@protoc_insertion_point(copy_constructor:tc.VideoFrame)
 }
+inline PROTOBUF_NDEBUG_INLINE VideoFrame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : data_(arena),
+        extra_(arena),
+        mon_name_(arena),
+        _cached_size_{0} {}
 
-inline void VideoFrame::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.mon_name_){}
-    , decltype(_impl_.type_){0}
-    , decltype(_impl_.key_){false}
-    , decltype(_impl_.frame_index_){uint64_t{0u}}
-    , decltype(_impl_.frame_width_){0}
-    , decltype(_impl_.frame_height_){0}
-    , decltype(_impl_.mon_idx_){0}
-    , decltype(_impl_.mon_left_){0}
-    , decltype(_impl_.mon_top_){0}
-    , decltype(_impl_.mon_right_){0}
-    , decltype(_impl_.mon_bottom_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.mon_name_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.mon_name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void VideoFrame::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, type_),
+           0,
+           offsetof(Impl_, mon_bottom_) -
+               offsetof(Impl_, type_) +
+               sizeof(Impl_::mon_bottom_));
 }
-
 VideoFrame::~VideoFrame() {
   // @@protoc_insertion_point(destructor:tc.VideoFrame)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void VideoFrame::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.data_.Destroy();
   _impl_.extra_.Destroy();
   _impl_.mon_name_.Destroy();
+  _impl_.~Impl_();
 }
 
-void VideoFrame::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void VideoFrame::Clear() {
+PROTOBUF_NOINLINE void VideoFrame::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.VideoFrame)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.data_.ClearToEmpty();
   _impl_.extra_.ClearToEmpty();
   _impl_.mon_name_.ClearToEmpty();
-  ::memset(&_impl_.type_, 0, static_cast<size_t>(
+  ::memset(&_impl_.type_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.mon_bottom_) -
       reinterpret_cast<char*>(&_impl_.type_)) + sizeof(_impl_.mon_bottom_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* VideoFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .tc.VideoType type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_type(static_cast<::tc::VideoType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // bytes data = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_data();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 frame_index = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.frame_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool key = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.key_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 frame_width = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.frame_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 frame_height = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.frame_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string extra = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
-          auto str = _internal_mutable_extra();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "tc.VideoFrame.extra"));
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 mon_idx = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.mon_idx_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string mon_name = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          auto str = _internal_mutable_mon_name();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "tc.VideoFrame.mon_name"));
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 mon_left = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          _impl_.mon_left_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 mon_top = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
-          _impl_.mon_top_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 mon_right = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
-          _impl_.mon_right_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 mon_bottom = 13;
-      case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
-          _impl_.mon_bottom_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* VideoFrame::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* VideoFrame::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 13, 0, 43, 2> VideoFrame::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    13, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294959104,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    13,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_VideoFrame_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .tc.VideoType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.type_)}},
+    // bytes data = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.data_)}},
+    // uint64 frame_index = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(VideoFrame, _impl_.frame_index_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_index_)}},
+    // bool key = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(VideoFrame, _impl_.key_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.key_)}},
+    // int32 frame_width = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.frame_width_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_width_)}},
+    // int32 frame_height = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.frame_height_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_height_)}},
+    // string extra = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.extra_)}},
+    // int32 mon_idx = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.mon_idx_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_idx_)}},
+    // string mon_name = 9;
+    {::_pbi::TcParser::FastUS1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_name_)}},
+    // int32 mon_left = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.mon_left_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_left_)}},
+    // int32 mon_top = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.mon_top_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_top_)}},
+    // int32 mon_right = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.mon_right_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_right_)}},
+    // int32 mon_bottom = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(VideoFrame, _impl_.mon_bottom_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_bottom_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.VideoType type = 1;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // bytes data = 2;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // uint64 frame_index = 3;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // bool key = 4;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.key_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 frame_width = 5;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_width_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 frame_height = 6;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.frame_height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string extra = 7;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.extra_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 mon_idx = 8;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_idx_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string mon_name = 9;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 mon_left = 10;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_left_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 mon_top = 11;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_top_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 mon_right = 12;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_right_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 mon_bottom = 13;
+    {PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_bottom_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\15\0\0\0\0\0\0\5\0\10\0\0\0\0\0\0"
+    "tc.VideoFrame"
+    "extra"
+    "mon_name"
+  }},
+};
+
+::uint8_t* VideoFrame::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.VideoFrame)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // .tc.VideoType type = 1;
   if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_type(), target);
+        1, this->_internal_type(), target);
   }
 
   // bytes data = 2;
   if (!this->_internal_data().empty()) {
-    target = stream->WriteBytesMaybeAliased(
-        2, this->_internal_data(), target);
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   // uint64 frame_index = 3;
   if (this->_internal_frame_index() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(3, this->_internal_frame_index(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        3, this->_internal_frame_index(), target);
   }
 
   // bool key = 4;
   if (this->_internal_key() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(4, this->_internal_key(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        4, this->_internal_key(), target);
   }
 
   // int32 frame_width = 5;
   if (this->_internal_frame_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_frame_width(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_frame_width(), target);
   }
 
   // int32 frame_height = 6;
   if (this->_internal_frame_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_frame_height(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<6>(
+            stream, this->_internal_frame_height(), target);
   }
 
   // string extra = 7;
   if (!this->_internal_extra().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "tc.VideoFrame.extra");
-    target = stream->WriteStringMaybeAliased(
-        7, this->_internal_extra(), target);
+    const std::string& _s = this->_internal_extra();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.VideoFrame.extra");
+    target = stream->WriteStringMaybeAliased(7, _s, target);
   }
 
   // int32 mon_idx = 8;
   if (this->_internal_mon_idx() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_mon_idx(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<8>(
+            stream, this->_internal_mon_idx(), target);
   }
 
   // string mon_name = 9;
   if (!this->_internal_mon_name().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_mon_name().data(), static_cast<int>(this->_internal_mon_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "tc.VideoFrame.mon_name");
-    target = stream->WriteStringMaybeAliased(
-        9, this->_internal_mon_name(), target);
+    const std::string& _s = this->_internal_mon_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.VideoFrame.mon_name");
+    target = stream->WriteStringMaybeAliased(9, _s, target);
   }
 
   // int32 mon_left = 10;
   if (this->_internal_mon_left() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(10, this->_internal_mon_left(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_mon_left(), target);
   }
 
   // int32 mon_top = 11;
   if (this->_internal_mon_top() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(11, this->_internal_mon_top(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<11>(
+            stream, this->_internal_mon_top(), target);
   }
 
   // int32 mon_right = 12;
   if (this->_internal_mon_right() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(12, this->_internal_mon_right(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<12>(
+            stream, this->_internal_mon_right(), target);
   }
 
   // int32 mon_bottom = 13;
   if (this->_internal_mon_bottom() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(13, this->_internal_mon_bottom(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<13>(
+            stream, this->_internal_mon_bottom(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.VideoFrame)
   return target;
 }
 
-size_t VideoFrame::ByteSizeLong() const {
+::size_t VideoFrame::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.VideoFrame)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // bytes data = 2;
   if (!this->_internal_data().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_data());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
   }
 
   // string extra = 7;
   if (!this->_internal_extra().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_extra());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_extra());
   }
 
   // string mon_name = 9;
   if (!this->_internal_mon_name().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_mon_name());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_mon_name());
   }
 
   // .tc.VideoType type = 1;
   if (this->_internal_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
   // bool key = 4;
   if (this->_internal_key() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // uint64 frame_index = 3;
   if (this->_internal_frame_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_frame_index());
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_frame_index());
   }
 
   // int32 frame_width = 5;
   if (this->_internal_frame_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_width());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_frame_width());
   }
 
   // int32 frame_height = 6;
   if (this->_internal_frame_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_height());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_frame_height());
   }
 
   // int32 mon_idx = 8;
   if (this->_internal_mon_idx() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mon_idx());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mon_idx());
   }
 
   // int32 mon_left = 10;
   if (this->_internal_mon_left() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mon_left());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mon_left());
   }
 
   // int32 mon_top = 11;
   if (this->_internal_mon_top() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mon_top());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mon_top());
   }
 
   // int32 mon_right = 12;
   if (this->_internal_mon_right() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mon_right());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mon_right());
   }
 
   // int32 mon_bottom = 13;
   if (this->_internal_mon_bottom() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_mon_bottom());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mon_bottom());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData VideoFrame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    VideoFrame::MergeImpl
+const ::google::protobuf::Message::ClassData VideoFrame::_class_data_ = {
+    VideoFrame::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*VideoFrame::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* VideoFrame::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void VideoFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void VideoFrame::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<VideoFrame*>(&to_msg);
   auto& from = static_cast<const VideoFrame&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.VideoFrame)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
@@ -1872,7 +1875,7 @@ void VideoFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_mon_bottom() != 0) {
     _this->_internal_set_mon_bottom(from._internal_mon_bottom());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void VideoFrame::CopyFrom(const VideoFrame& from) {
@@ -1882,28 +1885,22 @@ void VideoFrame::CopyFrom(const VideoFrame& from) {
   MergeFrom(from);
 }
 
-bool VideoFrame::IsInitialized() const {
+PROTOBUF_NOINLINE bool VideoFrame::IsInitialized() const {
   return true;
 }
 
-void VideoFrame::InternalSwap(VideoFrame* other) {
+::_pbi::CachedSize* VideoFrame::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void VideoFrame::InternalSwap(VideoFrame* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.data_, lhs_arena,
-      &other->_impl_.data_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.extra_, lhs_arena,
-      &other->_impl_.extra_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.mon_name_, lhs_arena,
-      &other->_impl_.mon_name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.extra_, &other->_impl_.extra_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.mon_name_, &other->_impl_.mon_name_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.mon_bottom_)
       + sizeof(VideoFrame::_impl_.mon_bottom_)
       - PROTOBUF_FIELD_OFFSET(VideoFrame, _impl_.type_)>(
@@ -1911,307 +1908,282 @@ void VideoFrame::InternalSwap(VideoFrame* other) {
           reinterpret_cast<char*>(&other->_impl_.type_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata VideoFrame::GetMetadata() const {
+::google::protobuf::Metadata VideoFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[3]);
 }
-
 // ===================================================================
 
 class AudioFrame::_Internal {
  public:
 };
 
-AudioFrame::AudioFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+AudioFrame::AudioFrame(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.AudioFrame)
 }
-AudioFrame::AudioFrame(const AudioFrame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  AudioFrame* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.samples_){}
-    , decltype(_impl_.channels_){}
-    , decltype(_impl_.bits_){}
-    , decltype(_impl_.frame_size_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE AudioFrame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : data_(arena, from.data_),
+        extra_(arena, from.extra_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_data().empty()) {
-    _this->_impl_.data_.Set(from._internal_data(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_extra().empty()) {
-    _this->_impl_.extra_.Set(from._internal_extra(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.samples_, &from._impl_.samples_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.frame_size_) -
-    reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
+AudioFrame::AudioFrame(
+    ::google::protobuf::Arena* arena,
+    const AudioFrame& from)
+    : ::google::protobuf::Message(arena) {
+  AudioFrame* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, samples_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, samples_),
+           offsetof(Impl_, frame_size_) -
+               offsetof(Impl_, samples_) +
+               sizeof(Impl_::frame_size_));
+
   // @@protoc_insertion_point(copy_constructor:tc.AudioFrame)
 }
+inline PROTOBUF_NDEBUG_INLINE AudioFrame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : data_(arena),
+        extra_(arena),
+        _cached_size_{0} {}
 
-inline void AudioFrame::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.data_){}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.samples_){0}
-    , decltype(_impl_.channels_){0}
-    , decltype(_impl_.bits_){0}
-    , decltype(_impl_.frame_size_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.data_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.data_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void AudioFrame::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, samples_),
+           0,
+           offsetof(Impl_, frame_size_) -
+               offsetof(Impl_, samples_) +
+               sizeof(Impl_::frame_size_));
 }
-
 AudioFrame::~AudioFrame() {
   // @@protoc_insertion_point(destructor:tc.AudioFrame)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void AudioFrame::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.data_.Destroy();
   _impl_.extra_.Destroy();
+  _impl_.~Impl_();
 }
 
-void AudioFrame::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void AudioFrame::Clear() {
+PROTOBUF_NOINLINE void AudioFrame::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.AudioFrame)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.data_.ClearToEmpty();
   _impl_.extra_.ClearToEmpty();
-  ::memset(&_impl_.samples_, 0, static_cast<size_t>(
+  ::memset(&_impl_.samples_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.frame_size_) -
       reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.frame_size_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* AudioFrame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 samples = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.samples_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 channels = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.channels_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 bits = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.bits_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 frame_size = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.frame_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bytes data = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          auto str = _internal_mutable_data();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string extra = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          auto str = _internal_mutable_extra();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "tc.AudioFrame.extra"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* AudioFrame::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* AudioFrame::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 27, 2> AudioFrame::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AudioFrame_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 samples = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AudioFrame, _impl_.samples_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.samples_)}},
+    // int32 channels = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AudioFrame, _impl_.channels_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.channels_)}},
+    // int32 bits = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AudioFrame, _impl_.bits_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.bits_)}},
+    // int32 frame_size = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AudioFrame, _impl_.frame_size_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.frame_size_)}},
+    // bytes data = 5;
+    {::_pbi::TcParser::FastBS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.data_)}},
+    // string extra = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.extra_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 samples = 1;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.samples_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 channels = 2;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.channels_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 bits = 3;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.bits_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 frame_size = 4;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.frame_size_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bytes data = 5;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // string extra = 6;
+    {PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.extra_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\15\0\0\0\0\0\5\0"
+    "tc.AudioFrame"
+    "extra"
+  }},
+};
+
+::uint8_t* AudioFrame::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.AudioFrame)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // int32 samples = 1;
   if (this->_internal_samples() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_samples(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_samples(), target);
   }
 
   // int32 channels = 2;
   if (this->_internal_channels() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_channels(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_channels(), target);
   }
 
   // int32 bits = 3;
   if (this->_internal_bits() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_bits(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_bits(), target);
   }
 
   // int32 frame_size = 4;
   if (this->_internal_frame_size() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_frame_size(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_frame_size(), target);
   }
 
   // bytes data = 5;
   if (!this->_internal_data().empty()) {
-    target = stream->WriteBytesMaybeAliased(
-        5, this->_internal_data(), target);
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(5, _s, target);
   }
 
   // string extra = 6;
   if (!this->_internal_extra().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "tc.AudioFrame.extra");
-    target = stream->WriteStringMaybeAliased(
-        6, this->_internal_extra(), target);
+    const std::string& _s = this->_internal_extra();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.AudioFrame.extra");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.AudioFrame)
   return target;
 }
 
-size_t AudioFrame::ByteSizeLong() const {
+::size_t AudioFrame::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.AudioFrame)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // bytes data = 5;
   if (!this->_internal_data().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_data());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
   }
 
   // string extra = 6;
   if (!this->_internal_extra().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_extra());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_extra());
   }
 
   // int32 samples = 1;
   if (this->_internal_samples() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_samples());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_samples());
   }
 
   // int32 channels = 2;
   if (this->_internal_channels() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_channels());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_channels());
   }
 
   // int32 bits = 3;
   if (this->_internal_bits() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_bits());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_bits());
   }
 
   // int32 frame_size = 4;
   if (this->_internal_frame_size() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_frame_size());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_frame_size());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData AudioFrame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    AudioFrame::MergeImpl
+const ::google::protobuf::Message::ClassData AudioFrame::_class_data_ = {
+    AudioFrame::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*AudioFrame::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* AudioFrame::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void AudioFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void AudioFrame::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<AudioFrame*>(&to_msg);
   auto& from = static_cast<const AudioFrame&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.AudioFrame)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_data().empty()) {
@@ -2232,7 +2204,7 @@ void AudioFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_frame_size() != 0) {
     _this->_internal_set_frame_size(from._internal_frame_size());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void AudioFrame::CopyFrom(const AudioFrame& from) {
@@ -2242,24 +2214,21 @@ void AudioFrame::CopyFrom(const AudioFrame& from) {
   MergeFrom(from);
 }
 
-bool AudioFrame::IsInitialized() const {
+PROTOBUF_NOINLINE bool AudioFrame::IsInitialized() const {
   return true;
 }
 
-void AudioFrame::InternalSwap(AudioFrame* other) {
+::_pbi::CachedSize* AudioFrame::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void AudioFrame::InternalSwap(AudioFrame* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.data_, lhs_arena,
-      &other->_impl_.data_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.extra_, lhs_arena,
-      &other->_impl_.extra_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.extra_, &other->_impl_.extra_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.frame_size_)
       + sizeof(AudioFrame::_impl_.frame_size_)
       - PROTOBUF_FIELD_OFFSET(AudioFrame, _impl_.samples_)>(
@@ -2267,271 +2236,251 @@ void AudioFrame::InternalSwap(AudioFrame* other) {
           reinterpret_cast<char*>(&other->_impl_.samples_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata AudioFrame::GetMetadata() const {
+::google::protobuf::Metadata AudioFrame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[4]);
 }
-
 // ===================================================================
 
 class KeyEvent::_Internal {
  public:
 };
 
-KeyEvent::KeyEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+KeyEvent::KeyEvent(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.KeyEvent)
 }
-KeyEvent::KeyEvent(const KeyEvent& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  KeyEvent* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.key_code_){}
-    , decltype(_impl_.down_){}
-    , decltype(_impl_.num_lock_status_){}
-    , decltype(_impl_.caps_lock_status_){}
-    , decltype(_impl_.timestamp_){}
-    , decltype(_impl_.status_check_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.key_code_, &from._impl_.key_code_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.status_check_) -
-    reinterpret_cast<char*>(&_impl_.key_code_)) + sizeof(_impl_.status_check_));
-  // @@protoc_insertion_point(copy_constructor:tc.KeyEvent)
+KeyEvent::KeyEvent(
+    ::google::protobuf::Arena* arena, const KeyEvent& from)
+    : KeyEvent(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE KeyEvent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void KeyEvent::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.key_code_){0u}
-    , decltype(_impl_.down_){false}
-    , decltype(_impl_.num_lock_status_){0}
-    , decltype(_impl_.caps_lock_status_){0}
-    , decltype(_impl_.timestamp_){int64_t{0}}
-    , decltype(_impl_.status_check_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void KeyEvent::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, key_code_),
+           0,
+           offsetof(Impl_, status_check_) -
+               offsetof(Impl_, key_code_) +
+               sizeof(Impl_::status_check_));
 }
-
 KeyEvent::~KeyEvent() {
   // @@protoc_insertion_point(destructor:tc.KeyEvent)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void KeyEvent::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void KeyEvent::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void KeyEvent::Clear() {
+PROTOBUF_NOINLINE void KeyEvent::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.KeyEvent)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.key_code_, 0, static_cast<size_t>(
+  ::memset(&_impl_.key_code_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.status_check_) -
       reinterpret_cast<char*>(&_impl_.key_code_)) + sizeof(_impl_.status_check_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* KeyEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint32 key_code = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.key_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool down = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.down_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 num_lock_status = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.num_lock_status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 caps_lock_status = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.caps_lock_status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_status_check(static_cast<::tc::KeyEvent_LockKeyStatusCheck>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 timestamp = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* KeyEvent::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* KeyEvent::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 0, 2> KeyEvent::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_KeyEvent_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 key_code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(KeyEvent, _impl_.key_code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.key_code_)}},
+    // bool down = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(KeyEvent, _impl_.down_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.down_)}},
+    // int32 num_lock_status = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(KeyEvent, _impl_.num_lock_status_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.num_lock_status_)}},
+    // int32 caps_lock_status = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(KeyEvent, _impl_.caps_lock_status_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.caps_lock_status_)}},
+    // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(KeyEvent, _impl_.status_check_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.status_check_)}},
+    // int64 timestamp = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(KeyEvent, _impl_.timestamp_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.timestamp_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 key_code = 1;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.key_code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bool down = 2;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.down_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 num_lock_status = 3;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.num_lock_status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 caps_lock_status = 4;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.caps_lock_status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.status_check_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // int64 timestamp = 6;
+    {PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* KeyEvent::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.KeyEvent)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // uint32 key_code = 1;
   if (this->_internal_key_code() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_key_code(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_key_code(), target);
   }
 
   // bool down = 2;
   if (this->_internal_down() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_down(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_down(), target);
   }
 
   // int32 num_lock_status = 3;
   if (this->_internal_num_lock_status() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_num_lock_status(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_num_lock_status(), target);
   }
 
   // int32 caps_lock_status = 4;
   if (this->_internal_caps_lock_status() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_caps_lock_status(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_caps_lock_status(), target);
   }
 
   // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
   if (this->_internal_status_check() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      5, this->_internal_status_check(), target);
+        5, this->_internal_status_check(), target);
   }
 
   // int64 timestamp = 6;
   if (this->_internal_timestamp() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(6, this->_internal_timestamp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<6>(
+            stream, this->_internal_timestamp(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.KeyEvent)
   return target;
 }
 
-size_t KeyEvent::ByteSizeLong() const {
+::size_t KeyEvent::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.KeyEvent)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 key_code = 1;
   if (this->_internal_key_code() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_key_code());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_key_code());
   }
 
   // bool down = 2;
   if (this->_internal_down() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // int32 num_lock_status = 3;
   if (this->_internal_num_lock_status() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_num_lock_status());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_num_lock_status());
   }
 
   // int32 caps_lock_status = 4;
   if (this->_internal_caps_lock_status() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_caps_lock_status());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_caps_lock_status());
   }
 
   // int64 timestamp = 6;
   if (this->_internal_timestamp() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_timestamp());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_timestamp());
   }
 
   // .tc.KeyEvent.LockKeyStatusCheck status_check = 5;
   if (this->_internal_status_check() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_status_check());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_status_check());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData KeyEvent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    KeyEvent::MergeImpl
+const ::google::protobuf::Message::ClassData KeyEvent::_class_data_ = {
+    KeyEvent::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*KeyEvent::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* KeyEvent::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void KeyEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void KeyEvent::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<KeyEvent*>(&to_msg);
   auto& from = static_cast<const KeyEvent&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.KeyEvent)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_key_code() != 0) {
@@ -2552,7 +2501,7 @@ void KeyEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   if (from._internal_status_check() != 0) {
     _this->_internal_set_status_check(from._internal_status_check());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void KeyEvent::CopyFrom(const KeyEvent& from) {
@@ -2562,14 +2511,17 @@ void KeyEvent::CopyFrom(const KeyEvent& from) {
   MergeFrom(from);
 }
 
-bool KeyEvent::IsInitialized() const {
+PROTOBUF_NOINLINE bool KeyEvent::IsInitialized() const {
   return true;
 }
 
-void KeyEvent::InternalSwap(KeyEvent* other) {
+::_pbi::CachedSize* KeyEvent::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void KeyEvent::InternalSwap(KeyEvent* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.status_check_)
       + sizeof(KeyEvent::_impl_.status_check_)
       - PROTOBUF_FIELD_OFFSET(KeyEvent, _impl_.key_code_)>(
@@ -2577,383 +2529,365 @@ void KeyEvent::InternalSwap(KeyEvent* other) {
           reinterpret_cast<char*>(&other->_impl_.key_code_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata KeyEvent::GetMetadata() const {
+::google::protobuf::Metadata KeyEvent::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[5]);
 }
-
 // ===================================================================
 
 class MouseEvent::_Internal {
  public:
 };
 
-MouseEvent::MouseEvent(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+MouseEvent::MouseEvent(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.MouseEvent)
 }
-MouseEvent::MouseEvent(const MouseEvent& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  MouseEvent* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.monitor_index_){}
-    , decltype(_impl_.x_ratio_){}
-    , decltype(_impl_.y_ratio_){}
-    , decltype(_impl_.button_){}
-    , decltype(_impl_.timestamp_){}
-    , decltype(_impl_.data_){}
-    , decltype(_impl_.delta_x_){}
-    , decltype(_impl_.delta_y_){}
-    , decltype(_impl_.pressed_){}
-    , decltype(_impl_.released_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.monitor_index_, &from._impl_.monitor_index_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.released_) -
-    reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.released_));
-  // @@protoc_insertion_point(copy_constructor:tc.MouseEvent)
+MouseEvent::MouseEvent(
+    ::google::protobuf::Arena* arena, const MouseEvent& from)
+    : MouseEvent(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE MouseEvent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void MouseEvent::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.monitor_index_){0}
-    , decltype(_impl_.x_ratio_){0}
-    , decltype(_impl_.y_ratio_){0}
-    , decltype(_impl_.button_){0}
-    , decltype(_impl_.timestamp_){int64_t{0}}
-    , decltype(_impl_.data_){0}
-    , decltype(_impl_.delta_x_){0}
-    , decltype(_impl_.delta_y_){0}
-    , decltype(_impl_.pressed_){false}
-    , decltype(_impl_.released_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void MouseEvent::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, monitor_index_),
+           0,
+           offsetof(Impl_, released_) -
+               offsetof(Impl_, monitor_index_) +
+               sizeof(Impl_::released_));
 }
-
 MouseEvent::~MouseEvent() {
   // @@protoc_insertion_point(destructor:tc.MouseEvent)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void MouseEvent::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void MouseEvent::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void MouseEvent::Clear() {
+PROTOBUF_NOINLINE void MouseEvent::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.MouseEvent)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.monitor_index_, 0, static_cast<size_t>(
+  ::memset(&_impl_.monitor_index_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.released_) -
       reinterpret_cast<char*>(&_impl_.monitor_index_)) + sizeof(_impl_.released_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* MouseEvent::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 monitor_index = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.monitor_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // float x_ratio = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.x_ratio_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // float y_ratio = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.y_ratio_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 button = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.button_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 data = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 timestamp = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.timestamp_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 delta_x = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.delta_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 delta_y = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.delta_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool pressed = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.pressed_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bool released = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          _impl_.released_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* MouseEvent::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* MouseEvent::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 10, 0, 0, 2> MouseEvent::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    10, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294966272,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    10,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MouseEvent_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 monitor_index = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MouseEvent, _impl_.monitor_index_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.monitor_index_)}},
+    // float x_ratio = 2;
+    {::_pbi::TcParser::FastF32S1,
+     {21, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.x_ratio_)}},
+    // float y_ratio = 3;
+    {::_pbi::TcParser::FastF32S1,
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.y_ratio_)}},
+    // int32 button = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MouseEvent, _impl_.button_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.button_)}},
+    // int32 data = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MouseEvent, _impl_.data_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.data_)}},
+    // int64 timestamp = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(MouseEvent, _impl_.timestamp_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.timestamp_)}},
+    // int32 delta_x = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MouseEvent, _impl_.delta_x_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.delta_x_)}},
+    // int32 delta_y = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MouseEvent, _impl_.delta_y_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.delta_y_)}},
+    // bool pressed = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MouseEvent, _impl_.pressed_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.pressed_)}},
+    // bool released = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MouseEvent, _impl_.released_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.released_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 monitor_index = 1;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.monitor_index_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // float x_ratio = 2;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.x_ratio_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float y_ratio = 3;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.y_ratio_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // int32 button = 4;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.button_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 data = 5;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int64 timestamp = 6;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+    // int32 delta_x = 7;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.delta_x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 delta_y = 8;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.delta_y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bool pressed = 9;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.pressed_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool released = 10;
+    {PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.released_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* MouseEvent::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.MouseEvent)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // int32 monitor_index = 1;
   if (this->_internal_monitor_index() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_monitor_index(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_monitor_index(), target);
   }
 
   // float x_ratio = 2;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_x_ratio = this->_internal_x_ratio();
-  uint32_t raw_x_ratio;
+  ::uint32_t raw_x_ratio;
   memcpy(&raw_x_ratio, &tmp_x_ratio, sizeof(tmp_x_ratio));
   if (raw_x_ratio != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_x_ratio(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        2, this->_internal_x_ratio(), target);
   }
 
   // float y_ratio = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_y_ratio = this->_internal_y_ratio();
-  uint32_t raw_y_ratio;
+  ::uint32_t raw_y_ratio;
   memcpy(&raw_y_ratio, &tmp_y_ratio, sizeof(tmp_y_ratio));
   if (raw_y_ratio != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_y_ratio(), target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        3, this->_internal_y_ratio(), target);
   }
 
   // int32 button = 4;
   if (this->_internal_button() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_button(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_button(), target);
   }
 
   // int32 data = 5;
   if (this->_internal_data() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_data(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_data(), target);
   }
 
   // int64 timestamp = 6;
   if (this->_internal_timestamp() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(6, this->_internal_timestamp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<6>(
+            stream, this->_internal_timestamp(), target);
   }
 
   // int32 delta_x = 7;
   if (this->_internal_delta_x() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_delta_x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<7>(
+            stream, this->_internal_delta_x(), target);
   }
 
   // int32 delta_y = 8;
   if (this->_internal_delta_y() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(8, this->_internal_delta_y(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<8>(
+            stream, this->_internal_delta_y(), target);
   }
 
   // bool pressed = 9;
   if (this->_internal_pressed() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(9, this->_internal_pressed(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        9, this->_internal_pressed(), target);
   }
 
   // bool released = 10;
   if (this->_internal_released() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(10, this->_internal_released(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        10, this->_internal_released(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.MouseEvent)
   return target;
 }
 
-size_t MouseEvent::ByteSizeLong() const {
+::size_t MouseEvent::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.MouseEvent)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // int32 monitor_index = 1;
   if (this->_internal_monitor_index() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_monitor_index());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_monitor_index());
   }
 
   // float x_ratio = 2;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_x_ratio = this->_internal_x_ratio();
-  uint32_t raw_x_ratio;
+  ::uint32_t raw_x_ratio;
   memcpy(&raw_x_ratio, &tmp_x_ratio, sizeof(tmp_x_ratio));
   if (raw_x_ratio != 0) {
-    total_size += 1 + 4;
+    total_size += 5;
   }
 
   // float y_ratio = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_y_ratio = this->_internal_y_ratio();
-  uint32_t raw_y_ratio;
+  ::uint32_t raw_y_ratio;
   memcpy(&raw_y_ratio, &tmp_y_ratio, sizeof(tmp_y_ratio));
   if (raw_y_ratio != 0) {
-    total_size += 1 + 4;
+    total_size += 5;
   }
 
   // int32 button = 4;
   if (this->_internal_button() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_button());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_button());
   }
 
   // int64 timestamp = 6;
   if (this->_internal_timestamp() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_timestamp());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_timestamp());
   }
 
   // int32 data = 5;
   if (this->_internal_data() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_data());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_data());
   }
 
   // int32 delta_x = 7;
   if (this->_internal_delta_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delta_x());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_delta_x());
   }
 
   // int32 delta_y = 8;
   if (this->_internal_delta_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delta_y());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_delta_y());
   }
 
   // bool pressed = 9;
   if (this->_internal_pressed() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // bool released = 10;
   if (this->_internal_released() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MouseEvent::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    MouseEvent::MergeImpl
+const ::google::protobuf::Message::ClassData MouseEvent::_class_data_ = {
+    MouseEvent::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MouseEvent::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* MouseEvent::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void MouseEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void MouseEvent::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<MouseEvent*>(&to_msg);
   auto& from = static_cast<const MouseEvent&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.MouseEvent)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_monitor_index() != 0) {
     _this->_internal_set_monitor_index(from._internal_monitor_index());
   }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_x_ratio = from._internal_x_ratio();
-  uint32_t raw_x_ratio;
+  ::uint32_t raw_x_ratio;
   memcpy(&raw_x_ratio, &tmp_x_ratio, sizeof(tmp_x_ratio));
   if (raw_x_ratio != 0) {
     _this->_internal_set_x_ratio(from._internal_x_ratio());
   }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
   float tmp_y_ratio = from._internal_y_ratio();
-  uint32_t raw_y_ratio;
+  ::uint32_t raw_y_ratio;
   memcpy(&raw_y_ratio, &tmp_y_ratio, sizeof(tmp_y_ratio));
   if (raw_y_ratio != 0) {
     _this->_internal_set_y_ratio(from._internal_y_ratio());
@@ -2979,7 +2913,7 @@ void MouseEvent::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_released() != 0) {
     _this->_internal_set_released(from._internal_released());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void MouseEvent::CopyFrom(const MouseEvent& from) {
@@ -2989,14 +2923,17 @@ void MouseEvent::CopyFrom(const MouseEvent& from) {
   MergeFrom(from);
 }
 
-bool MouseEvent::IsInitialized() const {
+PROTOBUF_NOINLINE bool MouseEvent::IsInitialized() const {
   return true;
 }
 
-void MouseEvent::InternalSwap(MouseEvent* other) {
+::_pbi::CachedSize* MouseEvent::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void MouseEvent::InternalSwap(MouseEvent* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.released_)
       + sizeof(MouseEvent::_impl_.released_)
       - PROTOBUF_FIELD_OFFSET(MouseEvent, _impl_.monitor_index_)>(
@@ -3004,327 +2941,309 @@ void MouseEvent::InternalSwap(MouseEvent* other) {
           reinterpret_cast<char*>(&other->_impl_.monitor_index_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MouseEvent::GetMetadata() const {
+::google::protobuf::Metadata MouseEvent::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[6]);
 }
-
 // ===================================================================
 
 class CursorInfoSync::_Internal {
  public:
 };
 
-CursorInfoSync::CursorInfoSync(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+CursorInfoSync::CursorInfoSync(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.CursorInfoSync)
 }
-CursorInfoSync::CursorInfoSync(const CursorInfoSync& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CursorInfoSync* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bitmap_){}
-    , decltype(_impl_.visible_){}
-    , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.hotspot_x_){}
-    , decltype(_impl_.hotspot_y_){}
-    , decltype(_impl_.width_){}
-    , decltype(_impl_.height_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE CursorInfoSync::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : bitmap_(arena, from.bitmap_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.bitmap_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bitmap_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_bitmap().empty()) {
-    _this->_impl_.bitmap_.Set(from._internal_bitmap(), 
-      _this->GetArenaForAllocation());
-  }
-  ::memcpy(&_impl_.visible_, &from._impl_.visible_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.height_) -
-    reinterpret_cast<char*>(&_impl_.visible_)) + sizeof(_impl_.height_));
+CursorInfoSync::CursorInfoSync(
+    ::google::protobuf::Arena* arena,
+    const CursorInfoSync& from)
+    : ::google::protobuf::Message(arena) {
+  CursorInfoSync* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, visible_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, visible_),
+           offsetof(Impl_, height_) -
+               offsetof(Impl_, visible_) +
+               sizeof(Impl_::height_));
+
   // @@protoc_insertion_point(copy_constructor:tc.CursorInfoSync)
 }
+inline PROTOBUF_NDEBUG_INLINE CursorInfoSync::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : bitmap_(arena),
+        _cached_size_{0} {}
 
-inline void CursorInfoSync::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.bitmap_){}
-    , decltype(_impl_.visible_){false}
-    , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
-    , decltype(_impl_.hotspot_x_){0}
-    , decltype(_impl_.hotspot_y_){0}
-    , decltype(_impl_.width_){0u}
-    , decltype(_impl_.height_){0u}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.bitmap_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.bitmap_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void CursorInfoSync::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, visible_),
+           0,
+           offsetof(Impl_, height_) -
+               offsetof(Impl_, visible_) +
+               sizeof(Impl_::height_));
 }
-
 CursorInfoSync::~CursorInfoSync() {
   // @@protoc_insertion_point(destructor:tc.CursorInfoSync)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void CursorInfoSync::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.bitmap_.Destroy();
+  _impl_.~Impl_();
 }
 
-void CursorInfoSync::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void CursorInfoSync::Clear() {
+PROTOBUF_NOINLINE void CursorInfoSync::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.CursorInfoSync)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.bitmap_.ClearToEmpty();
-  ::memset(&_impl_.visible_, 0, static_cast<size_t>(
+  ::memset(&_impl_.visible_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.height_) -
       reinterpret_cast<char*>(&_impl_.visible_)) + sizeof(_impl_.height_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CursorInfoSync::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // bool visible = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.visible_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 x = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 y = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 hotspot_x = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.hotspot_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 hotspot_y = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.hotspot_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 width = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 height = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // bytes bitmap = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
-          auto str = _internal_mutable_bitmap();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* CursorInfoSync::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* CursorInfoSync::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    8, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967040,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CursorInfoSync_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes bitmap = 8;
+    {::_pbi::TcParser::FastBS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.bitmap_)}},
+    // bool visible = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CursorInfoSync, _impl_.visible_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.visible_)}},
+    // int32 x = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.x_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.x_)}},
+    // int32 y = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.y_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.y_)}},
+    // int32 hotspot_x = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.hotspot_x_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.hotspot_x_)}},
+    // int32 hotspot_y = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.hotspot_y_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.hotspot_y_)}},
+    // uint32 width = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.width_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.width_)}},
+    // uint32 height = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.height_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.height_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool visible = 1;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.visible_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 x = 2;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 y = 3;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 hotspot_x = 4;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.hotspot_x_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 hotspot_y = 5;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.hotspot_y_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // uint32 width = 6;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.width_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 height = 7;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // bytes bitmap = 8;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.bitmap_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* CursorInfoSync::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.CursorInfoSync)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // bool visible = 1;
   if (this->_internal_visible() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(1, this->_internal_visible(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_visible(), target);
   }
 
   // int32 x = 2;
   if (this->_internal_x() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_x(), target);
   }
 
   // int32 y = 3;
   if (this->_internal_y() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_y(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_y(), target);
   }
 
   // int32 hotspot_x = 4;
   if (this->_internal_hotspot_x() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_hotspot_x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_hotspot_x(), target);
   }
 
   // int32 hotspot_y = 5;
   if (this->_internal_hotspot_y() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_hotspot_y(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_hotspot_y(), target);
   }
 
   // uint32 width = 6;
   if (this->_internal_width() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_width(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        6, this->_internal_width(), target);
   }
 
   // uint32 height = 7;
   if (this->_internal_height() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_height(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        7, this->_internal_height(), target);
   }
 
   // bytes bitmap = 8;
   if (!this->_internal_bitmap().empty()) {
-    target = stream->WriteBytesMaybeAliased(
-        8, this->_internal_bitmap(), target);
+    const std::string& _s = this->_internal_bitmap();
+    target = stream->WriteBytesMaybeAliased(8, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.CursorInfoSync)
   return target;
 }
 
-size_t CursorInfoSync::ByteSizeLong() const {
+::size_t CursorInfoSync::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.CursorInfoSync)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // bytes bitmap = 8;
   if (!this->_internal_bitmap().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_bitmap());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_bitmap());
   }
 
   // bool visible = 1;
   if (this->_internal_visible() != 0) {
-    total_size += 1 + 1;
+    total_size += 2;
   }
 
   // int32 x = 2;
   if (this->_internal_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_x());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_x());
   }
 
   // int32 y = 3;
   if (this->_internal_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_y());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_y());
   }
 
   // int32 hotspot_x = 4;
   if (this->_internal_hotspot_x() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_hotspot_x());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_hotspot_x());
   }
 
   // int32 hotspot_y = 5;
   if (this->_internal_hotspot_y() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_hotspot_y());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_hotspot_y());
   }
 
   // uint32 width = 6;
   if (this->_internal_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_width());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_width());
   }
 
   // uint32 height = 7;
   if (this->_internal_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_height());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_height());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CursorInfoSync::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    CursorInfoSync::MergeImpl
+const ::google::protobuf::Message::ClassData CursorInfoSync::_class_data_ = {
+    CursorInfoSync::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CursorInfoSync::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* CursorInfoSync::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void CursorInfoSync::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void CursorInfoSync::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<CursorInfoSync*>(&to_msg);
   auto& from = static_cast<const CursorInfoSync&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.CursorInfoSync)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_bitmap().empty()) {
@@ -3351,7 +3270,7 @@ void CursorInfoSync::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
   if (from._internal_height() != 0) {
     _this->_internal_set_height(from._internal_height());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CursorInfoSync::CopyFrom(const CursorInfoSync& from) {
@@ -3361,20 +3280,20 @@ void CursorInfoSync::CopyFrom(const CursorInfoSync& from) {
   MergeFrom(from);
 }
 
-bool CursorInfoSync::IsInitialized() const {
+PROTOBUF_NOINLINE bool CursorInfoSync::IsInitialized() const {
   return true;
 }
 
-void CursorInfoSync::InternalSwap(CursorInfoSync* other) {
+::_pbi::CachedSize* CursorInfoSync::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void CursorInfoSync::InternalSwap(CursorInfoSync* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.bitmap_, lhs_arena,
-      &other->_impl_.bitmap_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bitmap_, &other->_impl_.bitmap_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.height_)
       + sizeof(CursorInfoSync::_impl_.height_)
       - PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.visible_)>(
@@ -3382,313 +3301,288 @@ void CursorInfoSync::InternalSwap(CursorInfoSync* other) {
           reinterpret_cast<char*>(&other->_impl_.visible_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata CursorInfoSync::GetMetadata() const {
+::google::protobuf::Metadata CursorInfoSync::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[7]);
 }
-
 // ===================================================================
 
 class GamepadState::_Internal {
  public:
 };
 
-GamepadState::GamepadState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+GamepadState::GamepadState(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.GamepadState)
 }
-GamepadState::GamepadState(const GamepadState& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GamepadState* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.buttons_){}
-    , decltype(_impl_.left_trigger_){}
-    , decltype(_impl_.right_trigger_){}
-    , decltype(_impl_.thumb_lx_){}
-    , decltype(_impl_.thumb_ly_){}
-    , decltype(_impl_.thumb_rx_){}
-    , decltype(_impl_.thumb_ry_){}
-    , decltype(_impl_.gp_type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.buttons_, &from._impl_.buttons_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.gp_type_) -
-    reinterpret_cast<char*>(&_impl_.buttons_)) + sizeof(_impl_.gp_type_));
-  // @@protoc_insertion_point(copy_constructor:tc.GamepadState)
+GamepadState::GamepadState(
+    ::google::protobuf::Arena* arena, const GamepadState& from)
+    : GamepadState(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE GamepadState::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void GamepadState::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.buttons_){0u}
-    , decltype(_impl_.left_trigger_){0u}
-    , decltype(_impl_.right_trigger_){0u}
-    , decltype(_impl_.thumb_lx_){0}
-    , decltype(_impl_.thumb_ly_){0}
-    , decltype(_impl_.thumb_rx_){0}
-    , decltype(_impl_.thumb_ry_){0}
-    , decltype(_impl_.gp_type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void GamepadState::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, buttons_),
+           0,
+           offsetof(Impl_, gp_type_) -
+               offsetof(Impl_, buttons_) +
+               sizeof(Impl_::gp_type_));
 }
-
 GamepadState::~GamepadState() {
   // @@protoc_insertion_point(destructor:tc.GamepadState)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void GamepadState::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void GamepadState::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void GamepadState::Clear() {
+PROTOBUF_NOINLINE void GamepadState::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.GamepadState)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.buttons_, 0, static_cast<size_t>(
+  ::memset(&_impl_.buttons_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.gp_type_) -
       reinterpret_cast<char*>(&_impl_.buttons_)) + sizeof(_impl_.gp_type_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GamepadState::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // uint32 buttons = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.buttons_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 left_trigger = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.left_trigger_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 right_trigger = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.right_trigger_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 thumb_lx = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.thumb_lx_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 thumb_ly = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.thumb_ly_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 thumb_rx = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.thumb_rx_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 thumb_ry = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.thumb_ry_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.GamepadState.GamepadType gp_type = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_gp_type(static_cast<::tc::GamepadState_GamepadType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* GamepadState::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* GamepadState::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 8, 0, 0, 2> GamepadState::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    8, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967040,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GamepadState_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .tc.GamepadState.GamepadType gp_type = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.gp_type_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.gp_type_)}},
+    // uint32 buttons = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.buttons_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.buttons_)}},
+    // uint32 left_trigger = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.left_trigger_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.left_trigger_)}},
+    // uint32 right_trigger = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.right_trigger_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.right_trigger_)}},
+    // int32 thumb_lx = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.thumb_lx_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_lx_)}},
+    // int32 thumb_ly = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.thumb_ly_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_ly_)}},
+    // int32 thumb_rx = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.thumb_rx_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_rx_)}},
+    // int32 thumb_ry = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GamepadState, _impl_.thumb_ry_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_ry_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 buttons = 1;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.buttons_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 left_trigger = 2;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.left_trigger_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 right_trigger = 3;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.right_trigger_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int32 thumb_lx = 4;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_lx_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 thumb_ly = 5;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_ly_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 thumb_rx = 6;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_rx_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 thumb_ry = 7;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.thumb_ry_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // .tc.GamepadState.GamepadType gp_type = 8;
+    {PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.gp_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GamepadState::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.GamepadState)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // uint32 buttons = 1;
   if (this->_internal_buttons() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_buttons(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_buttons(), target);
   }
 
   // uint32 left_trigger = 2;
   if (this->_internal_left_trigger() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_left_trigger(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_left_trigger(), target);
   }
 
   // uint32 right_trigger = 3;
   if (this->_internal_right_trigger() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_right_trigger(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        3, this->_internal_right_trigger(), target);
   }
 
   // int32 thumb_lx = 4;
   if (this->_internal_thumb_lx() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_thumb_lx(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_thumb_lx(), target);
   }
 
   // int32 thumb_ly = 5;
   if (this->_internal_thumb_ly() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_thumb_ly(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<5>(
+            stream, this->_internal_thumb_ly(), target);
   }
 
   // int32 thumb_rx = 6;
   if (this->_internal_thumb_rx() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_thumb_rx(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<6>(
+            stream, this->_internal_thumb_rx(), target);
   }
 
   // int32 thumb_ry = 7;
   if (this->_internal_thumb_ry() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_thumb_ry(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<7>(
+            stream, this->_internal_thumb_ry(), target);
   }
 
   // .tc.GamepadState.GamepadType gp_type = 8;
   if (this->_internal_gp_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      8, this->_internal_gp_type(), target);
+        8, this->_internal_gp_type(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.GamepadState)
   return target;
 }
 
-size_t GamepadState::ByteSizeLong() const {
+::size_t GamepadState::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.GamepadState)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // uint32 buttons = 1;
   if (this->_internal_buttons() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_buttons());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_buttons());
   }
 
   // uint32 left_trigger = 2;
   if (this->_internal_left_trigger() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_left_trigger());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_left_trigger());
   }
 
   // uint32 right_trigger = 3;
   if (this->_internal_right_trigger() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_right_trigger());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_right_trigger());
   }
 
   // int32 thumb_lx = 4;
   if (this->_internal_thumb_lx() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_thumb_lx());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_thumb_lx());
   }
 
   // int32 thumb_ly = 5;
   if (this->_internal_thumb_ly() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_thumb_ly());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_thumb_ly());
   }
 
   // int32 thumb_rx = 6;
   if (this->_internal_thumb_rx() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_thumb_rx());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_thumb_rx());
   }
 
   // int32 thumb_ry = 7;
   if (this->_internal_thumb_ry() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_thumb_ry());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_thumb_ry());
   }
 
   // .tc.GamepadState.GamepadType gp_type = 8;
   if (this->_internal_gp_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_gp_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_gp_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GamepadState::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    GamepadState::MergeImpl
+const ::google::protobuf::Message::ClassData GamepadState::_class_data_ = {
+    GamepadState::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GamepadState::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* GamepadState::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void GamepadState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void GamepadState::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<GamepadState*>(&to_msg);
   auto& from = static_cast<const GamepadState&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.GamepadState)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_buttons() != 0) {
@@ -3715,7 +3609,7 @@ void GamepadState::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   if (from._internal_gp_type() != 0) {
     _this->_internal_set_gp_type(from._internal_gp_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void GamepadState::CopyFrom(const GamepadState& from) {
@@ -3725,14 +3619,17 @@ void GamepadState::CopyFrom(const GamepadState& from) {
   MergeFrom(from);
 }
 
-bool GamepadState::IsInitialized() const {
+PROTOBUF_NOINLINE bool GamepadState::IsInitialized() const {
   return true;
 }
 
-void GamepadState::InternalSwap(GamepadState* other) {
+::_pbi::CachedSize* GamepadState::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GamepadState::InternalSwap(GamepadState* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.gp_type_)
       + sizeof(GamepadState::_impl_.gp_type_)
       - PROTOBUF_FIELD_OFFSET(GamepadState, _impl_.buttons_)>(
@@ -3740,111 +3637,94 @@ void GamepadState::InternalSwap(GamepadState* other) {
           reinterpret_cast<char*>(&other->_impl_.buttons_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GamepadState::GetMetadata() const {
+::google::protobuf::Metadata GamepadState::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[8]);
 }
-
 // ===================================================================
 
 class CaptureStatistics::_Internal {
  public:
 };
 
-CaptureStatistics::CaptureStatistics(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+CaptureStatistics::CaptureStatistics(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.CaptureStatistics)
 }
-CaptureStatistics::CaptureStatistics(const CaptureStatistics& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CaptureStatistics* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.video_frame_gaps_){from._impl_.video_frame_gaps_}
-    , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.encode_durations_){from._impl_.encode_durations_}
-    , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.audio_frame_gaps_){from._impl_.audio_frame_gaps_}
-    , /*decltype(_impl_._audio_frame_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.decode_durations_){from._impl_.decode_durations_}
-    , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.client_video_recv_gaps_){from._impl_.client_video_recv_gaps_}
-    , /*decltype(_impl_._client_video_recv_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.client_fps_video_recv_){}
-    , decltype(_impl_.client_fps_render_){}
-    , decltype(_impl_.client_recv_media_data_){}
-    , decltype(_impl_.fps_video_encode_){}
-    , decltype(_impl_.app_running_time_){}
-    , decltype(_impl_.server_send_media_data_){}
-    , decltype(_impl_.render_width_){}
-    , decltype(_impl_.render_height_){}
-    , decltype(_impl_.capture_width_){}
-    , decltype(_impl_.capture_height_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE CaptureStatistics::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : video_frame_gaps_{visibility, arena, from.video_frame_gaps_},
+        _video_frame_gaps_cached_byte_size_{0},
+        encode_durations_{visibility, arena, from.encode_durations_},
+        _encode_durations_cached_byte_size_{0},
+        audio_frame_gaps_{visibility, arena, from.audio_frame_gaps_},
+        _audio_frame_gaps_cached_byte_size_{0},
+        decode_durations_{visibility, arena, from.decode_durations_},
+        _decode_durations_cached_byte_size_{0},
+        client_video_recv_gaps_{visibility, arena, from.client_video_recv_gaps_},
+        _client_video_recv_gaps_cached_byte_size_{0},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.client_fps_video_recv_, &from._impl_.client_fps_video_recv_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.capture_height_) -
-    reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.capture_height_));
+CaptureStatistics::CaptureStatistics(
+    ::google::protobuf::Arena* arena,
+    const CaptureStatistics& from)
+    : ::google::protobuf::Message(arena) {
+  CaptureStatistics* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, client_fps_video_recv_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, client_fps_video_recv_),
+           offsetof(Impl_, capture_height_) -
+               offsetof(Impl_, client_fps_video_recv_) +
+               sizeof(Impl_::capture_height_));
+
   // @@protoc_insertion_point(copy_constructor:tc.CaptureStatistics)
 }
+inline PROTOBUF_NDEBUG_INLINE CaptureStatistics::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : video_frame_gaps_{visibility, arena},
+        _video_frame_gaps_cached_byte_size_{0},
+        encode_durations_{visibility, arena},
+        _encode_durations_cached_byte_size_{0},
+        audio_frame_gaps_{visibility, arena},
+        _audio_frame_gaps_cached_byte_size_{0},
+        decode_durations_{visibility, arena},
+        _decode_durations_cached_byte_size_{0},
+        client_video_recv_gaps_{visibility, arena},
+        _client_video_recv_gaps_cached_byte_size_{0},
+        _cached_size_{0} {}
 
-inline void CaptureStatistics::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.video_frame_gaps_){arena}
-    , /*decltype(_impl_._video_frame_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.encode_durations_){arena}
-    , /*decltype(_impl_._encode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.audio_frame_gaps_){arena}
-    , /*decltype(_impl_._audio_frame_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.decode_durations_){arena}
-    , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.client_video_recv_gaps_){arena}
-    , /*decltype(_impl_._client_video_recv_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.client_fps_video_recv_){0u}
-    , decltype(_impl_.client_fps_render_){0u}
-    , decltype(_impl_.client_recv_media_data_){int64_t{0}}
-    , decltype(_impl_.fps_video_encode_){0}
-    , decltype(_impl_.app_running_time_){0}
-    , decltype(_impl_.server_send_media_data_){int64_t{0}}
-    , decltype(_impl_.render_width_){0}
-    , decltype(_impl_.render_height_){0}
-    , decltype(_impl_.capture_width_){0}
-    , decltype(_impl_.capture_height_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CaptureStatistics::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, client_fps_video_recv_),
+           0,
+           offsetof(Impl_, capture_height_) -
+               offsetof(Impl_, client_fps_video_recv_) +
+               sizeof(Impl_::capture_height_));
 }
-
 CaptureStatistics::~CaptureStatistics() {
   // @@protoc_insertion_point(destructor:tc.CaptureStatistics)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void CaptureStatistics::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.video_frame_gaps_.~RepeatedField();
-  _impl_.encode_durations_.~RepeatedField();
-  _impl_.audio_frame_gaps_.~RepeatedField();
-  _impl_.decode_durations_.~RepeatedField();
-  _impl_.client_video_recv_gaps_.~RepeatedField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void CaptureStatistics::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void CaptureStatistics::Clear() {
+PROTOBUF_NOINLINE void CaptureStatistics::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.CaptureStatistics)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
@@ -3853,185 +3733,144 @@ void CaptureStatistics::Clear() {
   _impl_.audio_frame_gaps_.Clear();
   _impl_.decode_durations_.Clear();
   _impl_.client_video_recv_gaps_.Clear();
-  ::memset(&_impl_.client_fps_video_recv_, 0, static_cast<size_t>(
+  ::memset(&_impl_.client_fps_video_recv_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.capture_height_) -
       reinterpret_cast<char*>(&_impl_.client_fps_video_recv_)) + sizeof(_impl_.capture_height_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CaptureStatistics::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated uint32 video_frame_gaps = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_video_frame_gaps(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 8) {
-          _internal_add_video_frame_gaps(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated uint32 encode_durations = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_encode_durations(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 16) {
-          _internal_add_encode_durations(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated uint32 audio_frame_gaps = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_audio_frame_gaps(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 24) {
-          _internal_add_audio_frame_gaps(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated uint32 decode_durations = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_decode_durations(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 32) {
-          _internal_add_decode_durations(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated uint32 client_video_recv_gaps = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_client_video_recv_gaps(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 40) {
-          _internal_add_client_video_recv_gaps(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 client_fps_video_recv = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.client_fps_video_recv_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 client_fps_render = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.client_fps_render_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 client_recv_media_data = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.client_recv_media_data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 fps_video_encode = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.fps_video_encode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 app_running_time = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
-          _impl_.app_running_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 server_send_media_data = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
-          _impl_.server_send_media_data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 render_width = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
-          _impl_.render_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 render_height = 13;
-      case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
-          _impl_.render_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 capture_width = 14;
-      case 14:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
-          _impl_.capture_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 capture_height = 15;
-      case 15:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
-          _impl_.capture_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* CaptureStatistics::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* CaptureStatistics::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 15, 0, 0, 2> CaptureStatistics::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    15, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294934528,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    15,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_CaptureStatistics_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated uint32 video_frame_gaps = 1;
+    {::_pbi::TcParser::FastV32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.video_frame_gaps_)}},
+    // repeated uint32 encode_durations = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.encode_durations_)}},
+    // repeated uint32 audio_frame_gaps = 3;
+    {::_pbi::TcParser::FastV32P1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.audio_frame_gaps_)}},
+    // repeated uint32 decode_durations = 4;
+    {::_pbi::TcParser::FastV32P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.decode_durations_)}},
+    // repeated uint32 client_video_recv_gaps = 5;
+    {::_pbi::TcParser::FastV32P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_video_recv_gaps_)}},
+    // uint32 client_fps_video_recv = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.client_fps_video_recv_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_video_recv_)}},
+    // uint32 client_fps_render = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.client_fps_render_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_render_)}},
+    // int64 client_recv_media_data = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CaptureStatistics, _impl_.client_recv_media_data_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_recv_media_data_)}},
+    // int32 fps_video_encode = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.fps_video_encode_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.fps_video_encode_)}},
+    // int32 app_running_time = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.app_running_time_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.app_running_time_)}},
+    // int64 server_send_media_data = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(CaptureStatistics, _impl_.server_send_media_data_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.server_send_media_data_)}},
+    // int32 render_width = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.render_width_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.render_width_)}},
+    // int32 render_height = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.render_height_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.render_height_)}},
+    // int32 capture_width = 14;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.capture_width_), 63>(),
+     {112, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_width_)}},
+    // int32 capture_height = 15;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CaptureStatistics, _impl_.capture_height_), 63>(),
+     {120, 63, 0, PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_height_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated uint32 video_frame_gaps = 1;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.video_frame_gaps_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated uint32 encode_durations = 2;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.encode_durations_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated uint32 audio_frame_gaps = 3;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.audio_frame_gaps_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated uint32 decode_durations = 4;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.decode_durations_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated uint32 client_video_recv_gaps = 5;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_video_recv_gaps_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // uint32 client_fps_video_recv = 6;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_video_recv_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 client_fps_render = 7;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_render_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int64 client_recv_media_data = 8;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_recv_media_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+    // int32 fps_video_encode = 9;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.fps_video_encode_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 app_running_time = 10;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.app_running_time_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int64 server_send_media_data = 11;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.server_send_media_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+    // int32 render_width = 12;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.render_width_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 render_height = 13;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.render_height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 capture_width = 14;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_width_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 capture_height = 15;
+    {PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* CaptureStatistics::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.CaptureStatistics)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated uint32 video_frame_gaps = 1;
   {
-    int byte_size = _impl_._video_frame_gaps_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._video_frame_gaps_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           1, _internal_video_frame_gaps(), byte_size, target);
@@ -4040,7 +3879,7 @@ uint8_t* CaptureStatistics::_InternalSerialize(
 
   // repeated uint32 encode_durations = 2;
   {
-    int byte_size = _impl_._encode_durations_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._encode_durations_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           2, _internal_encode_durations(), byte_size, target);
@@ -4049,7 +3888,7 @@ uint8_t* CaptureStatistics::_InternalSerialize(
 
   // repeated uint32 audio_frame_gaps = 3;
   {
-    int byte_size = _impl_._audio_frame_gaps_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._audio_frame_gaps_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           3, _internal_audio_frame_gaps(), byte_size, target);
@@ -4058,7 +3897,7 @@ uint8_t* CaptureStatistics::_InternalSerialize(
 
   // repeated uint32 decode_durations = 4;
   {
-    int byte_size = _impl_._decode_durations_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._decode_durations_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           4, _internal_decode_durations(), byte_size, target);
@@ -4067,7 +3906,7 @@ uint8_t* CaptureStatistics::_InternalSerialize(
 
   // repeated uint32 client_video_recv_gaps = 5;
   {
-    int byte_size = _impl_._client_video_recv_gaps_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._client_video_recv_gaps_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           5, _internal_client_video_recv_gaps(), byte_size, target);
@@ -4077,222 +3916,239 @@ uint8_t* CaptureStatistics::_InternalSerialize(
   // uint32 client_fps_video_recv = 6;
   if (this->_internal_client_fps_video_recv() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_client_fps_video_recv(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        6, this->_internal_client_fps_video_recv(), target);
   }
 
   // uint32 client_fps_render = 7;
   if (this->_internal_client_fps_render() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_client_fps_render(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        7, this->_internal_client_fps_render(), target);
   }
 
   // int64 client_recv_media_data = 8;
   if (this->_internal_client_recv_media_data() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(8, this->_internal_client_recv_media_data(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<8>(
+            stream, this->_internal_client_recv_media_data(), target);
   }
 
   // int32 fps_video_encode = 9;
   if (this->_internal_fps_video_encode() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(9, this->_internal_fps_video_encode(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<9>(
+            stream, this->_internal_fps_video_encode(), target);
   }
 
   // int32 app_running_time = 10;
   if (this->_internal_app_running_time() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(10, this->_internal_app_running_time(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<10>(
+            stream, this->_internal_app_running_time(), target);
   }
 
   // int64 server_send_media_data = 11;
   if (this->_internal_server_send_media_data() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(11, this->_internal_server_send_media_data(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<11>(
+            stream, this->_internal_server_send_media_data(), target);
   }
 
   // int32 render_width = 12;
   if (this->_internal_render_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(12, this->_internal_render_width(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<12>(
+            stream, this->_internal_render_width(), target);
   }
 
   // int32 render_height = 13;
   if (this->_internal_render_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(13, this->_internal_render_height(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<13>(
+            stream, this->_internal_render_height(), target);
   }
 
   // int32 capture_width = 14;
   if (this->_internal_capture_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(14, this->_internal_capture_width(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<14>(
+            stream, this->_internal_capture_width(), target);
   }
 
   // int32 capture_height = 15;
   if (this->_internal_capture_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(15, this->_internal_capture_height(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<15>(
+            stream, this->_internal_capture_height(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.CaptureStatistics)
   return target;
 }
 
-size_t CaptureStatistics::ByteSizeLong() const {
+::size_t CaptureStatistics::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.CaptureStatistics)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated uint32 video_frame_gaps = 1;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.video_frame_gaps_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._video_frame_gaps_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_video_frame_gaps())
+    ;
+    _impl_._video_frame_gaps_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated uint32 encode_durations = 2;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.encode_durations_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._encode_durations_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_encode_durations())
+    ;
+    _impl_._encode_durations_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated uint32 audio_frame_gaps = 3;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.audio_frame_gaps_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._audio_frame_gaps_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_audio_frame_gaps())
+    ;
+    _impl_._audio_frame_gaps_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated uint32 decode_durations = 4;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.decode_durations_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._decode_durations_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_decode_durations())
+    ;
+    _impl_._decode_durations_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated uint32 client_video_recv_gaps = 5;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.client_video_recv_gaps_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._client_video_recv_gaps_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_client_video_recv_gaps())
+    ;
+    _impl_._client_video_recv_gaps_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // uint32 client_fps_video_recv = 6;
   if (this->_internal_client_fps_video_recv() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_client_fps_video_recv());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_client_fps_video_recv());
   }
 
   // uint32 client_fps_render = 7;
   if (this->_internal_client_fps_render() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_client_fps_render());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_client_fps_render());
   }
 
   // int64 client_recv_media_data = 8;
   if (this->_internal_client_recv_media_data() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_client_recv_media_data());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_client_recv_media_data());
   }
 
   // int32 fps_video_encode = 9;
   if (this->_internal_fps_video_encode() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_fps_video_encode());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_fps_video_encode());
   }
 
   // int32 app_running_time = 10;
   if (this->_internal_app_running_time() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_app_running_time());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_app_running_time());
   }
 
   // int64 server_send_media_data = 11;
   if (this->_internal_server_send_media_data() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_server_send_media_data());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_server_send_media_data());
   }
 
   // int32 render_width = 12;
   if (this->_internal_render_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_width());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_render_width());
   }
 
   // int32 render_height = 13;
   if (this->_internal_render_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_height());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_render_height());
   }
 
   // int32 capture_width = 14;
   if (this->_internal_capture_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_width());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_capture_width());
   }
 
   // int32 capture_height = 15;
   if (this->_internal_capture_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_capture_height());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_capture_height());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CaptureStatistics::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    CaptureStatistics::MergeImpl
+const ::google::protobuf::Message::ClassData CaptureStatistics::_class_data_ = {
+    CaptureStatistics::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CaptureStatistics::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* CaptureStatistics::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void CaptureStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void CaptureStatistics::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<CaptureStatistics*>(&to_msg);
   auto& from = static_cast<const CaptureStatistics&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.CaptureStatistics)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.video_frame_gaps_.MergeFrom(from._impl_.video_frame_gaps_);
-  _this->_impl_.encode_durations_.MergeFrom(from._impl_.encode_durations_);
-  _this->_impl_.audio_frame_gaps_.MergeFrom(from._impl_.audio_frame_gaps_);
-  _this->_impl_.decode_durations_.MergeFrom(from._impl_.decode_durations_);
-  _this->_impl_.client_video_recv_gaps_.MergeFrom(from._impl_.client_video_recv_gaps_);
+  _this->_internal_mutable_video_frame_gaps()->MergeFrom(from._internal_video_frame_gaps());
+  _this->_internal_mutable_encode_durations()->MergeFrom(from._internal_encode_durations());
+  _this->_internal_mutable_audio_frame_gaps()->MergeFrom(from._internal_audio_frame_gaps());
+  _this->_internal_mutable_decode_durations()->MergeFrom(from._internal_decode_durations());
+  _this->_internal_mutable_client_video_recv_gaps()->MergeFrom(from._internal_client_video_recv_gaps());
   if (from._internal_client_fps_video_recv() != 0) {
     _this->_internal_set_client_fps_video_recv(from._internal_client_fps_video_recv());
   }
@@ -4323,7 +4179,7 @@ void CaptureStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, cons
   if (from._internal_capture_height() != 0) {
     _this->_internal_set_capture_height(from._internal_capture_height());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CaptureStatistics::CopyFrom(const CaptureStatistics& from) {
@@ -4333,11 +4189,14 @@ void CaptureStatistics::CopyFrom(const CaptureStatistics& from) {
   MergeFrom(from);
 }
 
-bool CaptureStatistics::IsInitialized() const {
+PROTOBUF_NOINLINE bool CaptureStatistics::IsInitialized() const {
   return true;
 }
 
-void CaptureStatistics::InternalSwap(CaptureStatistics* other) {
+::_pbi::CachedSize* CaptureStatistics::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void CaptureStatistics::InternalSwap(CaptureStatistics* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.video_frame_gaps_.InternalSwap(&other->_impl_.video_frame_gaps_);
@@ -4345,7 +4204,7 @@ void CaptureStatistics::InternalSwap(CaptureStatistics* other) {
   _impl_.audio_frame_gaps_.InternalSwap(&other->_impl_.audio_frame_gaps_);
   _impl_.decode_durations_.InternalSwap(&other->_impl_.decode_durations_);
   _impl_.client_video_recv_gaps_.InternalSwap(&other->_impl_.client_video_recv_gaps_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.capture_height_)
       + sizeof(CaptureStatistics::_impl_.capture_height_)
       - PROTOBUF_FIELD_OFFSET(CaptureStatistics, _impl_.client_fps_video_recv_)>(
@@ -4353,197 +4212,177 @@ void CaptureStatistics::InternalSwap(CaptureStatistics* other) {
           reinterpret_cast<char*>(&other->_impl_.client_fps_video_recv_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata CaptureStatistics::GetMetadata() const {
+::google::protobuf::Metadata CaptureStatistics::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[9]);
 }
-
 // ===================================================================
 
 class ClientStatistics::_Internal {
  public:
 };
 
-ClientStatistics::ClientStatistics(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+ClientStatistics::ClientStatistics(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.ClientStatistics)
 }
-ClientStatistics::ClientStatistics(const ClientStatistics& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ClientStatistics* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.decode_durations_){from._impl_.decode_durations_}
-    , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.video_recv_gaps_){from._impl_.video_recv_gaps_}
-    , /*decltype(_impl_._video_recv_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.fps_video_recv_){}
-    , decltype(_impl_.fps_render_){}
-    , decltype(_impl_.recv_media_data_){}
-    , decltype(_impl_.render_width_){}
-    , decltype(_impl_.render_height_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE ClientStatistics::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : decode_durations_{visibility, arena, from.decode_durations_},
+        _decode_durations_cached_byte_size_{0},
+        video_recv_gaps_{visibility, arena, from.video_recv_gaps_},
+        _video_recv_gaps_cached_byte_size_{0},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.fps_video_recv_, &from._impl_.fps_video_recv_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.render_height_) -
-    reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.render_height_));
+ClientStatistics::ClientStatistics(
+    ::google::protobuf::Arena* arena,
+    const ClientStatistics& from)
+    : ::google::protobuf::Message(arena) {
+  ClientStatistics* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, fps_video_recv_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, fps_video_recv_),
+           offsetof(Impl_, render_height_) -
+               offsetof(Impl_, fps_video_recv_) +
+               sizeof(Impl_::render_height_));
+
   // @@protoc_insertion_point(copy_constructor:tc.ClientStatistics)
 }
+inline PROTOBUF_NDEBUG_INLINE ClientStatistics::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : decode_durations_{visibility, arena},
+        _decode_durations_cached_byte_size_{0},
+        video_recv_gaps_{visibility, arena},
+        _video_recv_gaps_cached_byte_size_{0},
+        _cached_size_{0} {}
 
-inline void ClientStatistics::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.decode_durations_){arena}
-    , /*decltype(_impl_._decode_durations_cached_byte_size_)*/{0}
-    , decltype(_impl_.video_recv_gaps_){arena}
-    , /*decltype(_impl_._video_recv_gaps_cached_byte_size_)*/{0}
-    , decltype(_impl_.fps_video_recv_){0u}
-    , decltype(_impl_.fps_render_){0u}
-    , decltype(_impl_.recv_media_data_){int64_t{0}}
-    , decltype(_impl_.render_width_){0}
-    , decltype(_impl_.render_height_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ClientStatistics::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, fps_video_recv_),
+           0,
+           offsetof(Impl_, render_height_) -
+               offsetof(Impl_, fps_video_recv_) +
+               sizeof(Impl_::render_height_));
 }
-
 ClientStatistics::~ClientStatistics() {
   // @@protoc_insertion_point(destructor:tc.ClientStatistics)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void ClientStatistics::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.decode_durations_.~RepeatedField();
-  _impl_.video_recv_gaps_.~RepeatedField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void ClientStatistics::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void ClientStatistics::Clear() {
+PROTOBUF_NOINLINE void ClientStatistics::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.ClientStatistics)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.decode_durations_.Clear();
   _impl_.video_recv_gaps_.Clear();
-  ::memset(&_impl_.fps_video_recv_, 0, static_cast<size_t>(
+  ::memset(&_impl_.fps_video_recv_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.render_height_) -
       reinterpret_cast<char*>(&_impl_.fps_video_recv_)) + sizeof(_impl_.render_height_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ClientStatistics::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated uint32 decode_durations = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_decode_durations(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 8) {
-          _internal_add_decode_durations(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated uint32 video_recv_gaps = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt32Parser(_internal_mutable_video_recv_gaps(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 16) {
-          _internal_add_video_recv_gaps(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 fps_video_recv = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.fps_video_recv_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // uint32 fps_render = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.fps_render_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int64 recv_media_data = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.recv_media_data_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 render_width = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.render_width_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 render_height = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.render_height_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* ClientStatistics::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* ClientStatistics::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 7, 0, 0, 2> ClientStatistics::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    7, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967168,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    7,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ClientStatistics_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated uint32 decode_durations = 1;
+    {::_pbi::TcParser::FastV32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.decode_durations_)}},
+    // repeated uint32 video_recv_gaps = 2;
+    {::_pbi::TcParser::FastV32P1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.video_recv_gaps_)}},
+    // uint32 fps_video_recv = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientStatistics, _impl_.fps_video_recv_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_video_recv_)}},
+    // uint32 fps_render = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientStatistics, _impl_.fps_render_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_render_)}},
+    // int64 recv_media_data = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(ClientStatistics, _impl_.recv_media_data_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.recv_media_data_)}},
+    // int32 render_width = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientStatistics, _impl_.render_width_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_width_)}},
+    // int32 render_height = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientStatistics, _impl_.render_height_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_height_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated uint32 decode_durations = 1;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.decode_durations_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // repeated uint32 video_recv_gaps = 2;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.video_recv_gaps_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // uint32 fps_video_recv = 3;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_video_recv_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 fps_render = 4;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_render_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int64 recv_media_data = 5;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.recv_media_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
+    // int32 render_width = 6;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_width_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 render_height = 7;
+    {PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ClientStatistics::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.ClientStatistics)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // repeated uint32 decode_durations = 1;
   {
-    int byte_size = _impl_._decode_durations_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._decode_durations_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           1, _internal_decode_durations(), byte_size, target);
@@ -4552,7 +4391,7 @@ uint8_t* ClientStatistics::_InternalSerialize(
 
   // repeated uint32 video_recv_gaps = 2;
   {
-    int byte_size = _impl_._video_recv_gaps_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _impl_._video_recv_gaps_cached_byte_size_.Get();
     if (byte_size > 0) {
       target = stream->WriteUInt32Packed(
           2, _internal_video_recv_gaps(), byte_size, target);
@@ -4562,122 +4401,132 @@ uint8_t* ClientStatistics::_InternalSerialize(
   // uint32 fps_video_recv = 3;
   if (this->_internal_fps_video_recv() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_fps_video_recv(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        3, this->_internal_fps_video_recv(), target);
   }
 
   // uint32 fps_render = 4;
   if (this->_internal_fps_render() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_fps_render(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        4, this->_internal_fps_render(), target);
   }
 
   // int64 recv_media_data = 5;
   if (this->_internal_recv_media_data() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(5, this->_internal_recv_media_data(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt64ToArrayWithField<5>(
+            stream, this->_internal_recv_media_data(), target);
   }
 
   // int32 render_width = 6;
   if (this->_internal_render_width() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_render_width(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<6>(
+            stream, this->_internal_render_width(), target);
   }
 
   // int32 render_height = 7;
   if (this->_internal_render_height() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_render_height(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<7>(
+            stream, this->_internal_render_height(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.ClientStatistics)
   return target;
 }
 
-size_t ClientStatistics::ByteSizeLong() const {
+::size_t ClientStatistics::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.ClientStatistics)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated uint32 decode_durations = 1;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.decode_durations_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._decode_durations_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_decode_durations())
+    ;
+    _impl_._decode_durations_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated uint32 video_recv_gaps = 2;
   {
-    size_t data_size = ::_pbi::WireFormatLite::
-      UInt32Size(this->_impl_.video_recv_gaps_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._video_recv_gaps_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
+    std::size_t data_size = ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_video_recv_gaps())
+    ;
+    _impl_._video_recv_gaps_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // uint32 fps_video_recv = 3;
   if (this->_internal_fps_video_recv() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_fps_video_recv());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_fps_video_recv());
   }
 
   // uint32 fps_render = 4;
   if (this->_internal_fps_render() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_fps_render());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_fps_render());
   }
 
   // int64 recv_media_data = 5;
   if (this->_internal_recv_media_data() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_recv_media_data());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+        this->_internal_recv_media_data());
   }
 
   // int32 render_width = 6;
   if (this->_internal_render_width() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_width());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_render_width());
   }
 
   // int32 render_height = 7;
   if (this->_internal_render_height() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_render_height());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_render_height());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ClientStatistics::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ClientStatistics::MergeImpl
+const ::google::protobuf::Message::ClassData ClientStatistics::_class_data_ = {
+    ClientStatistics::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ClientStatistics::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* ClientStatistics::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void ClientStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void ClientStatistics::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ClientStatistics*>(&to_msg);
   auto& from = static_cast<const ClientStatistics&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.ClientStatistics)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.decode_durations_.MergeFrom(from._impl_.decode_durations_);
-  _this->_impl_.video_recv_gaps_.MergeFrom(from._impl_.video_recv_gaps_);
+  _this->_internal_mutable_decode_durations()->MergeFrom(from._internal_decode_durations());
+  _this->_internal_mutable_video_recv_gaps()->MergeFrom(from._internal_video_recv_gaps());
   if (from._internal_fps_video_recv() != 0) {
     _this->_internal_set_fps_video_recv(from._internal_fps_video_recv());
   }
@@ -4693,7 +4542,7 @@ void ClientStatistics::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const
   if (from._internal_render_height() != 0) {
     _this->_internal_set_render_height(from._internal_render_height());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ClientStatistics::CopyFrom(const ClientStatistics& from) {
@@ -4703,16 +4552,19 @@ void ClientStatistics::CopyFrom(const ClientStatistics& from) {
   MergeFrom(from);
 }
 
-bool ClientStatistics::IsInitialized() const {
+PROTOBUF_NOINLINE bool ClientStatistics::IsInitialized() const {
   return true;
 }
 
-void ClientStatistics::InternalSwap(ClientStatistics* other) {
+::_pbi::CachedSize* ClientStatistics::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ClientStatistics::InternalSwap(ClientStatistics* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.decode_durations_.InternalSwap(&other->_impl_.decode_durations_);
   _impl_.video_recv_gaps_.InternalSwap(&other->_impl_.video_recv_gaps_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.render_height_)
       + sizeof(ClientStatistics::_impl_.render_height_)
       - PROTOBUF_FIELD_OFFSET(ClientStatistics, _impl_.fps_video_recv_)>(
@@ -4720,186 +4572,179 @@ void ClientStatistics::InternalSwap(ClientStatistics* other) {
           reinterpret_cast<char*>(&other->_impl_.fps_video_recv_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ClientStatistics::GetMetadata() const {
+::google::protobuf::Metadata ClientStatistics::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[10]);
 }
-
 // ===================================================================
 
 class ServerAudioSpectrum::_Internal {
  public:
 };
 
-ServerAudioSpectrum::ServerAudioSpectrum(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+ServerAudioSpectrum::ServerAudioSpectrum(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.ServerAudioSpectrum)
 }
-ServerAudioSpectrum::ServerAudioSpectrum(const ServerAudioSpectrum& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  ServerAudioSpectrum* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.left_spectrum_){from._impl_.left_spectrum_}
-    , decltype(_impl_.right_spectrum_){from._impl_.right_spectrum_}
-    , decltype(_impl_.samples_){}
-    , decltype(_impl_.channels_){}
-    , decltype(_impl_.bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE ServerAudioSpectrum::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : left_spectrum_{visibility, arena, from.left_spectrum_},
+        right_spectrum_{visibility, arena, from.right_spectrum_},
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.samples_, &from._impl_.samples_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.bits_) -
-    reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.bits_));
+ServerAudioSpectrum::ServerAudioSpectrum(
+    ::google::protobuf::Arena* arena,
+    const ServerAudioSpectrum& from)
+    : ::google::protobuf::Message(arena) {
+  ServerAudioSpectrum* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, samples_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, samples_),
+           offsetof(Impl_, bits_) -
+               offsetof(Impl_, samples_) +
+               sizeof(Impl_::bits_));
+
   // @@protoc_insertion_point(copy_constructor:tc.ServerAudioSpectrum)
 }
+inline PROTOBUF_NDEBUG_INLINE ServerAudioSpectrum::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : left_spectrum_{visibility, arena},
+        right_spectrum_{visibility, arena},
+        _cached_size_{0} {}
 
-inline void ServerAudioSpectrum::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.left_spectrum_){arena}
-    , decltype(_impl_.right_spectrum_){arena}
-    , decltype(_impl_.samples_){0}
-    , decltype(_impl_.channels_){0}
-    , decltype(_impl_.bits_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void ServerAudioSpectrum::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, samples_),
+           0,
+           offsetof(Impl_, bits_) -
+               offsetof(Impl_, samples_) +
+               sizeof(Impl_::bits_));
 }
-
 ServerAudioSpectrum::~ServerAudioSpectrum() {
   // @@protoc_insertion_point(destructor:tc.ServerAudioSpectrum)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void ServerAudioSpectrum::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.left_spectrum_.~RepeatedField();
-  _impl_.right_spectrum_.~RepeatedField();
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void ServerAudioSpectrum::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void ServerAudioSpectrum::Clear() {
+PROTOBUF_NOINLINE void ServerAudioSpectrum::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.ServerAudioSpectrum)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.left_spectrum_.Clear();
   _impl_.right_spectrum_.Clear();
-  ::memset(&_impl_.samples_, 0, static_cast<size_t>(
+  ::memset(&_impl_.samples_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.bits_) -
       reinterpret_cast<char*>(&_impl_.samples_)) + sizeof(_impl_.bits_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ServerAudioSpectrum::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 samples = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.samples_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 channels = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.channels_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // int32 bits = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.bits_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated double left_spectrum = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_left_spectrum(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 33) {
-          _internal_add_left_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated double right_spectrum = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedDoubleParser(_internal_mutable_right_spectrum(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 41) {
-          _internal_add_right_spectrum(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr));
-          ptr += sizeof(double);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* ServerAudioSpectrum::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* ServerAudioSpectrum::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> ServerAudioSpectrum::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ServerAudioSpectrum_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // int32 samples = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServerAudioSpectrum, _impl_.samples_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.samples_)}},
+    // int32 channels = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServerAudioSpectrum, _impl_.channels_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.channels_)}},
+    // int32 bits = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServerAudioSpectrum, _impl_.bits_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.bits_)}},
+    // repeated double left_spectrum = 4;
+    {::_pbi::TcParser::FastF64P1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.left_spectrum_)}},
+    // repeated double right_spectrum = 5;
+    {::_pbi::TcParser::FastF64P1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.right_spectrum_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 samples = 1;
+    {PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.samples_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 channels = 2;
+    {PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.channels_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 bits = 3;
+    {PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.bits_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // repeated double left_spectrum = 4;
+    {PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.left_spectrum_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedDouble)},
+    // repeated double right_spectrum = 5;
+    {PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.right_spectrum_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedDouble)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ServerAudioSpectrum::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.ServerAudioSpectrum)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // int32 samples = 1;
   if (this->_internal_samples() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_samples(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_samples(), target);
   }
 
   // int32 channels = 2;
   if (this->_internal_channels() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_channels(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_channels(), target);
   }
 
   // int32 bits = 3;
   if (this->_internal_bits() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_bits(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_bits(), target);
   }
 
   // repeated double left_spectrum = 4;
@@ -4913,78 +4758,85 @@ uint8_t* ServerAudioSpectrum::_InternalSerialize(
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.ServerAudioSpectrum)
   return target;
 }
 
-size_t ServerAudioSpectrum::ByteSizeLong() const {
+::size_t ServerAudioSpectrum::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.ServerAudioSpectrum)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated double left_spectrum = 4;
   {
-    unsigned int count = static_cast<unsigned int>(this->_internal_left_spectrum_size());
-    size_t data_size = 8UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    total_size += data_size;
+    std::size_t data_size = std::size_t{8} *
+        ::_pbi::FromIntSize(this->_internal_left_spectrum_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // repeated double right_spectrum = 5;
   {
-    unsigned int count = static_cast<unsigned int>(this->_internal_right_spectrum_size());
-    size_t data_size = 8UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    total_size += data_size;
+    std::size_t data_size = std::size_t{8} *
+        ::_pbi::FromIntSize(this->_internal_right_spectrum_size())
+    ;
+    std::size_t tag_size = data_size == 0
+        ? 0
+        : 1 + ::_pbi::WireFormatLite::Int32Size(
+                            static_cast<int32_t>(data_size))
+    ;
+    total_size += tag_size + data_size;
   }
-
   // int32 samples = 1;
   if (this->_internal_samples() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_samples());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_samples());
   }
 
   // int32 channels = 2;
   if (this->_internal_channels() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_channels());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_channels());
   }
 
   // int32 bits = 3;
   if (this->_internal_bits() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_bits());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_bits());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ServerAudioSpectrum::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    ServerAudioSpectrum::MergeImpl
+const ::google::protobuf::Message::ClassData ServerAudioSpectrum::_class_data_ = {
+    ServerAudioSpectrum::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ServerAudioSpectrum::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* ServerAudioSpectrum::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void ServerAudioSpectrum::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void ServerAudioSpectrum::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ServerAudioSpectrum*>(&to_msg);
   auto& from = static_cast<const ServerAudioSpectrum&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.ServerAudioSpectrum)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.left_spectrum_.MergeFrom(from._impl_.left_spectrum_);
-  _this->_impl_.right_spectrum_.MergeFrom(from._impl_.right_spectrum_);
+  _this->_internal_mutable_left_spectrum()->MergeFrom(from._internal_left_spectrum());
+  _this->_internal_mutable_right_spectrum()->MergeFrom(from._internal_right_spectrum());
   if (from._internal_samples() != 0) {
     _this->_internal_set_samples(from._internal_samples());
   }
@@ -4994,7 +4846,7 @@ void ServerAudioSpectrum::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, co
   if (from._internal_bits() != 0) {
     _this->_internal_set_bits(from._internal_bits());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void ServerAudioSpectrum::CopyFrom(const ServerAudioSpectrum& from) {
@@ -5004,16 +4856,19 @@ void ServerAudioSpectrum::CopyFrom(const ServerAudioSpectrum& from) {
   MergeFrom(from);
 }
 
-bool ServerAudioSpectrum::IsInitialized() const {
+PROTOBUF_NOINLINE bool ServerAudioSpectrum::IsInitialized() const {
   return true;
 }
 
-void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* other) {
+::_pbi::CachedSize* ServerAudioSpectrum::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.left_spectrum_.InternalSwap(&other->_impl_.left_spectrum_);
   _impl_.right_spectrum_.InternalSwap(&other->_impl_.right_spectrum_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.bits_)
       + sizeof(ServerAudioSpectrum::_impl_.bits_)
       - PROTOBUF_FIELD_OFFSET(ServerAudioSpectrum, _impl_.samples_)>(
@@ -5021,202 +4876,188 @@ void ServerAudioSpectrum::InternalSwap(ServerAudioSpectrum* other) {
           reinterpret_cast<char*>(&other->_impl_.samples_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ServerAudioSpectrum::GetMetadata() const {
+::google::protobuf::Metadata ServerAudioSpectrum::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[11]);
 }
-
 // ===================================================================
 
 class OnlineGame::_Internal {
  public:
 };
 
-OnlineGame::OnlineGame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+OnlineGame::OnlineGame(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.OnlineGame)
 }
-OnlineGame::OnlineGame(const OnlineGame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  OnlineGame* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.game_exes_){}
-    , decltype(_impl_.game_id_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE OnlineGame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : game_exes_(arena, from.game_exes_),
+        _cached_size_{0} {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.game_exes_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.game_exes_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_game_exes().empty()) {
-    _this->_impl_.game_exes_.Set(from._internal_game_exes(), 
-      _this->GetArenaForAllocation());
-  }
-  _this->_impl_.game_id_ = from._impl_.game_id_;
+OnlineGame::OnlineGame(
+    ::google::protobuf::Arena* arena,
+    const OnlineGame& from)
+    : ::google::protobuf::Message(arena) {
+  OnlineGame* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.game_id_ = from._impl_.game_id_;
+
   // @@protoc_insertion_point(copy_constructor:tc.OnlineGame)
 }
+inline PROTOBUF_NDEBUG_INLINE OnlineGame::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : game_exes_(arena),
+        _cached_size_{0} {}
 
-inline void OnlineGame::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.game_exes_){}
-    , decltype(_impl_.game_id_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.game_exes_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.game_exes_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void OnlineGame::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.game_id_ = {};
 }
-
 OnlineGame::~OnlineGame() {
   // @@protoc_insertion_point(destructor:tc.OnlineGame)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void OnlineGame::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.game_exes_.Destroy();
+  _impl_.~Impl_();
 }
 
-void OnlineGame::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void OnlineGame::Clear() {
+PROTOBUF_NOINLINE void OnlineGame::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.OnlineGame)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.game_exes_.ClearToEmpty();
   _impl_.game_id_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* OnlineGame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 game_id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.game_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string game_exes = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_game_exes();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "tc.OnlineGame.game_exes"));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* OnlineGame::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* OnlineGame::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 31, 2> OnlineGame::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_OnlineGame_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string game_exes = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(OnlineGame, _impl_.game_exes_)}},
+    // int32 game_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OnlineGame, _impl_.game_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(OnlineGame, _impl_.game_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 game_id = 1;
+    {PROTOBUF_FIELD_OFFSET(OnlineGame, _impl_.game_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string game_exes = 2;
+    {PROTOBUF_FIELD_OFFSET(OnlineGame, _impl_.game_exes_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\15\0\11\0\0\0\0\0"
+    "tc.OnlineGame"
+    "game_exes"
+  }},
+};
+
+::uint8_t* OnlineGame::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.OnlineGame)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // int32 game_id = 1;
   if (this->_internal_game_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_game_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_game_id(), target);
   }
 
   // string game_exes = 2;
   if (!this->_internal_game_exes().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_game_exes().data(), static_cast<int>(this->_internal_game_exes().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "tc.OnlineGame.game_exes");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_game_exes(), target);
+    const std::string& _s = this->_internal_game_exes();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.OnlineGame.game_exes");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.OnlineGame)
   return target;
 }
 
-size_t OnlineGame::ByteSizeLong() const {
+::size_t OnlineGame::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.OnlineGame)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string game_exes = 2;
   if (!this->_internal_game_exes().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_game_exes());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_game_exes());
   }
 
   // int32 game_id = 1;
   if (this->_internal_game_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_game_id());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_game_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData OnlineGame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    OnlineGame::MergeImpl
+const ::google::protobuf::Message::ClassData OnlineGame::_class_data_ = {
+    OnlineGame::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*OnlineGame::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* OnlineGame::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void OnlineGame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void OnlineGame::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<OnlineGame*>(&to_msg);
   auto& from = static_cast<const OnlineGame&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.OnlineGame)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_game_exes().empty()) {
@@ -5225,7 +5066,7 @@ void OnlineGame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   if (from._internal_game_id() != 0) {
     _this->_internal_set_game_id(from._internal_game_id());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void OnlineGame::CopyFrom(const OnlineGame& from) {
@@ -5235,184 +5076,170 @@ void OnlineGame::CopyFrom(const OnlineGame& from) {
   MergeFrom(from);
 }
 
-bool OnlineGame::IsInitialized() const {
+PROTOBUF_NOINLINE bool OnlineGame::IsInitialized() const {
   return true;
 }
 
-void OnlineGame::InternalSwap(OnlineGame* other) {
+::_pbi::CachedSize* OnlineGame::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void OnlineGame::InternalSwap(OnlineGame* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.game_exes_, lhs_arena,
-      &other->_impl_.game_exes_, rhs_arena
-  );
-  swap(_impl_.game_id_, other->_impl_.game_id_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.game_exes_, &other->_impl_.game_exes_, arena);
+        swap(_impl_.game_id_, other->_impl_.game_id_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata OnlineGame::GetMetadata() const {
+::google::protobuf::Metadata OnlineGame::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[12]);
 }
-
 // ===================================================================
 
 class UIServerHello::_Internal {
  public:
 };
 
-UIServerHello::UIServerHello(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+UIServerHello::UIServerHello(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.UIServerHello)
 }
-UIServerHello::UIServerHello(const UIServerHello& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  UIServerHello* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.type_ = from._impl_.type_;
-  // @@protoc_insertion_point(copy_constructor:tc.UIServerHello)
+UIServerHello::UIServerHello(
+    ::google::protobuf::Arena* arena, const UIServerHello& from)
+    : UIServerHello(arena) {
+  MergeFrom(from);
 }
+inline PROTOBUF_NDEBUG_INLINE UIServerHello::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
 
-inline void UIServerHello::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void UIServerHello::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
 }
-
 UIServerHello::~UIServerHello() {
   // @@protoc_insertion_point(destructor:tc.UIServerHello)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void UIServerHello::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
 }
 
-void UIServerHello::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void UIServerHello::Clear() {
+PROTOBUF_NOINLINE void UIServerHello::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.UIServerHello)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.type_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UIServerHello::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .tc.SessionType type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_type(static_cast<::tc::SessionType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* UIServerHello::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* UIServerHello::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> UIServerHello::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UIServerHello_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .tc.SessionType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UIServerHello, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UIServerHello, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.SessionType type = 1;
+    {PROTOBUF_FIELD_OFFSET(UIServerHello, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UIServerHello::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.UIServerHello)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // .tc.SessionType type = 1;
   if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_type(), target);
+        1, this->_internal_type(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.UIServerHello)
   return target;
 }
 
-size_t UIServerHello::ByteSizeLong() const {
+::size_t UIServerHello::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.UIServerHello)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // .tc.SessionType type = 1;
   if (this->_internal_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UIServerHello::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    UIServerHello::MergeImpl
+const ::google::protobuf::Message::ClassData UIServerHello::_class_data_ = {
+    UIServerHello::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UIServerHello::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* UIServerHello::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void UIServerHello::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void UIServerHello::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<UIServerHello*>(&to_msg);
   auto& from = static_cast<const UIServerHello&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.UIServerHello)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_type() != 0) {
     _this->_internal_set_type(from._internal_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void UIServerHello::CopyFrom(const UIServerHello& from) {
@@ -5422,810 +5249,806 @@ void UIServerHello::CopyFrom(const UIServerHello& from) {
   MergeFrom(from);
 }
 
-bool UIServerHello::IsInitialized() const {
+PROTOBUF_NOINLINE bool UIServerHello::IsInitialized() const {
   return true;
 }
 
-void UIServerHello::InternalSwap(UIServerHello* other) {
+::_pbi::CachedSize* UIServerHello::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UIServerHello::InternalSwap(UIServerHello* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.type_, other->_impl_.type_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata UIServerHello::GetMetadata() const {
+::google::protobuf::Metadata UIServerHello::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[13]);
 }
-
 // ===================================================================
 
 class Message::_Internal {
  public:
+  using HasBits = decltype(std::declval<Message>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(Message, _impl_._has_bits_);
   static const ::tc::Hello& hello(const Message* msg);
+  static void set_has_hello(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
   static const ::tc::Ack& ack(const Message* msg);
+  static void set_has_ack(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
   static const ::tc::HeartBeat& heart_beat(const Message* msg);
+  static void set_has_heart_beat(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
   static const ::tc::VideoFrame& video_frame(const Message* msg);
+  static void set_has_video_frame(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
   static const ::tc::AudioFrame& audio_frame(const Message* msg);
+  static void set_has_audio_frame(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
   static const ::tc::KeyEvent& key_event(const Message* msg);
+  static void set_has_key_event(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
   static const ::tc::MouseEvent& mouse_event(const Message* msg);
+  static void set_has_mouse_event(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
+  }
   static const ::tc::CursorInfoSync& cursor_info_sync(const Message* msg);
+  static void set_has_cursor_info_sync(HasBits* has_bits) {
+    (*has_bits)[0] |= 128u;
+  }
   static const ::tc::GamepadState& gamepad_state(const Message* msg);
+  static void set_has_gamepad_state(HasBits* has_bits) {
+    (*has_bits)[0] |= 256u;
+  }
   static const ::tc::CaptureStatistics& capture_statistics(const Message* msg);
+  static void set_has_capture_statistics(HasBits* has_bits) {
+    (*has_bits)[0] |= 512u;
+  }
   static const ::tc::ClientStatistics& client_statistics(const Message* msg);
+  static void set_has_client_statistics(HasBits* has_bits) {
+    (*has_bits)[0] |= 1024u;
+  }
   static const ::tc::ServerAudioSpectrum& server_audio_spectrum(const Message* msg);
+  static void set_has_server_audio_spectrum(HasBits* has_bits) {
+    (*has_bits)[0] |= 2048u;
+  }
   static const ::tc::UIServerHello& ui_server_hello(const Message* msg);
+  static void set_has_ui_server_hello(HasBits* has_bits) {
+    (*has_bits)[0] |= 4096u;
+  }
 };
 
-const ::tc::Hello&
-Message::_Internal::hello(const Message* msg) {
+const ::tc::Hello& Message::_Internal::hello(const Message* msg) {
   return *msg->_impl_.hello_;
 }
-const ::tc::Ack&
-Message::_Internal::ack(const Message* msg) {
+const ::tc::Ack& Message::_Internal::ack(const Message* msg) {
   return *msg->_impl_.ack_;
 }
-const ::tc::HeartBeat&
-Message::_Internal::heart_beat(const Message* msg) {
+const ::tc::HeartBeat& Message::_Internal::heart_beat(const Message* msg) {
   return *msg->_impl_.heart_beat_;
 }
-const ::tc::VideoFrame&
-Message::_Internal::video_frame(const Message* msg) {
+const ::tc::VideoFrame& Message::_Internal::video_frame(const Message* msg) {
   return *msg->_impl_.video_frame_;
 }
-const ::tc::AudioFrame&
-Message::_Internal::audio_frame(const Message* msg) {
+const ::tc::AudioFrame& Message::_Internal::audio_frame(const Message* msg) {
   return *msg->_impl_.audio_frame_;
 }
-const ::tc::KeyEvent&
-Message::_Internal::key_event(const Message* msg) {
+const ::tc::KeyEvent& Message::_Internal::key_event(const Message* msg) {
   return *msg->_impl_.key_event_;
 }
-const ::tc::MouseEvent&
-Message::_Internal::mouse_event(const Message* msg) {
+const ::tc::MouseEvent& Message::_Internal::mouse_event(const Message* msg) {
   return *msg->_impl_.mouse_event_;
 }
-const ::tc::CursorInfoSync&
-Message::_Internal::cursor_info_sync(const Message* msg) {
+const ::tc::CursorInfoSync& Message::_Internal::cursor_info_sync(const Message* msg) {
   return *msg->_impl_.cursor_info_sync_;
 }
-const ::tc::GamepadState&
-Message::_Internal::gamepad_state(const Message* msg) {
+const ::tc::GamepadState& Message::_Internal::gamepad_state(const Message* msg) {
   return *msg->_impl_.gamepad_state_;
 }
-const ::tc::CaptureStatistics&
-Message::_Internal::capture_statistics(const Message* msg) {
+const ::tc::CaptureStatistics& Message::_Internal::capture_statistics(const Message* msg) {
   return *msg->_impl_.capture_statistics_;
 }
-const ::tc::ClientStatistics&
-Message::_Internal::client_statistics(const Message* msg) {
+const ::tc::ClientStatistics& Message::_Internal::client_statistics(const Message* msg) {
   return *msg->_impl_.client_statistics_;
 }
-const ::tc::ServerAudioSpectrum&
-Message::_Internal::server_audio_spectrum(const Message* msg) {
+const ::tc::ServerAudioSpectrum& Message::_Internal::server_audio_spectrum(const Message* msg) {
   return *msg->_impl_.server_audio_spectrum_;
 }
-const ::tc::UIServerHello&
-Message::_Internal::ui_server_hello(const Message* msg) {
+const ::tc::UIServerHello& Message::_Internal::ui_server_hello(const Message* msg) {
   return *msg->_impl_.ui_server_hello_;
 }
-Message::Message(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+Message::Message(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:tc.Message)
 }
-Message::Message(const Message& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Message* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.online_games_){from._impl_.online_games_}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.hello_){nullptr}
-    , decltype(_impl_.ack_){nullptr}
-    , decltype(_impl_.heart_beat_){nullptr}
-    , decltype(_impl_.video_frame_){nullptr}
-    , decltype(_impl_.audio_frame_){nullptr}
-    , decltype(_impl_.key_event_){nullptr}
-    , decltype(_impl_.mouse_event_){nullptr}
-    , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.gamepad_state_){nullptr}
-    , decltype(_impl_.capture_statistics_){nullptr}
-    , decltype(_impl_.client_statistics_){nullptr}
-    , decltype(_impl_.server_audio_spectrum_){nullptr}
-    , decltype(_impl_.ui_server_hello_){nullptr}
-    , decltype(_impl_.send_time_){}
-    , decltype(_impl_.type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+inline PROTOBUF_NDEBUG_INLINE Message::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        online_games_{visibility, arena, from.online_games_},
+        extra_(arena, from.extra_) {}
 
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_extra().empty()) {
-    _this->_impl_.extra_.Set(from._internal_extra(), 
-      _this->GetArenaForAllocation());
-  }
-  if (from._internal_has_hello()) {
-    _this->_impl_.hello_ = new ::tc::Hello(*from._impl_.hello_);
-  }
-  if (from._internal_has_ack()) {
-    _this->_impl_.ack_ = new ::tc::Ack(*from._impl_.ack_);
-  }
-  if (from._internal_has_heart_beat()) {
-    _this->_impl_.heart_beat_ = new ::tc::HeartBeat(*from._impl_.heart_beat_);
-  }
-  if (from._internal_has_video_frame()) {
-    _this->_impl_.video_frame_ = new ::tc::VideoFrame(*from._impl_.video_frame_);
-  }
-  if (from._internal_has_audio_frame()) {
-    _this->_impl_.audio_frame_ = new ::tc::AudioFrame(*from._impl_.audio_frame_);
-  }
-  if (from._internal_has_key_event()) {
-    _this->_impl_.key_event_ = new ::tc::KeyEvent(*from._impl_.key_event_);
-  }
-  if (from._internal_has_mouse_event()) {
-    _this->_impl_.mouse_event_ = new ::tc::MouseEvent(*from._impl_.mouse_event_);
-  }
-  if (from._internal_has_cursor_info_sync()) {
-    _this->_impl_.cursor_info_sync_ = new ::tc::CursorInfoSync(*from._impl_.cursor_info_sync_);
-  }
-  if (from._internal_has_gamepad_state()) {
-    _this->_impl_.gamepad_state_ = new ::tc::GamepadState(*from._impl_.gamepad_state_);
-  }
-  if (from._internal_has_capture_statistics()) {
-    _this->_impl_.capture_statistics_ = new ::tc::CaptureStatistics(*from._impl_.capture_statistics_);
-  }
-  if (from._internal_has_client_statistics()) {
-    _this->_impl_.client_statistics_ = new ::tc::ClientStatistics(*from._impl_.client_statistics_);
-  }
-  if (from._internal_has_server_audio_spectrum()) {
-    _this->_impl_.server_audio_spectrum_ = new ::tc::ServerAudioSpectrum(*from._impl_.server_audio_spectrum_);
-  }
-  if (from._internal_has_ui_server_hello()) {
-    _this->_impl_.ui_server_hello_ = new ::tc::UIServerHello(*from._impl_.ui_server_hello_);
-  }
-  ::memcpy(&_impl_.send_time_, &from._impl_.send_time_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
-    reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
+Message::Message(
+    ::google::protobuf::Arena* arena,
+    const Message& from)
+    : ::google::protobuf::Message(arena) {
+  Message* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.hello_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::tc::Hello>(arena, *from._impl_.hello_)
+                : nullptr;
+  _impl_.ack_ = (cached_has_bits & 0x00000002u)
+                ? CreateMaybeMessage<::tc::Ack>(arena, *from._impl_.ack_)
+                : nullptr;
+  _impl_.heart_beat_ = (cached_has_bits & 0x00000004u)
+                ? CreateMaybeMessage<::tc::HeartBeat>(arena, *from._impl_.heart_beat_)
+                : nullptr;
+  _impl_.video_frame_ = (cached_has_bits & 0x00000008u)
+                ? CreateMaybeMessage<::tc::VideoFrame>(arena, *from._impl_.video_frame_)
+                : nullptr;
+  _impl_.audio_frame_ = (cached_has_bits & 0x00000010u)
+                ? CreateMaybeMessage<::tc::AudioFrame>(arena, *from._impl_.audio_frame_)
+                : nullptr;
+  _impl_.key_event_ = (cached_has_bits & 0x00000020u)
+                ? CreateMaybeMessage<::tc::KeyEvent>(arena, *from._impl_.key_event_)
+                : nullptr;
+  _impl_.mouse_event_ = (cached_has_bits & 0x00000040u)
+                ? CreateMaybeMessage<::tc::MouseEvent>(arena, *from._impl_.mouse_event_)
+                : nullptr;
+  _impl_.cursor_info_sync_ = (cached_has_bits & 0x00000080u)
+                ? CreateMaybeMessage<::tc::CursorInfoSync>(arena, *from._impl_.cursor_info_sync_)
+                : nullptr;
+  _impl_.gamepad_state_ = (cached_has_bits & 0x00000100u)
+                ? CreateMaybeMessage<::tc::GamepadState>(arena, *from._impl_.gamepad_state_)
+                : nullptr;
+  _impl_.capture_statistics_ = (cached_has_bits & 0x00000200u)
+                ? CreateMaybeMessage<::tc::CaptureStatistics>(arena, *from._impl_.capture_statistics_)
+                : nullptr;
+  _impl_.client_statistics_ = (cached_has_bits & 0x00000400u)
+                ? CreateMaybeMessage<::tc::ClientStatistics>(arena, *from._impl_.client_statistics_)
+                : nullptr;
+  _impl_.server_audio_spectrum_ = (cached_has_bits & 0x00000800u)
+                ? CreateMaybeMessage<::tc::ServerAudioSpectrum>(arena, *from._impl_.server_audio_spectrum_)
+                : nullptr;
+  _impl_.ui_server_hello_ = (cached_has_bits & 0x00001000u)
+                ? CreateMaybeMessage<::tc::UIServerHello>(arena, *from._impl_.ui_server_hello_)
+                : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, send_time_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, send_time_),
+           offsetof(Impl_, type_) -
+               offsetof(Impl_, send_time_) +
+               sizeof(Impl_::type_));
+
   // @@protoc_insertion_point(copy_constructor:tc.Message)
 }
+inline PROTOBUF_NDEBUG_INLINE Message::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        online_games_{visibility, arena},
+        extra_(arena) {}
 
-inline void Message::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.online_games_){arena}
-    , decltype(_impl_.extra_){}
-    , decltype(_impl_.hello_){nullptr}
-    , decltype(_impl_.ack_){nullptr}
-    , decltype(_impl_.heart_beat_){nullptr}
-    , decltype(_impl_.video_frame_){nullptr}
-    , decltype(_impl_.audio_frame_){nullptr}
-    , decltype(_impl_.key_event_){nullptr}
-    , decltype(_impl_.mouse_event_){nullptr}
-    , decltype(_impl_.cursor_info_sync_){nullptr}
-    , decltype(_impl_.gamepad_state_){nullptr}
-    , decltype(_impl_.capture_statistics_){nullptr}
-    , decltype(_impl_.client_statistics_){nullptr}
-    , decltype(_impl_.server_audio_spectrum_){nullptr}
-    , decltype(_impl_.ui_server_hello_){nullptr}
-    , decltype(_impl_.send_time_){uint64_t{0u}}
-    , decltype(_impl_.type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.extra_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.extra_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Message::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, hello_),
+           0,
+           offsetof(Impl_, type_) -
+               offsetof(Impl_, hello_) +
+               sizeof(Impl_::type_));
 }
-
 Message::~Message() {
   // @@protoc_insertion_point(destructor:tc.Message)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-
 inline void Message::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.online_games_.~RepeatedPtrField();
+  ABSL_DCHECK(GetArena() == nullptr);
   _impl_.extra_.Destroy();
-  if (this != internal_default_instance()) delete _impl_.hello_;
-  if (this != internal_default_instance()) delete _impl_.ack_;
-  if (this != internal_default_instance()) delete _impl_.heart_beat_;
-  if (this != internal_default_instance()) delete _impl_.video_frame_;
-  if (this != internal_default_instance()) delete _impl_.audio_frame_;
-  if (this != internal_default_instance()) delete _impl_.key_event_;
-  if (this != internal_default_instance()) delete _impl_.mouse_event_;
-  if (this != internal_default_instance()) delete _impl_.cursor_info_sync_;
-  if (this != internal_default_instance()) delete _impl_.gamepad_state_;
-  if (this != internal_default_instance()) delete _impl_.capture_statistics_;
-  if (this != internal_default_instance()) delete _impl_.client_statistics_;
-  if (this != internal_default_instance()) delete _impl_.server_audio_spectrum_;
-  if (this != internal_default_instance()) delete _impl_.ui_server_hello_;
+  delete _impl_.hello_;
+  delete _impl_.ack_;
+  delete _impl_.heart_beat_;
+  delete _impl_.video_frame_;
+  delete _impl_.audio_frame_;
+  delete _impl_.key_event_;
+  delete _impl_.mouse_event_;
+  delete _impl_.cursor_info_sync_;
+  delete _impl_.gamepad_state_;
+  delete _impl_.capture_statistics_;
+  delete _impl_.client_statistics_;
+  delete _impl_.server_audio_spectrum_;
+  delete _impl_.ui_server_hello_;
+  _impl_.~Impl_();
 }
 
-void Message::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Message::Clear() {
+PROTOBUF_NOINLINE void Message::Clear() {
 // @@protoc_insertion_point(message_clear_start:tc.Message)
-  uint32_t cached_has_bits = 0;
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   _impl_.online_games_.Clear();
   _impl_.extra_.ClearToEmpty();
-  if (GetArenaForAllocation() == nullptr && _impl_.hello_ != nullptr) {
-    delete _impl_.hello_;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x000000ffu) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.hello_ != nullptr);
+      _impl_.hello_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.ack_ != nullptr);
+      _impl_.ack_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(_impl_.heart_beat_ != nullptr);
+      _impl_.heart_beat_->Clear();
+    }
+    if (cached_has_bits & 0x00000008u) {
+      ABSL_DCHECK(_impl_.video_frame_ != nullptr);
+      _impl_.video_frame_->Clear();
+    }
+    if (cached_has_bits & 0x00000010u) {
+      ABSL_DCHECK(_impl_.audio_frame_ != nullptr);
+      _impl_.audio_frame_->Clear();
+    }
+    if (cached_has_bits & 0x00000020u) {
+      ABSL_DCHECK(_impl_.key_event_ != nullptr);
+      _impl_.key_event_->Clear();
+    }
+    if (cached_has_bits & 0x00000040u) {
+      ABSL_DCHECK(_impl_.mouse_event_ != nullptr);
+      _impl_.mouse_event_->Clear();
+    }
+    if (cached_has_bits & 0x00000080u) {
+      ABSL_DCHECK(_impl_.cursor_info_sync_ != nullptr);
+      _impl_.cursor_info_sync_->Clear();
+    }
   }
-  _impl_.hello_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ack_ != nullptr) {
-    delete _impl_.ack_;
+  if (cached_has_bits & 0x00001f00u) {
+    if (cached_has_bits & 0x00000100u) {
+      ABSL_DCHECK(_impl_.gamepad_state_ != nullptr);
+      _impl_.gamepad_state_->Clear();
+    }
+    if (cached_has_bits & 0x00000200u) {
+      ABSL_DCHECK(_impl_.capture_statistics_ != nullptr);
+      _impl_.capture_statistics_->Clear();
+    }
+    if (cached_has_bits & 0x00000400u) {
+      ABSL_DCHECK(_impl_.client_statistics_ != nullptr);
+      _impl_.client_statistics_->Clear();
+    }
+    if (cached_has_bits & 0x00000800u) {
+      ABSL_DCHECK(_impl_.server_audio_spectrum_ != nullptr);
+      _impl_.server_audio_spectrum_->Clear();
+    }
+    if (cached_has_bits & 0x00001000u) {
+      ABSL_DCHECK(_impl_.ui_server_hello_ != nullptr);
+      _impl_.ui_server_hello_->Clear();
+    }
   }
-  _impl_.ack_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.heart_beat_ != nullptr) {
-    delete _impl_.heart_beat_;
-  }
-  _impl_.heart_beat_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.video_frame_ != nullptr) {
-    delete _impl_.video_frame_;
-  }
-  _impl_.video_frame_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.audio_frame_ != nullptr) {
-    delete _impl_.audio_frame_;
-  }
-  _impl_.audio_frame_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.key_event_ != nullptr) {
-    delete _impl_.key_event_;
-  }
-  _impl_.key_event_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.mouse_event_ != nullptr) {
-    delete _impl_.mouse_event_;
-  }
-  _impl_.mouse_event_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.cursor_info_sync_ != nullptr) {
-    delete _impl_.cursor_info_sync_;
-  }
-  _impl_.cursor_info_sync_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.gamepad_state_ != nullptr) {
-    delete _impl_.gamepad_state_;
-  }
-  _impl_.gamepad_state_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.capture_statistics_ != nullptr) {
-    delete _impl_.capture_statistics_;
-  }
-  _impl_.capture_statistics_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.client_statistics_ != nullptr) {
-    delete _impl_.client_statistics_;
-  }
-  _impl_.client_statistics_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.server_audio_spectrum_ != nullptr) {
-    delete _impl_.server_audio_spectrum_;
-  }
-  _impl_.server_audio_spectrum_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ui_server_hello_ != nullptr) {
-    delete _impl_.ui_server_hello_;
-  }
-  _impl_.ui_server_hello_ = nullptr;
-  ::memset(&_impl_.send_time_, 0, static_cast<size_t>(
+  ::memset(&_impl_.send_time_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
       reinterpret_cast<char*>(&_impl_.send_time_)) + sizeof(_impl_.type_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* Message::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .tc.MessageType type = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_type(static_cast<::tc::MessageType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // uint64 send_time = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.send_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string extra = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_extra();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "tc.Message.extra"));
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.Hello hello = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
-          ptr = ctx->ParseMessage(_internal_mutable_hello(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.Ack ack = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ack(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.HeartBeat heart_beat = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          ptr = ctx->ParseMessage(_internal_mutable_heart_beat(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.VideoFrame video_frame = 7;
-      case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
-          ptr = ctx->ParseMessage(_internal_mutable_video_frame(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.AudioFrame audio_frame = 8;
-      case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
-          ptr = ctx->ParseMessage(_internal_mutable_audio_frame(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.KeyEvent key_event = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr = ctx->ParseMessage(_internal_mutable_key_event(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.MouseEvent mouse_event = 10;
-      case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
-          ptr = ctx->ParseMessage(_internal_mutable_mouse_event(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.CursorInfoSync cursor_info_sync = 11;
-      case 11:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
-          ptr = ctx->ParseMessage(_internal_mutable_cursor_info_sync(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.GamepadState gamepad_state = 12;
-      case 12:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 98)) {
-          ptr = ctx->ParseMessage(_internal_mutable_gamepad_state(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.CaptureStatistics capture_statistics = 13;
-      case 13:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
-          ptr = ctx->ParseMessage(_internal_mutable_capture_statistics(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.ClientStatistics client_statistics = 14;
-      case 14:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
-          ptr = ctx->ParseMessage(_internal_mutable_client_statistics(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
-      case 15:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
-          ptr = ctx->ParseMessage(_internal_mutable_server_audio_spectrum(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .tc.OnlineGame online_games = 16;
-      case 16:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 130)) {
-          ptr -= 2;
-          do {
-            ptr += 2;
-            ptr = ctx->ParseMessage(_internal_add_online_games(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<130>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // .tc.UIServerHello ui_server_hello = 17;
-      case 17:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 138)) {
-          ptr = ctx->ParseMessage(_internal_mutable_ui_server_hello(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
+const char* Message::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
 }
 
-uint8_t* Message::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Message, _impl_._has_bits_),
+    0, // no _extensions_
+    17, 248,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294836224,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    17,  // num_field_entries
+    14,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_Message_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .tc.MessageType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Message, _impl_.type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.type_)}},
+    // uint64 send_time = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Message, _impl_.send_time_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.send_time_)}},
+    // string extra = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.extra_)}},
+    // .tc.Hello hello = 4;
+    {::_pbi::TcParser::FastMtS1,
+     {34, 0, 0, PROTOBUF_FIELD_OFFSET(Message, _impl_.hello_)}},
+    // .tc.Ack ack = 5;
+    {::_pbi::TcParser::FastMtS1,
+     {42, 1, 1, PROTOBUF_FIELD_OFFSET(Message, _impl_.ack_)}},
+    // .tc.HeartBeat heart_beat = 6;
+    {::_pbi::TcParser::FastMdS1,
+     {50, 2, 2, PROTOBUF_FIELD_OFFSET(Message, _impl_.heart_beat_)}},
+    // .tc.VideoFrame video_frame = 7;
+    {::_pbi::TcParser::FastMtS1,
+     {58, 3, 3, PROTOBUF_FIELD_OFFSET(Message, _impl_.video_frame_)}},
+    // .tc.AudioFrame audio_frame = 8;
+    {::_pbi::TcParser::FastMtS1,
+     {66, 4, 4, PROTOBUF_FIELD_OFFSET(Message, _impl_.audio_frame_)}},
+    // .tc.KeyEvent key_event = 9;
+    {::_pbi::TcParser::FastMtS1,
+     {74, 5, 5, PROTOBUF_FIELD_OFFSET(Message, _impl_.key_event_)}},
+    // .tc.MouseEvent mouse_event = 10;
+    {::_pbi::TcParser::FastMtS1,
+     {82, 6, 6, PROTOBUF_FIELD_OFFSET(Message, _impl_.mouse_event_)}},
+    // .tc.CursorInfoSync cursor_info_sync = 11;
+    {::_pbi::TcParser::FastMtS1,
+     {90, 7, 7, PROTOBUF_FIELD_OFFSET(Message, _impl_.cursor_info_sync_)}},
+    // .tc.GamepadState gamepad_state = 12;
+    {::_pbi::TcParser::FastMtS1,
+     {98, 8, 8, PROTOBUF_FIELD_OFFSET(Message, _impl_.gamepad_state_)}},
+    // .tc.CaptureStatistics capture_statistics = 13;
+    {::_pbi::TcParser::FastMtS1,
+     {106, 9, 9, PROTOBUF_FIELD_OFFSET(Message, _impl_.capture_statistics_)}},
+    // .tc.ClientStatistics client_statistics = 14;
+    {::_pbi::TcParser::FastMtS1,
+     {114, 10, 10, PROTOBUF_FIELD_OFFSET(Message, _impl_.client_statistics_)}},
+    // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+    {::_pbi::TcParser::FastMtS1,
+     {122, 11, 11, PROTOBUF_FIELD_OFFSET(Message, _impl_.server_audio_spectrum_)}},
+    // repeated .tc.OnlineGame online_games = 16;
+    {::_pbi::TcParser::FastMtR2,
+     {386, 63, 12, PROTOBUF_FIELD_OFFSET(Message, _impl_.online_games_)}},
+    // .tc.UIServerHello ui_server_hello = 17;
+    {::_pbi::TcParser::FastMtS2,
+     {394, 12, 13, PROTOBUF_FIELD_OFFSET(Message, _impl_.ui_server_hello_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.MessageType type = 1;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.type_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint64 send_time = 2;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.send_time_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // string extra = 3;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.extra_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .tc.Hello hello = 4;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.hello_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.Ack ack = 5;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.ack_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.HeartBeat heart_beat = 6;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.heart_beat_), _Internal::kHasBitsOffset + 2, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvDefault)},
+    // .tc.VideoFrame video_frame = 7;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.video_frame_), _Internal::kHasBitsOffset + 3, 3,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.AudioFrame audio_frame = 8;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.audio_frame_), _Internal::kHasBitsOffset + 4, 4,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.KeyEvent key_event = 9;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.key_event_), _Internal::kHasBitsOffset + 5, 5,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.MouseEvent mouse_event = 10;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.mouse_event_), _Internal::kHasBitsOffset + 6, 6,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.CursorInfoSync cursor_info_sync = 11;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.cursor_info_sync_), _Internal::kHasBitsOffset + 7, 7,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.GamepadState gamepad_state = 12;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.gamepad_state_), _Internal::kHasBitsOffset + 8, 8,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.CaptureStatistics capture_statistics = 13;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.capture_statistics_), _Internal::kHasBitsOffset + 9, 9,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.ClientStatistics client_statistics = 14;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.client_statistics_), _Internal::kHasBitsOffset + 10, 10,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.server_audio_spectrum_), _Internal::kHasBitsOffset + 11, 11,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .tc.OnlineGame online_games = 16;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.online_games_), -1, 12,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.UIServerHello ui_server_hello = 17;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.ui_server_hello_), _Internal::kHasBitsOffset + 12, 13,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::tc::Hello>()},
+    {::_pbi::TcParser::GetTable<::tc::Ack>()},
+    {::_pbi::FieldAuxDefaultMessage{}, &::tc::_HeartBeat_default_instance_},
+    {::_pbi::TcParser::GetTable<::tc::VideoFrame>()},
+    {::_pbi::TcParser::GetTable<::tc::AudioFrame>()},
+    {::_pbi::TcParser::GetTable<::tc::KeyEvent>()},
+    {::_pbi::TcParser::GetTable<::tc::MouseEvent>()},
+    {::_pbi::TcParser::GetTable<::tc::CursorInfoSync>()},
+    {::_pbi::TcParser::GetTable<::tc::GamepadState>()},
+    {::_pbi::TcParser::GetTable<::tc::CaptureStatistics>()},
+    {::_pbi::TcParser::GetTable<::tc::ClientStatistics>()},
+    {::_pbi::TcParser::GetTable<::tc::ServerAudioSpectrum>()},
+    {::_pbi::TcParser::GetTable<::tc::OnlineGame>()},
+    {::_pbi::TcParser::GetTable<::tc::UIServerHello>()},
+  }}, {{
+    "\12\0\0\5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+    "tc.Message"
+    "extra"
+  }},
+};
+
+::uint8_t* Message::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:tc.Message)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
 
   // .tc.MessageType type = 1;
   if (this->_internal_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_type(), target);
+        1, this->_internal_type(), target);
   }
 
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(2, this->_internal_send_time(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        2, this->_internal_send_time(), target);
   }
 
   // string extra = 3;
   if (!this->_internal_extra().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_extra().data(), static_cast<int>(this->_internal_extra().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "tc.Message.extra");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_extra(), target);
+    const std::string& _s = this->_internal_extra();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.Message.extra");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
   // .tc.Hello hello = 4;
-  if (this->_internal_has_hello()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(4, _Internal::hello(this),
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        4, _Internal::hello(this),
         _Internal::hello(this).GetCachedSize(), target, stream);
   }
 
   // .tc.Ack ack = 5;
-  if (this->_internal_has_ack()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, _Internal::ack(this),
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        5, _Internal::ack(this),
         _Internal::ack(this).GetCachedSize(), target, stream);
   }
 
   // .tc.HeartBeat heart_beat = 6;
-  if (this->_internal_has_heart_beat()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(6, _Internal::heart_beat(this),
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        6, _Internal::heart_beat(this),
         _Internal::heart_beat(this).GetCachedSize(), target, stream);
   }
 
   // .tc.VideoFrame video_frame = 7;
-  if (this->_internal_has_video_frame()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(7, _Internal::video_frame(this),
+  if (cached_has_bits & 0x00000008u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        7, _Internal::video_frame(this),
         _Internal::video_frame(this).GetCachedSize(), target, stream);
   }
 
   // .tc.AudioFrame audio_frame = 8;
-  if (this->_internal_has_audio_frame()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(8, _Internal::audio_frame(this),
+  if (cached_has_bits & 0x00000010u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        8, _Internal::audio_frame(this),
         _Internal::audio_frame(this).GetCachedSize(), target, stream);
   }
 
   // .tc.KeyEvent key_event = 9;
-  if (this->_internal_has_key_event()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(9, _Internal::key_event(this),
+  if (cached_has_bits & 0x00000020u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        9, _Internal::key_event(this),
         _Internal::key_event(this).GetCachedSize(), target, stream);
   }
 
   // .tc.MouseEvent mouse_event = 10;
-  if (this->_internal_has_mouse_event()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(10, _Internal::mouse_event(this),
+  if (cached_has_bits & 0x00000040u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        10, _Internal::mouse_event(this),
         _Internal::mouse_event(this).GetCachedSize(), target, stream);
   }
 
   // .tc.CursorInfoSync cursor_info_sync = 11;
-  if (this->_internal_has_cursor_info_sync()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(11, _Internal::cursor_info_sync(this),
+  if (cached_has_bits & 0x00000080u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        11, _Internal::cursor_info_sync(this),
         _Internal::cursor_info_sync(this).GetCachedSize(), target, stream);
   }
 
   // .tc.GamepadState gamepad_state = 12;
-  if (this->_internal_has_gamepad_state()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(12, _Internal::gamepad_state(this),
+  if (cached_has_bits & 0x00000100u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        12, _Internal::gamepad_state(this),
         _Internal::gamepad_state(this).GetCachedSize(), target, stream);
   }
 
   // .tc.CaptureStatistics capture_statistics = 13;
-  if (this->_internal_has_capture_statistics()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(13, _Internal::capture_statistics(this),
+  if (cached_has_bits & 0x00000200u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        13, _Internal::capture_statistics(this),
         _Internal::capture_statistics(this).GetCachedSize(), target, stream);
   }
 
   // .tc.ClientStatistics client_statistics = 14;
-  if (this->_internal_has_client_statistics()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(14, _Internal::client_statistics(this),
+  if (cached_has_bits & 0x00000400u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        14, _Internal::client_statistics(this),
         _Internal::client_statistics(this).GetCachedSize(), target, stream);
   }
 
   // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
-  if (this->_internal_has_server_audio_spectrum()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(15, _Internal::server_audio_spectrum(this),
+  if (cached_has_bits & 0x00000800u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        15, _Internal::server_audio_spectrum(this),
         _Internal::server_audio_spectrum(this).GetCachedSize(), target, stream);
   }
 
   // repeated .tc.OnlineGame online_games = 16;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_online_games_size()); i < n; i++) {
-    const auto& repfield = this->_internal_online_games(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+    const auto& repfield = this->_internal_online_games().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(16, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   // .tc.UIServerHello ui_server_hello = 17;
-  if (this->_internal_has_ui_server_hello()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(17, _Internal::ui_server_hello(this),
+  if (cached_has_bits & 0x00001000u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        17, _Internal::ui_server_hello(this),
         _Internal::ui_server_hello(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:tc.Message)
   return target;
 }
 
-size_t Message::ByteSizeLong() const {
+::size_t Message::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:tc.Message)
-  size_t total_size = 0;
+  ::size_t total_size = 0;
 
-  uint32_t cached_has_bits = 0;
+  ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // repeated .tc.OnlineGame online_games = 16;
   total_size += 2UL * this->_internal_online_games_size();
-  for (const auto& msg : this->_impl_.online_games_) {
+  for (const auto& msg : this->_internal_online_games()) {
     total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
   // string extra = 3;
   if (!this->_internal_extra().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_extra());
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_extra());
   }
 
-  // .tc.Hello hello = 4;
-  if (this->_internal_has_hello()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.hello_);
-  }
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x000000ffu) {
+    // .tc.Hello hello = 4;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.hello_);
+    }
 
-  // .tc.Ack ack = 5;
-  if (this->_internal_has_ack()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ack_);
-  }
+    // .tc.Ack ack = 5;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.ack_);
+    }
 
-  // .tc.HeartBeat heart_beat = 6;
-  if (this->_internal_has_heart_beat()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.heart_beat_);
-  }
+    // .tc.HeartBeat heart_beat = 6;
+    if (cached_has_bits & 0x00000004u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.heart_beat_);
+    }
 
-  // .tc.VideoFrame video_frame = 7;
-  if (this->_internal_has_video_frame()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.video_frame_);
-  }
+    // .tc.VideoFrame video_frame = 7;
+    if (cached_has_bits & 0x00000008u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.video_frame_);
+    }
 
-  // .tc.AudioFrame audio_frame = 8;
-  if (this->_internal_has_audio_frame()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.audio_frame_);
-  }
+    // .tc.AudioFrame audio_frame = 8;
+    if (cached_has_bits & 0x00000010u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.audio_frame_);
+    }
 
-  // .tc.KeyEvent key_event = 9;
-  if (this->_internal_has_key_event()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.key_event_);
-  }
+    // .tc.KeyEvent key_event = 9;
+    if (cached_has_bits & 0x00000020u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.key_event_);
+    }
 
-  // .tc.MouseEvent mouse_event = 10;
-  if (this->_internal_has_mouse_event()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.mouse_event_);
-  }
+    // .tc.MouseEvent mouse_event = 10;
+    if (cached_has_bits & 0x00000040u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.mouse_event_);
+    }
 
-  // .tc.CursorInfoSync cursor_info_sync = 11;
-  if (this->_internal_has_cursor_info_sync()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cursor_info_sync_);
-  }
+    // .tc.CursorInfoSync cursor_info_sync = 11;
+    if (cached_has_bits & 0x00000080u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.cursor_info_sync_);
+    }
 
-  // .tc.GamepadState gamepad_state = 12;
-  if (this->_internal_has_gamepad_state()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.gamepad_state_);
   }
+  if (cached_has_bits & 0x00001f00u) {
+    // .tc.GamepadState gamepad_state = 12;
+    if (cached_has_bits & 0x00000100u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.gamepad_state_);
+    }
 
-  // .tc.CaptureStatistics capture_statistics = 13;
-  if (this->_internal_has_capture_statistics()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.capture_statistics_);
+    // .tc.CaptureStatistics capture_statistics = 13;
+    if (cached_has_bits & 0x00000200u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.capture_statistics_);
+    }
+
+    // .tc.ClientStatistics client_statistics = 14;
+    if (cached_has_bits & 0x00000400u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.client_statistics_);
+    }
+
+    // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+    if (cached_has_bits & 0x00000800u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.server_audio_spectrum_);
+    }
+
+    // .tc.UIServerHello ui_server_hello = 17;
+    if (cached_has_bits & 0x00001000u) {
+      total_size +=
+          2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.ui_server_hello_);
+    }
+
   }
-
-  // .tc.ClientStatistics client_statistics = 14;
-  if (this->_internal_has_client_statistics()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.client_statistics_);
-  }
-
-  // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
-  if (this->_internal_has_server_audio_spectrum()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.server_audio_spectrum_);
-  }
-
-  // .tc.UIServerHello ui_server_hello = 17;
-  if (this->_internal_has_ui_server_hello()) {
-    total_size += 2 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ui_server_hello_);
-  }
-
   // uint64 send_time = 2;
   if (this->_internal_send_time() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_send_time());
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_send_time());
   }
 
   // .tc.MessageType type = 1;
   if (this->_internal_type() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Message::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Message::MergeImpl
+const ::google::protobuf::Message::ClassData Message::_class_data_ = {
+    Message::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Message::GetClassData() const { return &_class_data_; }
+const ::google::protobuf::Message::ClassData* Message::GetClassData() const {
+  return &_class_data_;
+}
 
-
-void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+void Message::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<Message*>(&to_msg);
   auto& from = static_cast<const Message&>(from_msg);
   // @@protoc_insertion_point(class_specific_merge_from_start:tc.Message)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.online_games_.MergeFrom(from._impl_.online_games_);
+  _this->_internal_mutable_online_games()->MergeFrom(
+      from._internal_online_games());
   if (!from._internal_extra().empty()) {
     _this->_internal_set_extra(from._internal_extra());
   }
-  if (from._internal_has_hello()) {
-    _this->_internal_mutable_hello()->::tc::Hello::MergeFrom(
-        from._internal_hello());
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x000000ffu) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_mutable_hello()->::tc::Hello::MergeFrom(
+          from._internal_hello());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_mutable_ack()->::tc::Ack::MergeFrom(
+          from._internal_ack());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_internal_mutable_heart_beat()->::tc::HeartBeat::MergeFrom(
+          from._internal_heart_beat());
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_internal_mutable_video_frame()->::tc::VideoFrame::MergeFrom(
+          from._internal_video_frame());
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_internal_mutable_audio_frame()->::tc::AudioFrame::MergeFrom(
+          from._internal_audio_frame());
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_internal_mutable_key_event()->::tc::KeyEvent::MergeFrom(
+          from._internal_key_event());
+    }
+    if (cached_has_bits & 0x00000040u) {
+      _this->_internal_mutable_mouse_event()->::tc::MouseEvent::MergeFrom(
+          from._internal_mouse_event());
+    }
+    if (cached_has_bits & 0x00000080u) {
+      _this->_internal_mutable_cursor_info_sync()->::tc::CursorInfoSync::MergeFrom(
+          from._internal_cursor_info_sync());
+    }
   }
-  if (from._internal_has_ack()) {
-    _this->_internal_mutable_ack()->::tc::Ack::MergeFrom(
-        from._internal_ack());
-  }
-  if (from._internal_has_heart_beat()) {
-    _this->_internal_mutable_heart_beat()->::tc::HeartBeat::MergeFrom(
-        from._internal_heart_beat());
-  }
-  if (from._internal_has_video_frame()) {
-    _this->_internal_mutable_video_frame()->::tc::VideoFrame::MergeFrom(
-        from._internal_video_frame());
-  }
-  if (from._internal_has_audio_frame()) {
-    _this->_internal_mutable_audio_frame()->::tc::AudioFrame::MergeFrom(
-        from._internal_audio_frame());
-  }
-  if (from._internal_has_key_event()) {
-    _this->_internal_mutable_key_event()->::tc::KeyEvent::MergeFrom(
-        from._internal_key_event());
-  }
-  if (from._internal_has_mouse_event()) {
-    _this->_internal_mutable_mouse_event()->::tc::MouseEvent::MergeFrom(
-        from._internal_mouse_event());
-  }
-  if (from._internal_has_cursor_info_sync()) {
-    _this->_internal_mutable_cursor_info_sync()->::tc::CursorInfoSync::MergeFrom(
-        from._internal_cursor_info_sync());
-  }
-  if (from._internal_has_gamepad_state()) {
-    _this->_internal_mutable_gamepad_state()->::tc::GamepadState::MergeFrom(
-        from._internal_gamepad_state());
-  }
-  if (from._internal_has_capture_statistics()) {
-    _this->_internal_mutable_capture_statistics()->::tc::CaptureStatistics::MergeFrom(
-        from._internal_capture_statistics());
-  }
-  if (from._internal_has_client_statistics()) {
-    _this->_internal_mutable_client_statistics()->::tc::ClientStatistics::MergeFrom(
-        from._internal_client_statistics());
-  }
-  if (from._internal_has_server_audio_spectrum()) {
-    _this->_internal_mutable_server_audio_spectrum()->::tc::ServerAudioSpectrum::MergeFrom(
-        from._internal_server_audio_spectrum());
-  }
-  if (from._internal_has_ui_server_hello()) {
-    _this->_internal_mutable_ui_server_hello()->::tc::UIServerHello::MergeFrom(
-        from._internal_ui_server_hello());
+  if (cached_has_bits & 0x00001f00u) {
+    if (cached_has_bits & 0x00000100u) {
+      _this->_internal_mutable_gamepad_state()->::tc::GamepadState::MergeFrom(
+          from._internal_gamepad_state());
+    }
+    if (cached_has_bits & 0x00000200u) {
+      _this->_internal_mutable_capture_statistics()->::tc::CaptureStatistics::MergeFrom(
+          from._internal_capture_statistics());
+    }
+    if (cached_has_bits & 0x00000400u) {
+      _this->_internal_mutable_client_statistics()->::tc::ClientStatistics::MergeFrom(
+          from._internal_client_statistics());
+    }
+    if (cached_has_bits & 0x00000800u) {
+      _this->_internal_mutable_server_audio_spectrum()->::tc::ServerAudioSpectrum::MergeFrom(
+          from._internal_server_audio_spectrum());
+    }
+    if (cached_has_bits & 0x00001000u) {
+      _this->_internal_mutable_ui_server_hello()->::tc::UIServerHello::MergeFrom(
+          from._internal_ui_server_hello());
+    }
   }
   if (from._internal_send_time() != 0) {
     _this->_internal_set_send_time(from._internal_send_time());
@@ -6233,7 +6056,7 @@ void Message::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (from._internal_type() != 0) {
     _this->_internal_set_type(from._internal_type());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Message::CopyFrom(const Message& from) {
@@ -6243,21 +6066,22 @@ void Message::CopyFrom(const Message& from) {
   MergeFrom(from);
 }
 
-bool Message::IsInitialized() const {
+PROTOBUF_NOINLINE bool Message::IsInitialized() const {
   return true;
 }
 
-void Message::InternalSwap(Message* other) {
+::_pbi::CachedSize* Message::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void Message::InternalSwap(Message* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.online_games_.InternalSwap(&other->_impl_.online_games_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.extra_, lhs_arena,
-      &other->_impl_.extra_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.extra_, &other->_impl_.extra_, arena);
+  ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Message, _impl_.type_)
       + sizeof(Message::_impl_.type_)
       - PROTOBUF_FIELD_OFFSET(Message, _impl_.hello_)>(
@@ -6265,76 +6089,16 @@ void Message::InternalSwap(Message* other) {
           reinterpret_cast<char*>(&other->_impl_.hello_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Message::GetMetadata() const {
+::google::protobuf::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
       file_level_metadata_tc_5fmessage_2eproto[14]);
 }
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tc
-PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::tc::Ack*
-Arena::CreateMaybeMessage< ::tc::Ack >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::Ack >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::Hello*
-Arena::CreateMaybeMessage< ::tc::Hello >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::Hello >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::HeartBeat*
-Arena::CreateMaybeMessage< ::tc::HeartBeat >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::HeartBeat >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::VideoFrame*
-Arena::CreateMaybeMessage< ::tc::VideoFrame >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::VideoFrame >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::AudioFrame*
-Arena::CreateMaybeMessage< ::tc::AudioFrame >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::AudioFrame >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::KeyEvent*
-Arena::CreateMaybeMessage< ::tc::KeyEvent >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::KeyEvent >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::MouseEvent*
-Arena::CreateMaybeMessage< ::tc::MouseEvent >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::MouseEvent >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::CursorInfoSync*
-Arena::CreateMaybeMessage< ::tc::CursorInfoSync >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::CursorInfoSync >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::GamepadState*
-Arena::CreateMaybeMessage< ::tc::GamepadState >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::GamepadState >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::CaptureStatistics*
-Arena::CreateMaybeMessage< ::tc::CaptureStatistics >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::CaptureStatistics >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::ClientStatistics*
-Arena::CreateMaybeMessage< ::tc::ClientStatistics >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::ClientStatistics >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::ServerAudioSpectrum*
-Arena::CreateMaybeMessage< ::tc::ServerAudioSpectrum >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::ServerAudioSpectrum >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::OnlineGame*
-Arena::CreateMaybeMessage< ::tc::OnlineGame >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::OnlineGame >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::UIServerHello*
-Arena::CreateMaybeMessage< ::tc::UIServerHello >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::UIServerHello >(arena);
-}
-template<> PROTOBUF_NOINLINE ::tc::Message*
-Arena::CreateMaybeMessage< ::tc::Message >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tc::Message >(arena);
-}
-PROTOBUF_NAMESPACE_CLOSE
-
+namespace google {
+namespace protobuf {
+}  // namespace protobuf
+}  // namespace google
 // @@protoc_insertion_point(global_scope)
-#include <google/protobuf/port_undef.inc>
+#include "google/protobuf/port_undef.inc"
