@@ -101,6 +101,25 @@ struct ServerAudioSpectrumDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerAudioSpectrumDefaultTypeInternal _ServerAudioSpectrum_default_instance_;
 
+inline constexpr RespFileTransfer::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : state_{static_cast< ::tc::RespFileTransfer_FileTransferRespState >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RespFileTransfer::RespFileTransfer(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct RespFileTransferDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RespFileTransferDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RespFileTransferDefaultTypeInternal() {}
+  union {
+    RespFileTransfer _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RespFileTransferDefaultTypeInternal _RespFileTransfer_default_instance_;
+
 inline constexpr OnlineGame::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : game_exes_(
@@ -234,6 +253,44 @@ struct GamepadStateDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GamepadStateDefaultTypeInternal _GamepadState_default_instance_;
+
+inline constexpr FileTransfer::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : relative_path_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        filename_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        filesize_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        transferred_size_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_md5_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        state_{static_cast< ::tc::FileTransfer_FileTransferState >(0)},
+        file_type_{static_cast< ::tc::FileTransfer_FileType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR FileTransfer::FileTransfer(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct FileTransferDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FileTransferDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~FileTransferDefaultTypeInternal() {}
+  union {
+    FileTransfer _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileTransferDefaultTypeInternal _FileTransfer_default_instance_;
 
 inline constexpr CursorInfoSync::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -396,6 +453,8 @@ inline constexpr Message::Impl_::Impl_(
         client_statistics_{nullptr},
         server_audio_spectrum_{nullptr},
         ui_server_hello_{nullptr},
+        file_transfer_{nullptr},
+        resp_file_transfer_{nullptr},
         send_time_{::uint64_t{0u}},
         type_{static_cast< ::tc::MessageType >(0)} {}
 
@@ -413,8 +472,8 @@ struct MessageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
-static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[15];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[8];
+static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[17];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[11];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -618,6 +677,31 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::tc::UIServerHello, _impl_.type_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.state_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.file_type_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.relative_path_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.filename_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.data_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.filesize_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.transferred_size_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.file_md5_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _impl_.state_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -643,6 +727,8 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.server_audio_spectrum_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.online_games_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.ui_server_hello_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.file_transfer_),
+    PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_.resp_file_transfer_),
     ~0u,
     ~0u,
     ~0u,
@@ -660,6 +746,8 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     11,
     ~0u,
     12,
+    13,
+    14,
 };
 
 static const ::_pbi::MigrationSchema
@@ -678,7 +766,9 @@ static const ::_pbi::MigrationSchema
         {167, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
         {180, -1, -1, sizeof(::tc::OnlineGame)},
         {190, -1, -1, sizeof(::tc::UIServerHello)},
-        {199, 224, -1, sizeof(::tc::Message)},
+        {199, -1, -1, sizeof(::tc::FileTransfer)},
+        {215, -1, -1, sizeof(::tc::RespFileTransfer)},
+        {224, 251, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -696,6 +786,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::tc::_ServerAudioSpectrum_default_instance_._instance,
     &::tc::_OnlineGame_default_instance_._instance,
     &::tc::_UIServerHello_default_instance_._instance,
+    &::tc::_FileTransfer_default_instance_._instance,
+    &::tc::_RespFileTransfer_default_instance_._instance,
     &::tc::_Message_default_instance_._instance,
 };
 const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -756,66 +848,84 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
     "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
     "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
-    "essionType\"\362\004\n\007Message\022\035\n\004type\030\001 \001(\0162\017.t"
-    "c.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extr"
-    "a\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack"
-    "\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.tc"
-    ".HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.Vid"
-    "eoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.AudioF"
-    "rame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#\n"
-    "\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020cu"
-    "rsor_info_sync\030\013 \001(\0132\022.tc.CursorInfoSync"
-    "\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadStat"
-    "e\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Captu"
-    "reStatistics\022/\n\021client_statistics\030\016 \001(\0132"
-    "\024.tc.ClientStatistics\0226\n\025server_audio_sp"
-    "ectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum\022$\n"
-    "\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017u"
-    "i_server_hello\030\021 \001(\0132\021.tc.UIServerHello*"
-    "\214\002\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n"
-    "\nkHeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudio"
-    "Frame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022"
-    "\023\n\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020\010\022"
-    "\026\n\022kCaptureStatistics\020\t\022\025\n\021kClientStatis"
-    "tics\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n\014kOnl"
-    "ineGames\020\014\022\022\n\016kUIServerHello\020\r*4\n\tVideoT"
-    "ype\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetV"
-    "p9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
-    "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
-    "\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022"
-    "\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMouse"
-    "ButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020kMouseEve"
-    "ntWheel\020\200\002\022\026\n\021kMouseEventHWheel\020\200\004\022\031\n\024kL"
-    "eftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseBut"
-    "tonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *J"
-    "\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n"
-    "\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS\020\004*G\n\013Se"
-    "ssionType\022\020\n\014kInnerServer\020\000\022\022\n\016kAndroidC"
-    "lient\020\001\022\022\n\016kWindowsClient\020\002*\330\003\n\rGamepadB"
-    "utton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEP"
-    "AD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_D"
-    "OWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 "
-    "\n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_X"
-    "INPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEP"
-    "AD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUM"
-    "B\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022"
-    "$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n"
-    " GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023"
-    "GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAME"
-    "PAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023G"
-    "P_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
+    "essionType\"\367\002\n\014FileTransfer\0221\n\005state\030\001 \001"
+    "(\0162\".tc.FileTransfer.FileTransferState\022,"
+    "\n\tfile_type\030\002 \001(\0162\031.tc.FileTransfer.File"
+    "Type\022\025\n\rrelative_path\030\003 \001(\t\022\020\n\010filename\030"
+    "\004 \001(\t\022\014\n\004data\030\005 \001(\t\022\020\n\010filesize\030\006 \001(\t\022\030\n"
+    "\020transferred_size\030\007 \001(\t\022\020\n\010file_md5\030\010 \001("
+    "\t\"\"\n\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n"
+    "\021FileTransferState\022\030\n\024kRequestFileTransf"
+    "er\020\000\022\021\n\rkTransferring\020\001\022\021\n\rkTransferOver"
+    "\020\002\022\030\n\024kTransferInterrupted\020\003\"\277\001\n\020RespFil"
+    "eTransfer\0229\n\005state\030\001 \001(\0162*.tc.RespFileTr"
+    "ansfer.FileTransferRespState\"p\n\025FileTran"
+    "sferRespState\022\022\n\016kTransferReady\020\000\022\026\n\022kFi"
+    "leAlreadyExists\020\001\022\025\n\021kFileDeleteFailed\020\002"
+    "\022\024\n\020kTransferSuccess\020\003\"\315\005\n\007Message\022\035\n\004ty"
+    "pe\030\001 \001(\0162\017.tc.MessageType\022\021\n\tsend_time\030\002"
+    " \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc."
+    "Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_bea"
+    "t\030\006 \001(\0132\r.tc.HeartBeat\022#\n\013video_frame\030\007 "
+    "\001(\0132\016.tc.VideoFrame\022#\n\013audio_frame\030\010 \001(\013"
+    "2\016.tc.AudioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc"
+    ".KeyEvent\022#\n\013mouse_event\030\n \001(\0132\016.tc.Mous"
+    "eEvent\022,\n\020cursor_info_sync\030\013 \001(\0132\022.tc.Cu"
+    "rsorInfoSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc"
+    ".GamepadState\0221\n\022capture_statistics\030\r \001("
+    "\0132\025.tc.CaptureStatistics\022/\n\021client_stati"
+    "stics\030\016 \001(\0132\024.tc.ClientStatistics\0226\n\025ser"
+    "ver_audio_spectrum\030\017 \001(\0132\027.tc.ServerAudi"
+    "oSpectrum\022$\n\014online_games\030\020 \003(\0132\016.tc.Onl"
+    "ineGame\022*\n\017ui_server_hello\030\021 \001(\0132\021.tc.UI"
+    "ServerHello\022\'\n\rfile_transfer\030\022 \001(\0132\020.tc."
+    "FileTransfer\0220\n\022resp_file_transfer\030\023 \001(\013"
+    "2\024.tc.RespFileTransfer*\266\002\n\013MessageType\022\n"
+    "\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013"
+    "kVideoFrame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEv"
+    "ent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSyn"
+    "c\020\007\022\021\n\rkGamepadState\020\010\022\026\n\022kCaptureStatis"
+    "tics\020\t\022\025\n\021kClientStatistics\020\n\022\030\n\024kServer"
+    "AudioSpectrum\020\013\022\020\n\014kOnlineGames\020\014\022\022\n\016kUI"
+    "ServerHello\020\r\022\021\n\rkFileTransfer\020\016\022\025\n\021kRes"
+    "pFileTransfer\020\017*4\n\tVideoType\022\014\n\010kNetH264"
+    "\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButton"
+    "Flag\022\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShi"
+    "ftDown\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010"
+    "\022\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024kMiddleMouse"
+    "ButtonUp\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nk"
+    "MouseMove\020\200\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021k"
+    "MouseEventHWheel\020\200\004\022\031\n\024kLeftMouseButtonD"
+    "own\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025k"
+    "RightMouseButtonDown\020\200 *J\n\nClientType\022\014\n"
+    "\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010k"
+    "Android\020\003\022\010\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kI"
+    "nnerServer\020\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWin"
+    "dowsClient\020\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNK"
+    "NOWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n"
+    "\033GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XIN"
+    "PUT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAM"
+    "EPAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_S"
+    "TART\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP"
+    "_XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPU"
+    "T_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GA"
+    "MEPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAME"
+    "PAD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEP"
+    "AD_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_"
+    "XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPA"
+    "D_Y\020\200\200\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
     false,
     false,
-    4190,
+    4895,
     descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once,
     nullptr,
     0,
-    15,
+    17,
     schemas,
     file_default_instances,
     TableStruct_tc_5fmessage_2eproto::offsets,
@@ -886,18 +996,82 @@ constexpr int GamepadState::GamepadType_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* MessageType_descriptor() {
+const ::google::protobuf::EnumDescriptor* FileTransfer_FileType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[2];
 }
+PROTOBUF_CONSTINIT const uint32_t FileTransfer_FileType_internal_data_[] = {
+    131072u, 0u, };
+bool FileTransfer_FileType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr FileTransfer_FileType FileTransfer::kFile;
+constexpr FileTransfer_FileType FileTransfer::kFolder;
+constexpr FileTransfer_FileType FileTransfer::FileType_MIN;
+constexpr FileTransfer_FileType FileTransfer::FileType_MAX;
+constexpr int FileTransfer::FileType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* FileTransfer_FileTransferState_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[3];
+}
+PROTOBUF_CONSTINIT const uint32_t FileTransfer_FileTransferState_internal_data_[] = {
+    262144u, 0u, };
+bool FileTransfer_FileTransferState_IsValid(int value) {
+  return 0 <= value && value <= 3;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr FileTransfer_FileTransferState FileTransfer::kRequestFileTransfer;
+constexpr FileTransfer_FileTransferState FileTransfer::kTransferring;
+constexpr FileTransfer_FileTransferState FileTransfer::kTransferOver;
+constexpr FileTransfer_FileTransferState FileTransfer::kTransferInterrupted;
+constexpr FileTransfer_FileTransferState FileTransfer::FileTransferState_MIN;
+constexpr FileTransfer_FileTransferState FileTransfer::FileTransferState_MAX;
+constexpr int FileTransfer::FileTransferState_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* RespFileTransfer_FileTransferRespState_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
+}
+PROTOBUF_CONSTINIT const uint32_t RespFileTransfer_FileTransferRespState_internal_data_[] = {
+    262144u, 0u, };
+bool RespFileTransfer_FileTransferRespState_IsValid(int value) {
+  return 0 <= value && value <= 3;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::kTransferReady;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::kFileAlreadyExists;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::kFileDeleteFailed;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::kTransferSuccess;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::FileTransferRespState_MIN;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer::FileTransferRespState_MAX;
+constexpr int RespFileTransfer::FileTransferRespState_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* MessageType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[5];
+}
 PROTOBUF_CONSTINIT const uint32_t MessageType_internal_data_[] = {
-    917504u, 0u, };
+    1048576u, 0u, };
 bool MessageType_IsValid(int value) {
-  return 0 <= value && value <= 13;
+  return 0 <= value && value <= 15;
 }
 const ::google::protobuf::EnumDescriptor* VideoType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[3];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
 }
 PROTOBUF_CONSTINIT const uint32_t VideoType_internal_data_[] = {
     196608u, 0u, };
@@ -906,7 +1080,7 @@ bool VideoType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* ButtonFlag_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
 }
 PROTOBUF_CONSTINIT const uint32_t ButtonFlag_internal_data_[] = {
     196608u, 393280u, 536879138u, 536870912u, 1024u, 256u, 4096u, 128u, 512u, 2048u, };
@@ -915,7 +1089,7 @@ bool ButtonFlag_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* ClientType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[5];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[8];
 }
 PROTOBUF_CONSTINIT const uint32_t ClientType_internal_data_[] = {
     327680u, 0u, };
@@ -924,7 +1098,7 @@ bool ClientType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* SessionType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[9];
 }
 PROTOBUF_CONSTINIT const uint32_t SessionType_internal_data_[] = {
     196608u, 0u, };
@@ -933,7 +1107,7 @@ bool SessionType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* GamepadButton_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[10];
 }
 PROTOBUF_CONSTINIT const uint32_t GamepadButton_internal_data_[] = {
     196608u, 458816u, 536879138u, 536870912u, 4096u, 256u, 16384u, 128u, 512u, 8192u, 32768u, };
@@ -5269,6 +5443,577 @@ void UIServerHello::InternalSwap(UIServerHello* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class FileTransfer::_Internal {
+ public:
+};
+
+FileTransfer::FileTransfer(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:tc.FileTransfer)
+}
+inline PROTOBUF_NDEBUG_INLINE FileTransfer::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : relative_path_(arena, from.relative_path_),
+        filename_(arena, from.filename_),
+        data_(arena, from.data_),
+        filesize_(arena, from.filesize_),
+        transferred_size_(arena, from.transferred_size_),
+        file_md5_(arena, from.file_md5_),
+        _cached_size_{0} {}
+
+FileTransfer::FileTransfer(
+    ::google::protobuf::Arena* arena,
+    const FileTransfer& from)
+    : ::google::protobuf::Message(arena) {
+  FileTransfer* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, state_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, state_),
+           offsetof(Impl_, file_type_) -
+               offsetof(Impl_, state_) +
+               sizeof(Impl_::file_type_));
+
+  // @@protoc_insertion_point(copy_constructor:tc.FileTransfer)
+}
+inline PROTOBUF_NDEBUG_INLINE FileTransfer::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : relative_path_(arena),
+        filename_(arena),
+        data_(arena),
+        filesize_(arena),
+        transferred_size_(arena),
+        file_md5_(arena),
+        _cached_size_{0} {}
+
+inline void FileTransfer::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, state_),
+           0,
+           offsetof(Impl_, file_type_) -
+               offsetof(Impl_, state_) +
+               sizeof(Impl_::file_type_));
+}
+FileTransfer::~FileTransfer() {
+  // @@protoc_insertion_point(destructor:tc.FileTransfer)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void FileTransfer::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.relative_path_.Destroy();
+  _impl_.filename_.Destroy();
+  _impl_.data_.Destroy();
+  _impl_.filesize_.Destroy();
+  _impl_.transferred_size_.Destroy();
+  _impl_.file_md5_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void FileTransfer::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.FileTransfer)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.relative_path_.ClearToEmpty();
+  _impl_.filename_.ClearToEmpty();
+  _impl_.data_.ClearToEmpty();
+  _impl_.filesize_.ClearToEmpty();
+  _impl_.transferred_size_.ClearToEmpty();
+  _impl_.file_md5_.ClearToEmpty();
+  ::memset(&_impl_.state_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.file_type_) -
+      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.file_type_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* FileTransfer::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    8, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967040,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_FileTransfer_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string file_md5 = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_md5_)}},
+    // .tc.FileTransfer.FileTransferState state = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(FileTransfer, _impl_.state_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.state_)}},
+    // .tc.FileTransfer.FileType file_type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(FileTransfer, _impl_.file_type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_type_)}},
+    // string relative_path = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.relative_path_)}},
+    // string filename = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_)}},
+    // string data = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_)}},
+    // string filesize = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_)}},
+    // string transferred_size = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.FileTransfer.FileTransferState state = 1;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .tc.FileTransfer.FileType file_type = 2;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string relative_path = 3;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.relative_path_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string filename = 4;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string data = 5;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string filesize = 6;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string transferred_size = 7;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string file_md5 = 8;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_md5_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\17\0\0\15\10\4\10\20\10\0\0\0\0\0\0\0"
+    "tc.FileTransfer"
+    "relative_path"
+    "filename"
+    "data"
+    "filesize"
+    "transferred_size"
+    "file_md5"
+  }},
+};
+
+::uint8_t* FileTransfer::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.FileTransfer)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .tc.FileTransfer.FileTransferState state = 1;
+  if (this->_internal_state() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_state(), target);
+  }
+
+  // .tc.FileTransfer.FileType file_type = 2;
+  if (this->_internal_file_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_file_type(), target);
+  }
+
+  // string relative_path = 3;
+  if (!this->_internal_relative_path().empty()) {
+    const std::string& _s = this->_internal_relative_path();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.relative_path");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // string filename = 4;
+  if (!this->_internal_filename().empty()) {
+    const std::string& _s = this->_internal_filename();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.filename");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  // string data = 5;
+  if (!this->_internal_data().empty()) {
+    const std::string& _s = this->_internal_data();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.data");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
+  }
+
+  // string filesize = 6;
+  if (!this->_internal_filesize().empty()) {
+    const std::string& _s = this->_internal_filesize();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.filesize");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
+  // string transferred_size = 7;
+  if (!this->_internal_transferred_size().empty()) {
+    const std::string& _s = this->_internal_transferred_size();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.transferred_size");
+    target = stream->WriteStringMaybeAliased(7, _s, target);
+  }
+
+  // string file_md5 = 8;
+  if (!this->_internal_file_md5().empty()) {
+    const std::string& _s = this->_internal_file_md5();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.file_md5");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.FileTransfer)
+  return target;
+}
+
+::size_t FileTransfer::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.FileTransfer)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string relative_path = 3;
+  if (!this->_internal_relative_path().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_relative_path());
+  }
+
+  // string filename = 4;
+  if (!this->_internal_filename().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_filename());
+  }
+
+  // string data = 5;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_data());
+  }
+
+  // string filesize = 6;
+  if (!this->_internal_filesize().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_filesize());
+  }
+
+  // string transferred_size = 7;
+  if (!this->_internal_transferred_size().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_transferred_size());
+  }
+
+  // string file_md5 = 8;
+  if (!this->_internal_file_md5().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_file_md5());
+  }
+
+  // .tc.FileTransfer.FileTransferState state = 1;
+  if (this->_internal_state() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_state());
+  }
+
+  // .tc.FileTransfer.FileType file_type = 2;
+  if (this->_internal_file_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_file_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData FileTransfer::_class_data_ = {
+    FileTransfer::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* FileTransfer::GetClassData() const {
+  return &_class_data_;
+}
+
+void FileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<FileTransfer*>(&to_msg);
+  auto& from = static_cast<const FileTransfer&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.FileTransfer)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_relative_path().empty()) {
+    _this->_internal_set_relative_path(from._internal_relative_path());
+  }
+  if (!from._internal_filename().empty()) {
+    _this->_internal_set_filename(from._internal_filename());
+  }
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
+  if (!from._internal_filesize().empty()) {
+    _this->_internal_set_filesize(from._internal_filesize());
+  }
+  if (!from._internal_transferred_size().empty()) {
+    _this->_internal_set_transferred_size(from._internal_transferred_size());
+  }
+  if (!from._internal_file_md5().empty()) {
+    _this->_internal_set_file_md5(from._internal_file_md5());
+  }
+  if (from._internal_state() != 0) {
+    _this->_internal_set_state(from._internal_state());
+  }
+  if (from._internal_file_type() != 0) {
+    _this->_internal_set_file_type(from._internal_file_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void FileTransfer::CopyFrom(const FileTransfer& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.FileTransfer)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool FileTransfer::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* FileTransfer::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void FileTransfer::InternalSwap(FileTransfer* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.relative_path_, &other->_impl_.relative_path_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filename_, &other->_impl_.filename_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filesize_, &other->_impl_.filesize_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.transferred_size_, &other->_impl_.transferred_size_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_md5_, &other->_impl_.file_md5_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_type_)
+      + sizeof(FileTransfer::_impl_.file_type_)
+      - PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.state_)>(
+          reinterpret_cast<char*>(&_impl_.state_),
+          reinterpret_cast<char*>(&other->_impl_.state_));
+}
+
+::google::protobuf::Metadata FileTransfer::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[14]);
+}
+// ===================================================================
+
+class RespFileTransfer::_Internal {
+ public:
+};
+
+RespFileTransfer::RespFileTransfer(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:tc.RespFileTransfer)
+}
+RespFileTransfer::RespFileTransfer(
+    ::google::protobuf::Arena* arena, const RespFileTransfer& from)
+    : RespFileTransfer(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE RespFileTransfer::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void RespFileTransfer::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.state_ = {};
+}
+RespFileTransfer::~RespFileTransfer() {
+  // @@protoc_insertion_point(destructor:tc.RespFileTransfer)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void RespFileTransfer::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void RespFileTransfer::Clear() {
+// @@protoc_insertion_point(message_clear_start:tc.RespFileTransfer)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.state_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* RespFileTransfer::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> RespFileTransfer::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_RespFileTransfer_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .tc.RespFileTransfer.FileTransferRespState state = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RespFileTransfer, _impl_.state_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.state_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .tc.RespFileTransfer.FileTransferRespState state = 1;
+    {PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* RespFileTransfer::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tc.RespFileTransfer)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .tc.RespFileTransfer.FileTransferRespState state = 1;
+  if (this->_internal_state() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_state(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tc.RespFileTransfer)
+  return target;
+}
+
+::size_t RespFileTransfer::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tc.RespFileTransfer)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .tc.RespFileTransfer.FileTransferRespState state = 1;
+  if (this->_internal_state() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_state());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData RespFileTransfer::_class_data_ = {
+    RespFileTransfer::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* RespFileTransfer::GetClassData() const {
+  return &_class_data_;
+}
+
+void RespFileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RespFileTransfer*>(&to_msg);
+  auto& from = static_cast<const RespFileTransfer&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tc.RespFileTransfer)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_state() != 0) {
+    _this->_internal_set_state(from._internal_state());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RespFileTransfer::CopyFrom(const RespFileTransfer& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tc.RespFileTransfer)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool RespFileTransfer::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* RespFileTransfer::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void RespFileTransfer::InternalSwap(RespFileTransfer* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.state_, other->_impl_.state_);
+}
+
+::google::protobuf::Metadata RespFileTransfer::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
+      file_level_metadata_tc_5fmessage_2eproto[15]);
+}
+// ===================================================================
+
 class Message::_Internal {
  public:
   using HasBits = decltype(std::declval<Message>()._impl_._has_bits_);
@@ -5326,6 +6071,14 @@ class Message::_Internal {
   static void set_has_ui_server_hello(HasBits* has_bits) {
     (*has_bits)[0] |= 4096u;
   }
+  static const ::tc::FileTransfer& file_transfer(const Message* msg);
+  static void set_has_file_transfer(HasBits* has_bits) {
+    (*has_bits)[0] |= 8192u;
+  }
+  static const ::tc::RespFileTransfer& resp_file_transfer(const Message* msg);
+  static void set_has_resp_file_transfer(HasBits* has_bits) {
+    (*has_bits)[0] |= 16384u;
+  }
 };
 
 const ::tc::Hello& Message::_Internal::hello(const Message* msg) {
@@ -5366,6 +6119,12 @@ const ::tc::ServerAudioSpectrum& Message::_Internal::server_audio_spectrum(const
 }
 const ::tc::UIServerHello& Message::_Internal::ui_server_hello(const Message* msg) {
   return *msg->_impl_.ui_server_hello_;
+}
+const ::tc::FileTransfer& Message::_Internal::file_transfer(const Message* msg) {
+  return *msg->_impl_.file_transfer_;
+}
+const ::tc::RespFileTransfer& Message::_Internal::resp_file_transfer(const Message* msg) {
+  return *msg->_impl_.resp_file_transfer_;
 }
 Message::Message(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
@@ -5429,6 +6188,12 @@ Message::Message(
   _impl_.ui_server_hello_ = (cached_has_bits & 0x00001000u)
                 ? CreateMaybeMessage<::tc::UIServerHello>(arena, *from._impl_.ui_server_hello_)
                 : nullptr;
+  _impl_.file_transfer_ = (cached_has_bits & 0x00002000u)
+                ? CreateMaybeMessage<::tc::FileTransfer>(arena, *from._impl_.file_transfer_)
+                : nullptr;
+  _impl_.resp_file_transfer_ = (cached_has_bits & 0x00004000u)
+                ? CreateMaybeMessage<::tc::RespFileTransfer>(arena, *from._impl_.resp_file_transfer_)
+                : nullptr;
   ::memcpy(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, send_time_),
            reinterpret_cast<const char *>(&from._impl_) +
@@ -5476,6 +6241,8 @@ inline void Message::SharedDtor() {
   delete _impl_.client_statistics_;
   delete _impl_.server_audio_spectrum_;
   delete _impl_.ui_server_hello_;
+  delete _impl_.file_transfer_;
+  delete _impl_.resp_file_transfer_;
   _impl_.~Impl_();
 }
 
@@ -5523,7 +6290,7 @@ PROTOBUF_NOINLINE void Message::Clear() {
       _impl_.cursor_info_sync_->Clear();
     }
   }
-  if (cached_has_bits & 0x00001f00u) {
+  if (cached_has_bits & 0x00007f00u) {
     if (cached_has_bits & 0x00000100u) {
       ABSL_DCHECK(_impl_.gamepad_state_ != nullptr);
       _impl_.gamepad_state_->Clear();
@@ -5544,6 +6311,14 @@ PROTOBUF_NOINLINE void Message::Clear() {
       ABSL_DCHECK(_impl_.ui_server_hello_ != nullptr);
       _impl_.ui_server_hello_->Clear();
     }
+    if (cached_has_bits & 0x00002000u) {
+      ABSL_DCHECK(_impl_.file_transfer_ != nullptr);
+      _impl_.file_transfer_->Clear();
+    }
+    if (cached_has_bits & 0x00004000u) {
+      ABSL_DCHECK(_impl_.resp_file_transfer_ != nullptr);
+      _impl_.resp_file_transfer_->Clear();
+    }
   }
   ::memset(&_impl_.send_time_, 0, static_cast<::size_t>(
       reinterpret_cast<char*>(&_impl_.type_) -
@@ -5560,16 +6335,16 @@ const char* Message::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
+const ::_pbi::TcParseTable<5, 19, 16, 40, 2> Message::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Message, _impl_._has_bits_),
     0, // no _extensions_
-    17, 248,  // max_field_number, fast_idx_mask
+    19, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294836224,  // skipmap
+    4294443008,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    17,  // num_field_entries
-    14,  // num_aux_entries
+    19,  // num_field_entries
+    16,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_Message_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -5626,8 +6401,12 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
     // .tc.UIServerHello ui_server_hello = 17;
     {::_pbi::TcParser::FastMtS2,
      {394, 12, 13, PROTOBUF_FIELD_OFFSET(Message, _impl_.ui_server_hello_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // .tc.FileTransfer file_transfer = 18;
+    {::_pbi::TcParser::FastMtS2,
+     {402, 13, 14, PROTOBUF_FIELD_OFFSET(Message, _impl_.file_transfer_)}},
+    // .tc.RespFileTransfer resp_file_transfer = 19;
+    {::_pbi::TcParser::FastMtS2,
+     {410, 14, 15, PROTOBUF_FIELD_OFFSET(Message, _impl_.resp_file_transfer_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -5694,6 +6473,12 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
     // .tc.UIServerHello ui_server_hello = 17;
     {PROTOBUF_FIELD_OFFSET(Message, _impl_.ui_server_hello_), _Internal::kHasBitsOffset + 12, 13,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.FileTransfer file_transfer = 18;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.file_transfer_), _Internal::kHasBitsOffset + 13, 14,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .tc.RespFileTransfer resp_file_transfer = 19;
+    {PROTOBUF_FIELD_OFFSET(Message, _impl_.resp_file_transfer_), _Internal::kHasBitsOffset + 14, 15,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::tc::Hello>()},
     {::_pbi::TcParser::GetTable<::tc::Ack>()},
@@ -5709,6 +6494,8 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
     {::_pbi::TcParser::GetTable<::tc::ServerAudioSpectrum>()},
     {::_pbi::TcParser::GetTable<::tc::OnlineGame>()},
     {::_pbi::TcParser::GetTable<::tc::UIServerHello>()},
+    {::_pbi::TcParser::GetTable<::tc::FileTransfer>()},
+    {::_pbi::TcParser::GetTable<::tc::RespFileTransfer>()},
   }}, {{
     "\12\0\0\5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "tc.Message"
@@ -5845,6 +6632,20 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
         _Internal::ui_server_hello(this).GetCachedSize(), target, stream);
   }
 
+  // .tc.FileTransfer file_transfer = 18;
+  if (cached_has_bits & 0x00002000u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        18, _Internal::file_transfer(this),
+        _Internal::file_transfer(this).GetCachedSize(), target, stream);
+  }
+
+  // .tc.RespFileTransfer resp_file_transfer = 19;
+  if (cached_has_bits & 0x00004000u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        19, _Internal::resp_file_transfer(this),
+        _Internal::resp_file_transfer(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -5925,7 +6726,7 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
     }
 
   }
-  if (cached_has_bits & 0x00001f00u) {
+  if (cached_has_bits & 0x00007f00u) {
     // .tc.GamepadState gamepad_state = 12;
     if (cached_has_bits & 0x00000100u) {
       total_size +=
@@ -5954,6 +6755,18 @@ const ::_pbi::TcParseTable<5, 17, 14, 40, 2> Message::_table_ = {
     if (cached_has_bits & 0x00001000u) {
       total_size +=
           2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.ui_server_hello_);
+    }
+
+    // .tc.FileTransfer file_transfer = 18;
+    if (cached_has_bits & 0x00002000u) {
+      total_size +=
+          2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.file_transfer_);
+    }
+
+    // .tc.RespFileTransfer resp_file_transfer = 19;
+    if (cached_has_bits & 0x00004000u) {
+      total_size +=
+          2 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.resp_file_transfer_);
     }
 
   }
@@ -6028,7 +6841,7 @@ void Message::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pro
           from._internal_cursor_info_sync());
     }
   }
-  if (cached_has_bits & 0x00001f00u) {
+  if (cached_has_bits & 0x00007f00u) {
     if (cached_has_bits & 0x00000100u) {
       _this->_internal_mutable_gamepad_state()->::tc::GamepadState::MergeFrom(
           from._internal_gamepad_state());
@@ -6048,6 +6861,14 @@ void Message::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pro
     if (cached_has_bits & 0x00001000u) {
       _this->_internal_mutable_ui_server_hello()->::tc::UIServerHello::MergeFrom(
           from._internal_ui_server_hello());
+    }
+    if (cached_has_bits & 0x00002000u) {
+      _this->_internal_mutable_file_transfer()->::tc::FileTransfer::MergeFrom(
+          from._internal_file_transfer());
+    }
+    if (cached_has_bits & 0x00004000u) {
+      _this->_internal_mutable_resp_file_transfer()->::tc::RespFileTransfer::MergeFrom(
+          from._internal_resp_file_transfer());
     }
   }
   if (from._internal_send_time() != 0) {
@@ -6092,7 +6913,7 @@ void Message::InternalSwap(Message* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Message::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tc_5fmessage_2eproto_getter, &descriptor_table_tc_5fmessage_2eproto_once,
-      file_level_metadata_tc_5fmessage_2eproto[14]);
+      file_level_metadata_tc_5fmessage_2eproto[16]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tc

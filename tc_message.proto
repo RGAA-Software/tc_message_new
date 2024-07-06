@@ -25,6 +25,10 @@ enum MessageType {
   kOnlineGames = 12;
   // ui server hello
   kUIServerHello = 13;
+  // file transfer
+  kFileTransfer = 14;
+  // file transfer resp
+  kRespFileTransfer = 15;
 }
 
 enum VideoType {
@@ -252,6 +256,46 @@ message UIServerHello {
   SessionType type = 1;
 }
 
+message FileTransfer {
+  enum FileType {
+    kFile = 0;
+    kFolder = 1;
+  }
+
+  enum FileTransferState {
+    kRequestFileTransfer = 0;
+    // transferring
+    kTransferring = 1;
+    // transfer over
+    kTransferOver = 2;
+    // stopped by user
+    kTransferInterrupted = 3;
+  }
+
+  FileTransferState state = 1;
+  FileType file_type = 2;
+  string relative_path = 3;
+  string filename = 4;
+  string data = 5;
+  string filesize = 6;
+  string transferred_size = 7;
+  string file_md5 = 8;
+}
+
+message RespFileTransfer {
+  enum FileTransferRespState {
+    // it's ok
+    kTransferReady = 0;
+    // file already exists.
+    kFileAlreadyExists = 1;
+    // the file already exists, but can't delete it.
+    kFileDeleteFailed = 2;
+    // after compare md5
+    kTransferSuccess = 3;
+  }
+  FileTransferRespState state = 1;
+}
+
 message Message {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -270,4 +314,6 @@ message Message {
   ServerAudioSpectrum server_audio_spectrum = 15;
   repeated OnlineGame online_games = 16;
   UIServerHello ui_server_hello = 17;
+  FileTransfer file_transfer = 18;
+  RespFileTransfer resp_file_transfer = 19;
 }
