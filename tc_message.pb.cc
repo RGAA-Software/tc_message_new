@@ -265,17 +265,13 @@ inline constexpr FileTransfer::Impl_::Impl_(
         data_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        filesize_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        transferred_size_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         file_md5_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         state_{static_cast< ::tc::FileTransfer_FileTransferState >(0)},
         file_type_{static_cast< ::tc::FileTransfer_FileType >(0)},
+        filesize_{::uint64_t{0u}},
+        transferred_size_{::uint64_t{0u}},
         _cached_size_{0} {}
 
 template <typename>
@@ -852,8 +848,8 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "(\0162\".tc.FileTransfer.FileTransferState\022,"
     "\n\tfile_type\030\002 \001(\0162\031.tc.FileTransfer.File"
     "Type\022\025\n\rrelative_path\030\003 \001(\t\022\020\n\010filename\030"
-    "\004 \001(\t\022\014\n\004data\030\005 \001(\t\022\020\n\010filesize\030\006 \001(\t\022\030\n"
-    "\020transferred_size\030\007 \001(\t\022\020\n\010file_md5\030\010 \001("
+    "\004 \001(\t\022\014\n\004data\030\005 \001(\014\022\020\n\010filesize\030\006 \001(\004\022\030\n"
+    "\020transferred_size\030\007 \001(\004\022\020\n\010file_md5\030\010 \001("
     "\t\"\"\n\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n"
     "\021FileTransferState\022\030\n\024kRequestFileTransf"
     "er\020\000\022\021\n\rkTransferring\020\001\022\021\n\rkTransferOver"
@@ -5458,8 +5454,6 @@ inline PROTOBUF_NDEBUG_INLINE FileTransfer::Impl_::Impl_(
       : relative_path_(arena, from.relative_path_),
         filename_(arena, from.filename_),
         data_(arena, from.data_),
-        filesize_(arena, from.filesize_),
-        transferred_size_(arena, from.transferred_size_),
         file_md5_(arena, from.file_md5_),
         _cached_size_{0} {}
 
@@ -5476,9 +5470,9 @@ FileTransfer::FileTransfer(
                offsetof(Impl_, state_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, state_),
-           offsetof(Impl_, file_type_) -
+           offsetof(Impl_, transferred_size_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::file_type_));
+               sizeof(Impl_::transferred_size_));
 
   // @@protoc_insertion_point(copy_constructor:tc.FileTransfer)
 }
@@ -5488,8 +5482,6 @@ inline PROTOBUF_NDEBUG_INLINE FileTransfer::Impl_::Impl_(
       : relative_path_(arena),
         filename_(arena),
         data_(arena),
-        filesize_(arena),
-        transferred_size_(arena),
         file_md5_(arena),
         _cached_size_{0} {}
 
@@ -5498,9 +5490,9 @@ inline void FileTransfer::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, state_),
            0,
-           offsetof(Impl_, file_type_) -
+           offsetof(Impl_, transferred_size_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::file_type_));
+               sizeof(Impl_::transferred_size_));
 }
 FileTransfer::~FileTransfer() {
   // @@protoc_insertion_point(destructor:tc.FileTransfer)
@@ -5512,8 +5504,6 @@ inline void FileTransfer::SharedDtor() {
   _impl_.relative_path_.Destroy();
   _impl_.filename_.Destroy();
   _impl_.data_.Destroy();
-  _impl_.filesize_.Destroy();
-  _impl_.transferred_size_.Destroy();
   _impl_.file_md5_.Destroy();
   _impl_.~Impl_();
 }
@@ -5528,12 +5518,10 @@ PROTOBUF_NOINLINE void FileTransfer::Clear() {
   _impl_.relative_path_.ClearToEmpty();
   _impl_.filename_.ClearToEmpty();
   _impl_.data_.ClearToEmpty();
-  _impl_.filesize_.ClearToEmpty();
-  _impl_.transferred_size_.ClearToEmpty();
   _impl_.file_md5_.ClearToEmpty();
   ::memset(&_impl_.state_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.file_type_) -
-      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.file_type_));
+      reinterpret_cast<char*>(&_impl_.transferred_size_) -
+      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.transferred_size_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -5545,7 +5533,7 @@ const char* FileTransfer::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 0, 61, 2> FileTransfer::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -5574,15 +5562,15 @@ const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
     // string filename = 4;
     {::_pbi::TcParser::FastUS1,
      {34, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_)}},
-    // string data = 5;
-    {::_pbi::TcParser::FastUS1,
+    // bytes data = 5;
+    {::_pbi::TcParser::FastBS1,
      {42, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_)}},
-    // string filesize = 6;
-    {::_pbi::TcParser::FastUS1,
-     {50, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_)}},
-    // string transferred_size = 7;
-    {::_pbi::TcParser::FastUS1,
-     {58, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_)}},
+    // uint64 filesize = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(FileTransfer, _impl_.filesize_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_)}},
+    // uint64 transferred_size = 7;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(FileTransfer, _impl_.transferred_size_), 63>(),
+     {56, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -5598,28 +5586,25 @@ const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
     // string filename = 4;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string data = 5;
+    // bytes data = 5;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string filesize = 6;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // uint64 filesize = 6;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string transferred_size = 7;
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
+    // uint64 transferred_size = 7;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
     // string file_md5 = 8;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_md5_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\17\0\0\15\10\4\10\20\10\0\0\0\0\0\0\0"
+    "\17\0\0\15\10\0\0\0\10\0\0\0\0\0\0\0"
     "tc.FileTransfer"
     "relative_path"
     "filename"
-    "data"
-    "filesize"
-    "transferred_size"
     "file_md5"
   }},
 };
@@ -5661,28 +5646,24 @@ const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
     target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
-  // string data = 5;
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
     const std::string& _s = this->_internal_data();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.data");
-    target = stream->WriteStringMaybeAliased(5, _s, target);
+    target = stream->WriteBytesMaybeAliased(5, _s, target);
   }
 
-  // string filesize = 6;
-  if (!this->_internal_filesize().empty()) {
-    const std::string& _s = this->_internal_filesize();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.filesize");
-    target = stream->WriteStringMaybeAliased(6, _s, target);
+  // uint64 filesize = 6;
+  if (this->_internal_filesize() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        6, this->_internal_filesize(), target);
   }
 
-  // string transferred_size = 7;
-  if (!this->_internal_transferred_size().empty()) {
-    const std::string& _s = this->_internal_transferred_size();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.transferred_size");
-    target = stream->WriteStringMaybeAliased(7, _s, target);
+  // uint64 transferred_size = 7;
+  if (this->_internal_transferred_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        7, this->_internal_transferred_size(), target);
   }
 
   // string file_md5 = 8;
@@ -5722,22 +5703,10 @@ const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
                                     this->_internal_filename());
   }
 
-  // string data = 5;
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_data());
-  }
-
-  // string filesize = 6;
-  if (!this->_internal_filesize().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_filesize());
-  }
-
-  // string transferred_size = 7;
-  if (!this->_internal_transferred_size().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_transferred_size());
   }
 
   // string file_md5 = 8;
@@ -5756,6 +5725,18 @@ const ::_pbi::TcParseTable<3, 8, 0, 89, 2> FileTransfer::_table_ = {
   if (this->_internal_file_type() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_file_type());
+  }
+
+  // uint64 filesize = 6;
+  if (this->_internal_filesize() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_filesize());
+  }
+
+  // uint64 transferred_size = 7;
+  if (this->_internal_transferred_size() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_transferred_size());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -5786,12 +5767,6 @@ void FileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   if (!from._internal_data().empty()) {
     _this->_internal_set_data(from._internal_data());
   }
-  if (!from._internal_filesize().empty()) {
-    _this->_internal_set_filesize(from._internal_filesize());
-  }
-  if (!from._internal_transferred_size().empty()) {
-    _this->_internal_set_transferred_size(from._internal_transferred_size());
-  }
   if (!from._internal_file_md5().empty()) {
     _this->_internal_set_file_md5(from._internal_file_md5());
   }
@@ -5800,6 +5775,12 @@ void FileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   }
   if (from._internal_file_type() != 0) {
     _this->_internal_set_file_type(from._internal_file_type());
+  }
+  if (from._internal_filesize() != 0) {
+    _this->_internal_set_filesize(from._internal_filesize());
+  }
+  if (from._internal_transferred_size() != 0) {
+    _this->_internal_set_transferred_size(from._internal_transferred_size());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -5826,12 +5807,10 @@ void FileTransfer::InternalSwap(FileTransfer* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.relative_path_, &other->_impl_.relative_path_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filename_, &other->_impl_.filename_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filesize_, &other->_impl_.filesize_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.transferred_size_, &other->_impl_.transferred_size_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_md5_, &other->_impl_.file_md5_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.file_type_)
-      + sizeof(FileTransfer::_impl_.file_type_)
+      PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_)
+      + sizeof(FileTransfer::_impl_.transferred_size_)
       - PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.state_)>(
           reinterpret_cast<char*>(&_impl_.state_),
           reinterpret_cast<char*>(&other->_impl_.state_));
