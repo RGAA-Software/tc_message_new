@@ -3011,11 +3011,11 @@ class FileTransfer final :
     kRelativePathFieldNumber = 3,
     kFilenameFieldNumber = 4,
     kDataFieldNumber = 5,
-    kFilesizeFieldNumber = 6,
-    kTransferredSizeFieldNumber = 7,
     kFileMd5FieldNumber = 8,
     kStateFieldNumber = 1,
     kFileTypeFieldNumber = 2,
+    kFilesizeFieldNumber = 6,
+    kTransferredSizeFieldNumber = 7,
   };
   // string relative_path = 3;
   void clear_relative_path() ;
@@ -3065,38 +3065,6 @@ class FileTransfer final :
   std::string* _internal_mutable_data();
 
   public:
-  // string filesize = 6;
-  void clear_filesize() ;
-  const std::string& filesize() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_filesize(Arg_&& arg, Args_... args);
-  std::string* mutable_filesize();
-  PROTOBUF_NODISCARD std::string* release_filesize();
-  void set_allocated_filesize(std::string* value);
-
-  private:
-  const std::string& _internal_filesize() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filesize(
-      const std::string& value);
-  std::string* _internal_mutable_filesize();
-
-  public:
-  // string transferred_size = 7;
-  void clear_transferred_size() ;
-  const std::string& transferred_size() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_transferred_size(Arg_&& arg, Args_... args);
-  std::string* mutable_transferred_size();
-  PROTOBUF_NODISCARD std::string* release_transferred_size();
-  void set_allocated_transferred_size(std::string* value);
-
-  private:
-  const std::string& _internal_transferred_size() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_transferred_size(
-      const std::string& value);
-  std::string* _internal_mutable_transferred_size();
-
-  public:
   // string file_md5 = 8;
   void clear_file_md5() ;
   const std::string& file_md5() const;
@@ -3133,6 +3101,26 @@ class FileTransfer final :
   void _internal_set_file_type(::tc::FileTransfer_FileType value);
 
   public:
+  // uint64 filesize = 6;
+  void clear_filesize() ;
+  ::uint64_t filesize() const;
+  void set_filesize(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_filesize() const;
+  void _internal_set_filesize(::uint64_t value);
+
+  public:
+  // uint64 transferred_size = 7;
+  void clear_transferred_size() ;
+  ::uint64_t transferred_size() const;
+  void set_transferred_size(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_transferred_size() const;
+  void _internal_set_transferred_size(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.FileTransfer)
  private:
   class _Internal;
@@ -3140,7 +3128,7 @@ class FileTransfer final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 8, 0,
-      89, 2>
+      65, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3159,11 +3147,11 @@ class FileTransfer final :
     ::google::protobuf::internal::ArenaStringPtr relative_path_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::ArenaStringPtr data_;
-    ::google::protobuf::internal::ArenaStringPtr filesize_;
-    ::google::protobuf::internal::ArenaStringPtr transferred_size_;
     ::google::protobuf::internal::ArenaStringPtr file_md5_;
     int state_;
     int file_type_;
+    ::uint64_t filesize_;
+    ::uint64_t transferred_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7690,110 +7678,50 @@ inline void FileTransfer::set_allocated_data(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.data)
 }
 
-// string filesize = 6;
+// uint64 filesize = 6;
 inline void FileTransfer::clear_filesize() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.filesize_.ClearToEmpty();
+  _impl_.filesize_ = ::uint64_t{0u};
 }
-inline const std::string& FileTransfer::filesize() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint64_t FileTransfer::filesize() const {
   // @@protoc_insertion_point(field_get:tc.FileTransfer.filesize)
   return _internal_filesize();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_filesize(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.filesize_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+inline void FileTransfer::set_filesize(::uint64_t value) {
+  _internal_set_filesize(value);
   // @@protoc_insertion_point(field_set:tc.FileTransfer.filesize)
 }
-inline std::string* FileTransfer::mutable_filesize() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_filesize();
-  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.filesize)
-  return _s;
-}
-inline const std::string& FileTransfer::_internal_filesize() const {
+inline ::uint64_t FileTransfer::_internal_filesize() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.filesize_.Get();
+  return _impl_.filesize_;
 }
-inline void FileTransfer::_internal_set_filesize(const std::string& value) {
+inline void FileTransfer::_internal_set_filesize(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.filesize_.Set(value, GetArena());
-}
-inline std::string* FileTransfer::_internal_mutable_filesize() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.filesize_.Mutable( GetArena());
-}
-inline std::string* FileTransfer::release_filesize() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:tc.FileTransfer.filesize)
-  return _impl_.filesize_.Release();
-}
-inline void FileTransfer::set_allocated_filesize(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.filesize_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.filesize_.IsDefault()) {
-          _impl_.filesize_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.filesize)
+  _impl_.filesize_ = value;
 }
 
-// string transferred_size = 7;
+// uint64 transferred_size = 7;
 inline void FileTransfer::clear_transferred_size() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.transferred_size_.ClearToEmpty();
+  _impl_.transferred_size_ = ::uint64_t{0u};
 }
-inline const std::string& FileTransfer::transferred_size() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint64_t FileTransfer::transferred_size() const {
   // @@protoc_insertion_point(field_get:tc.FileTransfer.transferred_size)
   return _internal_transferred_size();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_transferred_size(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.transferred_size_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+inline void FileTransfer::set_transferred_size(::uint64_t value) {
+  _internal_set_transferred_size(value);
   // @@protoc_insertion_point(field_set:tc.FileTransfer.transferred_size)
 }
-inline std::string* FileTransfer::mutable_transferred_size() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_transferred_size();
-  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.transferred_size)
-  return _s;
-}
-inline const std::string& FileTransfer::_internal_transferred_size() const {
+inline ::uint64_t FileTransfer::_internal_transferred_size() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.transferred_size_.Get();
+  return _impl_.transferred_size_;
 }
-inline void FileTransfer::_internal_set_transferred_size(const std::string& value) {
+inline void FileTransfer::_internal_set_transferred_size(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.transferred_size_.Set(value, GetArena());
-}
-inline std::string* FileTransfer::_internal_mutable_transferred_size() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.transferred_size_.Mutable( GetArena());
-}
-inline std::string* FileTransfer::release_transferred_size() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:tc.FileTransfer.transferred_size)
-  return _impl_.transferred_size_.Release();
-}
-inline void FileTransfer::set_allocated_transferred_size(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.transferred_size_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.transferred_size_.IsDefault()) {
-          _impl_.transferred_size_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.transferred_size)
+  _impl_.transferred_size_ = value;
 }
 
 // string file_md5 = 8;

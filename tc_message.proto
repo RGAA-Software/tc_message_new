@@ -277,8 +277,8 @@ message FileTransfer {
   string relative_path = 3;
   string filename = 4;
   string data = 5;
-  string filesize = 6;
-  string transferred_size = 7;
+  uint64 filesize = 6;
+  uint64 transferred_size = 7;
   string file_md5 = 8;
 }
 
