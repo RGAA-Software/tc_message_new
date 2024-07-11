@@ -848,7 +848,7 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "(\0162\".tc.FileTransfer.FileTransferState\022,"
     "\n\tfile_type\030\002 \001(\0162\031.tc.FileTransfer.File"
     "Type\022\025\n\rrelative_path\030\003 \001(\t\022\020\n\010filename\030"
-    "\004 \001(\t\022\014\n\004data\030\005 \001(\t\022\020\n\010filesize\030\006 \001(\004\022\030\n"
+    "\004 \001(\t\022\014\n\004data\030\005 \001(\014\022\020\n\010filesize\030\006 \001(\004\022\030\n"
     "\020transferred_size\030\007 \001(\004\022\020\n\010file_md5\030\010 \001("
     "\t\"\"\n\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n"
     "\021FileTransferState\022\030\n\024kRequestFileTransf"
@@ -5533,7 +5533,7 @@ const char* FileTransfer::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
+const ::_pbi::TcParseTable<3, 8, 0, 61, 2> FileTransfer::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -5562,8 +5562,8 @@ const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
     // string filename = 4;
     {::_pbi::TcParser::FastUS1,
      {34, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_)}},
-    // string data = 5;
-    {::_pbi::TcParser::FastUS1,
+    // bytes data = 5;
+    {::_pbi::TcParser::FastBS1,
      {42, 63, 0, PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_)}},
     // uint64 filesize = 6;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(FileTransfer, _impl_.filesize_), 63>(),
@@ -5586,9 +5586,9 @@ const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
     // string filename = 4;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filename_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string data = 5;
+    // bytes data = 5;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.data_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // uint64 filesize = 6;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.filesize_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
@@ -5601,11 +5601,10 @@ const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
   }},
   // no aux_entries
   {{
-    "\17\0\0\15\10\4\0\0\10\0\0\0\0\0\0\0"
+    "\17\0\0\15\10\0\0\0\10\0\0\0\0\0\0\0"
     "tc.FileTransfer"
     "relative_path"
     "filename"
-    "data"
     "file_md5"
   }},
 };
@@ -5647,12 +5646,10 @@ const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
     target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
-  // string data = 5;
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
     const std::string& _s = this->_internal_data();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "tc.FileTransfer.data");
-    target = stream->WriteStringMaybeAliased(5, _s, target);
+    target = stream->WriteBytesMaybeAliased(5, _s, target);
   }
 
   // uint64 filesize = 6;
@@ -5706,9 +5703,9 @@ const ::_pbi::TcParseTable<3, 8, 0, 65, 2> FileTransfer::_table_ = {
                                     this->_internal_filename());
   }
 
-  // string data = 5;
+  // bytes data = 5;
   if (!this->_internal_data().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_data());
   }
 

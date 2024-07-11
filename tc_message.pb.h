@@ -3049,7 +3049,7 @@ class FileTransfer final :
   std::string* _internal_mutable_filename();
 
   public:
-  // string data = 5;
+  // bytes data = 5;
   void clear_data() ;
   const std::string& data() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3128,7 +3128,7 @@ class FileTransfer final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 8, 0,
-      65, 2>
+      61, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -7625,7 +7625,7 @@ inline void FileTransfer::set_allocated_filename(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.filename)
 }
 
-// string data = 5;
+// bytes data = 5;
 inline void FileTransfer::clear_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_.ClearToEmpty();
@@ -7640,7 +7640,7 @@ inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_data(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.data_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:tc.FileTransfer.data)
 }
 inline std::string* FileTransfer::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
