@@ -291,12 +291,20 @@ message RespFileTransfer {
     kFileAlreadyExists = 1;
     // the file already exists, but can't delete it.
     kFileDeleteFailed = 2;
+    // transferring
+    kTransferring = 3;
     // after compare md5
-    kTransferSuccess = 3;
+    kTransferSuccess = 4;
+    // failed
+    kTransferFailed = 5;
+
   }
   FileTransferRespState state = 1;
   string filename = 2;
   string local_filepath = 3;
+  uint64 filesize = 4;
+  uint64 transferred_size = 5;
+  float progress = 6;
 }
 
 message Message {
