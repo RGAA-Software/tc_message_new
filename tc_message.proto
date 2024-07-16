@@ -280,6 +280,7 @@ message FileTransfer {
   uint64 filesize = 6;
   uint64 transferred_size = 7;
   string file_md5 = 8;
+  string local_filepath = 9;
 }
 
 message RespFileTransfer {
@@ -294,6 +295,8 @@ message RespFileTransfer {
     kTransferSuccess = 3;
   }
   FileTransferRespState state = 1;
+  string filename = 2;
+  string local_filepath = 3;
 }
 
 message Message {
