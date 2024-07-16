@@ -258,7 +258,9 @@ enum RespFileTransfer_FileTransferRespState : int {
   RespFileTransfer_FileTransferRespState_kTransferReady = 0,
   RespFileTransfer_FileTransferRespState_kFileAlreadyExists = 1,
   RespFileTransfer_FileTransferRespState_kFileDeleteFailed = 2,
-  RespFileTransfer_FileTransferRespState_kTransferSuccess = 3,
+  RespFileTransfer_FileTransferRespState_kTransferring = 3,
+  RespFileTransfer_FileTransferRespState_kTransferSuccess = 4,
+  RespFileTransfer_FileTransferRespState_kTransferFailed = 5,
   RespFileTransfer_FileTransferRespState_RespFileTransfer_FileTransferRespState_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   RespFileTransfer_FileTransferRespState_RespFileTransfer_FileTransferRespState_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -268,8 +270,8 @@ enum RespFileTransfer_FileTransferRespState : int {
 bool RespFileTransfer_FileTransferRespState_IsValid(int value);
 extern const uint32_t RespFileTransfer_FileTransferRespState_internal_data_[];
 constexpr RespFileTransfer_FileTransferRespState RespFileTransfer_FileTransferRespState_FileTransferRespState_MIN = static_cast<RespFileTransfer_FileTransferRespState>(0);
-constexpr RespFileTransfer_FileTransferRespState RespFileTransfer_FileTransferRespState_FileTransferRespState_MAX = static_cast<RespFileTransfer_FileTransferRespState>(3);
-constexpr int RespFileTransfer_FileTransferRespState_FileTransferRespState_ARRAYSIZE = 3 + 1;
+constexpr RespFileTransfer_FileTransferRespState RespFileTransfer_FileTransferRespState_FileTransferRespState_MAX = static_cast<RespFileTransfer_FileTransferRespState>(5);
+constexpr int RespFileTransfer_FileTransferRespState_FileTransferRespState_ARRAYSIZE = 5 + 1;
 const ::google::protobuf::EnumDescriptor*
 RespFileTransfer_FileTransferRespState_descriptor();
 template <typename T>
@@ -282,7 +284,7 @@ const std::string& RespFileTransfer_FileTransferRespState_Name(T value) {
 template <>
 inline const std::string& RespFileTransfer_FileTransferRespState_Name(RespFileTransfer_FileTransferRespState value) {
   return ::google::protobuf::internal::NameOfDenseEnum<RespFileTransfer_FileTransferRespState_descriptor,
-                                                 0, 3>(
+                                                 0, 5>(
       static_cast<int>(value));
 }
 inline bool RespFileTransfer_FileTransferRespState_Parse(absl::string_view name, RespFileTransfer_FileTransferRespState* value) {
@@ -1409,7 +1411,9 @@ class RespFileTransfer final :
   static constexpr FileTransferRespState kTransferReady = RespFileTransfer_FileTransferRespState_kTransferReady;
   static constexpr FileTransferRespState kFileAlreadyExists = RespFileTransfer_FileTransferRespState_kFileAlreadyExists;
   static constexpr FileTransferRespState kFileDeleteFailed = RespFileTransfer_FileTransferRespState_kFileDeleteFailed;
+  static constexpr FileTransferRespState kTransferring = RespFileTransfer_FileTransferRespState_kTransferring;
   static constexpr FileTransferRespState kTransferSuccess = RespFileTransfer_FileTransferRespState_kTransferSuccess;
+  static constexpr FileTransferRespState kTransferFailed = RespFileTransfer_FileTransferRespState_kTransferFailed;
   static inline bool FileTransferRespState_IsValid(int value) {
     return RespFileTransfer_FileTransferRespState_IsValid(value);
   }
@@ -1430,8 +1434,45 @@ class RespFileTransfer final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kFilenameFieldNumber = 2,
+    kLocalFilepathFieldNumber = 3,
     kStateFieldNumber = 1,
+    kProgressFieldNumber = 6,
+    kFilesizeFieldNumber = 4,
+    kTransferredSizeFieldNumber = 5,
   };
+  // string filename = 2;
+  void clear_filename() ;
+  const std::string& filename() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_filename(Arg_&& arg, Args_... args);
+  std::string* mutable_filename();
+  PROTOBUF_NODISCARD std::string* release_filename();
+  void set_allocated_filename(std::string* value);
+
+  private:
+  const std::string& _internal_filename() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filename(
+      const std::string& value);
+  std::string* _internal_mutable_filename();
+
+  public:
+  // string local_filepath = 3;
+  void clear_local_filepath() ;
+  const std::string& local_filepath() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_local_filepath(Arg_&& arg, Args_... args);
+  std::string* mutable_local_filepath();
+  PROTOBUF_NODISCARD std::string* release_local_filepath();
+  void set_allocated_local_filepath(std::string* value);
+
+  private:
+  const std::string& _internal_local_filepath() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_local_filepath(
+      const std::string& value);
+  std::string* _internal_mutable_local_filepath();
+
+  public:
   // .tc.RespFileTransfer.FileTransferRespState state = 1;
   void clear_state() ;
   ::tc::RespFileTransfer_FileTransferRespState state() const;
@@ -1442,14 +1483,44 @@ class RespFileTransfer final :
   void _internal_set_state(::tc::RespFileTransfer_FileTransferRespState value);
 
   public:
+  // float progress = 6;
+  void clear_progress() ;
+  float progress() const;
+  void set_progress(float value);
+
+  private:
+  float _internal_progress() const;
+  void _internal_set_progress(float value);
+
+  public:
+  // uint64 filesize = 4;
+  void clear_filesize() ;
+  ::uint64_t filesize() const;
+  void set_filesize(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_filesize() const;
+  void _internal_set_filesize(::uint64_t value);
+
+  public:
+  // uint64 transferred_size = 5;
+  void clear_transferred_size() ;
+  ::uint64_t transferred_size() const;
+  void set_transferred_size(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_transferred_size() const;
+  void _internal_set_transferred_size(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.RespFileTransfer)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
+      3, 6, 0,
+      50, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1465,7 +1536,12 @@ class RespFileTransfer final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr filename_;
+    ::google::protobuf::internal::ArenaStringPtr local_filepath_;
     int state_;
+    float progress_;
+    ::uint64_t filesize_;
+    ::uint64_t transferred_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3012,6 +3088,7 @@ class FileTransfer final :
     kFilenameFieldNumber = 4,
     kDataFieldNumber = 5,
     kFileMd5FieldNumber = 8,
+    kLocalFilepathFieldNumber = 9,
     kStateFieldNumber = 1,
     kFileTypeFieldNumber = 2,
     kFilesizeFieldNumber = 6,
@@ -3081,6 +3158,22 @@ class FileTransfer final :
   std::string* _internal_mutable_file_md5();
 
   public:
+  // string local_filepath = 9;
+  void clear_local_filepath() ;
+  const std::string& local_filepath() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_local_filepath(Arg_&& arg, Args_... args);
+  std::string* mutable_local_filepath();
+  PROTOBUF_NODISCARD std::string* release_local_filepath();
+  void set_allocated_local_filepath(std::string* value);
+
+  private:
+  const std::string& _internal_local_filepath() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_local_filepath(
+      const std::string& value);
+  std::string* _internal_mutable_local_filepath();
+
+  public:
   // .tc.FileTransfer.FileTransferState state = 1;
   void clear_state() ;
   ::tc::FileTransfer_FileTransferState state() const;
@@ -3127,8 +3220,8 @@ class FileTransfer final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 0,
-      61, 2>
+      4, 9, 0,
+      75, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3148,6 +3241,7 @@ class FileTransfer final :
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::ArenaStringPtr data_;
     ::google::protobuf::internal::ArenaStringPtr file_md5_;
+    ::google::protobuf::internal::ArenaStringPtr local_filepath_;
     int state_;
     int file_type_;
     ::uint64_t filesize_;
@@ -7777,6 +7871,59 @@ inline void FileTransfer::set_allocated_file_md5(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.file_md5)
 }
 
+// string local_filepath = 9;
+inline void FileTransfer::clear_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_filepath_.ClearToEmpty();
+}
+inline const std::string& FileTransfer::local_filepath() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.FileTransfer.local_filepath)
+  return _internal_local_filepath();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_local_filepath(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_filepath_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.FileTransfer.local_filepath)
+}
+inline std::string* FileTransfer::mutable_local_filepath() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_local_filepath();
+  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.local_filepath)
+  return _s;
+}
+inline const std::string& FileTransfer::_internal_local_filepath() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.local_filepath_.Get();
+}
+inline void FileTransfer::_internal_set_local_filepath(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_filepath_.Set(value, GetArena());
+}
+inline std::string* FileTransfer::_internal_mutable_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.local_filepath_.Mutable( GetArena());
+}
+inline std::string* FileTransfer::release_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.FileTransfer.local_filepath)
+  return _impl_.local_filepath_.Release();
+}
+inline void FileTransfer::set_allocated_local_filepath(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_filepath_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.local_filepath_.IsDefault()) {
+          _impl_.local_filepath_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.local_filepath)
+}
+
 // -------------------------------------------------------------------
 
 // RespFileTransfer
@@ -7802,6 +7949,181 @@ inline void RespFileTransfer::_internal_set_state(::tc::RespFileTransfer_FileTra
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.state_ = value;
+}
+
+// string filename = 2;
+inline void RespFileTransfer::clear_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.ClearToEmpty();
+}
+inline const std::string& RespFileTransfer::filename() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.filename)
+  return _internal_filename();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RespFileTransfer::set_filename(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.filename_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.filename)
+}
+inline std::string* RespFileTransfer::mutable_filename() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_filename();
+  // @@protoc_insertion_point(field_mutable:tc.RespFileTransfer.filename)
+  return _s;
+}
+inline const std::string& RespFileTransfer::_internal_filename() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.filename_.Get();
+}
+inline void RespFileTransfer::_internal_set_filename(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.filename_.Set(value, GetArena());
+}
+inline std::string* RespFileTransfer::_internal_mutable_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.filename_.Mutable( GetArena());
+}
+inline std::string* RespFileTransfer::release_filename() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.RespFileTransfer.filename)
+  return _impl_.filename_.Release();
+}
+inline void RespFileTransfer::set_allocated_filename(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filename_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.filename_.IsDefault()) {
+          _impl_.filename_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.RespFileTransfer.filename)
+}
+
+// string local_filepath = 3;
+inline void RespFileTransfer::clear_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_filepath_.ClearToEmpty();
+}
+inline const std::string& RespFileTransfer::local_filepath() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.local_filepath)
+  return _internal_local_filepath();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RespFileTransfer::set_local_filepath(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_filepath_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.local_filepath)
+}
+inline std::string* RespFileTransfer::mutable_local_filepath() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_local_filepath();
+  // @@protoc_insertion_point(field_mutable:tc.RespFileTransfer.local_filepath)
+  return _s;
+}
+inline const std::string& RespFileTransfer::_internal_local_filepath() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.local_filepath_.Get();
+}
+inline void RespFileTransfer::_internal_set_local_filepath(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.local_filepath_.Set(value, GetArena());
+}
+inline std::string* RespFileTransfer::_internal_mutable_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.local_filepath_.Mutable( GetArena());
+}
+inline std::string* RespFileTransfer::release_local_filepath() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.RespFileTransfer.local_filepath)
+  return _impl_.local_filepath_.Release();
+}
+inline void RespFileTransfer::set_allocated_local_filepath(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.local_filepath_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.local_filepath_.IsDefault()) {
+          _impl_.local_filepath_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.RespFileTransfer.local_filepath)
+}
+
+// uint64 filesize = 4;
+inline void RespFileTransfer::clear_filesize() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.filesize_ = ::uint64_t{0u};
+}
+inline ::uint64_t RespFileTransfer::filesize() const {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.filesize)
+  return _internal_filesize();
+}
+inline void RespFileTransfer::set_filesize(::uint64_t value) {
+  _internal_set_filesize(value);
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.filesize)
+}
+inline ::uint64_t RespFileTransfer::_internal_filesize() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.filesize_;
+}
+inline void RespFileTransfer::_internal_set_filesize(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.filesize_ = value;
+}
+
+// uint64 transferred_size = 5;
+inline void RespFileTransfer::clear_transferred_size() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.transferred_size_ = ::uint64_t{0u};
+}
+inline ::uint64_t RespFileTransfer::transferred_size() const {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.transferred_size)
+  return _internal_transferred_size();
+}
+inline void RespFileTransfer::set_transferred_size(::uint64_t value) {
+  _internal_set_transferred_size(value);
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.transferred_size)
+}
+inline ::uint64_t RespFileTransfer::_internal_transferred_size() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.transferred_size_;
+}
+inline void RespFileTransfer::_internal_set_transferred_size(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.transferred_size_ = value;
+}
+
+// float progress = 6;
+inline void RespFileTransfer::clear_progress() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.progress_ = 0;
+}
+inline float RespFileTransfer::progress() const {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.progress)
+  return _internal_progress();
+}
+inline void RespFileTransfer::set_progress(float value) {
+  _internal_set_progress(value);
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.progress)
+}
+inline float RespFileTransfer::_internal_progress() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.progress_;
+}
+inline void RespFileTransfer::_internal_set_progress(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.progress_ = value;
 }
 
 // -------------------------------------------------------------------
