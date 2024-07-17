@@ -272,15 +272,16 @@ message FileTransfer {
     kTransferInterrupted = 3;
   }
 
-  FileTransferState state = 1;
-  FileType file_type = 2;
-  string relative_path = 3;
-  string filename = 4;
-  bytes data = 5;
-  uint64 filesize = 6;
-  uint64 transferred_size = 7;
-  string file_md5 = 8;
-  string local_filepath = 9;
+  string id = 1;
+  FileTransferState state = 10;
+  FileType file_type = 20;
+  string relative_path = 30;
+  string filename = 40;
+  bytes data = 50;
+  uint64 filesize = 60;
+  uint64 transferred_size = 70;
+  string file_md5 = 80;
+  string local_filepath = 90;
 }
 
 message RespFileTransfer {
@@ -299,12 +300,13 @@ message RespFileTransfer {
     kTransferFailed = 5;
 
   }
-  FileTransferRespState state = 1;
-  string filename = 2;
-  string local_filepath = 3;
-  uint64 filesize = 4;
-  uint64 transferred_size = 5;
-  float progress = 6;
+  string id = 1;
+  FileTransferRespState state = 10;
+  string filename = 20;
+  string local_filepath = 30;
+  uint64 filesize = 40;
+  uint64 transferred_size = 50;
+  float progress = 60;
 }
 
 message Message {
