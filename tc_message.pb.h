@@ -1434,14 +1434,31 @@ class RespFileTransfer final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kFilenameFieldNumber = 2,
-    kLocalFilepathFieldNumber = 3,
-    kStateFieldNumber = 1,
-    kProgressFieldNumber = 6,
-    kFilesizeFieldNumber = 4,
-    kTransferredSizeFieldNumber = 5,
+    kIdFieldNumber = 1,
+    kFilenameFieldNumber = 20,
+    kLocalFilepathFieldNumber = 30,
+    kStateFieldNumber = 10,
+    kProgressFieldNumber = 60,
+    kFilesizeFieldNumber = 40,
+    kTransferredSizeFieldNumber = 50,
   };
-  // string filename = 2;
+  // string id = 1;
+  void clear_id() ;
+  const std::string& id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
+
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
+      const std::string& value);
+  std::string* _internal_mutable_id();
+
+  public:
+  // string filename = 20;
   void clear_filename() ;
   const std::string& filename() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1457,7 +1474,7 @@ class RespFileTransfer final :
   std::string* _internal_mutable_filename();
 
   public:
-  // string local_filepath = 3;
+  // string local_filepath = 30;
   void clear_local_filepath() ;
   const std::string& local_filepath() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1473,7 +1490,7 @@ class RespFileTransfer final :
   std::string* _internal_mutable_local_filepath();
 
   public:
-  // .tc.RespFileTransfer.FileTransferRespState state = 1;
+  // .tc.RespFileTransfer.FileTransferRespState state = 10;
   void clear_state() ;
   ::tc::RespFileTransfer_FileTransferRespState state() const;
   void set_state(::tc::RespFileTransfer_FileTransferRespState value);
@@ -1483,7 +1500,7 @@ class RespFileTransfer final :
   void _internal_set_state(::tc::RespFileTransfer_FileTransferRespState value);
 
   public:
-  // float progress = 6;
+  // float progress = 60;
   void clear_progress() ;
   float progress() const;
   void set_progress(float value);
@@ -1493,7 +1510,7 @@ class RespFileTransfer final :
   void _internal_set_progress(float value);
 
   public:
-  // uint64 filesize = 4;
+  // uint64 filesize = 40;
   void clear_filesize() ;
   ::uint64_t filesize() const;
   void set_filesize(::uint64_t value);
@@ -1503,7 +1520,7 @@ class RespFileTransfer final :
   void _internal_set_filesize(::uint64_t value);
 
   public:
-  // uint64 transferred_size = 5;
+  // uint64 transferred_size = 50;
   void clear_transferred_size() ;
   ::uint64_t transferred_size() const;
   void set_transferred_size(::uint64_t value);
@@ -1519,8 +1536,8 @@ class RespFileTransfer final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
-      50, 2>
+      3, 7, 0,
+      52, 9>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1536,6 +1553,7 @@ class RespFileTransfer final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::ArenaStringPtr local_filepath_;
     int state_;
@@ -3084,17 +3102,34 @@ class FileTransfer final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRelativePathFieldNumber = 3,
-    kFilenameFieldNumber = 4,
-    kDataFieldNumber = 5,
-    kFileMd5FieldNumber = 8,
-    kLocalFilepathFieldNumber = 9,
-    kStateFieldNumber = 1,
-    kFileTypeFieldNumber = 2,
-    kFilesizeFieldNumber = 6,
-    kTransferredSizeFieldNumber = 7,
+    kIdFieldNumber = 1,
+    kRelativePathFieldNumber = 30,
+    kFilenameFieldNumber = 40,
+    kDataFieldNumber = 50,
+    kFileMd5FieldNumber = 80,
+    kLocalFilepathFieldNumber = 90,
+    kStateFieldNumber = 10,
+    kFileTypeFieldNumber = 20,
+    kFilesizeFieldNumber = 60,
+    kTransferredSizeFieldNumber = 70,
   };
-  // string relative_path = 3;
+  // string id = 1;
+  void clear_id() ;
+  const std::string& id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id(Arg_&& arg, Args_... args);
+  std::string* mutable_id();
+  PROTOBUF_NODISCARD std::string* release_id();
+  void set_allocated_id(std::string* value);
+
+  private:
+  const std::string& _internal_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(
+      const std::string& value);
+  std::string* _internal_mutable_id();
+
+  public:
+  // string relative_path = 30;
   void clear_relative_path() ;
   const std::string& relative_path() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3110,7 +3145,7 @@ class FileTransfer final :
   std::string* _internal_mutable_relative_path();
 
   public:
-  // string filename = 4;
+  // string filename = 40;
   void clear_filename() ;
   const std::string& filename() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3126,7 +3161,7 @@ class FileTransfer final :
   std::string* _internal_mutable_filename();
 
   public:
-  // bytes data = 5;
+  // bytes data = 50;
   void clear_data() ;
   const std::string& data() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3142,7 +3177,7 @@ class FileTransfer final :
   std::string* _internal_mutable_data();
 
   public:
-  // string file_md5 = 8;
+  // string file_md5 = 80;
   void clear_file_md5() ;
   const std::string& file_md5() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3158,7 +3193,7 @@ class FileTransfer final :
   std::string* _internal_mutable_file_md5();
 
   public:
-  // string local_filepath = 9;
+  // string local_filepath = 90;
   void clear_local_filepath() ;
   const std::string& local_filepath() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3174,7 +3209,7 @@ class FileTransfer final :
   std::string* _internal_mutable_local_filepath();
 
   public:
-  // .tc.FileTransfer.FileTransferState state = 1;
+  // .tc.FileTransfer.FileTransferState state = 10;
   void clear_state() ;
   ::tc::FileTransfer_FileTransferState state() const;
   void set_state(::tc::FileTransfer_FileTransferState value);
@@ -3184,7 +3219,7 @@ class FileTransfer final :
   void _internal_set_state(::tc::FileTransfer_FileTransferState value);
 
   public:
-  // .tc.FileTransfer.FileType file_type = 2;
+  // .tc.FileTransfer.FileType file_type = 20;
   void clear_file_type() ;
   ::tc::FileTransfer_FileType file_type() const;
   void set_file_type(::tc::FileTransfer_FileType value);
@@ -3194,7 +3229,7 @@ class FileTransfer final :
   void _internal_set_file_type(::tc::FileTransfer_FileType value);
 
   public:
-  // uint64 filesize = 6;
+  // uint64 filesize = 60;
   void clear_filesize() ;
   ::uint64_t filesize() const;
   void set_filesize(::uint64_t value);
@@ -3204,7 +3239,7 @@ class FileTransfer final :
   void _internal_set_filesize(::uint64_t value);
 
   public:
-  // uint64 transferred_size = 7;
+  // uint64 transferred_size = 70;
   void clear_transferred_size() ;
   ::uint64_t transferred_size() const;
   void set_transferred_size(::uint64_t value);
@@ -3220,8 +3255,8 @@ class FileTransfer final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 9, 0,
-      75, 2>
+      4, 10, 0,
+      77, 13>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3237,6 +3272,7 @@ class FileTransfer final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr id_;
     ::google::protobuf::internal::ArenaStringPtr relative_path_;
     ::google::protobuf::internal::ArenaStringPtr filename_;
     ::google::protobuf::internal::ArenaStringPtr data_;
@@ -7567,7 +7603,60 @@ inline void UIServerHello::_internal_set_type(::tc::SessionType value) {
 
 // FileTransfer
 
-// .tc.FileTransfer.FileTransferState state = 1;
+// string id = 1;
+inline void FileTransfer::clear_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& FileTransfer::id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.FileTransfer.id)
+  return _internal_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_id(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.FileTransfer.id)
+}
+inline std::string* FileTransfer::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.id)
+  return _s;
+}
+inline const std::string& FileTransfer::_internal_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.id_.Get();
+}
+inline void FileTransfer::_internal_set_id(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(value, GetArena());
+}
+inline std::string* FileTransfer::_internal_mutable_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.id_.Mutable( GetArena());
+}
+inline std::string* FileTransfer::release_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.FileTransfer.id)
+  return _impl_.id_.Release();
+}
+inline void FileTransfer::set_allocated_id(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.id_.IsDefault()) {
+          _impl_.id_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.id)
+}
+
+// .tc.FileTransfer.FileTransferState state = 10;
 inline void FileTransfer::clear_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.state_ = 0;
@@ -7590,7 +7679,7 @@ inline void FileTransfer::_internal_set_state(::tc::FileTransfer_FileTransferSta
   _impl_.state_ = value;
 }
 
-// .tc.FileTransfer.FileType file_type = 2;
+// .tc.FileTransfer.FileType file_type = 20;
 inline void FileTransfer::clear_file_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_type_ = 0;
@@ -7613,7 +7702,7 @@ inline void FileTransfer::_internal_set_file_type(::tc::FileTransfer_FileType va
   _impl_.file_type_ = value;
 }
 
-// string relative_path = 3;
+// string relative_path = 30;
 inline void FileTransfer::clear_relative_path() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.relative_path_.ClearToEmpty();
@@ -7666,7 +7755,7 @@ inline void FileTransfer::set_allocated_relative_path(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.relative_path)
 }
 
-// string filename = 4;
+// string filename = 40;
 inline void FileTransfer::clear_filename() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.filename_.ClearToEmpty();
@@ -7719,7 +7808,7 @@ inline void FileTransfer::set_allocated_filename(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.filename)
 }
 
-// bytes data = 5;
+// bytes data = 50;
 inline void FileTransfer::clear_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_.ClearToEmpty();
@@ -7772,7 +7861,7 @@ inline void FileTransfer::set_allocated_data(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.data)
 }
 
-// uint64 filesize = 6;
+// uint64 filesize = 60;
 inline void FileTransfer::clear_filesize() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.filesize_ = ::uint64_t{0u};
@@ -7795,7 +7884,7 @@ inline void FileTransfer::_internal_set_filesize(::uint64_t value) {
   _impl_.filesize_ = value;
 }
 
-// uint64 transferred_size = 7;
+// uint64 transferred_size = 70;
 inline void FileTransfer::clear_transferred_size() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.transferred_size_ = ::uint64_t{0u};
@@ -7818,7 +7907,7 @@ inline void FileTransfer::_internal_set_transferred_size(::uint64_t value) {
   _impl_.transferred_size_ = value;
 }
 
-// string file_md5 = 8;
+// string file_md5 = 80;
 inline void FileTransfer::clear_file_md5() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_md5_.ClearToEmpty();
@@ -7871,7 +7960,7 @@ inline void FileTransfer::set_allocated_file_md5(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.file_md5)
 }
 
-// string local_filepath = 9;
+// string local_filepath = 90;
 inline void FileTransfer::clear_local_filepath() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.local_filepath_.ClearToEmpty();
@@ -7928,7 +8017,60 @@ inline void FileTransfer::set_allocated_local_filepath(std::string* value) {
 
 // RespFileTransfer
 
-// .tc.RespFileTransfer.FileTransferRespState state = 1;
+// string id = 1;
+inline void RespFileTransfer::clear_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.ClearToEmpty();
+}
+inline const std::string& RespFileTransfer::id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.id)
+  return _internal_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RespFileTransfer::set_id(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.id)
+}
+inline std::string* RespFileTransfer::mutable_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:tc.RespFileTransfer.id)
+  return _s;
+}
+inline const std::string& RespFileTransfer::_internal_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.id_.Get();
+}
+inline void RespFileTransfer::_internal_set_id(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_.Set(value, GetArena());
+}
+inline std::string* RespFileTransfer::_internal_mutable_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.id_.Mutable( GetArena());
+}
+inline std::string* RespFileTransfer::release_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.RespFileTransfer.id)
+  return _impl_.id_.Release();
+}
+inline void RespFileTransfer::set_allocated_id(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.id_.IsDefault()) {
+          _impl_.id_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.RespFileTransfer.id)
+}
+
+// .tc.RespFileTransfer.FileTransferRespState state = 10;
 inline void RespFileTransfer::clear_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.state_ = 0;
@@ -7951,7 +8093,7 @@ inline void RespFileTransfer::_internal_set_state(::tc::RespFileTransfer_FileTra
   _impl_.state_ = value;
 }
 
-// string filename = 2;
+// string filename = 20;
 inline void RespFileTransfer::clear_filename() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.filename_.ClearToEmpty();
@@ -8004,7 +8146,7 @@ inline void RespFileTransfer::set_allocated_filename(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.RespFileTransfer.filename)
 }
 
-// string local_filepath = 3;
+// string local_filepath = 30;
 inline void RespFileTransfer::clear_local_filepath() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.local_filepath_.ClearToEmpty();
@@ -8057,7 +8199,7 @@ inline void RespFileTransfer::set_allocated_local_filepath(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.RespFileTransfer.local_filepath)
 }
 
-// uint64 filesize = 4;
+// uint64 filesize = 40;
 inline void RespFileTransfer::clear_filesize() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.filesize_ = ::uint64_t{0u};
@@ -8080,7 +8222,7 @@ inline void RespFileTransfer::_internal_set_filesize(::uint64_t value) {
   _impl_.filesize_ = value;
 }
 
-// uint64 transferred_size = 5;
+// uint64 transferred_size = 50;
 inline void RespFileTransfer::clear_transferred_size() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.transferred_size_ = ::uint64_t{0u};
@@ -8103,7 +8245,7 @@ inline void RespFileTransfer::_internal_set_transferred_size(::uint64_t value) {
   _impl_.transferred_size_ = value;
 }
 
-// float progress = 6;
+// float progress = 60;
 inline void RespFileTransfer::clear_progress() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.progress_ = 0;
