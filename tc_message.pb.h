@@ -1441,6 +1441,7 @@ class RespFileTransfer final :
     kProgressFieldNumber = 60,
     kFilesizeFieldNumber = 40,
     kTransferredSizeFieldNumber = 50,
+    kTimestampFieldNumber = 70,
   };
   // string id = 1;
   void clear_id() ;
@@ -1530,14 +1531,24 @@ class RespFileTransfer final :
   void _internal_set_transferred_size(::uint64_t value);
 
   public:
+  // uint64 timestamp = 70;
+  void clear_timestamp() ;
+  ::uint64_t timestamp() const;
+  void set_timestamp(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_timestamp() const;
+  void _internal_set_timestamp(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.RespFileTransfer)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
-      52, 9>
+      4, 8, 0,
+      60, 9>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1560,6 +1571,7 @@ class RespFileTransfer final :
     float progress_;
     ::uint64_t filesize_;
     ::uint64_t transferred_size_;
+    ::uint64_t timestamp_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3112,6 +3124,7 @@ class FileTransfer final :
     kFileTypeFieldNumber = 20,
     kFilesizeFieldNumber = 60,
     kTransferredSizeFieldNumber = 70,
+    kTimestampFieldNumber = 100,
   };
   // string id = 1;
   void clear_id() ;
@@ -3249,13 +3262,23 @@ class FileTransfer final :
   void _internal_set_transferred_size(::uint64_t value);
 
   public:
+  // uint64 timestamp = 100;
+  void clear_timestamp() ;
+  ::uint64_t timestamp() const;
+  void set_timestamp(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_timestamp() const;
+  void _internal_set_timestamp(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.FileTransfer)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 10, 0,
+      4, 11, 0,
       77, 13>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -3282,6 +3305,7 @@ class FileTransfer final :
     int file_type_;
     ::uint64_t filesize_;
     ::uint64_t transferred_size_;
+    ::uint64_t timestamp_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -8013,6 +8037,29 @@ inline void FileTransfer::set_allocated_local_filepath(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.local_filepath)
 }
 
+// uint64 timestamp = 100;
+inline void FileTransfer::clear_timestamp() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_ = ::uint64_t{0u};
+}
+inline ::uint64_t FileTransfer::timestamp() const {
+  // @@protoc_insertion_point(field_get:tc.FileTransfer.timestamp)
+  return _internal_timestamp();
+}
+inline void FileTransfer::set_timestamp(::uint64_t value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:tc.FileTransfer.timestamp)
+}
+inline ::uint64_t FileTransfer::_internal_timestamp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_;
+}
+inline void FileTransfer::_internal_set_timestamp(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timestamp_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // RespFileTransfer
@@ -8266,6 +8313,29 @@ inline void RespFileTransfer::_internal_set_progress(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.progress_ = value;
+}
+
+// uint64 timestamp = 70;
+inline void RespFileTransfer::clear_timestamp() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_ = ::uint64_t{0u};
+}
+inline ::uint64_t RespFileTransfer::timestamp() const {
+  // @@protoc_insertion_point(field_get:tc.RespFileTransfer.timestamp)
+  return _internal_timestamp();
+}
+inline void RespFileTransfer::set_timestamp(::uint64_t value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:tc.RespFileTransfer.timestamp)
+}
+inline ::uint64_t RespFileTransfer::_internal_timestamp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_;
+}
+inline void RespFileTransfer::_internal_set_timestamp(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timestamp_ = value;
 }
 
 // -------------------------------------------------------------------

@@ -116,6 +116,7 @@ inline constexpr RespFileTransfer::Impl_::Impl_(
         progress_{0},
         filesize_{::uint64_t{0u}},
         transferred_size_{::uint64_t{0u}},
+        timestamp_{::uint64_t{0u}},
         _cached_size_{0} {}
 
 template <typename>
@@ -290,6 +291,7 @@ inline constexpr FileTransfer::Impl_::Impl_(
         file_type_{static_cast< ::tc::FileTransfer_FileType >(0)},
         filesize_{::uint64_t{0u}},
         transferred_size_{::uint64_t{0u}},
+        timestamp_{::uint64_t{0u}},
         _cached_size_{0} {}
 
 template <typename>
@@ -709,6 +711,7 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.transferred_size_),
     PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.file_md5_),
     PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.local_filepath_),
+    PROTOBUF_FIELD_OFFSET(::tc::FileTransfer, _impl_.timestamp_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -724,6 +727,7 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _impl_.filesize_),
     PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _impl_.transferred_size_),
     PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _impl_.progress_),
+    PROTOBUF_FIELD_OFFSET(::tc::RespFileTransfer, _impl_.timestamp_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::tc::Message, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -789,8 +793,8 @@ static const ::_pbi::MigrationSchema
         {180, -1, -1, sizeof(::tc::OnlineGame)},
         {190, -1, -1, sizeof(::tc::UIServerHello)},
         {199, -1, -1, sizeof(::tc::FileTransfer)},
-        {217, -1, -1, sizeof(::tc::RespFileTransfer)},
-        {232, 259, -1, sizeof(::tc::Message)},
+        {218, -1, -1, sizeof(::tc::RespFileTransfer)},
+        {234, 261, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -870,83 +874,84 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
     "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
     "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
-    "essionType\"\233\003\n\014FileTransfer\022\n\n\002id\030\001 \001(\t\022"
+    "essionType\"\256\003\n\014FileTransfer\022\n\n\002id\030\001 \001(\t\022"
     "1\n\005state\030\n \001(\0162\".tc.FileTransfer.FileTra"
     "nsferState\022,\n\tfile_type\030\024 \001(\0162\031.tc.FileT"
     "ransfer.FileType\022\025\n\rrelative_path\030\036 \001(\t\022"
     "\020\n\010filename\030( \001(\t\022\014\n\004data\0302 \001(\014\022\020\n\010files"
     "ize\030< \001(\004\022\030\n\020transferred_size\030F \001(\004\022\020\n\010f"
-    "ile_md5\030P \001(\t\022\026\n\016local_filepath\030Z \001(\t\"\"\n"
-    "\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n\021Fil"
-    "eTransferState\022\030\n\024kRequestFileTransfer\020\000"
-    "\022\021\n\rkTransferring\020\001\022\021\n\rkTransferOver\020\002\022\030"
-    "\n\024kTransferInterrupted\020\003\"\334\002\n\020RespFileTra"
-    "nsfer\022\n\n\002id\030\001 \001(\t\0229\n\005state\030\n \001(\0162*.tc.Re"
-    "spFileTransfer.FileTransferRespState\022\020\n\010"
-    "filename\030\024 \001(\t\022\026\n\016local_filepath\030\036 \001(\t\022\020"
-    "\n\010filesize\030( \001(\004\022\030\n\020transferred_size\0302 \001"
-    "(\004\022\020\n\010progress\030< \001(\002\"\230\001\n\025FileTransferRes"
-    "pState\022\022\n\016kTransferReady\020\000\022\026\n\022kFileAlrea"
-    "dyExists\020\001\022\025\n\021kFileDeleteFailed\020\002\022\021\n\rkTr"
-    "ansferring\020\003\022\024\n\020kTransferSuccess\020\004\022\023\n\017kT"
-    "ransferFailed\020\005\"\315\005\n\007Message\022\035\n\004type\030\001 \001("
-    "\0162\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n"
-    "\005extra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024"
-    "\n\003ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\013"
-    "2\r.tc.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.t"
-    "c.VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.A"
-    "udioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEve"
-    "nt\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022"
-    ",\n\020cursor_info_sync\030\013 \001(\0132\022.tc.CursorInf"
-    "oSync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.Gamepa"
-    "dState\0221\n\022capture_statistics\030\r \001(\0132\025.tc."
-    "CaptureStatistics\022/\n\021client_statistics\030\016"
-    " \001(\0132\024.tc.ClientStatistics\0226\n\025server_aud"
-    "io_spectrum\030\017 \001(\0132\027.tc.ServerAudioSpectr"
-    "um\022$\n\014online_games\030\020 \003(\0132\016.tc.OnlineGame"
-    "\022*\n\017ui_server_hello\030\021 \001(\0132\021.tc.UIServerH"
-    "ello\022\'\n\rfile_transfer\030\022 \001(\0132\020.tc.FileTra"
-    "nsfer\0220\n\022resp_file_transfer\030\023 \001(\0132\024.tc.R"
-    "espFileTransfer*\266\002\n\013MessageType\022\n\n\006kHell"
-    "o\020\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoF"
-    "rame\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017"
-    "\n\013kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\r"
-    "kGamepadState\020\010\022\026\n\022kCaptureStatistics\020\t\022"
-    "\025\n\021kClientStatistics\020\n\022\030\n\024kServerAudioSp"
-    "ectrum\020\013\022\020\n\014kOnlineGames\020\014\022\022\n\016kUIServerH"
-    "ello\020\r\022\021\n\rkFileTransfer\020\016\022\025\n\021kRespFileTr"
-    "ansfer\020\017*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010k"
-    "NetHevc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButtonFlag\022\t\n"
-    "\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020"
-    "\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLe"
-    "ftMouseButtonUp\020\020\022\030\n\024kMiddleMouseButtonU"
-    "p\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMo"
-    "ve\020\200\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021kMouseEv"
-    "entHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022"
-    "\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightMo"
-    "useButtonDown\020\200 *J\n\nClientType\022\014\n\010kWindo"
-    "ws\020\000\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kAndroid"
-    "\020\003\022\010\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kInnerSer"
-    "ver\020\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWindowsCli"
-    "ent\020\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022"
-    "\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XIN"
-    "PUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAM"
-    "EPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DP"
-    "AD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022"
-    "\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT"
-    "_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEP"
-    "AD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_L"
-    "EFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIG"
-    "HT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 "
-    "\022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_"
-    "GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002"
-    "b\006proto3"
+    "ile_md5\030P \001(\t\022\026\n\016local_filepath\030Z \001(\t\022\021\n"
+    "\ttimestamp\030d \001(\004\"\"\n\010FileType\022\t\n\005kFile\020\000\022"
+    "\013\n\007kFolder\020\001\"m\n\021FileTransferState\022\030\n\024kRe"
+    "questFileTransfer\020\000\022\021\n\rkTransferring\020\001\022\021"
+    "\n\rkTransferOver\020\002\022\030\n\024kTransferInterrupte"
+    "d\020\003\"\357\002\n\020RespFileTransfer\022\n\n\002id\030\001 \001(\t\0229\n\005"
+    "state\030\n \001(\0162*.tc.RespFileTransfer.FileTr"
+    "ansferRespState\022\020\n\010filename\030\024 \001(\t\022\026\n\016loc"
+    "al_filepath\030\036 \001(\t\022\020\n\010filesize\030( \001(\004\022\030\n\020t"
+    "ransferred_size\0302 \001(\004\022\020\n\010progress\030< \001(\002\022"
+    "\021\n\ttimestamp\030F \001(\004\"\230\001\n\025FileTransferRespS"
+    "tate\022\022\n\016kTransferReady\020\000\022\026\n\022kFileAlready"
+    "Exists\020\001\022\025\n\021kFileDeleteFailed\020\002\022\021\n\rkTran"
+    "sferring\020\003\022\024\n\020kTransferSuccess\020\004\022\023\n\017kTra"
+    "nsferFailed\020\005\"\315\005\n\007Message\022\035\n\004type\030\001 \001(\0162"
+    "\017.tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005e"
+    "xtra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003"
+    "ack\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r"
+    ".tc.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc."
+    "VideoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.Aud"
+    "ioFrame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent"
+    "\022#\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n"
+    "\020cursor_info_sync\030\013 \001(\0132\022.tc.CursorInfoS"
+    "ync\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadS"
+    "tate\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Ca"
+    "ptureStatistics\022/\n\021client_statistics\030\016 \001"
+    "(\0132\024.tc.ClientStatistics\0226\n\025server_audio"
+    "_spectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum"
+    "\022$\n\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*"
+    "\n\017ui_server_hello\030\021 \001(\0132\021.tc.UIServerHel"
+    "lo\022\'\n\rfile_transfer\030\022 \001(\0132\020.tc.FileTrans"
+    "fer\0220\n\022resp_file_transfer\030\023 \001(\0132\024.tc.Res"
+    "pFileTransfer*\266\002\n\013MessageType\022\n\n\006kHello\020"
+    "\000\022\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFra"
+    "me\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013"
+    "kMouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkG"
+    "amepadState\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n"
+    "\021kClientStatistics\020\n\022\030\n\024kServerAudioSpec"
+    "trum\020\013\022\020\n\014kOnlineGames\020\014\022\022\n\016kUIServerHel"
+    "lo\020\r\022\021\n\rkFileTransfer\020\016\022\025\n\021kRespFileTran"
+    "sfer\020\017*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNe"
+    "tHevc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButtonFlag\022\t\n\005k"
+    "None\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022"
+    "\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeft"
+    "MouseButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020"
+    " \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMove"
+    "\020\200\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021kMouseEven"
+    "tHWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n"
+    "\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightMous"
+    "eButtonDown\020\200 *J\n\nClientType\022\014\n\010kWindows"
+    "\020\000\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003"
+    "\022\010\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kInnerServe"
+    "r\020\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWindowsClien"
+    "t\020\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n"
+    "\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPU"
+    "T_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEP"
+    "AD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD"
+    "_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n"
+    "\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_G"
+    "AMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD"
+    "_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEF"
+    "T_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT"
+    "_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030"
+    "\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GA"
+    "MEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006"
+    "proto3"
 };
 static ::absl::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
     false,
     false,
-    5088,
+    5126,
     descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once,
@@ -5505,9 +5510,9 @@ FileTransfer::FileTransfer(
                offsetof(Impl_, state_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, state_),
-           offsetof(Impl_, transferred_size_) -
+           offsetof(Impl_, timestamp_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::transferred_size_));
+               sizeof(Impl_::timestamp_));
 
   // @@protoc_insertion_point(copy_constructor:tc.FileTransfer)
 }
@@ -5527,9 +5532,9 @@ inline void FileTransfer::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, state_),
            0,
-           offsetof(Impl_, transferred_size_) -
+           offsetof(Impl_, timestamp_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::transferred_size_));
+               sizeof(Impl_::timestamp_));
 }
 FileTransfer::~FileTransfer() {
   // @@protoc_insertion_point(destructor:tc.FileTransfer)
@@ -5561,8 +5566,8 @@ PROTOBUF_NOINLINE void FileTransfer::Clear() {
   _impl_.file_md5_.ClearToEmpty();
   _impl_.local_filepath_.ClearToEmpty();
   ::memset(&_impl_.state_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.transferred_size_) -
-      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.transferred_size_));
+      reinterpret_cast<char*>(&_impl_.timestamp_) -
+      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.timestamp_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -5574,15 +5579,15 @@ const char* FileTransfer::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 0, 77, 13> FileTransfer::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 0, 77, 13> FileTransfer::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    90, 120,  // max_field_number, fast_idx_mask
+    100, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     3757571582,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    11,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_FileTransfer_default_instance_._instance,
@@ -5624,7 +5629,7 @@ const ::_pbi::TcParseTable<4, 10, 0, 77, 13> FileTransfer::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     40, 0, 4,
-    64510, 4, 49135, 6, 65279, 8, 65531, 9,
+    64510, 4, 49135, 6, 65279, 8, 61435, 9,
     65535, 65535
   }}, {{
     // string id = 1;
@@ -5657,6 +5662,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 77, 13> FileTransfer::_table_ = {
     // string local_filepath = 90;
     {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.local_filepath_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // uint64 timestamp = 100;
+    {PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
   }},
   // no aux_entries
   {{
@@ -5751,6 +5759,13 @@ const ::_pbi::TcParseTable<4, 10, 0, 77, 13> FileTransfer::_table_ = {
     target = stream->WriteStringMaybeAliased(90, _s, target);
   }
 
+  // uint64 timestamp = 100;
+  if (this->_internal_timestamp() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        100, this->_internal_timestamp(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -5828,6 +5843,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 77, 13> FileTransfer::_table_ = {
                                     this->_internal_transferred_size());
   }
 
+  // uint64 timestamp = 100;
+  if (this->_internal_timestamp() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::UInt64Size(
+                                    this->_internal_timestamp());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -5877,6 +5898,9 @@ void FileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   if (from._internal_transferred_size() != 0) {
     _this->_internal_set_transferred_size(from._internal_transferred_size());
   }
+  if (from._internal_timestamp() != 0) {
+    _this->_internal_set_timestamp(from._internal_timestamp());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -5906,8 +5930,8 @@ void FileTransfer::InternalSwap(FileTransfer* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_md5_, &other->_impl_.file_md5_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.local_filepath_, &other->_impl_.local_filepath_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.transferred_size_)
-      + sizeof(FileTransfer::_impl_.transferred_size_)
+      PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.timestamp_)
+      + sizeof(FileTransfer::_impl_.timestamp_)
       - PROTOBUF_FIELD_OFFSET(FileTransfer, _impl_.state_)>(
           reinterpret_cast<char*>(&_impl_.state_),
           reinterpret_cast<char*>(&other->_impl_.state_));
@@ -5950,9 +5974,9 @@ RespFileTransfer::RespFileTransfer(
                offsetof(Impl_, state_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, state_),
-           offsetof(Impl_, transferred_size_) -
+           offsetof(Impl_, timestamp_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::transferred_size_));
+               sizeof(Impl_::timestamp_));
 
   // @@protoc_insertion_point(copy_constructor:tc.RespFileTransfer)
 }
@@ -5969,9 +5993,9 @@ inline void RespFileTransfer::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, state_),
            0,
-           offsetof(Impl_, transferred_size_) -
+           offsetof(Impl_, timestamp_) -
                offsetof(Impl_, state_) +
-               sizeof(Impl_::transferred_size_));
+               sizeof(Impl_::timestamp_));
 }
 RespFileTransfer::~RespFileTransfer() {
   // @@protoc_insertion_point(destructor:tc.RespFileTransfer)
@@ -5997,8 +6021,8 @@ PROTOBUF_NOINLINE void RespFileTransfer::Clear() {
   _impl_.filename_.ClearToEmpty();
   _impl_.local_filepath_.ClearToEmpty();
   ::memset(&_impl_.state_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.transferred_size_) -
-      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.transferred_size_));
+      reinterpret_cast<char*>(&_impl_.timestamp_) -
+      reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.timestamp_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -6010,33 +6034,47 @@ const char* RespFileTransfer::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 52, 9> RespFileTransfer::_table_ = {
+const ::_pbi::TcParseTable<4, 8, 0, 60, 9> RespFileTransfer::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    60, 56,  // max_field_number, fast_idx_mask
+    70, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     3757571582,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    8,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_RespFileTransfer_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // uint64 filesize = 40;
-    {::_pbi::TcParser::FastV64S2,
-     {704, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.filesize_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.id_)}},
-    // .tc.RespFileTransfer.FileTransferRespState state = 10;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RespFileTransfer, _impl_.state_), 63>(),
-     {80, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.state_)}},
+    // uint64 transferred_size = 50;
+    {::_pbi::TcParser::FastV64S2,
+     {912, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.transferred_size_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // string filename = 20;
     {::_pbi::TcParser::FastUS2,
      {418, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.filename_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint64 timestamp = 70;
+    {::_pbi::TcParser::FastV64S2,
+     {1200, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.timestamp_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint64 filesize = 40;
+    {::_pbi::TcParser::FastV64S2,
+     {704, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.filesize_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .tc.RespFileTransfer.FileTransferRespState state = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RespFileTransfer, _impl_.state_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.state_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // float progress = 60;
+    {::_pbi::TcParser::FastF32S2,
+     {997, 63, 0, PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.progress_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // string local_filepath = 30;
     {::_pbi::TcParser::FastUS2,
@@ -6044,7 +6082,7 @@ const ::_pbi::TcParseTable<3, 7, 0, 52, 9> RespFileTransfer::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     40, 0, 2,
-    64510, 4, 65519, 6,
+    64510, 4, 49135, 6,
     65535, 65535
   }}, {{
     // string id = 1;
@@ -6068,10 +6106,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 52, 9> RespFileTransfer::_table_ = {
     // float progress = 60;
     {PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.progress_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // uint64 timestamp = 70;
+    {PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
   }},
   // no aux_entries
   {{
-    "\23\2\0\10\16\0\0\0"
+    "\23\2\0\10\16\0\0\0\0\0\0\0\0\0\0\0"
     "tc.RespFileTransfer"
     "id"
     "filename"
@@ -6143,6 +6184,13 @@ const ::_pbi::TcParseTable<3, 7, 0, 52, 9> RespFileTransfer::_table_ = {
         60, this->_internal_progress(), target);
   }
 
+  // uint64 timestamp = 70;
+  if (this->_internal_timestamp() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        70, this->_internal_timestamp(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -6206,6 +6254,12 @@ const ::_pbi::TcParseTable<3, 7, 0, 52, 9> RespFileTransfer::_table_ = {
                                     this->_internal_transferred_size());
   }
 
+  // uint64 timestamp = 70;
+  if (this->_internal_timestamp() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::UInt64Size(
+                                    this->_internal_timestamp());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -6251,6 +6305,9 @@ void RespFileTransfer::MergeImpl(::google::protobuf::Message& to_msg, const ::go
   if (from._internal_transferred_size() != 0) {
     _this->_internal_set_transferred_size(from._internal_transferred_size());
   }
+  if (from._internal_timestamp() != 0) {
+    _this->_internal_set_timestamp(from._internal_timestamp());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -6277,8 +6334,8 @@ void RespFileTransfer::InternalSwap(RespFileTransfer* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.filename_, &other->_impl_.filename_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.local_filepath_, &other->_impl_.local_filepath_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.transferred_size_)
-      + sizeof(RespFileTransfer::_impl_.transferred_size_)
+      PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.timestamp_)
+      + sizeof(RespFileTransfer::_impl_.timestamp_)
       - PROTOBUF_FIELD_OFFSET(RespFileTransfer, _impl_.state_)>(
           reinterpret_cast<char*>(&_impl_.state_),
           reinterpret_cast<char*>(&other->_impl_.state_));
