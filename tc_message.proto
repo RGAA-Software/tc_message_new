@@ -282,6 +282,7 @@ message FileTransfer {
   uint64 transferred_size = 70;
   string file_md5 = 80;
   string local_filepath = 90;
+  uint64 timestamp = 100;
 }
 
 message RespFileTransfer {
@@ -307,6 +308,7 @@ message RespFileTransfer {
   uint64 filesize = 40;
   uint64 transferred_size = 50;
   float progress = 60;
+  uint64 timestamp = 70;
 }
 
 message Message {
