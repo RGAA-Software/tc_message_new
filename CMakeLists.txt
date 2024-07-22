@@ -5,7 +5,10 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Protobuf REQUIRED)
 
-if(WIN32 OR APPLE OR UNIX)
+if(ANDROID)
+    add_library(tc_message tc_message.pb.cc proto_message_maker.cpp)
+    target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+elseif(WIN32 OR APPLE OR UNIX)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto)
 
     message("Protobuf of tc_message.proto: ${PROTO_SRCS}")
@@ -19,7 +22,4 @@ if(WIN32 OR APPLE OR UNIX)
             COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.h"  "${CMAKE_CURRENT_SOURCE_DIR}"
             COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc"  "${CMAKE_CURRENT_SOURCE_DIR}"
     )
-elseif(ANDROID)
-    add_library(tc_message tc_message.pb.cc proto_message_maker.cpp)
-    target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 endif()
