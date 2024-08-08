@@ -3120,6 +3120,8 @@ class FileTransfer final :
     kDataFieldNumber = 50,
     kFileMd5FieldNumber = 80,
     kLocalFilepathFieldNumber = 90,
+    kRefPathFieldNumber = 110,
+    kRefFolderFieldNumber = 120,
     kStateFieldNumber = 10,
     kFileTypeFieldNumber = 20,
     kFilesizeFieldNumber = 60,
@@ -3222,6 +3224,38 @@ class FileTransfer final :
   std::string* _internal_mutable_local_filepath();
 
   public:
+  // string ref_path = 110;
+  void clear_ref_path() ;
+  const std::string& ref_path() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ref_path(Arg_&& arg, Args_... args);
+  std::string* mutable_ref_path();
+  PROTOBUF_NODISCARD std::string* release_ref_path();
+  void set_allocated_ref_path(std::string* value);
+
+  private:
+  const std::string& _internal_ref_path() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ref_path(
+      const std::string& value);
+  std::string* _internal_mutable_ref_path();
+
+  public:
+  // string ref_folder = 120;
+  void clear_ref_folder() ;
+  const std::string& ref_folder() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_ref_folder(Arg_&& arg, Args_... args);
+  std::string* mutable_ref_folder();
+  PROTOBUF_NODISCARD std::string* release_ref_folder();
+  void set_allocated_ref_folder(std::string* value);
+
+  private:
+  const std::string& _internal_ref_folder() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_ref_folder(
+      const std::string& value);
+  std::string* _internal_mutable_ref_folder();
+
+  public:
   // .tc.FileTransfer.FileTransferState state = 10;
   void clear_state() ;
   ::tc::FileTransfer_FileTransferState state() const;
@@ -3278,8 +3312,8 @@ class FileTransfer final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 11, 0,
-      77, 13>
+      4, 13, 0,
+      95, 17>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3301,6 +3335,8 @@ class FileTransfer final :
     ::google::protobuf::internal::ArenaStringPtr data_;
     ::google::protobuf::internal::ArenaStringPtr file_md5_;
     ::google::protobuf::internal::ArenaStringPtr local_filepath_;
+    ::google::protobuf::internal::ArenaStringPtr ref_path_;
+    ::google::protobuf::internal::ArenaStringPtr ref_folder_;
     int state_;
     int file_type_;
     ::uint64_t filesize_;
@@ -8058,6 +8094,112 @@ inline void FileTransfer::_internal_set_timestamp(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.timestamp_ = value;
+}
+
+// string ref_path = 110;
+inline void FileTransfer::clear_ref_path() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ref_path_.ClearToEmpty();
+}
+inline const std::string& FileTransfer::ref_path() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.FileTransfer.ref_path)
+  return _internal_ref_path();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_ref_path(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ref_path_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.FileTransfer.ref_path)
+}
+inline std::string* FileTransfer::mutable_ref_path() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ref_path();
+  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.ref_path)
+  return _s;
+}
+inline const std::string& FileTransfer::_internal_ref_path() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_path_.Get();
+}
+inline void FileTransfer::_internal_set_ref_path(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ref_path_.Set(value, GetArena());
+}
+inline std::string* FileTransfer::_internal_mutable_ref_path() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.ref_path_.Mutable( GetArena());
+}
+inline std::string* FileTransfer::release_ref_path() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.FileTransfer.ref_path)
+  return _impl_.ref_path_.Release();
+}
+inline void FileTransfer::set_allocated_ref_path(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ref_path_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.ref_path_.IsDefault()) {
+          _impl_.ref_path_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.ref_path)
+}
+
+// string ref_folder = 120;
+inline void FileTransfer::clear_ref_folder() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ref_folder_.ClearToEmpty();
+}
+inline const std::string& FileTransfer::ref_folder() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.FileTransfer.ref_folder)
+  return _internal_ref_folder();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void FileTransfer::set_ref_folder(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ref_folder_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:tc.FileTransfer.ref_folder)
+}
+inline std::string* FileTransfer::mutable_ref_folder() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_ref_folder();
+  // @@protoc_insertion_point(field_mutable:tc.FileTransfer.ref_folder)
+  return _s;
+}
+inline const std::string& FileTransfer::_internal_ref_folder() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.ref_folder_.Get();
+}
+inline void FileTransfer::_internal_set_ref_folder(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.ref_folder_.Set(value, GetArena());
+}
+inline std::string* FileTransfer::_internal_mutable_ref_folder() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.ref_folder_.Mutable( GetArena());
+}
+inline std::string* FileTransfer::release_ref_folder() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.FileTransfer.ref_folder)
+  return _impl_.ref_folder_.Release();
+}
+inline void FileTransfer::set_allocated_ref_folder(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.ref_folder_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.ref_folder_.IsDefault()) {
+          _impl_.ref_folder_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:tc.FileTransfer.ref_folder)
 }
 
 // -------------------------------------------------------------------
