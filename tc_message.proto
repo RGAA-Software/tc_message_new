@@ -283,6 +283,8 @@ message FileTransfer {
   string file_md5 = 80;
   string local_filepath = 90;
   uint64 timestamp = 100;
+  string ref_path = 110;
+  string ref_folder = 120;
 }
 
 message RespFileTransfer {
