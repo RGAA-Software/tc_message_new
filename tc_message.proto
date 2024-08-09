@@ -145,6 +145,25 @@ message MouseEvent {
 }
 
 message CursorInfoSync {
+  enum CursorType {
+    kIdcArrow = 0;
+    kIdcIBeam = 1;
+    kIdcWait = 2;
+    kIdcCross = 3;
+    kIdcUpArrow = 4;
+    kIdcSize = 5;
+    kIdcIcon = 6;
+    kIdcSizeNWSE = 7;
+    kIdcSizeNESW = 8;
+    kIdcSizeWE = 9;
+    kIdcSizeNS = 10;
+    kIdcSizeAll = 11;
+    kIdcHand = 12;
+    kIdcHelp = 13;
+    kIdcPin = 14;
+    kIdcPerson = 15;
+  }
+
   bool visible = 1;
   int32 x = 2;
   int32 y = 3;
@@ -153,6 +172,7 @@ message CursorInfoSync {
   uint32 width = 6;
   uint32 height = 7;
   bytes bitmap = 8;
+  CursorType type = 9;
 }
 
 // see: https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad

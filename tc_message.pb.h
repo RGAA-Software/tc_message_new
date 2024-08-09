@@ -150,6 +150,53 @@ inline bool KeyEvent_LockKeyStatusCheck_Parse(absl::string_view name, KeyEvent_L
   return ::google::protobuf::internal::ParseNamedEnum<KeyEvent_LockKeyStatusCheck>(
       KeyEvent_LockKeyStatusCheck_descriptor(), name, value);
 }
+enum CursorInfoSync_CursorType : int {
+  CursorInfoSync_CursorType_kIdcArrow = 0,
+  CursorInfoSync_CursorType_kIdcIBeam = 1,
+  CursorInfoSync_CursorType_kIdcWait = 2,
+  CursorInfoSync_CursorType_kIdcCross = 3,
+  CursorInfoSync_CursorType_kIdcUpArrow = 4,
+  CursorInfoSync_CursorType_kIdcSize = 5,
+  CursorInfoSync_CursorType_kIdcIcon = 6,
+  CursorInfoSync_CursorType_kIdcSizeNWSE = 7,
+  CursorInfoSync_CursorType_kIdcSizeNESW = 8,
+  CursorInfoSync_CursorType_kIdcSizeWE = 9,
+  CursorInfoSync_CursorType_kIdcSizeNS = 10,
+  CursorInfoSync_CursorType_kIdcSizeAll = 11,
+  CursorInfoSync_CursorType_kIdcHand = 12,
+  CursorInfoSync_CursorType_kIdcHelp = 13,
+  CursorInfoSync_CursorType_kIdcPin = 14,
+  CursorInfoSync_CursorType_kIdcPerson = 15,
+  CursorInfoSync_CursorType_CursorInfoSync_CursorType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  CursorInfoSync_CursorType_CursorInfoSync_CursorType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool CursorInfoSync_CursorType_IsValid(int value);
+extern const uint32_t CursorInfoSync_CursorType_internal_data_[];
+constexpr CursorInfoSync_CursorType CursorInfoSync_CursorType_CursorType_MIN = static_cast<CursorInfoSync_CursorType>(0);
+constexpr CursorInfoSync_CursorType CursorInfoSync_CursorType_CursorType_MAX = static_cast<CursorInfoSync_CursorType>(15);
+constexpr int CursorInfoSync_CursorType_CursorType_ARRAYSIZE = 15 + 1;
+const ::google::protobuf::EnumDescriptor*
+CursorInfoSync_CursorType_descriptor();
+template <typename T>
+const std::string& CursorInfoSync_CursorType_Name(T value) {
+  static_assert(std::is_same<T, CursorInfoSync_CursorType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to CursorType_Name().");
+  return CursorInfoSync_CursorType_Name(static_cast<CursorInfoSync_CursorType>(value));
+}
+template <>
+inline const std::string& CursorInfoSync_CursorType_Name(CursorInfoSync_CursorType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<CursorInfoSync_CursorType_descriptor,
+                                                 0, 15>(
+      static_cast<int>(value));
+}
+inline bool CursorInfoSync_CursorType_Parse(absl::string_view name, CursorInfoSync_CursorType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<CursorInfoSync_CursorType>(
+      CursorInfoSync_CursorType_descriptor(), name, value);
+}
 enum GamepadState_GamepadType : int {
   GamepadState_GamepadType_kButtons = 0,
   GamepadState_GamepadType_kLeftTrigger = 1,
@@ -3478,6 +3525,40 @@ class CursorInfoSync final :
 
   // nested types ----------------------------------------------------
 
+  using CursorType = CursorInfoSync_CursorType;
+  static constexpr CursorType kIdcArrow = CursorInfoSync_CursorType_kIdcArrow;
+  static constexpr CursorType kIdcIBeam = CursorInfoSync_CursorType_kIdcIBeam;
+  static constexpr CursorType kIdcWait = CursorInfoSync_CursorType_kIdcWait;
+  static constexpr CursorType kIdcCross = CursorInfoSync_CursorType_kIdcCross;
+  static constexpr CursorType kIdcUpArrow = CursorInfoSync_CursorType_kIdcUpArrow;
+  static constexpr CursorType kIdcSize = CursorInfoSync_CursorType_kIdcSize;
+  static constexpr CursorType kIdcIcon = CursorInfoSync_CursorType_kIdcIcon;
+  static constexpr CursorType kIdcSizeNWSE = CursorInfoSync_CursorType_kIdcSizeNWSE;
+  static constexpr CursorType kIdcSizeNESW = CursorInfoSync_CursorType_kIdcSizeNESW;
+  static constexpr CursorType kIdcSizeWE = CursorInfoSync_CursorType_kIdcSizeWE;
+  static constexpr CursorType kIdcSizeNS = CursorInfoSync_CursorType_kIdcSizeNS;
+  static constexpr CursorType kIdcSizeAll = CursorInfoSync_CursorType_kIdcSizeAll;
+  static constexpr CursorType kIdcHand = CursorInfoSync_CursorType_kIdcHand;
+  static constexpr CursorType kIdcHelp = CursorInfoSync_CursorType_kIdcHelp;
+  static constexpr CursorType kIdcPin = CursorInfoSync_CursorType_kIdcPin;
+  static constexpr CursorType kIdcPerson = CursorInfoSync_CursorType_kIdcPerson;
+  static inline bool CursorType_IsValid(int value) {
+    return CursorInfoSync_CursorType_IsValid(value);
+  }
+  static constexpr CursorType CursorType_MIN = CursorInfoSync_CursorType_CursorType_MIN;
+  static constexpr CursorType CursorType_MAX = CursorInfoSync_CursorType_CursorType_MAX;
+  static constexpr int CursorType_ARRAYSIZE = CursorInfoSync_CursorType_CursorType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* CursorType_descriptor() {
+    return CursorInfoSync_CursorType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& CursorType_Name(T value) {
+    return CursorInfoSync_CursorType_Name(value);
+  }
+  static inline bool CursorType_Parse(absl::string_view name, CursorType* value) {
+    return CursorInfoSync_CursorType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -3489,6 +3570,7 @@ class CursorInfoSync final :
     kHotspotYFieldNumber = 5,
     kWidthFieldNumber = 6,
     kHeightFieldNumber = 7,
+    kTypeFieldNumber = 9,
   };
   // bytes bitmap = 8;
   void clear_bitmap() ;
@@ -3576,13 +3658,23 @@ class CursorInfoSync final :
   void _internal_set_height(::uint32_t value);
 
   public:
+  // .tc.CursorInfoSync.CursorType type = 9;
+  void clear_type() ;
+  ::tc::CursorInfoSync_CursorType type() const;
+  void set_type(::tc::CursorInfoSync_CursorType value);
+
+  private:
+  ::tc::CursorInfoSync_CursorType _internal_type() const;
+  void _internal_set_type(::tc::CursorInfoSync_CursorType value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.CursorInfoSync)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 0,
+      4, 9, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -3607,6 +3699,7 @@ class CursorInfoSync final :
     ::int32_t hotspot_y_;
     ::uint32_t width_;
     ::uint32_t height_;
+    int type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6531,6 +6624,29 @@ inline void CursorInfoSync::set_allocated_bitmap(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:tc.CursorInfoSync.bitmap)
+}
+
+// .tc.CursorInfoSync.CursorType type = 9;
+inline void CursorInfoSync::clear_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.type_ = 0;
+}
+inline ::tc::CursorInfoSync_CursorType CursorInfoSync::type() const {
+  // @@protoc_insertion_point(field_get:tc.CursorInfoSync.type)
+  return _internal_type();
+}
+inline void CursorInfoSync::set_type(::tc::CursorInfoSync_CursorType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:tc.CursorInfoSync.type)
+}
+inline ::tc::CursorInfoSync_CursorType CursorInfoSync::_internal_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::tc::CursorInfoSync_CursorType>(_impl_.type_);
+}
+inline void CursorInfoSync::_internal_set_type(::tc::CursorInfoSync_CursorType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.type_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -10088,6 +10204,12 @@ struct is_proto_enum<::tc::KeyEvent_LockKeyStatusCheck> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::tc::KeyEvent_LockKeyStatusCheck>() {
   return ::tc::KeyEvent_LockKeyStatusCheck_descriptor();
+}
+template <>
+struct is_proto_enum<::tc::CursorInfoSync_CursorType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::tc::CursorInfoSync_CursorType>() {
+  return ::tc::CursorInfoSync_CursorType_descriptor();
 }
 template <>
 struct is_proto_enum<::tc::GamepadState_GamepadType> : std::true_type {};

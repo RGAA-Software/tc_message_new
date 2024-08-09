@@ -326,6 +326,7 @@ inline constexpr CursorInfoSync::Impl_::Impl_(
         hotspot_y_{0},
         width_{0u},
         height_{0u},
+        type_{static_cast< ::tc::CursorInfoSync_CursorType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -495,7 +496,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MessageDefaultTypeInternal _Message_default_instance_;
 }  // namespace tc
 static ::_pb::Metadata file_level_metadata_tc_5fmessage_2eproto[17];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[11];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_tc_5fmessage_2eproto[12];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_tc_5fmessage_2eproto = nullptr;
 const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -613,6 +614,7 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.width_),
     PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.height_),
     PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.bitmap_),
+    PROTOBUF_FIELD_OFFSET(::tc::CursorInfoSync, _impl_.type_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::tc::GamepadState, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -794,15 +796,15 @@ static const ::_pbi::MigrationSchema
         {65, -1, -1, sizeof(::tc::KeyEvent)},
         {79, -1, -1, sizeof(::tc::MouseEvent)},
         {97, -1, -1, sizeof(::tc::CursorInfoSync)},
-        {113, -1, -1, sizeof(::tc::GamepadState)},
-        {129, -1, -1, sizeof(::tc::CaptureStatistics)},
-        {152, -1, -1, sizeof(::tc::ClientStatistics)},
-        {167, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-        {180, -1, -1, sizeof(::tc::OnlineGame)},
-        {190, -1, -1, sizeof(::tc::UIServerHello)},
-        {199, -1, -1, sizeof(::tc::FileTransfer)},
-        {220, -1, -1, sizeof(::tc::RespFileTransfer)},
-        {236, 263, -1, sizeof(::tc::Message)},
+        {114, -1, -1, sizeof(::tc::GamepadState)},
+        {130, -1, -1, sizeof(::tc::CaptureStatistics)},
+        {153, -1, -1, sizeof(::tc::ClientStatistics)},
+        {168, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
+        {181, -1, -1, sizeof(::tc::OnlineGame)},
+        {191, -1, -1, sizeof(::tc::UIServerHello)},
+        {200, -1, -1, sizeof(::tc::FileTransfer)},
+        {221, -1, -1, sizeof(::tc::RespFileTransfer)},
+        {237, 264, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -850,117 +852,124 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "io\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001("
     "\005\022\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007de"
     "lta_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030"
-    "\t \001(\010\022\020\n\010released\030\n \001(\010\"\214\001\n\016CursorInfoSy"
+    "\t \001(\010\022\020\n\010released\030\n \001(\010\"\276\003\n\016CursorInfoSy"
     "nc\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
     "\005\022\021\n\thotspot_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022"
     "\r\n\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap"
-    "\030\010 \001(\014\"\246\002\n\014GamepadState\022\017\n\007buttons\030\001 \001(\r"
-    "\022\024\n\014left_trigger\030\002 \001(\r\022\025\n\rright_trigger\030"
-    "\003 \001(\r\022\020\n\010thumb_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001("
-    "\005\022\020\n\010thumb_rx\030\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\022-\n"
-    "\007gp_type\030\010 \001(\0162\034.tc.GamepadState.Gamepad"
-    "Type\"a\n\013GamepadType\022\014\n\010kButtons\020\000\022\020\n\014kLe"
-    "ftTrigger\020\001\022\021\n\rkRightTrigger\020\002\022\016\n\nkLeftT"
-    "humb\020\003\022\017\n\013kRightThumb\020\004\"\245\003\n\021CaptureStati"
-    "stics\022\030\n\020video_frame_gaps\030\001 \003(\r\022\030\n\020encod"
-    "e_durations\030\002 \003(\r\022\030\n\020audio_frame_gaps\030\003 "
-    "\003(\r\022\030\n\020decode_durations\030\004 \003(\r\022\036\n\026client_"
-    "video_recv_gaps\030\005 \003(\r\022\035\n\025client_fps_vide"
-    "o_recv\030\006 \001(\r\022\031\n\021client_fps_render\030\007 \001(\r\022"
-    "\036\n\026client_recv_media_data\030\010 \001(\003\022\030\n\020fps_v"
-    "ideo_encode\030\t \001(\005\022\030\n\020app_running_time\030\n "
-    "\001(\005\022\036\n\026server_send_media_data\030\013 \001(\003\022\024\n\014r"
-    "ender_width\030\014 \001(\005\022\025\n\rrender_height\030\r \001(\005"
-    "\022\025\n\rcapture_width\030\016 \001(\005\022\026\n\016capture_heigh"
-    "t\030\017 \001(\005\"\267\001\n\020ClientStatistics\022\030\n\020decode_d"
-    "urations\030\001 \003(\r\022\027\n\017video_recv_gaps\030\002 \003(\r\022"
-    "\026\n\016fps_video_recv\030\003 \001(\r\022\022\n\nfps_render\030\004 "
-    "\001(\r\022\027\n\017recv_media_data\030\005 \001(\003\022\024\n\014render_w"
-    "idth\030\006 \001(\005\022\025\n\rrender_height\030\007 \001(\005\"u\n\023Ser"
-    "verAudioSpectrum\022\017\n\007samples\030\001 \001(\005\022\020\n\010cha"
-    "nnels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005\022\025\n\rleft_spectr"
-    "um\030\004 \003(\001\022\026\n\016right_spectrum\030\005 \003(\001\"0\n\nOnli"
-    "neGame\022\017\n\007game_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001"
-    "(\t\".\n\rUIServerHello\022\035\n\004type\030\001 \001(\0162\017.tc.S"
-    "essionType\"\324\003\n\014FileTransfer\022\n\n\002id\030\001 \001(\t\022"
-    "1\n\005state\030\n \001(\0162\".tc.FileTransfer.FileTra"
-    "nsferState\022,\n\tfile_type\030\024 \001(\0162\031.tc.FileT"
-    "ransfer.FileType\022\025\n\rrelative_path\030\036 \001(\t\022"
-    "\020\n\010filename\030( \001(\t\022\014\n\004data\0302 \001(\014\022\020\n\010files"
-    "ize\030< \001(\004\022\030\n\020transferred_size\030F \001(\004\022\020\n\010f"
-    "ile_md5\030P \001(\t\022\026\n\016local_filepath\030Z \001(\t\022\021\n"
-    "\ttimestamp\030d \001(\004\022\020\n\010ref_path\030n \001(\t\022\022\n\nre"
-    "f_folder\030x \001(\t\"\"\n\010FileType\022\t\n\005kFile\020\000\022\013\n"
-    "\007kFolder\020\001\"m\n\021FileTransferState\022\030\n\024kRequ"
-    "estFileTransfer\020\000\022\021\n\rkTransferring\020\001\022\021\n\r"
-    "kTransferOver\020\002\022\030\n\024kTransferInterrupted\020"
-    "\003\"\357\002\n\020RespFileTransfer\022\n\n\002id\030\001 \001(\t\0229\n\005st"
-    "ate\030\n \001(\0162*.tc.RespFileTransfer.FileTran"
-    "sferRespState\022\020\n\010filename\030\024 \001(\t\022\026\n\016local"
-    "_filepath\030\036 \001(\t\022\020\n\010filesize\030( \001(\004\022\030\n\020tra"
-    "nsferred_size\0302 \001(\004\022\020\n\010progress\030< \001(\002\022\021\n"
-    "\ttimestamp\030F \001(\004\"\230\001\n\025FileTransferRespSta"
-    "te\022\022\n\016kTransferReady\020\000\022\026\n\022kFileAlreadyEx"
-    "ists\020\001\022\025\n\021kFileDeleteFailed\020\002\022\021\n\rkTransf"
-    "erring\020\003\022\024\n\020kTransferSuccess\020\004\022\023\n\017kTrans"
-    "ferFailed\020\005\"\315\005\n\007Message\022\035\n\004type\030\001 \001(\0162\017."
-    "tc.MessageType\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005ext"
-    "ra\030\003 \001(\t\022\030\n\005hello\030\004 \001(\0132\t.tc.Hello\022\024\n\003ac"
-    "k\030\005 \001(\0132\007.tc.Ack\022!\n\nheart_beat\030\006 \001(\0132\r.t"
-    "c.HeartBeat\022#\n\013video_frame\030\007 \001(\0132\016.tc.Vi"
-    "deoFrame\022#\n\013audio_frame\030\010 \001(\0132\016.tc.Audio"
-    "Frame\022\037\n\tkey_event\030\t \001(\0132\014.tc.KeyEvent\022#"
-    "\n\013mouse_event\030\n \001(\0132\016.tc.MouseEvent\022,\n\020c"
-    "ursor_info_sync\030\013 \001(\0132\022.tc.CursorInfoSyn"
-    "c\022\'\n\rgamepad_state\030\014 \001(\0132\020.tc.GamepadSta"
-    "te\0221\n\022capture_statistics\030\r \001(\0132\025.tc.Capt"
-    "ureStatistics\022/\n\021client_statistics\030\016 \001(\013"
-    "2\024.tc.ClientStatistics\0226\n\025server_audio_s"
-    "pectrum\030\017 \001(\0132\027.tc.ServerAudioSpectrum\022$"
-    "\n\014online_games\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017"
-    "ui_server_hello\030\021 \001(\0132\021.tc.UIServerHello"
-    "\022\'\n\rfile_transfer\030\022 \001(\0132\020.tc.FileTransfe"
-    "r\0220\n\022resp_file_transfer\030\023 \001(\0132\024.tc.RespF"
-    "ileTransfer*\266\002\n\013MessageType\022\n\n\006kHello\020\000\022"
-    "\010\n\004kAck\020\001\022\016\n\nkHeartBeat\020\002\022\017\n\013kVideoFrame"
-    "\020\003\022\017\n\013kAudioFrame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kM"
-    "ouseEvent\020\006\022\023\n\017kCursorInfoSync\020\007\022\021\n\rkGam"
-    "epadState\020\010\022\026\n\022kCaptureStatistics\020\t\022\025\n\021k"
-    "ClientStatistics\020\n\022\030\n\024kServerAudioSpectr"
-    "um\020\013\022\020\n\014kOnlineGames\020\014\022\022\n\016kUIServerHello"
-    "\020\r\022\021\n\rkFileTransfer\020\016\022\025\n\021kRespFileTransf"
-    "er\020\017*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNetH"
-    "evc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNo"
-    "ne\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n"
-    "\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMo"
-    "useButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 \022"
-    "\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMove\020\200"
-    "\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021kMouseEventH"
-    "Wheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026k"
-    "MiddleMouseButtonDown\020\200\020\022\032\n\025kRightMouseB"
-    "uttonDown\020\200 *J\n\nClientType\022\014\n\010kWindows\020\000"
-    "\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010"
-    "\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kInnerServer\020"
-    "\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWindowsClient\020"
-    "\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031G"
-    "P_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_"
-    "GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD"
-    "_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD_R"
-    "IGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n\026G"
-    "P_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_GAM"
-    "EPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_R"
-    "IGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT_"
-    "SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT_S"
-    "HOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023"
-    "GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAME"
-    "PAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006pr"
-    "oto3"
+    "\030\010 \001(\014\022+\n\004type\030\t \001(\0162\035.tc.CursorInfoSync"
+    ".CursorType\"\202\002\n\nCursorType\022\r\n\tkIdcArrow\020"
+    "\000\022\r\n\tkIdcIBeam\020\001\022\014\n\010kIdcWait\020\002\022\r\n\tkIdcCr"
+    "oss\020\003\022\017\n\013kIdcUpArrow\020\004\022\014\n\010kIdcSize\020\005\022\014\n\010"
+    "kIdcIcon\020\006\022\020\n\014kIdcSizeNWSE\020\007\022\020\n\014kIdcSize"
+    "NESW\020\010\022\016\n\nkIdcSizeWE\020\t\022\016\n\nkIdcSizeNS\020\n\022\017"
+    "\n\013kIdcSizeAll\020\013\022\014\n\010kIdcHand\020\014\022\014\n\010kIdcHel"
+    "p\020\r\022\013\n\007kIdcPin\020\016\022\016\n\nkIdcPerson\020\017\"\246\002\n\014Gam"
+    "epadState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left_trigg"
+    "er\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n\010thumb"
+    "_lx\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030"
+    "\006 \001(\005\022\020\n\010thumb_ry\030\007 \001(\005\022-\n\007gp_type\030\010 \001(\016"
+    "2\034.tc.GamepadState.GamepadType\"a\n\013Gamepa"
+    "dType\022\014\n\010kButtons\020\000\022\020\n\014kLeftTrigger\020\001\022\021\n"
+    "\rkRightTrigger\020\002\022\016\n\nkLeftThumb\020\003\022\017\n\013kRig"
+    "htThumb\020\004\"\245\003\n\021CaptureStatistics\022\030\n\020video"
+    "_frame_gaps\030\001 \003(\r\022\030\n\020encode_durations\030\002 "
+    "\003(\r\022\030\n\020audio_frame_gaps\030\003 \003(\r\022\030\n\020decode_"
+    "durations\030\004 \003(\r\022\036\n\026client_video_recv_gap"
+    "s\030\005 \003(\r\022\035\n\025client_fps_video_recv\030\006 \001(\r\022\031"
+    "\n\021client_fps_render\030\007 \001(\r\022\036\n\026client_recv"
+    "_media_data\030\010 \001(\003\022\030\n\020fps_video_encode\030\t "
+    "\001(\005\022\030\n\020app_running_time\030\n \001(\005\022\036\n\026server_"
+    "send_media_data\030\013 \001(\003\022\024\n\014render_width\030\014 "
+    "\001(\005\022\025\n\rrender_height\030\r \001(\005\022\025\n\rcapture_wi"
+    "dth\030\016 \001(\005\022\026\n\016capture_height\030\017 \001(\005\"\267\001\n\020Cl"
+    "ientStatistics\022\030\n\020decode_durations\030\001 \003(\r"
+    "\022\027\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016fps_video_r"
+    "ecv\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r\022\027\n\017recv_me"
+    "dia_data\030\005 \001(\003\022\024\n\014render_width\030\006 \001(\005\022\025\n\r"
+    "render_height\030\007 \001(\005\"u\n\023ServerAudioSpectr"
+    "um\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n"
+    "\004bits\030\003 \001(\005\022\025\n\rleft_spectrum\030\004 \003(\001\022\026\n\016ri"
+    "ght_spectrum\030\005 \003(\001\"0\n\nOnlineGame\022\017\n\007game"
+    "_id\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001(\t\".\n\rUIServer"
+    "Hello\022\035\n\004type\030\001 \001(\0162\017.tc.SessionType\"\324\003\n"
+    "\014FileTransfer\022\n\n\002id\030\001 \001(\t\0221\n\005state\030\n \001(\016"
+    "2\".tc.FileTransfer.FileTransferState\022,\n\t"
+    "file_type\030\024 \001(\0162\031.tc.FileTransfer.FileTy"
+    "pe\022\025\n\rrelative_path\030\036 \001(\t\022\020\n\010filename\030( "
+    "\001(\t\022\014\n\004data\0302 \001(\014\022\020\n\010filesize\030< \001(\004\022\030\n\020t"
+    "ransferred_size\030F \001(\004\022\020\n\010file_md5\030P \001(\t\022"
+    "\026\n\016local_filepath\030Z \001(\t\022\021\n\ttimestamp\030d \001"
+    "(\004\022\020\n\010ref_path\030n \001(\t\022\022\n\nref_folder\030x \001(\t"
+    "\"\"\n\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n\021"
+    "FileTransferState\022\030\n\024kRequestFileTransfe"
+    "r\020\000\022\021\n\rkTransferring\020\001\022\021\n\rkTransferOver\020"
+    "\002\022\030\n\024kTransferInterrupted\020\003\"\357\002\n\020RespFile"
+    "Transfer\022\n\n\002id\030\001 \001(\t\0229\n\005state\030\n \001(\0162*.tc"
+    ".RespFileTransfer.FileTransferRespState\022"
+    "\020\n\010filename\030\024 \001(\t\022\026\n\016local_filepath\030\036 \001("
+    "\t\022\020\n\010filesize\030( \001(\004\022\030\n\020transferred_size\030"
+    "2 \001(\004\022\020\n\010progress\030< \001(\002\022\021\n\ttimestamp\030F \001"
+    "(\004\"\230\001\n\025FileTransferRespState\022\022\n\016kTransfe"
+    "rReady\020\000\022\026\n\022kFileAlreadyExists\020\001\022\025\n\021kFil"
+    "eDeleteFailed\020\002\022\021\n\rkTransferring\020\003\022\024\n\020kT"
+    "ransferSuccess\020\004\022\023\n\017kTransferFailed\020\005\"\315\005"
+    "\n\007Message\022\035\n\004type\030\001 \001(\0162\017.tc.MessageType"
+    "\022\021\n\tsend_time\030\002 \001(\004\022\r\n\005extra\030\003 \001(\t\022\030\n\005he"
+    "llo\030\004 \001(\0132\t.tc.Hello\022\024\n\003ack\030\005 \001(\0132\007.tc.A"
+    "ck\022!\n\nheart_beat\030\006 \001(\0132\r.tc.HeartBeat\022#\n"
+    "\013video_frame\030\007 \001(\0132\016.tc.VideoFrame\022#\n\013au"
+    "dio_frame\030\010 \001(\0132\016.tc.AudioFrame\022\037\n\tkey_e"
+    "vent\030\t \001(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030"
+    "\n \001(\0132\016.tc.MouseEvent\022,\n\020cursor_info_syn"
+    "c\030\013 \001(\0132\022.tc.CursorInfoSync\022\'\n\rgamepad_s"
+    "tate\030\014 \001(\0132\020.tc.GamepadState\0221\n\022capture_"
+    "statistics\030\r \001(\0132\025.tc.CaptureStatistics\022"
+    "/\n\021client_statistics\030\016 \001(\0132\024.tc.ClientSt"
+    "atistics\0226\n\025server_audio_spectrum\030\017 \001(\0132"
+    "\027.tc.ServerAudioSpectrum\022$\n\014online_games"
+    "\030\020 \003(\0132\016.tc.OnlineGame\022*\n\017ui_server_hell"
+    "o\030\021 \001(\0132\021.tc.UIServerHello\022\'\n\rfile_trans"
+    "fer\030\022 \001(\0132\020.tc.FileTransfer\0220\n\022resp_file"
+    "_transfer\030\023 \001(\0132\024.tc.RespFileTransfer*\266\002"
+    "\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\001\022\016\n\nk"
+    "HeartBeat\020\002\022\017\n\013kVideoFrame\020\003\022\017\n\013kAudioFr"
+    "ame\020\004\022\r\n\tkKeyEvent\020\005\022\017\n\013kMouseEvent\020\006\022\023\n"
+    "\017kCursorInfoSync\020\007\022\021\n\rkGamepadState\020\010\022\026\n"
+    "\022kCaptureStatistics\020\t\022\025\n\021kClientStatisti"
+    "cs\020\n\022\030\n\024kServerAudioSpectrum\020\013\022\020\n\014kOnlin"
+    "eGames\020\014\022\022\n\016kUIServerHello\020\r\022\021\n\rkFileTra"
+    "nsfer\020\016\022\025\n\021kRespFileTransfer\020\017*4\n\tVideoT"
+    "ype\022\014\n\010kNetH264\020\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetV"
+    "p9\020\002*\267\002\n\nButtonFlag\022\t\n\005kNone\020\000\022\017\n\013kCapsL"
+    "ockOn\020\001\022\016\n\nkShiftDown\020\002\022\020\n\014kControlDown\020"
+    "\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftMouseButtonUp\020\020\022"
+    "\030\n\024kMiddleMouseButtonUp\020 \022\027\n\023kRightMouse"
+    "ButtonUp\020@\022\017\n\nkMouseMove\020\200\001\022\025\n\020kMouseEve"
+    "ntWheel\020\200\002\022\026\n\021kMouseEventHWheel\020\200\004\022\031\n\024kL"
+    "eftMouseButtonDown\020\200\010\022\033\n\026kMiddleMouseBut"
+    "tonDown\020\200\020\022\032\n\025kRightMouseButtonDown\020\200 *J"
+    "\n\nClientType\022\014\n\010kWindows\020\000\022\n\n\006kLinux\020\001\022\n"
+    "\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022\010\n\004kiOS\020\004*G\n\013Se"
+    "ssionType\022\020\n\014kInnerServer\020\000\022\022\n\016kAndroidC"
+    "lient\020\001\022\022\n\016kWindowsClient\020\002*\330\003\n\rGamepadB"
+    "utton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031GP_XINPUT_GAMEP"
+    "AD_DPAD_UP\020\001\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_D"
+    "OWN\020\002\022\037\n\033GP_XINPUT_GAMEPAD_DPAD_LEFT\020\004\022 "
+    "\n\034GP_XINPUT_GAMEPAD_DPAD_RIGHT\020\010\022\033\n\027GP_X"
+    "INPUT_GAMEPAD_START\020\020\022\032\n\026GP_XINPUT_GAMEP"
+    "AD_BACK\020 \022 \n\034GP_XINPUT_GAMEPAD_LEFT_THUM"
+    "B\020@\022\"\n\035GP_XINPUT_GAMEPAD_RIGHT_THUMB\020\200\001\022"
+    "$\n\037GP_XINPUT_GAMEPAD_LEFT_SHOULDER\020\200\002\022%\n"
+    " GP_XINPUT_GAMEPAD_RIGHT_SHOULDER\020\200\004\022\030\n\023"
+    "GP_XINPUT_GAMEPAD_A\020\200 \022\030\n\023GP_XINPUT_GAME"
+    "PAD_B\020\200@\022\031\n\023GP_XINPUT_GAMEPAD_X\020\200\200\001\022\031\n\023G"
+    "P_XINPUT_GAMEPAD_Y\020\200\200\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
     false,
     false,
-    5164,
+    5470,
     descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once,
@@ -1014,9 +1023,43 @@ constexpr int KeyEvent::LockKeyStatusCheck_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::google::protobuf::EnumDescriptor* GamepadState_GamepadType_descriptor() {
+const ::google::protobuf::EnumDescriptor* CursorInfoSync_CursorType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
   return file_level_enum_descriptors_tc_5fmessage_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t CursorInfoSync_CursorType_internal_data_[] = {
+    1048576u, 0u, };
+bool CursorInfoSync_CursorType_IsValid(int value) {
+  return 0 <= value && value <= 15;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcArrow;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcIBeam;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcWait;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcCross;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcUpArrow;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSize;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcIcon;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSizeNWSE;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSizeNESW;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSizeWE;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSizeNS;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcSizeAll;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcHand;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcHelp;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcPin;
+constexpr CursorInfoSync_CursorType CursorInfoSync::kIdcPerson;
+constexpr CursorInfoSync_CursorType CursorInfoSync::CursorType_MIN;
+constexpr CursorInfoSync_CursorType CursorInfoSync::CursorType_MAX;
+constexpr int CursorInfoSync::CursorType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* GamepadState_GamepadType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[2];
 }
 PROTOBUF_CONSTINIT const uint32_t GamepadState_GamepadType_internal_data_[] = {
     327680u, 0u, };
@@ -1039,7 +1082,7 @@ constexpr int GamepadState::GamepadType_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* FileTransfer_FileType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[2];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[3];
 }
 PROTOBUF_CONSTINIT const uint32_t FileTransfer_FileType_internal_data_[] = {
     131072u, 0u, };
@@ -1059,7 +1102,7 @@ constexpr int FileTransfer::FileType_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* FileTransfer_FileTransferState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[3];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
 }
 PROTOBUF_CONSTINIT const uint32_t FileTransfer_FileTransferState_internal_data_[] = {
     262144u, 0u, };
@@ -1081,7 +1124,7 @@ constexpr int FileTransfer::FileTransferState_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* RespFileTransfer_FileTransferRespState_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[4];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[5];
 }
 PROTOBUF_CONSTINIT const uint32_t RespFileTransfer_FileTransferRespState_internal_data_[] = {
     393216u, 0u, };
@@ -1105,7 +1148,7 @@ constexpr int RespFileTransfer::FileTransferRespState_ARRAYSIZE;
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 const ::google::protobuf::EnumDescriptor* MessageType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[5];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
 }
 PROTOBUF_CONSTINIT const uint32_t MessageType_internal_data_[] = {
     1048576u, 0u, };
@@ -1114,7 +1157,7 @@ bool MessageType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* VideoType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[6];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
 }
 PROTOBUF_CONSTINIT const uint32_t VideoType_internal_data_[] = {
     196608u, 0u, };
@@ -1123,7 +1166,7 @@ bool VideoType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* ButtonFlag_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[7];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[8];
 }
 PROTOBUF_CONSTINIT const uint32_t ButtonFlag_internal_data_[] = {
     196608u, 393280u, 536879138u, 536870912u, 1024u, 256u, 4096u, 128u, 512u, 2048u, };
@@ -1132,7 +1175,7 @@ bool ButtonFlag_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* ClientType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[8];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[9];
 }
 PROTOBUF_CONSTINIT const uint32_t ClientType_internal_data_[] = {
     327680u, 0u, };
@@ -1141,7 +1184,7 @@ bool ClientType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* SessionType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[9];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[10];
 }
 PROTOBUF_CONSTINIT const uint32_t SessionType_internal_data_[] = {
     196608u, 0u, };
@@ -1150,7 +1193,7 @@ bool SessionType_IsValid(int value) {
 }
 const ::google::protobuf::EnumDescriptor* GamepadButton_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_tc_5fmessage_2eproto);
-  return file_level_enum_descriptors_tc_5fmessage_2eproto[10];
+  return file_level_enum_descriptors_tc_5fmessage_2eproto[11];
 }
 PROTOBUF_CONSTINIT const uint32_t GamepadButton_internal_data_[] = {
     196608u, 458816u, 536879138u, 536870912u, 4096u, 256u, 16384u, 128u, 512u, 8192u, 32768u, };
@@ -3193,9 +3236,9 @@ CursorInfoSync::CursorInfoSync(
                offsetof(Impl_, visible_),
            reinterpret_cast<const char *>(&from._impl_) +
                offsetof(Impl_, visible_),
-           offsetof(Impl_, height_) -
+           offsetof(Impl_, type_) -
                offsetof(Impl_, visible_) +
-               sizeof(Impl_::height_));
+               sizeof(Impl_::type_));
 
   // @@protoc_insertion_point(copy_constructor:tc.CursorInfoSync)
 }
@@ -3210,9 +3253,9 @@ inline void CursorInfoSync::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, visible_),
            0,
-           offsetof(Impl_, height_) -
+           offsetof(Impl_, type_) -
                offsetof(Impl_, visible_) +
-               sizeof(Impl_::height_));
+               sizeof(Impl_::type_));
 }
 CursorInfoSync::~CursorInfoSync() {
   // @@protoc_insertion_point(destructor:tc.CursorInfoSync)
@@ -3234,8 +3277,8 @@ PROTOBUF_NOINLINE void CursorInfoSync::Clear() {
 
   _impl_.bitmap_.ClearToEmpty();
   ::memset(&_impl_.visible_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.height_) -
-      reinterpret_cast<char*>(&_impl_.visible_)) + sizeof(_impl_.height_));
+      reinterpret_cast<char*>(&_impl_.type_) -
+      reinterpret_cast<char*>(&_impl_.visible_)) + sizeof(_impl_.type_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3247,23 +3290,21 @@ const char* CursorInfoSync::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 0, 0, 2> CursorInfoSync::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    8, 56,  // max_field_number, fast_idx_mask
+    9, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967040,  // skipmap
+    4294966784,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    8,  // num_field_entries
+    9,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_CursorInfoSync_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes bitmap = 8;
-    {::_pbi::TcParser::FastBS1,
-     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.bitmap_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bool visible = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CursorInfoSync, _impl_.visible_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.visible_)}},
@@ -3285,6 +3326,18 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
     // uint32 height = 7;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.height_), 63>(),
      {56, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.height_)}},
+    // bytes bitmap = 8;
+    {::_pbi::TcParser::FastBS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.bitmap_)}},
+    // .tc.CursorInfoSync.CursorType type = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CursorInfoSync, _impl_.type_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.type_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3312,6 +3365,9 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
     // bytes bitmap = 8;
     {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.bitmap_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // .tc.CursorInfoSync.CursorType type = 9;
+    {PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
@@ -3380,6 +3436,13 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
     target = stream->WriteBytesMaybeAliased(8, _s, target);
   }
 
+  // .tc.CursorInfoSync.CursorType type = 9;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        9, this->_internal_type(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3444,6 +3507,12 @@ const ::_pbi::TcParseTable<3, 8, 0, 0, 2> CursorInfoSync::_table_ = {
         this->_internal_height());
   }
 
+  // .tc.CursorInfoSync.CursorType type = 9;
+  if (this->_internal_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3487,6 +3556,9 @@ void CursorInfoSync::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (from._internal_height() != 0) {
     _this->_internal_set_height(from._internal_height());
   }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3511,8 +3583,8 @@ void CursorInfoSync::InternalSwap(CursorInfoSync* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.bitmap_, &other->_impl_.bitmap_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.height_)
-      + sizeof(CursorInfoSync::_impl_.height_)
+      PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.type_)
+      + sizeof(CursorInfoSync::_impl_.type_)
       - PROTOBUF_FIELD_OFFSET(CursorInfoSync, _impl_.visible_)>(
           reinterpret_cast<char*>(&_impl_.visible_),
           reinterpret_cast<char*>(&other->_impl_.visible_));
