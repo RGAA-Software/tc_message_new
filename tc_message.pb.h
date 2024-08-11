@@ -26,7 +26,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -94,6 +93,9 @@ extern MessageDefaultTypeInternal _Message_default_instance_;
 class MouseEvent;
 struct MouseEventDefaultTypeInternal;
 extern MouseEventDefaultTypeInternal _MouseEvent_default_instance_;
+class OnHeartBeat;
+struct OnHeartBeatDefaultTypeInternal;
+extern OnHeartBeatDefaultTypeInternal _OnHeartBeat_default_instance_;
 class OnlineGame;
 struct OnlineGameDefaultTypeInternal;
 extern OnlineGameDefaultTypeInternal _OnlineGame_default_instance_;
@@ -340,21 +342,22 @@ inline bool RespFileTransfer_FileTransferRespState_Parse(absl::string_view name,
 }
 enum MessageType : int {
   kHello = 0,
-  kAck = 1,
-  kHeartBeat = 2,
-  kVideoFrame = 3,
-  kAudioFrame = 4,
-  kKeyEvent = 5,
-  kMouseEvent = 6,
-  kCursorInfoSync = 7,
-  kGamepadState = 8,
-  kCaptureStatistics = 9,
-  kClientStatistics = 10,
-  kServerAudioSpectrum = 11,
-  kOnlineGames = 12,
-  kUIServerHello = 13,
-  kFileTransfer = 14,
-  kRespFileTransfer = 15,
+  kAck = 10,
+  kHeartBeat = 20,
+  kOnHeartBeat = 21,
+  kVideoFrame = 30,
+  kAudioFrame = 40,
+  kKeyEvent = 50,
+  kMouseEvent = 60,
+  kCursorInfoSync = 70,
+  kGamepadState = 80,
+  kCaptureStatistics = 90,
+  kClientStatistics = 100,
+  kServerAudioSpectrum = 110,
+  kOnlineGames = 120,
+  kUIServerHello = 130,
+  kFileTransfer = 140,
+  kRespFileTransfer = 150,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -364,8 +367,8 @@ enum MessageType : int {
 bool MessageType_IsValid(int value);
 extern const uint32_t MessageType_internal_data_[];
 constexpr MessageType MessageType_MIN = static_cast<MessageType>(0);
-constexpr MessageType MessageType_MAX = static_cast<MessageType>(15);
-constexpr int MessageType_ARRAYSIZE = 15 + 1;
+constexpr MessageType MessageType_MAX = static_cast<MessageType>(150);
+constexpr int MessageType_ARRAYSIZE = 150 + 1;
 const ::google::protobuf::EnumDescriptor*
 MessageType_descriptor();
 template <typename T>
@@ -373,13 +376,7 @@ const std::string& MessageType_Name(T value) {
   static_assert(std::is_same<T, MessageType>::value ||
                     std::is_integral<T>::value,
                 "Incorrect type passed to MessageType_Name().");
-  return MessageType_Name(static_cast<MessageType>(value));
-}
-template <>
-inline const std::string& MessageType_Name(MessageType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<MessageType_descriptor,
-                                                 0, 15>(
-      static_cast<int>(value));
+  return ::google::protobuf::internal::NameOfEnum(MessageType_descriptor(), value);
 }
 inline bool MessageType_Parse(absl::string_view name, MessageType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<MessageType>(
@@ -633,7 +630,7 @@ class VideoFrame final :
                &_VideoFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(VideoFrame& a, VideoFrame& b) {
     a.Swap(&b);
@@ -970,7 +967,7 @@ class UIServerHello final :
                &_UIServerHello_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    14;
 
   friend void swap(UIServerHello& a, UIServerHello& b) {
     a.Swap(&b);
@@ -1145,7 +1142,7 @@ class ServerAudioSpectrum final :
                &_ServerAudioSpectrum_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(ServerAudioSpectrum& a, ServerAudioSpectrum& b) {
     a.Swap(&b);
@@ -1384,7 +1381,7 @@ class RespFileTransfer final :
                &_RespFileTransfer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(RespFileTransfer& a, RespFileTransfer& b) {
     a.Swap(&b);
@@ -1685,7 +1682,7 @@ class OnlineGame final :
                &_OnlineGame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(OnlineGame& a, OnlineGame& b) {
     a.Swap(&b);
@@ -1819,6 +1816,253 @@ class OnlineGame final :
   friend struct ::TableStruct_tc_5fmessage_2eproto;
 };// -------------------------------------------------------------------
 
+class OnHeartBeat final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tc.OnHeartBeat) */ {
+ public:
+  inline OnHeartBeat() : OnHeartBeat(nullptr) {}
+  ~OnHeartBeat() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR OnHeartBeat(::google::protobuf::internal::ConstantInitialized);
+
+  inline OnHeartBeat(const OnHeartBeat& from)
+      : OnHeartBeat(nullptr, from) {}
+  OnHeartBeat(OnHeartBeat&& from) noexcept
+    : OnHeartBeat() {
+    *this = ::std::move(from);
+  }
+
+  inline OnHeartBeat& operator=(const OnHeartBeat& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OnHeartBeat& operator=(OnHeartBeat&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OnHeartBeat& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OnHeartBeat* internal_default_instance() {
+    return reinterpret_cast<const OnHeartBeat*>(
+               &_OnHeartBeat_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(OnHeartBeat& a, OnHeartBeat& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OnHeartBeat* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OnHeartBeat* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  OnHeartBeat* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<OnHeartBeat>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const OnHeartBeat& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const OnHeartBeat& from) {
+    OnHeartBeat::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(OnHeartBeat* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "tc.OnHeartBeat";
+  }
+  protected:
+  explicit OnHeartBeat(::google::protobuf::Arena* arena);
+  OnHeartBeat(::google::protobuf::Arena* arena, const OnHeartBeat& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIndexFieldNumber = 1,
+    kCapsLockPressedFieldNumber = 10,
+    kNumLockPressedFieldNumber = 20,
+    kAltPressedFieldNumber = 30,
+    kControlPressedFieldNumber = 40,
+    kWinPressedFieldNumber = 50,
+    kShiftPressedFieldNumber = 60,
+  };
+  // uint64 index = 1;
+  void clear_index() ;
+  ::uint64_t index() const;
+  void set_index(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_index() const;
+  void _internal_set_index(::uint64_t value);
+
+  public:
+  // bool caps_lock_pressed = 10;
+  void clear_caps_lock_pressed() ;
+  bool caps_lock_pressed() const;
+  void set_caps_lock_pressed(bool value);
+
+  private:
+  bool _internal_caps_lock_pressed() const;
+  void _internal_set_caps_lock_pressed(bool value);
+
+  public:
+  // bool num_lock_pressed = 20;
+  void clear_num_lock_pressed() ;
+  bool num_lock_pressed() const;
+  void set_num_lock_pressed(bool value);
+
+  private:
+  bool _internal_num_lock_pressed() const;
+  void _internal_set_num_lock_pressed(bool value);
+
+  public:
+  // bool alt_pressed = 30;
+  void clear_alt_pressed() ;
+  bool alt_pressed() const;
+  void set_alt_pressed(bool value);
+
+  private:
+  bool _internal_alt_pressed() const;
+  void _internal_set_alt_pressed(bool value);
+
+  public:
+  // bool control_pressed = 40;
+  void clear_control_pressed() ;
+  bool control_pressed() const;
+  void set_control_pressed(bool value);
+
+  private:
+  bool _internal_control_pressed() const;
+  void _internal_set_control_pressed(bool value);
+
+  public:
+  // bool win_pressed = 50;
+  void clear_win_pressed() ;
+  bool win_pressed() const;
+  void set_win_pressed(bool value);
+
+  private:
+  bool _internal_win_pressed() const;
+  void _internal_set_win_pressed(bool value);
+
+  public:
+  // bool shift_pressed = 60;
+  void clear_shift_pressed() ;
+  bool shift_pressed() const;
+  void set_shift_pressed(bool value);
+
+  private:
+  bool _internal_shift_pressed() const;
+  void _internal_set_shift_pressed(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:tc.OnHeartBeat)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 7, 0,
+      0, 9>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::uint64_t index_;
+    bool caps_lock_pressed_;
+    bool num_lock_pressed_;
+    bool alt_pressed_;
+    bool control_pressed_;
+    bool win_pressed_;
+    bool shift_pressed_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tc_5fmessage_2eproto;
+};// -------------------------------------------------------------------
+
 class MouseEvent final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tc.MouseEvent) */ {
  public:
@@ -1878,7 +2122,7 @@ class MouseEvent final :
                &_MouseEvent_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(MouseEvent& a, MouseEvent& b) {
     a.Swap(&b);
@@ -2161,7 +2405,7 @@ class KeyEvent final :
                &_KeyEvent_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(KeyEvent& a, KeyEvent& b) {
     a.Swap(&b);
@@ -2570,9 +2814,10 @@ class Hello final :
 };// -------------------------------------------------------------------
 
 class HeartBeat final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:tc.HeartBeat) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:tc.HeartBeat) */ {
  public:
   inline HeartBeat() : HeartBeat(nullptr) {}
+  ~HeartBeat() override;
   template<typename = void>
   explicit PROTOBUF_CONSTEXPR HeartBeat(::google::protobuf::internal::ConstantInitialized);
 
@@ -2656,15 +2901,29 @@ class HeartBeat final :
   HeartBeat* New(::google::protobuf::Arena* arena = nullptr) const final {
     return CreateMaybeMessage<HeartBeat>(arena);
   }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const HeartBeat& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const HeartBeat& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const HeartBeat& from) {
+    HeartBeat::MergeImpl(*this, from);
   }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const HeartBeat& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
   public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(HeartBeat* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
@@ -2676,16 +2935,37 @@ class HeartBeat final :
   HeartBeat(::google::protobuf::Arena* arena, const HeartBeat& from);
   public:
 
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
   ::google::protobuf::Metadata GetMetadata() const final;
 
   // nested types ----------------------------------------------------
 
   // accessors -------------------------------------------------------
 
+  enum : int {
+    kIndexFieldNumber = 1,
+  };
+  // uint64 index = 1;
+  void clear_index() ;
+  ::uint64_t index() const;
+  void set_index(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_index() const;
+  void _internal_set_index(::uint64_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:tc.HeartBeat)
  private:
   class _Internal;
 
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
   template <typename T>
@@ -2700,8 +2980,11 @@ class HeartBeat final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::uint64_t index_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
+  union { Impl_ _impl_; };
   friend struct ::TableStruct_tc_5fmessage_2eproto;
 };// -------------------------------------------------------------------
 
@@ -2764,7 +3047,7 @@ class GamepadState final :
                &_GamepadState_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(GamepadState& a, GamepadState& b) {
     a.Swap(&b);
@@ -3046,7 +3329,7 @@ class FileTransfer final :
                &_FileTransfer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(FileTransfer& a, FileTransfer& b) {
     a.Swap(&b);
@@ -3455,7 +3738,7 @@ class CursorInfoSync final :
                &_CursorInfoSync_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(CursorInfoSync& a, CursorInfoSync& b) {
     a.Swap(&b);
@@ -3766,7 +4049,7 @@ class ClientStatistics final :
                &_ClientStatistics_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(ClientStatistics& a, ClientStatistics& b) {
     a.Swap(&b);
@@ -4031,7 +4314,7 @@ class CaptureStatistics final :
                &_CaptureStatistics_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(CaptureStatistics& a, CaptureStatistics& b) {
     a.Swap(&b);
@@ -4419,7 +4702,7 @@ class AudioFrame final :
                &_AudioFrame_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(AudioFrame& a, AudioFrame& b) {
     a.Swap(&b);
@@ -4853,7 +5136,7 @@ class Message final :
                &_Message_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Message& a, Message& b) {
     a.Swap(&b);
@@ -4926,27 +5209,28 @@ class Message final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kOnlineGamesFieldNumber = 16,
-    kExtraFieldNumber = 3,
-    kHelloFieldNumber = 4,
-    kAckFieldNumber = 5,
-    kHeartBeatFieldNumber = 6,
-    kVideoFrameFieldNumber = 7,
-    kAudioFrameFieldNumber = 8,
-    kKeyEventFieldNumber = 9,
-    kMouseEventFieldNumber = 10,
-    kCursorInfoSyncFieldNumber = 11,
-    kGamepadStateFieldNumber = 12,
-    kCaptureStatisticsFieldNumber = 13,
-    kClientStatisticsFieldNumber = 14,
-    kServerAudioSpectrumFieldNumber = 15,
-    kUiServerHelloFieldNumber = 17,
-    kFileTransferFieldNumber = 18,
-    kRespFileTransferFieldNumber = 19,
-    kSendTimeFieldNumber = 2,
-    kTypeFieldNumber = 1,
+    kOnlineGamesFieldNumber = 160,
+    kExtraFieldNumber = 30,
+    kHelloFieldNumber = 40,
+    kAckFieldNumber = 50,
+    kHeartbeatFieldNumber = 60,
+    kOnHeartbeatFieldNumber = 61,
+    kVideoFrameFieldNumber = 70,
+    kAudioFrameFieldNumber = 80,
+    kKeyEventFieldNumber = 90,
+    kMouseEventFieldNumber = 100,
+    kCursorInfoSyncFieldNumber = 110,
+    kGamepadStateFieldNumber = 120,
+    kCaptureStatisticsFieldNumber = 130,
+    kClientStatisticsFieldNumber = 140,
+    kServerAudioSpectrumFieldNumber = 150,
+    kUiServerHelloFieldNumber = 170,
+    kFileTransferFieldNumber = 180,
+    kRespFileTransferFieldNumber = 190,
+    kSendTimeFieldNumber = 20,
+    kTypeFieldNumber = 10,
   };
-  // repeated .tc.OnlineGame online_games = 16;
+  // repeated .tc.OnlineGame online_games = 160;
   int online_games_size() const;
   private:
   int _internal_online_games_size() const;
@@ -4964,7 +5248,7 @@ class Message final :
   ::tc::OnlineGame* add_online_games();
   const ::google::protobuf::RepeatedPtrField< ::tc::OnlineGame >&
       online_games() const;
-  // string extra = 3;
+  // string extra = 30;
   void clear_extra() ;
   const std::string& extra() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -4980,7 +5264,7 @@ class Message final :
   std::string* _internal_mutable_extra();
 
   public:
-  // .tc.Hello hello = 4;
+  // .tc.Hello hello = 40;
   bool has_hello() const;
   void clear_hello() ;
   const ::tc::Hello& hello() const;
@@ -4995,7 +5279,7 @@ class Message final :
   ::tc::Hello* _internal_mutable_hello();
 
   public:
-  // .tc.Ack ack = 5;
+  // .tc.Ack ack = 50;
   bool has_ack() const;
   void clear_ack() ;
   const ::tc::Ack& ack() const;
@@ -5010,22 +5294,37 @@ class Message final :
   ::tc::Ack* _internal_mutable_ack();
 
   public:
-  // .tc.HeartBeat heart_beat = 6;
-  bool has_heart_beat() const;
-  void clear_heart_beat() ;
-  const ::tc::HeartBeat& heart_beat() const;
-  PROTOBUF_NODISCARD ::tc::HeartBeat* release_heart_beat();
-  ::tc::HeartBeat* mutable_heart_beat();
-  void set_allocated_heart_beat(::tc::HeartBeat* value);
-  void unsafe_arena_set_allocated_heart_beat(::tc::HeartBeat* value);
-  ::tc::HeartBeat* unsafe_arena_release_heart_beat();
+  // .tc.HeartBeat heartbeat = 60;
+  bool has_heartbeat() const;
+  void clear_heartbeat() ;
+  const ::tc::HeartBeat& heartbeat() const;
+  PROTOBUF_NODISCARD ::tc::HeartBeat* release_heartbeat();
+  ::tc::HeartBeat* mutable_heartbeat();
+  void set_allocated_heartbeat(::tc::HeartBeat* value);
+  void unsafe_arena_set_allocated_heartbeat(::tc::HeartBeat* value);
+  ::tc::HeartBeat* unsafe_arena_release_heartbeat();
 
   private:
-  const ::tc::HeartBeat& _internal_heart_beat() const;
-  ::tc::HeartBeat* _internal_mutable_heart_beat();
+  const ::tc::HeartBeat& _internal_heartbeat() const;
+  ::tc::HeartBeat* _internal_mutable_heartbeat();
 
   public:
-  // .tc.VideoFrame video_frame = 7;
+  // .tc.OnHeartBeat on_heartbeat = 61;
+  bool has_on_heartbeat() const;
+  void clear_on_heartbeat() ;
+  const ::tc::OnHeartBeat& on_heartbeat() const;
+  PROTOBUF_NODISCARD ::tc::OnHeartBeat* release_on_heartbeat();
+  ::tc::OnHeartBeat* mutable_on_heartbeat();
+  void set_allocated_on_heartbeat(::tc::OnHeartBeat* value);
+  void unsafe_arena_set_allocated_on_heartbeat(::tc::OnHeartBeat* value);
+  ::tc::OnHeartBeat* unsafe_arena_release_on_heartbeat();
+
+  private:
+  const ::tc::OnHeartBeat& _internal_on_heartbeat() const;
+  ::tc::OnHeartBeat* _internal_mutable_on_heartbeat();
+
+  public:
+  // .tc.VideoFrame video_frame = 70;
   bool has_video_frame() const;
   void clear_video_frame() ;
   const ::tc::VideoFrame& video_frame() const;
@@ -5040,7 +5339,7 @@ class Message final :
   ::tc::VideoFrame* _internal_mutable_video_frame();
 
   public:
-  // .tc.AudioFrame audio_frame = 8;
+  // .tc.AudioFrame audio_frame = 80;
   bool has_audio_frame() const;
   void clear_audio_frame() ;
   const ::tc::AudioFrame& audio_frame() const;
@@ -5055,7 +5354,7 @@ class Message final :
   ::tc::AudioFrame* _internal_mutable_audio_frame();
 
   public:
-  // .tc.KeyEvent key_event = 9;
+  // .tc.KeyEvent key_event = 90;
   bool has_key_event() const;
   void clear_key_event() ;
   const ::tc::KeyEvent& key_event() const;
@@ -5070,7 +5369,7 @@ class Message final :
   ::tc::KeyEvent* _internal_mutable_key_event();
 
   public:
-  // .tc.MouseEvent mouse_event = 10;
+  // .tc.MouseEvent mouse_event = 100;
   bool has_mouse_event() const;
   void clear_mouse_event() ;
   const ::tc::MouseEvent& mouse_event() const;
@@ -5085,7 +5384,7 @@ class Message final :
   ::tc::MouseEvent* _internal_mutable_mouse_event();
 
   public:
-  // .tc.CursorInfoSync cursor_info_sync = 11;
+  // .tc.CursorInfoSync cursor_info_sync = 110;
   bool has_cursor_info_sync() const;
   void clear_cursor_info_sync() ;
   const ::tc::CursorInfoSync& cursor_info_sync() const;
@@ -5100,7 +5399,7 @@ class Message final :
   ::tc::CursorInfoSync* _internal_mutable_cursor_info_sync();
 
   public:
-  // .tc.GamepadState gamepad_state = 12;
+  // .tc.GamepadState gamepad_state = 120;
   bool has_gamepad_state() const;
   void clear_gamepad_state() ;
   const ::tc::GamepadState& gamepad_state() const;
@@ -5115,7 +5414,7 @@ class Message final :
   ::tc::GamepadState* _internal_mutable_gamepad_state();
 
   public:
-  // .tc.CaptureStatistics capture_statistics = 13;
+  // .tc.CaptureStatistics capture_statistics = 130;
   bool has_capture_statistics() const;
   void clear_capture_statistics() ;
   const ::tc::CaptureStatistics& capture_statistics() const;
@@ -5130,7 +5429,7 @@ class Message final :
   ::tc::CaptureStatistics* _internal_mutable_capture_statistics();
 
   public:
-  // .tc.ClientStatistics client_statistics = 14;
+  // .tc.ClientStatistics client_statistics = 140;
   bool has_client_statistics() const;
   void clear_client_statistics() ;
   const ::tc::ClientStatistics& client_statistics() const;
@@ -5145,7 +5444,7 @@ class Message final :
   ::tc::ClientStatistics* _internal_mutable_client_statistics();
 
   public:
-  // .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+  // .tc.ServerAudioSpectrum server_audio_spectrum = 150;
   bool has_server_audio_spectrum() const;
   void clear_server_audio_spectrum() ;
   const ::tc::ServerAudioSpectrum& server_audio_spectrum() const;
@@ -5160,7 +5459,7 @@ class Message final :
   ::tc::ServerAudioSpectrum* _internal_mutable_server_audio_spectrum();
 
   public:
-  // .tc.UIServerHello ui_server_hello = 17;
+  // .tc.UIServerHello ui_server_hello = 170;
   bool has_ui_server_hello() const;
   void clear_ui_server_hello() ;
   const ::tc::UIServerHello& ui_server_hello() const;
@@ -5175,7 +5474,7 @@ class Message final :
   ::tc::UIServerHello* _internal_mutable_ui_server_hello();
 
   public:
-  // .tc.FileTransfer file_transfer = 18;
+  // .tc.FileTransfer file_transfer = 180;
   bool has_file_transfer() const;
   void clear_file_transfer() ;
   const ::tc::FileTransfer& file_transfer() const;
@@ -5190,7 +5489,7 @@ class Message final :
   ::tc::FileTransfer* _internal_mutable_file_transfer();
 
   public:
-  // .tc.RespFileTransfer resp_file_transfer = 19;
+  // .tc.RespFileTransfer resp_file_transfer = 190;
   bool has_resp_file_transfer() const;
   void clear_resp_file_transfer() ;
   const ::tc::RespFileTransfer& resp_file_transfer() const;
@@ -5205,7 +5504,7 @@ class Message final :
   ::tc::RespFileTransfer* _internal_mutable_resp_file_transfer();
 
   public:
-  // uint64 send_time = 2;
+  // uint64 send_time = 20;
   void clear_send_time() ;
   ::uint64_t send_time() const;
   void set_send_time(::uint64_t value);
@@ -5215,7 +5514,7 @@ class Message final :
   void _internal_set_send_time(::uint64_t value);
 
   public:
-  // .tc.MessageType type = 1;
+  // .tc.MessageType type = 10;
   void clear_type() ;
   ::tc::MessageType type() const;
   void set_type(::tc::MessageType value);
@@ -5231,8 +5530,8 @@ class Message final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      5, 19, 16,
-      40, 2>
+      5, 20, 17,
+      40, 25>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5254,7 +5553,8 @@ class Message final :
     ::google::protobuf::internal::ArenaStringPtr extra_;
     ::tc::Hello* hello_;
     ::tc::Ack* ack_;
-    ::tc::HeartBeat* heart_beat_;
+    ::tc::HeartBeat* heartbeat_;
+    ::tc::OnHeartBeat* on_heartbeat_;
     ::tc::VideoFrame* video_frame_;
     ::tc::AudioFrame* audio_frame_;
     ::tc::KeyEvent* key_event_;
@@ -5436,6 +5736,194 @@ inline void Hello::_internal_set_enable_controller(bool value) {
 // -------------------------------------------------------------------
 
 // HeartBeat
+
+// uint64 index = 1;
+inline void HeartBeat::clear_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.index_ = ::uint64_t{0u};
+}
+inline ::uint64_t HeartBeat::index() const {
+  // @@protoc_insertion_point(field_get:tc.HeartBeat.index)
+  return _internal_index();
+}
+inline void HeartBeat::set_index(::uint64_t value) {
+  _internal_set_index(value);
+  // @@protoc_insertion_point(field_set:tc.HeartBeat.index)
+}
+inline ::uint64_t HeartBeat::_internal_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.index_;
+}
+inline void HeartBeat::_internal_set_index(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.index_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// OnHeartBeat
+
+// uint64 index = 1;
+inline void OnHeartBeat::clear_index() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.index_ = ::uint64_t{0u};
+}
+inline ::uint64_t OnHeartBeat::index() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.index)
+  return _internal_index();
+}
+inline void OnHeartBeat::set_index(::uint64_t value) {
+  _internal_set_index(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.index)
+}
+inline ::uint64_t OnHeartBeat::_internal_index() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.index_;
+}
+inline void OnHeartBeat::_internal_set_index(::uint64_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.index_ = value;
+}
+
+// bool caps_lock_pressed = 10;
+inline void OnHeartBeat::clear_caps_lock_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.caps_lock_pressed_ = false;
+}
+inline bool OnHeartBeat::caps_lock_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.caps_lock_pressed)
+  return _internal_caps_lock_pressed();
+}
+inline void OnHeartBeat::set_caps_lock_pressed(bool value) {
+  _internal_set_caps_lock_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.caps_lock_pressed)
+}
+inline bool OnHeartBeat::_internal_caps_lock_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.caps_lock_pressed_;
+}
+inline void OnHeartBeat::_internal_set_caps_lock_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.caps_lock_pressed_ = value;
+}
+
+// bool num_lock_pressed = 20;
+inline void OnHeartBeat::clear_num_lock_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.num_lock_pressed_ = false;
+}
+inline bool OnHeartBeat::num_lock_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.num_lock_pressed)
+  return _internal_num_lock_pressed();
+}
+inline void OnHeartBeat::set_num_lock_pressed(bool value) {
+  _internal_set_num_lock_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.num_lock_pressed)
+}
+inline bool OnHeartBeat::_internal_num_lock_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.num_lock_pressed_;
+}
+inline void OnHeartBeat::_internal_set_num_lock_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.num_lock_pressed_ = value;
+}
+
+// bool alt_pressed = 30;
+inline void OnHeartBeat::clear_alt_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.alt_pressed_ = false;
+}
+inline bool OnHeartBeat::alt_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.alt_pressed)
+  return _internal_alt_pressed();
+}
+inline void OnHeartBeat::set_alt_pressed(bool value) {
+  _internal_set_alt_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.alt_pressed)
+}
+inline bool OnHeartBeat::_internal_alt_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.alt_pressed_;
+}
+inline void OnHeartBeat::_internal_set_alt_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.alt_pressed_ = value;
+}
+
+// bool control_pressed = 40;
+inline void OnHeartBeat::clear_control_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.control_pressed_ = false;
+}
+inline bool OnHeartBeat::control_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.control_pressed)
+  return _internal_control_pressed();
+}
+inline void OnHeartBeat::set_control_pressed(bool value) {
+  _internal_set_control_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.control_pressed)
+}
+inline bool OnHeartBeat::_internal_control_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.control_pressed_;
+}
+inline void OnHeartBeat::_internal_set_control_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.control_pressed_ = value;
+}
+
+// bool win_pressed = 50;
+inline void OnHeartBeat::clear_win_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.win_pressed_ = false;
+}
+inline bool OnHeartBeat::win_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.win_pressed)
+  return _internal_win_pressed();
+}
+inline void OnHeartBeat::set_win_pressed(bool value) {
+  _internal_set_win_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.win_pressed)
+}
+inline bool OnHeartBeat::_internal_win_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.win_pressed_;
+}
+inline void OnHeartBeat::_internal_set_win_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.win_pressed_ = value;
+}
+
+// bool shift_pressed = 60;
+inline void OnHeartBeat::clear_shift_pressed() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.shift_pressed_ = false;
+}
+inline bool OnHeartBeat::shift_pressed() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.shift_pressed)
+  return _internal_shift_pressed();
+}
+inline void OnHeartBeat::set_shift_pressed(bool value) {
+  _internal_set_shift_pressed(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.shift_pressed)
+}
+inline bool OnHeartBeat::_internal_shift_pressed() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.shift_pressed_;
+}
+inline void OnHeartBeat::_internal_set_shift_pressed(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.shift_pressed_ = value;
+}
 
 // -------------------------------------------------------------------
 
@@ -8600,7 +9088,7 @@ inline void RespFileTransfer::_internal_set_timestamp(::uint64_t value) {
 
 // Message
 
-// .tc.MessageType type = 1;
+// .tc.MessageType type = 10;
 inline void Message::clear_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.type_ = 0;
@@ -8623,7 +9111,7 @@ inline void Message::_internal_set_type(::tc::MessageType value) {
   _impl_.type_ = value;
 }
 
-// uint64 send_time = 2;
+// uint64 send_time = 20;
 inline void Message::clear_send_time() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.send_time_ = ::uint64_t{0u};
@@ -8646,7 +9134,7 @@ inline void Message::_internal_set_send_time(::uint64_t value) {
   _impl_.send_time_ = value;
 }
 
-// string extra = 3;
+// string extra = 30;
 inline void Message::clear_extra() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.extra_.ClearToEmpty();
@@ -8699,7 +9187,7 @@ inline void Message::set_allocated_extra(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.extra)
 }
 
-// .tc.Hello hello = 4;
+// .tc.Hello hello = 40;
 inline bool Message::has_hello() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.hello_ != nullptr);
@@ -8795,7 +9283,7 @@ inline void Message::set_allocated_hello(::tc::Hello* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.hello)
 }
 
-// .tc.Ack ack = 5;
+// .tc.Ack ack = 50;
 inline bool Message::has_ack() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.ack_ != nullptr);
@@ -8891,45 +9379,45 @@ inline void Message::set_allocated_ack(::tc::Ack* value) {
   // @@protoc_insertion_point(field_set_allocated:tc.Message.ack)
 }
 
-// .tc.HeartBeat heart_beat = 6;
-inline bool Message::has_heart_beat() const {
+// .tc.HeartBeat heartbeat = 60;
+inline bool Message::has_heartbeat() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.heart_beat_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.heartbeat_ != nullptr);
   return value;
 }
-inline void Message::clear_heart_beat() {
+inline void Message::clear_heartbeat() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  if (_impl_.heart_beat_ != nullptr) _impl_.heart_beat_->Clear();
+  if (_impl_.heartbeat_ != nullptr) _impl_.heartbeat_->Clear();
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline const ::tc::HeartBeat& Message::_internal_heart_beat() const {
+inline const ::tc::HeartBeat& Message::_internal_heartbeat() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::tc::HeartBeat* p = _impl_.heart_beat_;
+  const ::tc::HeartBeat* p = _impl_.heartbeat_;
   return p != nullptr ? *p : reinterpret_cast<const ::tc::HeartBeat&>(::tc::_HeartBeat_default_instance_);
 }
-inline const ::tc::HeartBeat& Message::heart_beat() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:tc.Message.heart_beat)
-  return _internal_heart_beat();
+inline const ::tc::HeartBeat& Message::heartbeat() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.Message.heartbeat)
+  return _internal_heartbeat();
 }
-inline void Message::unsafe_arena_set_allocated_heart_beat(::tc::HeartBeat* value) {
+inline void Message::unsafe_arena_set_allocated_heartbeat(::tc::HeartBeat* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.heart_beat_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.heartbeat_);
   }
-  _impl_.heart_beat_ = reinterpret_cast<::tc::HeartBeat*>(value);
+  _impl_.heartbeat_ = reinterpret_cast<::tc::HeartBeat*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.heart_beat)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.heartbeat)
 }
-inline ::tc::HeartBeat* Message::release_heart_beat() {
+inline ::tc::HeartBeat* Message::release_heartbeat() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::tc::HeartBeat* released = _impl_.heart_beat_;
-  _impl_.heart_beat_ = nullptr;
+  ::tc::HeartBeat* released = _impl_.heartbeat_;
+  _impl_.heartbeat_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
   released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -8943,34 +9431,34 @@ inline ::tc::HeartBeat* Message::release_heart_beat() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::tc::HeartBeat* Message::unsafe_arena_release_heart_beat() {
+inline ::tc::HeartBeat* Message::unsafe_arena_release_heartbeat() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:tc.Message.heart_beat)
+  // @@protoc_insertion_point(field_release:tc.Message.heartbeat)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::tc::HeartBeat* temp = _impl_.heart_beat_;
-  _impl_.heart_beat_ = nullptr;
+  ::tc::HeartBeat* temp = _impl_.heartbeat_;
+  _impl_.heartbeat_ = nullptr;
   return temp;
 }
-inline ::tc::HeartBeat* Message::_internal_mutable_heart_beat() {
+inline ::tc::HeartBeat* Message::_internal_mutable_heartbeat() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000004u;
-  if (_impl_.heart_beat_ == nullptr) {
+  if (_impl_.heartbeat_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::HeartBeat>(GetArena());
-    _impl_.heart_beat_ = reinterpret_cast<::tc::HeartBeat*>(p);
+    _impl_.heartbeat_ = reinterpret_cast<::tc::HeartBeat*>(p);
   }
-  return _impl_.heart_beat_;
+  return _impl_.heartbeat_;
 }
-inline ::tc::HeartBeat* Message::mutable_heart_beat() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::tc::HeartBeat* _msg = _internal_mutable_heart_beat();
-  // @@protoc_insertion_point(field_mutable:tc.Message.heart_beat)
+inline ::tc::HeartBeat* Message::mutable_heartbeat() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::tc::HeartBeat* _msg = _internal_mutable_heartbeat();
+  // @@protoc_insertion_point(field_mutable:tc.Message.heartbeat)
   return _msg;
 }
-inline void Message::set_allocated_heart_beat(::tc::HeartBeat* value) {
+inline void Message::set_allocated_heartbeat(::tc::HeartBeat* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::tc::HeartBeat*>(_impl_.heart_beat_);
+    delete reinterpret_cast<::tc::HeartBeat*>(_impl_.heartbeat_);
   }
 
   if (value != nullptr) {
@@ -8983,20 +9471,116 @@ inline void Message::set_allocated_heart_beat(::tc::HeartBeat* value) {
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.heart_beat_ = reinterpret_cast<::tc::HeartBeat*>(value);
-  // @@protoc_insertion_point(field_set_allocated:tc.Message.heart_beat)
+  _impl_.heartbeat_ = reinterpret_cast<::tc::HeartBeat*>(value);
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.heartbeat)
 }
 
-// .tc.VideoFrame video_frame = 7;
-inline bool Message::has_video_frame() const {
+// .tc.OnHeartBeat on_heartbeat = 61;
+inline bool Message::has_on_heartbeat() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.on_heartbeat_ != nullptr);
+  return value;
+}
+inline void Message::clear_on_heartbeat() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.on_heartbeat_ != nullptr) _impl_.on_heartbeat_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::tc::OnHeartBeat& Message::_internal_on_heartbeat() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::tc::OnHeartBeat* p = _impl_.on_heartbeat_;
+  return p != nullptr ? *p : reinterpret_cast<const ::tc::OnHeartBeat&>(::tc::_OnHeartBeat_default_instance_);
+}
+inline const ::tc::OnHeartBeat& Message::on_heartbeat() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:tc.Message.on_heartbeat)
+  return _internal_on_heartbeat();
+}
+inline void Message::unsafe_arena_set_allocated_on_heartbeat(::tc::OnHeartBeat* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.on_heartbeat_);
+  }
+  _impl_.on_heartbeat_ = reinterpret_cast<::tc::OnHeartBeat*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.on_heartbeat)
+}
+inline ::tc::OnHeartBeat* Message::release_on_heartbeat() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::tc::OnHeartBeat* released = _impl_.on_heartbeat_;
+  _impl_.on_heartbeat_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::tc::OnHeartBeat* Message::unsafe_arena_release_on_heartbeat() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:tc.Message.on_heartbeat)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::tc::OnHeartBeat* temp = _impl_.on_heartbeat_;
+  _impl_.on_heartbeat_ = nullptr;
+  return temp;
+}
+inline ::tc::OnHeartBeat* Message::_internal_mutable_on_heartbeat() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  if (_impl_.on_heartbeat_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tc::OnHeartBeat>(GetArena());
+    _impl_.on_heartbeat_ = reinterpret_cast<::tc::OnHeartBeat*>(p);
+  }
+  return _impl_.on_heartbeat_;
+}
+inline ::tc::OnHeartBeat* Message::mutable_on_heartbeat() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::tc::OnHeartBeat* _msg = _internal_mutable_on_heartbeat();
+  // @@protoc_insertion_point(field_mutable:tc.Message.on_heartbeat)
+  return _msg;
+}
+inline void Message::set_allocated_on_heartbeat(::tc::OnHeartBeat* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::tc::OnHeartBeat*>(_impl_.on_heartbeat_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::tc::OnHeartBeat*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.on_heartbeat_ = reinterpret_cast<::tc::OnHeartBeat*>(value);
+  // @@protoc_insertion_point(field_set_allocated:tc.Message.on_heartbeat)
+}
+
+// .tc.VideoFrame video_frame = 70;
+inline bool Message::has_video_frame() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.video_frame_ != nullptr);
   return value;
 }
 inline void Message::clear_video_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.video_frame_ != nullptr) _impl_.video_frame_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline const ::tc::VideoFrame& Message::_internal_video_frame() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9014,16 +9598,16 @@ inline void Message::unsafe_arena_set_allocated_video_frame(::tc::VideoFrame* va
   }
   _impl_.video_frame_ = reinterpret_cast<::tc::VideoFrame*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.video_frame)
 }
 inline ::tc::VideoFrame* Message::release_video_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::tc::VideoFrame* released = _impl_.video_frame_;
   _impl_.video_frame_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9043,14 +9627,14 @@ inline ::tc::VideoFrame* Message::unsafe_arena_release_video_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.video_frame)
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::tc::VideoFrame* temp = _impl_.video_frame_;
   _impl_.video_frame_ = nullptr;
   return temp;
 }
 inline ::tc::VideoFrame* Message::_internal_mutable_video_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   if (_impl_.video_frame_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::VideoFrame>(GetArena());
     _impl_.video_frame_ = reinterpret_cast<::tc::VideoFrame*>(p);
@@ -9074,25 +9658,25 @@ inline void Message::set_allocated_video_frame(::tc::VideoFrame* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
   _impl_.video_frame_ = reinterpret_cast<::tc::VideoFrame*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.video_frame)
 }
 
-// .tc.AudioFrame audio_frame = 8;
+// .tc.AudioFrame audio_frame = 80;
 inline bool Message::has_audio_frame() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.audio_frame_ != nullptr);
   return value;
 }
 inline void Message::clear_audio_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.audio_frame_ != nullptr) _impl_.audio_frame_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline const ::tc::AudioFrame& Message::_internal_audio_frame() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9110,16 +9694,16 @@ inline void Message::unsafe_arena_set_allocated_audio_frame(::tc::AudioFrame* va
   }
   _impl_.audio_frame_ = reinterpret_cast<::tc::AudioFrame*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000020u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000020u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.audio_frame)
 }
 inline ::tc::AudioFrame* Message::release_audio_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
   ::tc::AudioFrame* released = _impl_.audio_frame_;
   _impl_.audio_frame_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9139,14 +9723,14 @@ inline ::tc::AudioFrame* Message::unsafe_arena_release_audio_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.audio_frame)
 
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
   ::tc::AudioFrame* temp = _impl_.audio_frame_;
   _impl_.audio_frame_ = nullptr;
   return temp;
 }
 inline ::tc::AudioFrame* Message::_internal_mutable_audio_frame() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   if (_impl_.audio_frame_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::AudioFrame>(GetArena());
     _impl_.audio_frame_ = reinterpret_cast<::tc::AudioFrame*>(p);
@@ -9170,25 +9754,25 @@ inline void Message::set_allocated_audio_frame(::tc::AudioFrame* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000020u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000020u;
   }
 
   _impl_.audio_frame_ = reinterpret_cast<::tc::AudioFrame*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.audio_frame)
 }
 
-// .tc.KeyEvent key_event = 9;
+// .tc.KeyEvent key_event = 90;
 inline bool Message::has_key_event() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.key_event_ != nullptr);
   return value;
 }
 inline void Message::clear_key_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.key_event_ != nullptr) _impl_.key_event_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
 }
 inline const ::tc::KeyEvent& Message::_internal_key_event() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9206,16 +9790,16 @@ inline void Message::unsafe_arena_set_allocated_key_event(::tc::KeyEvent* value)
   }
   _impl_.key_event_ = reinterpret_cast<::tc::KeyEvent*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000040u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000040u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.key_event)
 }
 inline ::tc::KeyEvent* Message::release_key_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
   ::tc::KeyEvent* released = _impl_.key_event_;
   _impl_.key_event_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9235,14 +9819,14 @@ inline ::tc::KeyEvent* Message::unsafe_arena_release_key_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.key_event)
 
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
   ::tc::KeyEvent* temp = _impl_.key_event_;
   _impl_.key_event_ = nullptr;
   return temp;
 }
 inline ::tc::KeyEvent* Message::_internal_mutable_key_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_._has_bits_[0] |= 0x00000040u;
   if (_impl_.key_event_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::KeyEvent>(GetArena());
     _impl_.key_event_ = reinterpret_cast<::tc::KeyEvent*>(p);
@@ -9266,25 +9850,25 @@ inline void Message::set_allocated_key_event(::tc::KeyEvent* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000040u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000040u;
   }
 
   _impl_.key_event_ = reinterpret_cast<::tc::KeyEvent*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.key_event)
 }
 
-// .tc.MouseEvent mouse_event = 10;
+// .tc.MouseEvent mouse_event = 100;
 inline bool Message::has_mouse_event() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.mouse_event_ != nullptr);
   return value;
 }
 inline void Message::clear_mouse_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.mouse_event_ != nullptr) _impl_.mouse_event_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000080u;
 }
 inline const ::tc::MouseEvent& Message::_internal_mouse_event() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9302,16 +9886,16 @@ inline void Message::unsafe_arena_set_allocated_mouse_event(::tc::MouseEvent* va
   }
   _impl_.mouse_event_ = reinterpret_cast<::tc::MouseEvent*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000040u;
+    _impl_._has_bits_[0] |= 0x00000080u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
+    _impl_._has_bits_[0] &= ~0x00000080u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.mouse_event)
 }
 inline ::tc::MouseEvent* Message::release_mouse_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000080u;
   ::tc::MouseEvent* released = _impl_.mouse_event_;
   _impl_.mouse_event_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9331,14 +9915,14 @@ inline ::tc::MouseEvent* Message::unsafe_arena_release_mouse_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.mouse_event)
 
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000080u;
   ::tc::MouseEvent* temp = _impl_.mouse_event_;
   _impl_.mouse_event_ = nullptr;
   return temp;
 }
 inline ::tc::MouseEvent* Message::_internal_mutable_mouse_event() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000040u;
+  _impl_._has_bits_[0] |= 0x00000080u;
   if (_impl_.mouse_event_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::MouseEvent>(GetArena());
     _impl_.mouse_event_ = reinterpret_cast<::tc::MouseEvent*>(p);
@@ -9362,25 +9946,25 @@ inline void Message::set_allocated_mouse_event(::tc::MouseEvent* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000040u;
+    _impl_._has_bits_[0] |= 0x00000080u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
+    _impl_._has_bits_[0] &= ~0x00000080u;
   }
 
   _impl_.mouse_event_ = reinterpret_cast<::tc::MouseEvent*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.mouse_event)
 }
 
-// .tc.CursorInfoSync cursor_info_sync = 11;
+// .tc.CursorInfoSync cursor_info_sync = 110;
 inline bool Message::has_cursor_info_sync() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.cursor_info_sync_ != nullptr);
   return value;
 }
 inline void Message::clear_cursor_info_sync() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.cursor_info_sync_ != nullptr) _impl_.cursor_info_sync_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000080u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
 }
 inline const ::tc::CursorInfoSync& Message::_internal_cursor_info_sync() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9398,16 +9982,16 @@ inline void Message::unsafe_arena_set_allocated_cursor_info_sync(::tc::CursorInf
   }
   _impl_.cursor_info_sync_ = reinterpret_cast<::tc::CursorInfoSync*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000080u;
+    _impl_._has_bits_[0] |= 0x00000100u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
+    _impl_._has_bits_[0] &= ~0x00000100u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.cursor_info_sync)
 }
 inline ::tc::CursorInfoSync* Message::release_cursor_info_sync() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000080u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
   ::tc::CursorInfoSync* released = _impl_.cursor_info_sync_;
   _impl_.cursor_info_sync_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9427,14 +10011,14 @@ inline ::tc::CursorInfoSync* Message::unsafe_arena_release_cursor_info_sync() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.cursor_info_sync)
 
-  _impl_._has_bits_[0] &= ~0x00000080u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
   ::tc::CursorInfoSync* temp = _impl_.cursor_info_sync_;
   _impl_.cursor_info_sync_ = nullptr;
   return temp;
 }
 inline ::tc::CursorInfoSync* Message::_internal_mutable_cursor_info_sync() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000080u;
+  _impl_._has_bits_[0] |= 0x00000100u;
   if (_impl_.cursor_info_sync_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::CursorInfoSync>(GetArena());
     _impl_.cursor_info_sync_ = reinterpret_cast<::tc::CursorInfoSync*>(p);
@@ -9458,25 +10042,25 @@ inline void Message::set_allocated_cursor_info_sync(::tc::CursorInfoSync* value)
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000080u;
+    _impl_._has_bits_[0] |= 0x00000100u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
+    _impl_._has_bits_[0] &= ~0x00000100u;
   }
 
   _impl_.cursor_info_sync_ = reinterpret_cast<::tc::CursorInfoSync*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.cursor_info_sync)
 }
 
-// .tc.GamepadState gamepad_state = 12;
+// .tc.GamepadState gamepad_state = 120;
 inline bool Message::has_gamepad_state() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000200u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.gamepad_state_ != nullptr);
   return value;
 }
 inline void Message::clear_gamepad_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.gamepad_state_ != nullptr) _impl_.gamepad_state_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
 }
 inline const ::tc::GamepadState& Message::_internal_gamepad_state() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9494,16 +10078,16 @@ inline void Message::unsafe_arena_set_allocated_gamepad_state(::tc::GamepadState
   }
   _impl_.gamepad_state_ = reinterpret_cast<::tc::GamepadState*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000100u;
+    _impl_._has_bits_[0] |= 0x00000200u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000100u;
+    _impl_._has_bits_[0] &= ~0x00000200u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.gamepad_state)
 }
 inline ::tc::GamepadState* Message::release_gamepad_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
   ::tc::GamepadState* released = _impl_.gamepad_state_;
   _impl_.gamepad_state_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9523,14 +10107,14 @@ inline ::tc::GamepadState* Message::unsafe_arena_release_gamepad_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.gamepad_state)
 
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
   ::tc::GamepadState* temp = _impl_.gamepad_state_;
   _impl_.gamepad_state_ = nullptr;
   return temp;
 }
 inline ::tc::GamepadState* Message::_internal_mutable_gamepad_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000100u;
+  _impl_._has_bits_[0] |= 0x00000200u;
   if (_impl_.gamepad_state_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::GamepadState>(GetArena());
     _impl_.gamepad_state_ = reinterpret_cast<::tc::GamepadState*>(p);
@@ -9554,25 +10138,25 @@ inline void Message::set_allocated_gamepad_state(::tc::GamepadState* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000100u;
+    _impl_._has_bits_[0] |= 0x00000200u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000100u;
+    _impl_._has_bits_[0] &= ~0x00000200u;
   }
 
   _impl_.gamepad_state_ = reinterpret_cast<::tc::GamepadState*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.gamepad_state)
 }
 
-// .tc.CaptureStatistics capture_statistics = 13;
+// .tc.CaptureStatistics capture_statistics = 130;
 inline bool Message::has_capture_statistics() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000200u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000400u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.capture_statistics_ != nullptr);
   return value;
 }
 inline void Message::clear_capture_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.capture_statistics_ != nullptr) _impl_.capture_statistics_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
 }
 inline const ::tc::CaptureStatistics& Message::_internal_capture_statistics() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9590,16 +10174,16 @@ inline void Message::unsafe_arena_set_allocated_capture_statistics(::tc::Capture
   }
   _impl_.capture_statistics_ = reinterpret_cast<::tc::CaptureStatistics*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000200u;
+    _impl_._has_bits_[0] |= 0x00000400u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000200u;
+    _impl_._has_bits_[0] &= ~0x00000400u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.capture_statistics)
 }
 inline ::tc::CaptureStatistics* Message::release_capture_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
   ::tc::CaptureStatistics* released = _impl_.capture_statistics_;
   _impl_.capture_statistics_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9619,14 +10203,14 @@ inline ::tc::CaptureStatistics* Message::unsafe_arena_release_capture_statistics
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.capture_statistics)
 
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
   ::tc::CaptureStatistics* temp = _impl_.capture_statistics_;
   _impl_.capture_statistics_ = nullptr;
   return temp;
 }
 inline ::tc::CaptureStatistics* Message::_internal_mutable_capture_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000200u;
+  _impl_._has_bits_[0] |= 0x00000400u;
   if (_impl_.capture_statistics_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::CaptureStatistics>(GetArena());
     _impl_.capture_statistics_ = reinterpret_cast<::tc::CaptureStatistics*>(p);
@@ -9650,25 +10234,25 @@ inline void Message::set_allocated_capture_statistics(::tc::CaptureStatistics* v
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000200u;
+    _impl_._has_bits_[0] |= 0x00000400u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000200u;
+    _impl_._has_bits_[0] &= ~0x00000400u;
   }
 
   _impl_.capture_statistics_ = reinterpret_cast<::tc::CaptureStatistics*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.capture_statistics)
 }
 
-// .tc.ClientStatistics client_statistics = 14;
+// .tc.ClientStatistics client_statistics = 140;
 inline bool Message::has_client_statistics() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000400u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000800u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.client_statistics_ != nullptr);
   return value;
 }
 inline void Message::clear_client_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.client_statistics_ != nullptr) _impl_.client_statistics_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000400u;
+  _impl_._has_bits_[0] &= ~0x00000800u;
 }
 inline const ::tc::ClientStatistics& Message::_internal_client_statistics() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9686,16 +10270,16 @@ inline void Message::unsafe_arena_set_allocated_client_statistics(::tc::ClientSt
   }
   _impl_.client_statistics_ = reinterpret_cast<::tc::ClientStatistics*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000400u;
+    _impl_._has_bits_[0] |= 0x00000800u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000400u;
+    _impl_._has_bits_[0] &= ~0x00000800u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.client_statistics)
 }
 inline ::tc::ClientStatistics* Message::release_client_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000400u;
+  _impl_._has_bits_[0] &= ~0x00000800u;
   ::tc::ClientStatistics* released = _impl_.client_statistics_;
   _impl_.client_statistics_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9715,14 +10299,14 @@ inline ::tc::ClientStatistics* Message::unsafe_arena_release_client_statistics()
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.client_statistics)
 
-  _impl_._has_bits_[0] &= ~0x00000400u;
+  _impl_._has_bits_[0] &= ~0x00000800u;
   ::tc::ClientStatistics* temp = _impl_.client_statistics_;
   _impl_.client_statistics_ = nullptr;
   return temp;
 }
 inline ::tc::ClientStatistics* Message::_internal_mutable_client_statistics() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000400u;
+  _impl_._has_bits_[0] |= 0x00000800u;
   if (_impl_.client_statistics_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::ClientStatistics>(GetArena());
     _impl_.client_statistics_ = reinterpret_cast<::tc::ClientStatistics*>(p);
@@ -9746,25 +10330,25 @@ inline void Message::set_allocated_client_statistics(::tc::ClientStatistics* val
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000400u;
+    _impl_._has_bits_[0] |= 0x00000800u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000400u;
+    _impl_._has_bits_[0] &= ~0x00000800u;
   }
 
   _impl_.client_statistics_ = reinterpret_cast<::tc::ClientStatistics*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.client_statistics)
 }
 
-// .tc.ServerAudioSpectrum server_audio_spectrum = 15;
+// .tc.ServerAudioSpectrum server_audio_spectrum = 150;
 inline bool Message::has_server_audio_spectrum() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000800u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00001000u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.server_audio_spectrum_ != nullptr);
   return value;
 }
 inline void Message::clear_server_audio_spectrum() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.server_audio_spectrum_ != nullptr) _impl_.server_audio_spectrum_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000800u;
+  _impl_._has_bits_[0] &= ~0x00001000u;
 }
 inline const ::tc::ServerAudioSpectrum& Message::_internal_server_audio_spectrum() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9782,16 +10366,16 @@ inline void Message::unsafe_arena_set_allocated_server_audio_spectrum(::tc::Serv
   }
   _impl_.server_audio_spectrum_ = reinterpret_cast<::tc::ServerAudioSpectrum*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000800u;
+    _impl_._has_bits_[0] |= 0x00001000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000800u;
+    _impl_._has_bits_[0] &= ~0x00001000u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.server_audio_spectrum)
 }
 inline ::tc::ServerAudioSpectrum* Message::release_server_audio_spectrum() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00000800u;
+  _impl_._has_bits_[0] &= ~0x00001000u;
   ::tc::ServerAudioSpectrum* released = _impl_.server_audio_spectrum_;
   _impl_.server_audio_spectrum_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9811,14 +10395,14 @@ inline ::tc::ServerAudioSpectrum* Message::unsafe_arena_release_server_audio_spe
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.server_audio_spectrum)
 
-  _impl_._has_bits_[0] &= ~0x00000800u;
+  _impl_._has_bits_[0] &= ~0x00001000u;
   ::tc::ServerAudioSpectrum* temp = _impl_.server_audio_spectrum_;
   _impl_.server_audio_spectrum_ = nullptr;
   return temp;
 }
 inline ::tc::ServerAudioSpectrum* Message::_internal_mutable_server_audio_spectrum() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00000800u;
+  _impl_._has_bits_[0] |= 0x00001000u;
   if (_impl_.server_audio_spectrum_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::ServerAudioSpectrum>(GetArena());
     _impl_.server_audio_spectrum_ = reinterpret_cast<::tc::ServerAudioSpectrum*>(p);
@@ -9842,16 +10426,16 @@ inline void Message::set_allocated_server_audio_spectrum(::tc::ServerAudioSpectr
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000800u;
+    _impl_._has_bits_[0] |= 0x00001000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000800u;
+    _impl_._has_bits_[0] &= ~0x00001000u;
   }
 
   _impl_.server_audio_spectrum_ = reinterpret_cast<::tc::ServerAudioSpectrum*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.server_audio_spectrum)
 }
 
-// repeated .tc.OnlineGame online_games = 16;
+// repeated .tc.OnlineGame online_games = 160;
 inline int Message::_internal_online_games_size() const {
   return _internal_online_games().size();
 }
@@ -9900,16 +10484,16 @@ Message::_internal_mutable_online_games() {
   return &_impl_.online_games_;
 }
 
-// .tc.UIServerHello ui_server_hello = 17;
+// .tc.UIServerHello ui_server_hello = 170;
 inline bool Message::has_ui_server_hello() const {
-  bool value = (_impl_._has_bits_[0] & 0x00001000u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00002000u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.ui_server_hello_ != nullptr);
   return value;
 }
 inline void Message::clear_ui_server_hello() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.ui_server_hello_ != nullptr) _impl_.ui_server_hello_->Clear();
-  _impl_._has_bits_[0] &= ~0x00001000u;
+  _impl_._has_bits_[0] &= ~0x00002000u;
 }
 inline const ::tc::UIServerHello& Message::_internal_ui_server_hello() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -9927,16 +10511,16 @@ inline void Message::unsafe_arena_set_allocated_ui_server_hello(::tc::UIServerHe
   }
   _impl_.ui_server_hello_ = reinterpret_cast<::tc::UIServerHello*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00001000u;
+    _impl_._has_bits_[0] |= 0x00002000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00001000u;
+    _impl_._has_bits_[0] &= ~0x00002000u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.ui_server_hello)
 }
 inline ::tc::UIServerHello* Message::release_ui_server_hello() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00001000u;
+  _impl_._has_bits_[0] &= ~0x00002000u;
   ::tc::UIServerHello* released = _impl_.ui_server_hello_;
   _impl_.ui_server_hello_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -9956,14 +10540,14 @@ inline ::tc::UIServerHello* Message::unsafe_arena_release_ui_server_hello() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.ui_server_hello)
 
-  _impl_._has_bits_[0] &= ~0x00001000u;
+  _impl_._has_bits_[0] &= ~0x00002000u;
   ::tc::UIServerHello* temp = _impl_.ui_server_hello_;
   _impl_.ui_server_hello_ = nullptr;
   return temp;
 }
 inline ::tc::UIServerHello* Message::_internal_mutable_ui_server_hello() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00001000u;
+  _impl_._has_bits_[0] |= 0x00002000u;
   if (_impl_.ui_server_hello_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::UIServerHello>(GetArena());
     _impl_.ui_server_hello_ = reinterpret_cast<::tc::UIServerHello*>(p);
@@ -9987,25 +10571,25 @@ inline void Message::set_allocated_ui_server_hello(::tc::UIServerHello* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00001000u;
+    _impl_._has_bits_[0] |= 0x00002000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00001000u;
+    _impl_._has_bits_[0] &= ~0x00002000u;
   }
 
   _impl_.ui_server_hello_ = reinterpret_cast<::tc::UIServerHello*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.ui_server_hello)
 }
 
-// .tc.FileTransfer file_transfer = 18;
+// .tc.FileTransfer file_transfer = 180;
 inline bool Message::has_file_transfer() const {
-  bool value = (_impl_._has_bits_[0] & 0x00002000u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00004000u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.file_transfer_ != nullptr);
   return value;
 }
 inline void Message::clear_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.file_transfer_ != nullptr) _impl_.file_transfer_->Clear();
-  _impl_._has_bits_[0] &= ~0x00002000u;
+  _impl_._has_bits_[0] &= ~0x00004000u;
 }
 inline const ::tc::FileTransfer& Message::_internal_file_transfer() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -10023,16 +10607,16 @@ inline void Message::unsafe_arena_set_allocated_file_transfer(::tc::FileTransfer
   }
   _impl_.file_transfer_ = reinterpret_cast<::tc::FileTransfer*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00002000u;
+    _impl_._has_bits_[0] |= 0x00004000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00002000u;
+    _impl_._has_bits_[0] &= ~0x00004000u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.file_transfer)
 }
 inline ::tc::FileTransfer* Message::release_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00002000u;
+  _impl_._has_bits_[0] &= ~0x00004000u;
   ::tc::FileTransfer* released = _impl_.file_transfer_;
   _impl_.file_transfer_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -10052,14 +10636,14 @@ inline ::tc::FileTransfer* Message::unsafe_arena_release_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.file_transfer)
 
-  _impl_._has_bits_[0] &= ~0x00002000u;
+  _impl_._has_bits_[0] &= ~0x00004000u;
   ::tc::FileTransfer* temp = _impl_.file_transfer_;
   _impl_.file_transfer_ = nullptr;
   return temp;
 }
 inline ::tc::FileTransfer* Message::_internal_mutable_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00002000u;
+  _impl_._has_bits_[0] |= 0x00004000u;
   if (_impl_.file_transfer_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::FileTransfer>(GetArena());
     _impl_.file_transfer_ = reinterpret_cast<::tc::FileTransfer*>(p);
@@ -10083,25 +10667,25 @@ inline void Message::set_allocated_file_transfer(::tc::FileTransfer* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00002000u;
+    _impl_._has_bits_[0] |= 0x00004000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00002000u;
+    _impl_._has_bits_[0] &= ~0x00004000u;
   }
 
   _impl_.file_transfer_ = reinterpret_cast<::tc::FileTransfer*>(value);
   // @@protoc_insertion_point(field_set_allocated:tc.Message.file_transfer)
 }
 
-// .tc.RespFileTransfer resp_file_transfer = 19;
+// .tc.RespFileTransfer resp_file_transfer = 190;
 inline bool Message::has_resp_file_transfer() const {
-  bool value = (_impl_._has_bits_[0] & 0x00004000u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00008000u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.resp_file_transfer_ != nullptr);
   return value;
 }
 inline void Message::clear_resp_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (_impl_.resp_file_transfer_ != nullptr) _impl_.resp_file_transfer_->Clear();
-  _impl_._has_bits_[0] &= ~0x00004000u;
+  _impl_._has_bits_[0] &= ~0x00008000u;
 }
 inline const ::tc::RespFileTransfer& Message::_internal_resp_file_transfer() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -10119,16 +10703,16 @@ inline void Message::unsafe_arena_set_allocated_resp_file_transfer(::tc::RespFil
   }
   _impl_.resp_file_transfer_ = reinterpret_cast<::tc::RespFileTransfer*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00004000u;
+    _impl_._has_bits_[0] |= 0x00008000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00004000u;
+    _impl_._has_bits_[0] &= ~0x00008000u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tc.Message.resp_file_transfer)
 }
 inline ::tc::RespFileTransfer* Message::release_resp_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
-  _impl_._has_bits_[0] &= ~0x00004000u;
+  _impl_._has_bits_[0] &= ~0x00008000u;
   ::tc::RespFileTransfer* released = _impl_.resp_file_transfer_;
   _impl_.resp_file_transfer_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -10148,14 +10732,14 @@ inline ::tc::RespFileTransfer* Message::unsafe_arena_release_resp_file_transfer(
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   // @@protoc_insertion_point(field_release:tc.Message.resp_file_transfer)
 
-  _impl_._has_bits_[0] &= ~0x00004000u;
+  _impl_._has_bits_[0] &= ~0x00008000u;
   ::tc::RespFileTransfer* temp = _impl_.resp_file_transfer_;
   _impl_.resp_file_transfer_ = nullptr;
   return temp;
 }
 inline ::tc::RespFileTransfer* Message::_internal_mutable_resp_file_transfer() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_._has_bits_[0] |= 0x00004000u;
+  _impl_._has_bits_[0] |= 0x00008000u;
   if (_impl_.resp_file_transfer_ == nullptr) {
     auto* p = CreateMaybeMessage<::tc::RespFileTransfer>(GetArena());
     _impl_.resp_file_transfer_ = reinterpret_cast<::tc::RespFileTransfer*>(p);
@@ -10179,9 +10763,9 @@ inline void Message::set_allocated_resp_file_transfer(::tc::RespFileTransfer* va
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00004000u;
+    _impl_._has_bits_[0] |= 0x00008000u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00004000u;
+    _impl_._has_bits_[0] &= ~0x00008000u;
   }
 
   _impl_.resp_file_transfer_ = reinterpret_cast<::tc::RespFileTransfer*>(value);
