@@ -5,30 +5,31 @@ package tc;
 enum MessageType {
   // client -> server
   kHello = 0;
-  kAck = 1;
-  kHeartBeat = 2;
-  kVideoFrame = 3;
-  kAudioFrame = 4;
-  kKeyEvent = 5;
-  kMouseEvent = 6;
+  kAck = 10;
+  kHeartBeat = 20;
+  kOnHeartBeat = 21;
+  kVideoFrame = 30;
+  kAudioFrame = 40;
+  kKeyEvent = 50;
+  kMouseEvent = 60;
   // server -> client
-  kCursorInfoSync = 7;
+  kCursorInfoSync = 70;
   // client -> server
-  kGamepadState = 8;
+  kGamepadState = 80;
   // capture server -> host panel
-  kCaptureStatistics = 9;
+  kCaptureStatistics = 90;
   // client statistics
-  kClientStatistics = 10;
+  kClientStatistics = 100;
   // capture server -> host panel
-  kServerAudioSpectrum = 11;
+  kServerAudioSpectrum = 110;
   // host panel -> client
-  kOnlineGames = 12;
+  kOnlineGames = 120;
   // ui server hello
-  kUIServerHello = 13;
+  kUIServerHello = 130;
   // file transfer
-  kFileTransfer = 14;
+  kFileTransfer = 140;
   // file transfer resp
-  kRespFileTransfer = 15;
+  kRespFileTransfer = 150;
 }
 
 enum VideoType {
@@ -82,7 +83,18 @@ message Hello {
 }
 
 message HeartBeat {
+  uint64 index = 1;
+}
 
+message OnHeartBeat {
+  uint64 index = 1;
+  // keyboard information
+  bool caps_lock_pressed = 10;
+  bool num_lock_pressed = 20;
+  bool alt_pressed = 30;
+  bool control_pressed = 40;
+  bool win_pressed = 50;
+  bool shift_pressed = 60;
 }
 
 message VideoFrame {
@@ -334,23 +346,24 @@ message RespFileTransfer {
 }
 
 message Message {
-  MessageType type = 1;
-  uint64 send_time = 2;
-  string extra = 3;
-  Hello hello = 4;
-  Ack ack = 5;
-  HeartBeat heart_beat = 6;
-  VideoFrame video_frame = 7;
-  AudioFrame audio_frame = 8;
-  KeyEvent key_event = 9;
-  MouseEvent mouse_event = 10;
-  CursorInfoSync cursor_info_sync = 11;
-  GamepadState gamepad_state = 12;
-  CaptureStatistics capture_statistics = 13;
-  ClientStatistics client_statistics = 14;
-  ServerAudioSpectrum server_audio_spectrum = 15;
-  repeated OnlineGame online_games = 16;
-  UIServerHello ui_server_hello = 17;
-  FileTransfer file_transfer = 18;
-  RespFileTransfer resp_file_transfer = 19;
+  MessageType type = 10;
+  uint64 send_time = 20;
+  string extra = 30;
+  Hello hello = 40;
+  Ack ack = 50;
+  HeartBeat heartbeat = 60;
+  OnHeartBeat on_heartbeat = 61;
+  VideoFrame video_frame = 70;
+  AudioFrame audio_frame = 80;
+  KeyEvent key_event = 90;
+  MouseEvent mouse_event = 100;
+  CursorInfoSync cursor_info_sync = 110;
+  GamepadState gamepad_state = 120;
+  CaptureStatistics capture_statistics = 130;
+  ClientStatistics client_statistics = 140;
+  ServerAudioSpectrum server_audio_spectrum = 150;
+  repeated OnlineGame online_games = 160;
+  UIServerHello ui_server_hello = 170;
+  FileTransfer file_transfer = 180;
+  RespFileTransfer resp_file_transfer = 190;
 }
