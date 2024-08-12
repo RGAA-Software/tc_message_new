@@ -90,7 +90,9 @@ message OnHeartBeat {
   uint64 index = 1;
   // keyboard information
   bool caps_lock_pressed = 10;
+  int32 caps_lock_state = 11;
   bool num_lock_pressed = 20;
+  int32 num_lock_state = 21;
   bool alt_pressed = 30;
   bool control_pressed = 40;
   bool win_pressed = 50;
