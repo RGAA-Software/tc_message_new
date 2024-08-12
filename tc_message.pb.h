@@ -1949,6 +1949,8 @@ class OnHeartBeat final :
 
   enum : int {
     kIndexFieldNumber = 1,
+    kCapsLockStateFieldNumber = 11,
+    kNumLockStateFieldNumber = 21,
     kCapsLockPressedFieldNumber = 10,
     kNumLockPressedFieldNumber = 20,
     kAltPressedFieldNumber = 30,
@@ -1964,6 +1966,26 @@ class OnHeartBeat final :
   private:
   ::uint64_t _internal_index() const;
   void _internal_set_index(::uint64_t value);
+
+  public:
+  // int32 caps_lock_state = 11;
+  void clear_caps_lock_state() ;
+  ::int32_t caps_lock_state() const;
+  void set_caps_lock_state(::int32_t value);
+
+  private:
+  ::int32_t _internal_caps_lock_state() const;
+  void _internal_set_caps_lock_state(::int32_t value);
+
+  public:
+  // int32 num_lock_state = 21;
+  void clear_num_lock_state() ;
+  ::int32_t num_lock_state() const;
+  void set_num_lock_state(::int32_t value);
+
+  private:
+  ::int32_t _internal_num_lock_state() const;
+  void _internal_set_num_lock_state(::int32_t value);
 
   public:
   // bool caps_lock_pressed = 10;
@@ -2032,7 +2054,7 @@ class OnHeartBeat final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 7, 0,
+      4, 9, 0,
       0, 9>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2050,6 +2072,8 @@ class OnHeartBeat final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::uint64_t index_;
+    ::int32_t caps_lock_state_;
+    ::int32_t num_lock_state_;
     bool caps_lock_pressed_;
     bool num_lock_pressed_;
     bool alt_pressed_;
@@ -5810,6 +5834,29 @@ inline void OnHeartBeat::_internal_set_caps_lock_pressed(bool value) {
   _impl_.caps_lock_pressed_ = value;
 }
 
+// int32 caps_lock_state = 11;
+inline void OnHeartBeat::clear_caps_lock_state() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.caps_lock_state_ = 0;
+}
+inline ::int32_t OnHeartBeat::caps_lock_state() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.caps_lock_state)
+  return _internal_caps_lock_state();
+}
+inline void OnHeartBeat::set_caps_lock_state(::int32_t value) {
+  _internal_set_caps_lock_state(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.caps_lock_state)
+}
+inline ::int32_t OnHeartBeat::_internal_caps_lock_state() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.caps_lock_state_;
+}
+inline void OnHeartBeat::_internal_set_caps_lock_state(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.caps_lock_state_ = value;
+}
+
 // bool num_lock_pressed = 20;
 inline void OnHeartBeat::clear_num_lock_pressed() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
@@ -5831,6 +5878,29 @@ inline void OnHeartBeat::_internal_set_num_lock_pressed(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.num_lock_pressed_ = value;
+}
+
+// int32 num_lock_state = 21;
+inline void OnHeartBeat::clear_num_lock_state() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.num_lock_state_ = 0;
+}
+inline ::int32_t OnHeartBeat::num_lock_state() const {
+  // @@protoc_insertion_point(field_get:tc.OnHeartBeat.num_lock_state)
+  return _internal_num_lock_state();
+}
+inline void OnHeartBeat::set_num_lock_state(::int32_t value) {
+  _internal_set_num_lock_state(value);
+  // @@protoc_insertion_point(field_set:tc.OnHeartBeat.num_lock_state)
+}
+inline ::int32_t OnHeartBeat::_internal_num_lock_state() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.num_lock_state_;
+}
+inline void OnHeartBeat::_internal_set_num_lock_state(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.num_lock_state_ = value;
 }
 
 // bool alt_pressed = 30;

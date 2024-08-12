@@ -158,6 +158,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr OnHeartBeat::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : index_{::uint64_t{0u}},
+        caps_lock_state_{0},
+        num_lock_state_{0},
         caps_lock_pressed_{false},
         num_lock_pressed_{false},
         alt_pressed_{false},
@@ -575,7 +577,9 @@ const ::uint32_t TableStruct_tc_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.index_),
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.caps_lock_pressed_),
+    PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.caps_lock_state_),
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.num_lock_pressed_),
+    PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.num_lock_state_),
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.alt_pressed_),
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.control_pressed_),
     PROTOBUF_FIELD_OFFSET(::tc::OnHeartBeat, _impl_.win_pressed_),
@@ -843,20 +847,20 @@ static const ::_pbi::MigrationSchema
         {10, -1, -1, sizeof(::tc::Hello)},
         {22, -1, -1, sizeof(::tc::HeartBeat)},
         {31, -1, -1, sizeof(::tc::OnHeartBeat)},
-        {46, -1, -1, sizeof(::tc::VideoFrame)},
-        {67, -1, -1, sizeof(::tc::AudioFrame)},
-        {81, -1, -1, sizeof(::tc::KeyEvent)},
-        {95, -1, -1, sizeof(::tc::MouseEvent)},
-        {113, -1, -1, sizeof(::tc::CursorInfoSync)},
-        {130, -1, -1, sizeof(::tc::GamepadState)},
-        {146, -1, -1, sizeof(::tc::CaptureStatistics)},
-        {169, -1, -1, sizeof(::tc::ClientStatistics)},
-        {184, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
-        {197, -1, -1, sizeof(::tc::OnlineGame)},
-        {207, -1, -1, sizeof(::tc::UIServerHello)},
-        {216, -1, -1, sizeof(::tc::FileTransfer)},
-        {237, -1, -1, sizeof(::tc::RespFileTransfer)},
-        {253, 281, -1, sizeof(::tc::Message)},
+        {48, -1, -1, sizeof(::tc::VideoFrame)},
+        {69, -1, -1, sizeof(::tc::AudioFrame)},
+        {83, -1, -1, sizeof(::tc::KeyEvent)},
+        {97, -1, -1, sizeof(::tc::MouseEvent)},
+        {115, -1, -1, sizeof(::tc::CursorInfoSync)},
+        {132, -1, -1, sizeof(::tc::GamepadState)},
+        {148, -1, -1, sizeof(::tc::CaptureStatistics)},
+        {171, -1, -1, sizeof(::tc::ClientStatistics)},
+        {186, -1, -1, sizeof(::tc::ServerAudioSpectrum)},
+        {199, -1, -1, sizeof(::tc::OnlineGame)},
+        {209, -1, -1, sizeof(::tc::UIServerHello)},
+        {218, -1, -1, sizeof(::tc::FileTransfer)},
+        {239, -1, -1, sizeof(::tc::RespFileTransfer)},
+        {255, 283, -1, sizeof(::tc::Message)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -885,151 +889,152 @@ const char descriptor_table_protodef_tc_5fmessage_2eproto[] PROTOBUF_SECTION_VAR
     "s\n\005Hello\022\024\n\014enable_audio\030\001 \001(\010\022\024\n\014enable"
     "_video\030\002 \001(\010\022#\n\013client_type\030\003 \001(\0162\016.tc.C"
     "lientType\022\031\n\021enable_controller\030\004 \001(\010\"\032\n\t"
-    "HeartBeat\022\r\n\005index\030\001 \001(\004\"\253\001\n\013OnHeartBeat"
+    "HeartBeat\022\r\n\005index\030\001 \001(\004\"\334\001\n\013OnHeartBeat"
     "\022\r\n\005index\030\001 \001(\004\022\031\n\021caps_lock_pressed\030\n \001"
-    "(\010\022\030\n\020num_lock_pressed\030\024 \001(\010\022\023\n\013alt_pres"
-    "sed\030\036 \001(\010\022\027\n\017control_pressed\030( \001(\010\022\023\n\013wi"
-    "n_pressed\0302 \001(\010\022\025\n\rshift_pressed\030< \001(\010\"\200"
-    "\002\n\nVideoFrame\022\033\n\004type\030\001 \001(\0162\r.tc.VideoTy"
-    "pe\022\014\n\004data\030\002 \001(\014\022\023\n\013frame_index\030\003 \001(\004\022\013\n"
-    "\003key\030\004 \001(\010\022\023\n\013frame_width\030\005 \001(\005\022\024\n\014frame"
-    "_height\030\006 \001(\005\022\r\n\005extra\030\007 \001(\t\022\017\n\007mon_idx\030"
-    "\010 \001(\005\022\020\n\010mon_name\030\t \001(\t\022\020\n\010mon_left\030\n \001("
-    "\005\022\017\n\007mon_top\030\013 \001(\005\022\021\n\tmon_right\030\014 \001(\005\022\022\n"
-    "\nmon_bottom\030\r \001(\005\"n\n\nAudioFrame\022\017\n\007sampl"
-    "es\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005"
-    "\022\022\n\nframe_size\030\004 \001(\005\022\014\n\004data\030\005 \001(\014\022\r\n\005ex"
-    "tra\030\006 \001(\t\"\372\001\n\010KeyEvent\022\020\n\010key_code\030\001 \001(\r"
-    "\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_status\030\003 \001(\005\022"
-    "\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014status_chec"
-    "k\030\005 \001(\0162\037.tc.KeyEvent.LockKeyStatusCheck"
-    "\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKeyStatusChec"
-    "k\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkCheckNumLock"
-    "\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMouseEvent\022\025\n"
-    "\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio\030\002 \001(\002\022\017\n"
-    "\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022\014\n\004data\030\005"
-    " \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007delta_x\030\007 \001(\005"
-    "\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030\t \001(\010\022\020\n\010re"
-    "leased\030\n \001(\010\"\276\003\n\016CursorInfoSync\022\017\n\007visib"
-    "le\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\021\n\thotspo"
-    "t_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022\r\n\005width\030\006 "
-    "\001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap\030\010 \001(\014\022+\n\004t"
-    "ype\030\t \001(\0162\035.tc.CursorInfoSync.CursorType"
-    "\"\202\002\n\nCursorType\022\r\n\tkIdcArrow\020\000\022\r\n\tkIdcIB"
-    "eam\020\001\022\014\n\010kIdcWait\020\002\022\r\n\tkIdcCross\020\003\022\017\n\013kI"
-    "dcUpArrow\020\004\022\014\n\010kIdcSize\020\005\022\014\n\010kIdcIcon\020\006\022"
-    "\020\n\014kIdcSizeNWSE\020\007\022\020\n\014kIdcSizeNESW\020\010\022\016\n\nk"
-    "IdcSizeWE\020\t\022\016\n\nkIdcSizeNS\020\n\022\017\n\013kIdcSizeA"
-    "ll\020\013\022\014\n\010kIdcHand\020\014\022\014\n\010kIdcHelp\020\r\022\013\n\007kIdc"
-    "Pin\020\016\022\016\n\nkIdcPerson\020\017\"\246\002\n\014GamepadState\022\017"
-    "\n\007buttons\030\001 \001(\r\022\024\n\014left_trigger\030\002 \001(\r\022\025\n"
-    "\rright_trigger\030\003 \001(\r\022\020\n\010thumb_lx\030\004 \001(\005\022\020"
-    "\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030\006 \001(\005\022\020\n\010th"
-    "umb_ry\030\007 \001(\005\022-\n\007gp_type\030\010 \001(\0162\034.tc.Gamep"
-    "adState.GamepadType\"a\n\013GamepadType\022\014\n\010kB"
-    "uttons\020\000\022\020\n\014kLeftTrigger\020\001\022\021\n\rkRightTrig"
-    "ger\020\002\022\016\n\nkLeftThumb\020\003\022\017\n\013kRightThumb\020\004\"\245"
-    "\003\n\021CaptureStatistics\022\030\n\020video_frame_gaps"
-    "\030\001 \003(\r\022\030\n\020encode_durations\030\002 \003(\r\022\030\n\020audi"
-    "o_frame_gaps\030\003 \003(\r\022\030\n\020decode_durations\030\004"
-    " \003(\r\022\036\n\026client_video_recv_gaps\030\005 \003(\r\022\035\n\025"
-    "client_fps_video_recv\030\006 \001(\r\022\031\n\021client_fp"
-    "s_render\030\007 \001(\r\022\036\n\026client_recv_media_data"
-    "\030\010 \001(\003\022\030\n\020fps_video_encode\030\t \001(\005\022\030\n\020app_"
-    "running_time\030\n \001(\005\022\036\n\026server_send_media_"
-    "data\030\013 \001(\003\022\024\n\014render_width\030\014 \001(\005\022\025\n\rrend"
-    "er_height\030\r \001(\005\022\025\n\rcapture_width\030\016 \001(\005\022\026"
-    "\n\016capture_height\030\017 \001(\005\"\267\001\n\020ClientStatist"
-    "ics\022\030\n\020decode_durations\030\001 \003(\r\022\027\n\017video_r"
-    "ecv_gaps\030\002 \003(\r\022\026\n\016fps_video_recv\030\003 \001(\r\022\022"
-    "\n\nfps_render\030\004 \001(\r\022\027\n\017recv_media_data\030\005 "
-    "\001(\003\022\024\n\014render_width\030\006 \001(\005\022\025\n\rrender_heig"
-    "ht\030\007 \001(\005\"u\n\023ServerAudioSpectrum\022\017\n\007sampl"
-    "es\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004bits\030\003 \001(\005"
-    "\022\025\n\rleft_spectrum\030\004 \003(\001\022\026\n\016right_spectru"
-    "m\030\005 \003(\001\"0\n\nOnlineGame\022\017\n\007game_id\030\001 \001(\005\022\021"
-    "\n\tgame_exes\030\002 \001(\t\".\n\rUIServerHello\022\035\n\004ty"
-    "pe\030\001 \001(\0162\017.tc.SessionType\"\324\003\n\014FileTransf"
-    "er\022\n\n\002id\030\001 \001(\t\0221\n\005state\030\n \001(\0162\".tc.FileT"
-    "ransfer.FileTransferState\022,\n\tfile_type\030\024"
-    " \001(\0162\031.tc.FileTransfer.FileType\022\025\n\rrelat"
-    "ive_path\030\036 \001(\t\022\020\n\010filename\030( \001(\t\022\014\n\004data"
-    "\0302 \001(\014\022\020\n\010filesize\030< \001(\004\022\030\n\020transferred_"
-    "size\030F \001(\004\022\020\n\010file_md5\030P \001(\t\022\026\n\016local_fi"
-    "lepath\030Z \001(\t\022\021\n\ttimestamp\030d \001(\004\022\020\n\010ref_p"
-    "ath\030n \001(\t\022\022\n\nref_folder\030x \001(\t\"\"\n\010FileTyp"
-    "e\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n\021FileTransfe"
-    "rState\022\030\n\024kRequestFileTransfer\020\000\022\021\n\rkTra"
-    "nsferring\020\001\022\021\n\rkTransferOver\020\002\022\030\n\024kTrans"
-    "ferInterrupted\020\003\"\357\002\n\020RespFileTransfer\022\n\n"
-    "\002id\030\001 \001(\t\0229\n\005state\030\n \001(\0162*.tc.RespFileTr"
-    "ansfer.FileTransferRespState\022\020\n\010filename"
-    "\030\024 \001(\t\022\026\n\016local_filepath\030\036 \001(\t\022\020\n\010filesi"
-    "ze\030( \001(\004\022\030\n\020transferred_size\0302 \001(\004\022\020\n\010pr"
-    "ogress\030< \001(\002\022\021\n\ttimestamp\030F \001(\004\"\230\001\n\025File"
-    "TransferRespState\022\022\n\016kTransferReady\020\000\022\026\n"
-    "\022kFileAlreadyExists\020\001\022\025\n\021kFileDeleteFail"
-    "ed\020\002\022\021\n\rkTransferring\020\003\022\024\n\020kTransferSucc"
-    "ess\020\004\022\023\n\017kTransferFailed\020\005\"\372\005\n\007Message\022\035"
-    "\n\004type\030\n \001(\0162\017.tc.MessageType\022\021\n\tsend_ti"
-    "me\030\024 \001(\004\022\r\n\005extra\030\036 \001(\t\022\030\n\005hello\030( \001(\0132\t"
-    ".tc.Hello\022\024\n\003ack\0302 \001(\0132\007.tc.Ack\022 \n\theart"
-    "beat\030< \001(\0132\r.tc.HeartBeat\022%\n\014on_heartbea"
-    "t\030= \001(\0132\017.tc.OnHeartBeat\022#\n\013video_frame\030"
-    "F \001(\0132\016.tc.VideoFrame\022#\n\013audio_frame\030P \001"
-    "(\0132\016.tc.AudioFrame\022\037\n\tkey_event\030Z \001(\0132\014."
-    "tc.KeyEvent\022#\n\013mouse_event\030d \001(\0132\016.tc.Mo"
-    "useEvent\022,\n\020cursor_info_sync\030n \001(\0132\022.tc."
-    "CursorInfoSync\022\'\n\rgamepad_state\030x \001(\0132\020."
-    "tc.GamepadState\0222\n\022capture_statistics\030\202\001"
-    " \001(\0132\025.tc.CaptureStatistics\0220\n\021client_st"
-    "atistics\030\214\001 \001(\0132\024.tc.ClientStatistics\0227\n"
-    "\025server_audio_spectrum\030\226\001 \001(\0132\027.tc.Serve"
-    "rAudioSpectrum\022%\n\014online_games\030\240\001 \003(\0132\016."
-    "tc.OnlineGame\022+\n\017ui_server_hello\030\252\001 \001(\0132"
-    "\021.tc.UIServerHello\022(\n\rfile_transfer\030\264\001 \001"
-    "(\0132\020.tc.FileTransfer\0221\n\022resp_file_transf"
-    "er\030\276\001 \001(\0132\024.tc.RespFileTransfer*\313\002\n\013Mess"
-    "ageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\n\022\016\n\nkHeartB"
-    "eat\020\024\022\020\n\014kOnHeartBeat\020\025\022\017\n\013kVideoFrame\020\036"
-    "\022\017\n\013kAudioFrame\020(\022\r\n\tkKeyEvent\0202\022\017\n\013kMou"
-    "seEvent\020<\022\023\n\017kCursorInfoSync\020F\022\021\n\rkGamep"
-    "adState\020P\022\026\n\022kCaptureStatistics\020Z\022\025\n\021kCl"
-    "ientStatistics\020d\022\030\n\024kServerAudioSpectrum"
-    "\020n\022\020\n\014kOnlineGames\020x\022\023\n\016kUIServerHello\020\202"
-    "\001\022\022\n\rkFileTransfer\020\214\001\022\026\n\021kRespFileTransf"
-    "er\020\226\001*4\n\tVideoType\022\014\n\010kNetH264\020\000\022\014\n\010kNet"
-    "Hevc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButtonFlag\022\t\n\005kN"
-    "one\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShiftDown\020\002\022\020"
-    "\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022\026\n\022kLeftM"
-    "ouseButtonUp\020\020\022\030\n\024kMiddleMouseButtonUp\020 "
-    "\022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkMouseMove\020"
-    "\200\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021kMouseEvent"
-    "HWheel\020\200\004\022\031\n\024kLeftMouseButtonDown\020\200\010\022\033\n\026"
-    "kMiddleMouseButtonDown\020\200\020\022\032\n\025kRightMouse"
-    "ButtonDown\020\200 *J\n\nClientType\022\014\n\010kWindows\020"
-    "\000\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kAndroid\020\003\022"
-    "\010\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kInnerServer"
-    "\020\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWindowsClient"
-    "\020\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNKNOWN\020\000\022\035\n\031"
-    "GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033GP_XINPUT"
-    "_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINPUT_GAMEPA"
-    "D_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAMEPAD_DPAD_"
-    "RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_START\020\020\022\032\n\026"
-    "GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_XINPUT_GA"
-    "MEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT_GAMEPAD_"
-    "RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAMEPAD_LEFT"
-    "_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEPAD_RIGHT_"
-    "SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPAD_A\020\200 \022\030\n"
-    "\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_XINPUT_GAM"
-    "EPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD_Y\020\200\200\002b\006p"
-    "roto3"
+    "(\010\022\027\n\017caps_lock_state\030\013 \001(\005\022\030\n\020num_lock_"
+    "pressed\030\024 \001(\010\022\026\n\016num_lock_state\030\025 \001(\005\022\023\n"
+    "\013alt_pressed\030\036 \001(\010\022\027\n\017control_pressed\030( "
+    "\001(\010\022\023\n\013win_pressed\0302 \001(\010\022\025\n\rshift_presse"
+    "d\030< \001(\010\"\200\002\n\nVideoFrame\022\033\n\004type\030\001 \001(\0162\r.t"
+    "c.VideoType\022\014\n\004data\030\002 \001(\014\022\023\n\013frame_index"
+    "\030\003 \001(\004\022\013\n\003key\030\004 \001(\010\022\023\n\013frame_width\030\005 \001(\005"
+    "\022\024\n\014frame_height\030\006 \001(\005\022\r\n\005extra\030\007 \001(\t\022\017\n"
+    "\007mon_idx\030\010 \001(\005\022\020\n\010mon_name\030\t \001(\t\022\020\n\010mon_"
+    "left\030\n \001(\005\022\017\n\007mon_top\030\013 \001(\005\022\021\n\tmon_right"
+    "\030\014 \001(\005\022\022\n\nmon_bottom\030\r \001(\005\"n\n\nAudioFrame"
+    "\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004b"
+    "its\030\003 \001(\005\022\022\n\nframe_size\030\004 \001(\005\022\014\n\004data\030\005 "
+    "\001(\014\022\r\n\005extra\030\006 \001(\t\"\372\001\n\010KeyEvent\022\020\n\010key_c"
+    "ode\030\001 \001(\r\022\014\n\004down\030\002 \001(\010\022\027\n\017num_lock_stat"
+    "us\030\003 \001(\005\022\030\n\020caps_lock_status\030\004 \001(\005\0225\n\014st"
+    "atus_check\030\005 \001(\0162\037.tc.KeyEvent.LockKeySt"
+    "atusCheck\022\021\n\ttimestamp\030\006 \001(\003\"Q\n\022LockKeyS"
+    "tatusCheck\022\024\n\020kDontCareLockKey\020\000\022\021\n\rkChe"
+    "ckNumLock\020\001\022\022\n\016kCheckCapsLock\020\002\"\273\001\n\nMous"
+    "eEvent\022\025\n\rmonitor_index\030\001 \001(\005\022\017\n\007x_ratio"
+    "\030\002 \001(\002\022\017\n\007y_ratio\030\003 \001(\002\022\016\n\006button\030\004 \001(\005\022"
+    "\014\n\004data\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\017\n\007delt"
+    "a_x\030\007 \001(\005\022\017\n\007delta_y\030\010 \001(\005\022\017\n\007pressed\030\t "
+    "\001(\010\022\020\n\010released\030\n \001(\010\"\276\003\n\016CursorInfoSync"
+    "\022\017\n\007visible\030\001 \001(\010\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022"
+    "\021\n\thotspot_x\030\004 \001(\005\022\021\n\thotspot_y\030\005 \001(\005\022\r\n"
+    "\005width\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\016\n\006bitmap\030\010"
+    " \001(\014\022+\n\004type\030\t \001(\0162\035.tc.CursorInfoSync.C"
+    "ursorType\"\202\002\n\nCursorType\022\r\n\tkIdcArrow\020\000\022"
+    "\r\n\tkIdcIBeam\020\001\022\014\n\010kIdcWait\020\002\022\r\n\tkIdcCros"
+    "s\020\003\022\017\n\013kIdcUpArrow\020\004\022\014\n\010kIdcSize\020\005\022\014\n\010kI"
+    "dcIcon\020\006\022\020\n\014kIdcSizeNWSE\020\007\022\020\n\014kIdcSizeNE"
+    "SW\020\010\022\016\n\nkIdcSizeWE\020\t\022\016\n\nkIdcSizeNS\020\n\022\017\n\013"
+    "kIdcSizeAll\020\013\022\014\n\010kIdcHand\020\014\022\014\n\010kIdcHelp\020"
+    "\r\022\013\n\007kIdcPin\020\016\022\016\n\nkIdcPerson\020\017\"\246\002\n\014Gamep"
+    "adState\022\017\n\007buttons\030\001 \001(\r\022\024\n\014left_trigger"
+    "\030\002 \001(\r\022\025\n\rright_trigger\030\003 \001(\r\022\020\n\010thumb_l"
+    "x\030\004 \001(\005\022\020\n\010thumb_ly\030\005 \001(\005\022\020\n\010thumb_rx\030\006 "
+    "\001(\005\022\020\n\010thumb_ry\030\007 \001(\005\022-\n\007gp_type\030\010 \001(\0162\034"
+    ".tc.GamepadState.GamepadType\"a\n\013GamepadT"
+    "ype\022\014\n\010kButtons\020\000\022\020\n\014kLeftTrigger\020\001\022\021\n\rk"
+    "RightTrigger\020\002\022\016\n\nkLeftThumb\020\003\022\017\n\013kRight"
+    "Thumb\020\004\"\245\003\n\021CaptureStatistics\022\030\n\020video_f"
+    "rame_gaps\030\001 \003(\r\022\030\n\020encode_durations\030\002 \003("
+    "\r\022\030\n\020audio_frame_gaps\030\003 \003(\r\022\030\n\020decode_du"
+    "rations\030\004 \003(\r\022\036\n\026client_video_recv_gaps\030"
+    "\005 \003(\r\022\035\n\025client_fps_video_recv\030\006 \001(\r\022\031\n\021"
+    "client_fps_render\030\007 \001(\r\022\036\n\026client_recv_m"
+    "edia_data\030\010 \001(\003\022\030\n\020fps_video_encode\030\t \001("
+    "\005\022\030\n\020app_running_time\030\n \001(\005\022\036\n\026server_se"
+    "nd_media_data\030\013 \001(\003\022\024\n\014render_width\030\014 \001("
+    "\005\022\025\n\rrender_height\030\r \001(\005\022\025\n\rcapture_widt"
+    "h\030\016 \001(\005\022\026\n\016capture_height\030\017 \001(\005\"\267\001\n\020Clie"
+    "ntStatistics\022\030\n\020decode_durations\030\001 \003(\r\022\027"
+    "\n\017video_recv_gaps\030\002 \003(\r\022\026\n\016fps_video_rec"
+    "v\030\003 \001(\r\022\022\n\nfps_render\030\004 \001(\r\022\027\n\017recv_medi"
+    "a_data\030\005 \001(\003\022\024\n\014render_width\030\006 \001(\005\022\025\n\rre"
+    "nder_height\030\007 \001(\005\"u\n\023ServerAudioSpectrum"
+    "\022\017\n\007samples\030\001 \001(\005\022\020\n\010channels\030\002 \001(\005\022\014\n\004b"
+    "its\030\003 \001(\005\022\025\n\rleft_spectrum\030\004 \003(\001\022\026\n\016righ"
+    "t_spectrum\030\005 \003(\001\"0\n\nOnlineGame\022\017\n\007game_i"
+    "d\030\001 \001(\005\022\021\n\tgame_exes\030\002 \001(\t\".\n\rUIServerHe"
+    "llo\022\035\n\004type\030\001 \001(\0162\017.tc.SessionType\"\324\003\n\014F"
+    "ileTransfer\022\n\n\002id\030\001 \001(\t\0221\n\005state\030\n \001(\0162\""
+    ".tc.FileTransfer.FileTransferState\022,\n\tfi"
+    "le_type\030\024 \001(\0162\031.tc.FileTransfer.FileType"
+    "\022\025\n\rrelative_path\030\036 \001(\t\022\020\n\010filename\030( \001("
+    "\t\022\014\n\004data\0302 \001(\014\022\020\n\010filesize\030< \001(\004\022\030\n\020tra"
+    "nsferred_size\030F \001(\004\022\020\n\010file_md5\030P \001(\t\022\026\n"
+    "\016local_filepath\030Z \001(\t\022\021\n\ttimestamp\030d \001(\004"
+    "\022\020\n\010ref_path\030n \001(\t\022\022\n\nref_folder\030x \001(\t\"\""
+    "\n\010FileType\022\t\n\005kFile\020\000\022\013\n\007kFolder\020\001\"m\n\021Fi"
+    "leTransferState\022\030\n\024kRequestFileTransfer\020"
+    "\000\022\021\n\rkTransferring\020\001\022\021\n\rkTransferOver\020\002\022"
+    "\030\n\024kTransferInterrupted\020\003\"\357\002\n\020RespFileTr"
+    "ansfer\022\n\n\002id\030\001 \001(\t\0229\n\005state\030\n \001(\0162*.tc.R"
+    "espFileTransfer.FileTransferRespState\022\020\n"
+    "\010filename\030\024 \001(\t\022\026\n\016local_filepath\030\036 \001(\t\022"
+    "\020\n\010filesize\030( \001(\004\022\030\n\020transferred_size\0302 "
+    "\001(\004\022\020\n\010progress\030< \001(\002\022\021\n\ttimestamp\030F \001(\004"
+    "\"\230\001\n\025FileTransferRespState\022\022\n\016kTransferR"
+    "eady\020\000\022\026\n\022kFileAlreadyExists\020\001\022\025\n\021kFileD"
+    "eleteFailed\020\002\022\021\n\rkTransferring\020\003\022\024\n\020kTra"
+    "nsferSuccess\020\004\022\023\n\017kTransferFailed\020\005\"\372\005\n\007"
+    "Message\022\035\n\004type\030\n \001(\0162\017.tc.MessageType\022\021"
+    "\n\tsend_time\030\024 \001(\004\022\r\n\005extra\030\036 \001(\t\022\030\n\005hell"
+    "o\030( \001(\0132\t.tc.Hello\022\024\n\003ack\0302 \001(\0132\007.tc.Ack"
+    "\022 \n\theartbeat\030< \001(\0132\r.tc.HeartBeat\022%\n\014on"
+    "_heartbeat\030= \001(\0132\017.tc.OnHeartBeat\022#\n\013vid"
+    "eo_frame\030F \001(\0132\016.tc.VideoFrame\022#\n\013audio_"
+    "frame\030P \001(\0132\016.tc.AudioFrame\022\037\n\tkey_event"
+    "\030Z \001(\0132\014.tc.KeyEvent\022#\n\013mouse_event\030d \001("
+    "\0132\016.tc.MouseEvent\022,\n\020cursor_info_sync\030n "
+    "\001(\0132\022.tc.CursorInfoSync\022\'\n\rgamepad_state"
+    "\030x \001(\0132\020.tc.GamepadState\0222\n\022capture_stat"
+    "istics\030\202\001 \001(\0132\025.tc.CaptureStatistics\0220\n\021"
+    "client_statistics\030\214\001 \001(\0132\024.tc.ClientStat"
+    "istics\0227\n\025server_audio_spectrum\030\226\001 \001(\0132\027"
+    ".tc.ServerAudioSpectrum\022%\n\014online_games\030"
+    "\240\001 \003(\0132\016.tc.OnlineGame\022+\n\017ui_server_hell"
+    "o\030\252\001 \001(\0132\021.tc.UIServerHello\022(\n\rfile_tran"
+    "sfer\030\264\001 \001(\0132\020.tc.FileTransfer\0221\n\022resp_fi"
+    "le_transfer\030\276\001 \001(\0132\024.tc.RespFileTransfer"
+    "*\313\002\n\013MessageType\022\n\n\006kHello\020\000\022\010\n\004kAck\020\n\022\016"
+    "\n\nkHeartBeat\020\024\022\020\n\014kOnHeartBeat\020\025\022\017\n\013kVid"
+    "eoFrame\020\036\022\017\n\013kAudioFrame\020(\022\r\n\tkKeyEvent\020"
+    "2\022\017\n\013kMouseEvent\020<\022\023\n\017kCursorInfoSync\020F\022"
+    "\021\n\rkGamepadState\020P\022\026\n\022kCaptureStatistics"
+    "\020Z\022\025\n\021kClientStatistics\020d\022\030\n\024kServerAudi"
+    "oSpectrum\020n\022\020\n\014kOnlineGames\020x\022\023\n\016kUIServ"
+    "erHello\020\202\001\022\022\n\rkFileTransfer\020\214\001\022\026\n\021kRespF"
+    "ileTransfer\020\226\001*4\n\tVideoType\022\014\n\010kNetH264\020"
+    "\000\022\014\n\010kNetHevc\020\001\022\013\n\007kNetVp9\020\002*\267\002\n\nButtonF"
+    "lag\022\t\n\005kNone\020\000\022\017\n\013kCapsLockOn\020\001\022\016\n\nkShif"
+    "tDown\020\002\022\020\n\014kControlDown\020\004\022\014\n\010kAltDown\020\010\022"
+    "\026\n\022kLeftMouseButtonUp\020\020\022\030\n\024kMiddleMouseB"
+    "uttonUp\020 \022\027\n\023kRightMouseButtonUp\020@\022\017\n\nkM"
+    "ouseMove\020\200\001\022\025\n\020kMouseEventWheel\020\200\002\022\026\n\021kM"
+    "ouseEventHWheel\020\200\004\022\031\n\024kLeftMouseButtonDo"
+    "wn\020\200\010\022\033\n\026kMiddleMouseButtonDown\020\200\020\022\032\n\025kR"
+    "ightMouseButtonDown\020\200 *J\n\nClientType\022\014\n\010"
+    "kWindows\020\000\022\n\n\006kLinux\020\001\022\n\n\006kMacOS\020\002\022\014\n\010kA"
+    "ndroid\020\003\022\010\n\004kiOS\020\004*G\n\013SessionType\022\020\n\014kIn"
+    "nerServer\020\000\022\022\n\016kAndroidClient\020\001\022\022\n\016kWind"
+    "owsClient\020\002*\330\003\n\rGamepadButton\022\016\n\nGP_UNKN"
+    "OWN\020\000\022\035\n\031GP_XINPUT_GAMEPAD_DPAD_UP\020\001\022\037\n\033"
+    "GP_XINPUT_GAMEPAD_DPAD_DOWN\020\002\022\037\n\033GP_XINP"
+    "UT_GAMEPAD_DPAD_LEFT\020\004\022 \n\034GP_XINPUT_GAME"
+    "PAD_DPAD_RIGHT\020\010\022\033\n\027GP_XINPUT_GAMEPAD_ST"
+    "ART\020\020\022\032\n\026GP_XINPUT_GAMEPAD_BACK\020 \022 \n\034GP_"
+    "XINPUT_GAMEPAD_LEFT_THUMB\020@\022\"\n\035GP_XINPUT"
+    "_GAMEPAD_RIGHT_THUMB\020\200\001\022$\n\037GP_XINPUT_GAM"
+    "EPAD_LEFT_SHOULDER\020\200\002\022%\n GP_XINPUT_GAMEP"
+    "AD_RIGHT_SHOULDER\020\200\004\022\030\n\023GP_XINPUT_GAMEPA"
+    "D_A\020\200 \022\030\n\023GP_XINPUT_GAMEPAD_B\020\200@\022\031\n\023GP_X"
+    "INPUT_GAMEPAD_X\020\200\200\001\022\031\n\023GP_XINPUT_GAMEPAD"
+    "_Y\020\200\200\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_tc_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tc_5fmessage_2eproto = {
     false,
     false,
-    5725,
+    5774,
     descriptor_table_protodef_tc_5fmessage_2eproto,
     "tc_message.proto",
     &descriptor_table_tc_5fmessage_2eproto_once,
@@ -1940,33 +1945,49 @@ const char* OnHeartBeat::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 7, 0, 0, 9> OnHeartBeat::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 0, 0, 9> OnHeartBeat::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    60, 56,  // max_field_number, fast_idx_mask
+    60, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    3757571582,  // skipmap
+    3756521982,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    7,  // num_field_entries
+    9,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_OnHeartBeat_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bool control_pressed = 40;
-    {::_pbi::TcParser::FastV8S2,
-     {704, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.control_pressed_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // uint64 index = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(OnHeartBeat, _impl_.index_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.index_)}},
-    // bool caps_lock_pressed = 10;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OnHeartBeat, _impl_.caps_lock_pressed_), 63>(),
-     {80, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.caps_lock_pressed_)}},
+    // bool win_pressed = 50;
+    {::_pbi::TcParser::FastV8S2,
+     {912, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.win_pressed_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // bool num_lock_pressed = 20;
     {::_pbi::TcParser::FastV8S2,
      {416, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.num_lock_pressed_)}},
+    // int32 num_lock_state = 21;
+    {::_pbi::TcParser::FastV32S2,
+     {424, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.num_lock_state_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool control_pressed = 40;
+    {::_pbi::TcParser::FastV8S2,
+     {704, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.control_pressed_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool caps_lock_pressed = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(OnHeartBeat, _impl_.caps_lock_pressed_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.caps_lock_pressed_)}},
+    // int32 caps_lock_state = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OnHeartBeat, _impl_.caps_lock_state_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.caps_lock_state_)}},
+    // bool shift_pressed = 60;
+    {::_pbi::TcParser::FastV8S2,
+     {992, 63, 0, PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.shift_pressed_)}},
     {::_pbi::TcParser::MiniParse, {}},
     // bool alt_pressed = 30;
     {::_pbi::TcParser::FastV8S2,
@@ -1974,7 +1995,7 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 9> OnHeartBeat::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     40, 0, 2,
-    64510, 4, 65519, 6,
+    64510, 6, 65519, 8,
     65535, 65535
   }}, {{
     // uint64 index = 1;
@@ -1983,9 +2004,15 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 9> OnHeartBeat::_table_ = {
     // bool caps_lock_pressed = 10;
     {PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.caps_lock_pressed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 caps_lock_state = 11;
+    {PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.caps_lock_state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // bool num_lock_pressed = 20;
     {PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.num_lock_pressed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // int32 num_lock_state = 21;
+    {PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.num_lock_state_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
     // bool alt_pressed = 30;
     {PROTOBUF_FIELD_OFFSET(OnHeartBeat, _impl_.alt_pressed_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
@@ -2025,11 +2052,25 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 9> OnHeartBeat::_table_ = {
         10, this->_internal_caps_lock_pressed(), target);
   }
 
+  // int32 caps_lock_state = 11;
+  if (this->_internal_caps_lock_state() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<11>(
+            stream, this->_internal_caps_lock_state(), target);
+  }
+
   // bool num_lock_pressed = 20;
   if (this->_internal_num_lock_pressed() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteBoolToArray(
         20, this->_internal_num_lock_pressed(), target);
+  }
+
+  // int32 num_lock_state = 21;
+  if (this->_internal_num_lock_state() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(
+        21, this->_internal_num_lock_state(), target);
   }
 
   // bool alt_pressed = 30;
@@ -2083,6 +2124,18 @@ const ::_pbi::TcParseTable<3, 7, 0, 0, 9> OnHeartBeat::_table_ = {
         this->_internal_index());
   }
 
+  // int32 caps_lock_state = 11;
+  if (this->_internal_caps_lock_state() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_caps_lock_state());
+  }
+
+  // int32 num_lock_state = 21;
+  if (this->_internal_num_lock_state() != 0) {
+    total_size += 2 + ::_pbi::WireFormatLite::Int32Size(
+                                    this->_internal_num_lock_state());
+  }
+
   // bool caps_lock_pressed = 10;
   if (this->_internal_caps_lock_pressed() != 0) {
     total_size += 2;
@@ -2134,6 +2187,12 @@ void OnHeartBeat::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
 
   if (from._internal_index() != 0) {
     _this->_internal_set_index(from._internal_index());
+  }
+  if (from._internal_caps_lock_state() != 0) {
+    _this->_internal_set_caps_lock_state(from._internal_caps_lock_state());
+  }
+  if (from._internal_num_lock_state() != 0) {
+    _this->_internal_set_num_lock_state(from._internal_num_lock_state());
   }
   if (from._internal_caps_lock_pressed() != 0) {
     _this->_internal_set_caps_lock_pressed(from._internal_caps_lock_pressed());
