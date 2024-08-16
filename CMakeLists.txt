@@ -21,8 +21,8 @@ elseif(WIN32 OR APPLE OR UNIX)
     add_library(tc_message proto_message_maker.cpp)
     target_link_libraries(tc_message tc_proto_message)
 
-    add_custom_command(TARGET tc_message POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.h"  "${CMAKE_CURRENT_SOURCE_DIR}"
-            COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc"  "${CMAKE_CURRENT_SOURCE_DIR}"
-    )
+    #add_custom_command(TARGET tc_message POST_BUILD
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.h"  "${CMAKE_CURRENT_SOURCE_DIR}"
+    #        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc"  "${CMAKE_CURRENT_SOURCE_DIR}"
+    #)
 endif()
