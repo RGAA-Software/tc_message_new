@@ -5,6 +5,7 @@ package tc;
 enum MessageType {
   // client -> server
   kHello = 0;
+  kServerConfiguration = 2;
   kAck = 10;
   kHeartBeat = 20;
   kOnHeartBeat = 21;
@@ -82,6 +83,17 @@ message Hello {
   bool enable_video = 2;
   ClientType client_type = 3;
   bool enable_controller = 4;
+}
+
+message ScreenInfo {
+  int32 index = 1;
+  string name = 2;
+}
+
+message ServerConfiguration {
+  repeated ScreenInfo screen_info = 1;
+  int32 current_capturing_index = 2;
+
 }
 
 message HeartBeat {
@@ -358,6 +370,7 @@ message Message {
   uint64 send_time = 20;
   string extra = 30;
   Hello hello = 40;
+  ServerConfiguration config = 41;
   Ack ack = 50;
   HeartBeat heartbeat = 60;
   OnHeartBeat on_heartbeat = 61;
