@@ -35,6 +35,8 @@ enum MessageType {
   kClipboardInfo = 160;
   // switch monitor
   kSwitchMonitor = 170;
+  // monitor switched
+  kMonitorSwitched = 180;
 }
 
 enum VideoType {
@@ -372,6 +374,12 @@ message SwitchMonitor {
   string name = 2;
 }
 
+message MonitorSwitched {
+  int32 index = 1;
+  string name = 2;
+  repeated ScreenInfo screen_info = 3;
+}
+
 message Message {
   MessageType type = 10;
   uint64 send_time = 20;
@@ -396,4 +404,5 @@ message Message {
   RespFileTransfer resp_file_transfer = 190;
   ClipboardInfo clipboard_info = 200;
   SwitchMonitor switch_monitor = 210;
+  MonitorSwitched monitor_switched = 220;
 }
