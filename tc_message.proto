@@ -37,6 +37,8 @@ enum MessageType {
   kSwitchMonitor = 170;
   // monitor switched
   kMonitorSwitched = 180;
+  // switch work mode
+  kSwitchWorkMode = 190;
 }
 
 enum VideoType {
@@ -380,6 +382,14 @@ message MonitorSwitched {
   repeated ScreenInfo screen_info = 3;
 }
 
+message SwitchWorkMode {
+  enum WorkMode {
+    kWork = 0;
+    kGame = 1;
+  }
+  WorkMode mode = 1;
+}
+
 message Message {
   MessageType type = 10;
   uint64 send_time = 20;
@@ -405,4 +415,5 @@ message Message {
   ClipboardInfo clipboard_info = 200;
   SwitchMonitor switch_monitor = 210;
   MonitorSwitched monitor_switched = 220;
+  SwitchWorkMode work_mode = 230;
 }
