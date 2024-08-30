@@ -39,6 +39,8 @@ enum MessageType {
   kMonitorSwitched = 180;
   // switch work mode
   kSwitchWorkMode = 190;
+  // change monitor resolution
+  kChangeMonitorResolution = 200;
 }
 
 enum VideoType {
@@ -390,6 +392,12 @@ message SwitchWorkMode {
   WorkMode mode = 1;
 }
 
+message ChangeMonitorResolution {
+  string monitor_name = 1;
+  int32 target_width = 2;
+  int32 target_height = 3;
+}
+
 message Message {
   MessageType type = 10;
   uint64 send_time = 20;
@@ -416,4 +424,5 @@ message Message {
   SwitchMonitor switch_monitor = 210;
   MonitorSwitched monitor_switched = 220;
   SwitchWorkMode work_mode = 230;
+  ChangeMonitorResolution change_monitor_resolution = 240;
 }
