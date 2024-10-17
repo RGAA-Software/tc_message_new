@@ -45,6 +45,8 @@ enum MessageType {
   kChangeMonitorResolutionResult = 210;
   // available resolutions for target monitor
   kAvailableResolutions = 220;
+  // insert key frame
+  kInsertKeyFrame = 230;
 }
 
 enum VideoType {
