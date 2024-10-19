@@ -47,6 +47,8 @@ enum MessageType {
   kAvailableResolutions = 220;
   // insert key frame
   kInsertKeyFrame = 230;
+  // restart me, server -> host panel
+  kRestartServer = 240;
 }
 
 enum VideoType {
@@ -415,6 +417,10 @@ message ChangeMonitorResolutionResult {
   bool result = 2;
 }
 
+message RestartServer {
+  string reason = 1;
+}
+
 message Message {
   MessageType type = 10;
   uint64 send_time = 20;
@@ -443,4 +449,5 @@ message Message {
   SwitchWorkMode work_mode = 230;
   ChangeMonitorResolution change_monitor_resolution = 240;
   ChangeMonitorResolutionResult change_monitor_resolution_result = 250;
+  RestartServer restart_server = 260;
 }
