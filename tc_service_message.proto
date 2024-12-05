@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package tc;
+
+enum ServiceMessageType {
+  kStartServer = 0;
+  kStopServer = 1;
+  kRestartServer = 2;
+  kHeartBeat = 3;
+  kHeartBeatResp = 4;
+}
+
+message MsgStartServer {
+  string work_dir = 1;
+  string app_path = 2;
+  repeated string args = 3;
+}
+
+message MsgStopServer {
+
+}
+
+message MsgRestartServer {
+
+}
+
+enum RenderStatus {
+  kStopped = 0;
+  kIdle = 1;
+  kWorking = 2;
+}
+
+message MsgHeartBeat {
+  int64 index = 1;
+}
+
+message MsgHeartBeatResp {
+  int64 index = 1;
+  RenderStatus render_status = 2;
+}
+
+message ServiceMessage {
+  ServiceMessageType type = 1;
+  MsgStartServer start_server = 2;
+  MsgStopServer stop_server = 3;
+  MsgRestartServer restart_server = 4;
+  MsgHeartBeat heart_beat = 5;
+  MsgHeartBeatResp heart_beat_resp = 6;
+}

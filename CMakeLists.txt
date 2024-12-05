@@ -12,10 +12,10 @@ if(ANDROID)
     add_library(tc_message ${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc proto_message_maker.cpp)
     target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 elseif(WIN32 OR APPLE OR UNIX)
-    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto)
+    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto tc_service_message.proto)
 
     message("Protobuf of tc_message.proto: ${PROTO_SRCS}")
-    add_library(tc_proto_message ${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc)
+    add_library(tc_proto_message ${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc ${CMAKE_CURRENT_BINARY_DIR}/tc_service_message.pb.cc)
     target_link_libraries(tc_proto_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
     add_library(tc_message proto_message_maker.cpp)
