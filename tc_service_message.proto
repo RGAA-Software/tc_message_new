@@ -32,6 +32,7 @@ enum RenderStatus {
 
 message MsgHeartBeat {
   int64 index = 1;
+  string from = 2;
 }
 
 message MsgHeartBeatResp {
