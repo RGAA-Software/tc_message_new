@@ -21,7 +21,9 @@ message MsgStopServer {
 }
 
 message MsgRestartServer {
-
+  string work_dir = 1;
+  string app_path = 2;
+  repeated string args = 3;
 }
 
 enum RenderStatus {
