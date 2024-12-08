@@ -3,11 +3,11 @@ syntax = "proto3";
 package tc;
 
 enum ServiceMessageType {
-  kStartServer = 0;
-  kStopServer = 1;
-  kRestartServer = 2;
-  kHeartBeat = 3;
-  kHeartBeatResp = 4;
+  kSrvStartServer = 0;
+  kSrvStopServer = 1;
+  kSrvRestartServer = 2;
+  kSrvHeartBeat = 3;
+  kSrvHeartBeatResp = 4;
 }
 
 message MsgStartServer {
