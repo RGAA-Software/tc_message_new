@@ -26,7 +26,6 @@ message MsgRestartServer {
 
 enum RenderStatus {
   kStopped = 0;
-  kIdle = 1;
   kWorking = 2;
 }
 
