@@ -82,6 +82,12 @@ enum ClientType {
   kiOS = 4;
 }
 
+enum ClientConnType {
+  kWebsocket = 0;
+  kUdpKcp = 1;
+  kWebRtc = 2;
+}
+
 // UI server
 enum SessionType {
     kInnerServer = 0;
