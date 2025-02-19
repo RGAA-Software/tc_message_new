@@ -1,0 +1,513 @@
+syntax = "proto3";
+
+package tc;
+
+import "tc_file_transfer.proto";
+
+enum RespCode
+{
+	kRespCodeNone = 0;
+	
+	kRespCodeOk = 1;
+	
+	kRespCodeError = 2;
+	// ³¬Ê±
+	kRespCodeTimeout = 3;
+}
+
+enum MessageType {
+  // client -> server
+  kHello = 0;
+  kServerConfiguration = 2;
+  kAck = 10;
+  kHeartBeat = 20;
+  kOnHeartBeat = 21;
+  kVideoFrame = 30;
+  kAudioFrame = 40;
+  kKeyEvent = 50;
+  kMouseEvent = 60;
+  // server -> client
+  kCursorInfoSync = 70;
+  // client -> server
+  kGamepadState = 80;
+  // capture server -> host panel
+  kCaptureStatistics = 90;
+  // client statistics
+  kClientStatistics = 100;
+  // capture server -> host panel
+  kServerAudioSpectrum = 110;
+  // host panel -> client
+  kOnlineGames = 120;
+  // ui server hello
+  kUIServerHello = 130;
+  // file transfer
+  kFileTransfer = 140;
+  // file transfer resp
+  kRespFileTransfer = 150;
+  // clipboard
+  kClipboardInfo = 160;
+  // switch monitor
+  kSwitchMonitor = 170;
+  // monitor switched
+  kMonitorSwitched = 180;
+  // switch work mode
+  kSwitchWorkMode = 190;
+  // change monitor resolution
+  kChangeMonitorResolution = 200;
+  // change monitor resolution result
+  kChangeMonitorResolutionResult = 210;
+  // available resolutions for target monitor
+  kAvailableResolutions = 220;
+  // insert key frame
+  kInsertKeyFrame = 230;
+  // restart me, server -> host panel
+  kRestartServer = 240;
+  // panel -> render
+  kSyncPanelInfo = 250;
+
+  // file transfer begin
+  kFileOperateionsEvent = 260;
+  kFileOperateRespRename = 265;
+  kFileOperateRespGetFileList = 270;
+  kFileOperateRespCreateNewFolder = 280;
+  kFileOperateRespExists = 285;
+  kFileOperateRespDel = 290;
+  kFileOperateRespBatchCreateFolders = 295;
+  kFileTransRespUpload = 300;
+  kFileTransRespDownload = 305;
+  kFileTransDirectControl = 310;
+  kFileTransSaveFileException = 320;
+  // file transfer end
+}
+
+enum VideoType {
+  kNetH264 = 0;
+  kNetHevc = 1;
+  kNetVp9 = 2;
+}
+
+enum ButtonFlag {
+  kNone = 0;
+  kCapsLockOn = 1;
+  kShiftDown = 2;
+  kControlDown = 4;
+  kAltDown = 8;
+  kLeftMouseButtonUp = 16;
+  kMiddleMouseButtonUp = 32;
+  kRightMouseButtonUp = 64;
+  kMouseMove = 128;
+  kMouseEventWheel = 256;
+  kMouseEventHWheel = 512;
+  kLeftMouseButtonDown = 1024;
+  kMiddleMouseButtonDown = 2048;
+  kRightMouseButtonDown = 4096;
+}
+
+enum ClientType {
+  kWindows = 0;
+  kLinux = 1;
+  kMacOS = 2;
+  kAndroid = 3;
+  kiOS = 4;
+}
+
+enum ClientConnType {
+  kWebsocket = 0;
+  kUdpKcp = 1;
+  kWebRtc = 2;
+}
+
+// UI server
+enum SessionType {
+    kInnerServer = 0;
+    kAndroidClient = 1;
+    kWindowsClient = 2;
+}
+
+message Ack {
+  MessageType type = 1;
+  uint64 send_time = 2;
+}
+
+message Hello {
+  bool enable_audio = 1;
+  bool enable_video = 2;
+  ClientType client_type = 3;
+  bool enable_controller = 4;
+}
+
+message MonitorResolution {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+message MonitorInfo {
+  string name = 1;
+  repeated MonitorResolution resolutions = 2;
+}
+
+message ServerConfiguration {
+  repeated MonitorInfo monitor_info = 1;
+  string capturing_monitor_name = 2;
+
+}
+
+message HeartBeat {
+  uint64 index = 1;
+}
+
+message OnHeartBeat {
+  uint64 index = 1;
+  // keyboard information
+  bool caps_lock_pressed = 10;
+  int32 caps_lock_state = 11;
+  bool num_lock_pressed = 20;
+  int32 num_lock_state = 21;
+  bool alt_pressed = 30;
+  bool control_pressed = 40;
+  bool win_pressed = 50;
+  bool shift_pressed = 60;
+}
+
+message VideoFrame {
+  VideoType type = 1;
+  bytes data = 2;
+  uint64 frame_index = 3;
+  bool key = 4;
+  int32 frame_width = 5;
+  int32 frame_height = 6;
+  string extra = 7;
+  string mon_name = 9;
+  int32 mon_left = 10;
+  int32 mon_top = 11;
+  int32 mon_right = 12;
+  int32 mon_bottom = 13;
+}
+
+message AudioFrame {
+  int32 samples = 1;
+  int32 channels = 2;
+  int32 bits = 3;
+  int32 frame_size = 4;
+  bytes data = 5;
+  string extra = 6;
+}
+
+message KeyEvent {
+  enum LockKeyStatusCheck {
+    kDontCareLockKey = 0;
+    kCheckNumLock = 1;
+    kCheckCapsLock = 2;
+  }
+
+  // see: https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+  uint32 key_code = 1;
+  bool down = 2;
+  // by GetKeyState()
+  int32  num_lock_status = 3;
+  int32  caps_lock_status = 4;
+  LockKeyStatusCheck status_check = 5;
+  int64 timestamp = 6;
+}
+
+message MouseEvent {
+  // to do
+  string monitor_name = 1;
+  float x_ratio = 2;
+  float y_ratio = 3;
+
+  // see: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
+  int32 button = 4;
+  // wheel
+  int32 data = 5;
+  int64 timestamp = 6;
+  int32 delta_x = 7;
+  int32 delta_y = 8;
+  bool pressed = 9;
+  bool released = 10;
+}
+
+message CursorInfoSync {
+  enum CursorType {
+    kIdcArrow = 0;
+    kIdcIBeam = 1;
+    kIdcWait = 2;
+    kIdcCross = 3;
+    kIdcUpArrow = 4;
+    kIdcSize = 5;
+    kIdcIcon = 6;
+    kIdcSizeNWSE = 7;
+    kIdcSizeNESW = 8;
+    kIdcSizeWE = 9;
+    kIdcSizeNS = 10;
+    kIdcSizeAll = 11;
+    kIdcHand = 12;
+    kIdcHelp = 13;
+    kIdcPin = 14;
+    kIdcPerson = 15;
+  }
+
+  bool visible = 1;
+  int32 x = 2;
+  int32 y = 3;
+  int32 hotspot_x = 4;
+  int32 hotspot_y = 5;
+  uint32 width = 6;
+  uint32 height = 7;
+  bytes bitmap = 8;
+  CursorType type = 9;
+}
+
+// see: https://learn.microsoft.com/en-us/windows/win32/api/xinput/ns-xinput-xinput_gamepad
+enum GamepadButton {
+  GP_UNKNOWN = 0;
+  GP_XINPUT_GAMEPAD_DPAD_UP = 0x0001;
+  GP_XINPUT_GAMEPAD_DPAD_DOWN = 0x0002;
+  GP_XINPUT_GAMEPAD_DPAD_LEFT = 0x0004;
+  GP_XINPUT_GAMEPAD_DPAD_RIGHT = 0x0008;
+  GP_XINPUT_GAMEPAD_START = 0x0010;
+  GP_XINPUT_GAMEPAD_BACK = 0x0020;
+  GP_XINPUT_GAMEPAD_LEFT_THUMB = 0x0040;
+  GP_XINPUT_GAMEPAD_RIGHT_THUMB = 0x0080;
+  GP_XINPUT_GAMEPAD_LEFT_SHOULDER = 0x0100;
+  GP_XINPUT_GAMEPAD_RIGHT_SHOULDER = 0x0200;
+  GP_XINPUT_GAMEPAD_A = 0x1000;
+  GP_XINPUT_GAMEPAD_B = 0x2000;
+  GP_XINPUT_GAMEPAD_X = 0x4000;
+  GP_XINPUT_GAMEPAD_Y = 0x8000;
+}
+
+message GamepadState {
+  enum GamepadType {
+    kButtons = 0;
+    kLeftTrigger = 1;
+    kRightTrigger = 2;
+    kLeftThumb = 3;
+    kRightThumb = 4;
+  }
+  uint32 buttons = 1;
+  uint32 left_trigger = 2;
+  uint32 right_trigger = 3;
+  int32 thumb_lx = 4;
+  int32 thumb_ly = 5;
+  int32 thumb_rx = 6;
+  int32 thumb_ry = 7;
+  GamepadType gp_type = 8;
+}
+
+message CaptureStatistics {
+  // from inner server
+  repeated uint32 video_frame_gaps = 1;
+  // from inner server
+  repeated uint32 encode_durations = 2;
+  // from inner server
+  repeated uint32 audio_frame_gaps = 3;
+
+  // from client
+  repeated uint32 decode_durations = 4;
+  // from client
+  repeated uint32 client_video_recv_gaps = 5;
+  // from client
+  uint32 client_fps_video_recv = 6;
+  // from client
+  uint32 client_fps_render = 7;
+  // from client
+  int64 client_recv_media_data = 8;
+
+  // from inner server
+  int32 fps_video_encode = 9;
+  // from inner server
+  int32 app_running_time = 10;
+  // from inner server
+  int64 server_send_media_data = 11;
+
+  // from client
+  int32 render_width = 12;
+  // from client
+  int32 render_height = 13;
+  // from inner server
+  int32 capture_width = 14;
+  // from inner server
+  int32 capture_height = 15;
+}
+
+message ClientStatistics {
+  repeated uint32 decode_durations = 1;
+  repeated uint32 video_recv_gaps = 2;
+  uint32 fps_video_recv = 3;
+  uint32 fps_render = 4;
+  int64 recv_media_data = 5;
+  int32 render_width = 6;
+  int32 render_height = 7;
+}
+
+message ServerAudioSpectrum {
+  // from inner server
+  int32 samples = 1;
+  int32 channels = 2;
+  int32 bits = 3;
+  repeated double left_spectrum = 4;
+  repeated double right_spectrum = 5;
+}
+
+message OnlineGame {
+  int32 game_id = 1;
+  string game_exes = 2;
+}
+
+message UIServerHello {
+  SessionType type = 1;
+}
+
+message FileTransfer {
+  enum FileType {
+    kFile = 0;
+    kFolder = 1;
+  }
+
+  enum FileTransferState {
+    kRequestFileTransfer = 0;
+    // transferring
+    kTransferring = 1;
+    // transfer over
+    kTransferOver = 2;
+    // stopped by user
+    kTransferInterrupted = 3;
+  }
+
+  string id = 1;
+  FileTransferState state = 10;
+  FileType file_type = 20;
+  string relative_path = 30;
+  string filename = 40;
+  bytes data = 50;
+  uint64 filesize = 60;
+  uint64 transferred_size = 70;
+  string file_md5 = 80;
+  string local_filepath = 90;
+  uint64 timestamp = 100;
+  string ref_path = 110;
+  string ref_folder = 120;
+}
+
+message RespFileTransfer {
+  enum FileTransferRespState {
+    // it's ok
+    kTransferReady = 0;
+    // file already exists.
+    kFileAlreadyExists = 1;
+    // the file already exists, but can't delete it.
+    kFileDeleteFailed = 2;
+    // transferring
+    kTransferring = 3;
+    // after compare md5
+    kTransferSuccess = 4;
+    // failed
+    kTransferFailed = 5;
+
+  }
+  string id = 1;
+  FileTransferRespState state = 10;
+  string filename = 20;
+  string local_filepath = 30;
+  uint64 filesize = 40;
+  uint64 transferred_size = 50;
+  float progress = 60;
+  uint64 timestamp = 70;
+}
+
+message ClipboardInfo {
+  string msg = 1;
+}
+
+message SwitchMonitor {
+  string name = 1;
+}
+
+message MonitorSwitched {
+  string name = 1;
+  repeated MonitorInfo monitor_info = 2;
+}
+
+message SwitchWorkMode {
+  enum WorkMode {
+    kWork = 0;
+    kGame = 1;
+  }
+  WorkMode mode = 1;
+}
+
+message ChangeMonitorResolution {
+  string monitor_name = 1;
+  int32 target_width = 2;
+  int32 target_height = 3;
+}
+
+message ChangeMonitorResolutionResult {
+  string monitor_name = 1;
+  bool result = 2;
+}
+
+message RestartServer {
+  string reason = 1;
+}
+
+message SyncPanelInfo {
+  string client_id = 1;
+  string client_random_pwd = 2;
+}
+
+message Message {
+  string client_id = 2;
+  string device_id = 3;
+  string stream_id = 4;
+  // ÏûÏ¢ÐòºÅ
+  uint64 sequence = 5;
+  uint64 resp_sequence = 6;
+  RespCode resp_code = 7;
+  string resp_message = 8;
+  string resp_data = 9;
+  MessageType type = 10;
+  uint64 send_time = 20;
+  string extra = 30;
+  Hello hello = 40;
+  ServerConfiguration config = 41;
+  Ack ack = 50;
+  HeartBeat heartbeat = 60;
+  OnHeartBeat on_heartbeat = 61;
+  VideoFrame video_frame = 70;
+  AudioFrame audio_frame = 80;
+  KeyEvent key_event = 90;
+  MouseEvent mouse_event = 100;
+  CursorInfoSync cursor_info_sync = 110;
+  GamepadState gamepad_state = 120;
+  CaptureStatistics capture_statistics = 130;
+  ClientStatistics client_statistics = 140;
+  ServerAudioSpectrum server_audio_spectrum = 150;
+  repeated OnlineGame online_games = 160;
+  UIServerHello ui_server_hello = 170;
+  FileTransfer file_transfer = 180;
+  RespFileTransfer resp_file_transfer = 190;
+  ClipboardInfo clipboard_info = 200;
+  SwitchMonitor switch_monitor = 210;
+  MonitorSwitched monitor_switched = 220;
+  SwitchWorkMode work_mode = 230;
+  ChangeMonitorResolution change_monitor_resolution = 240;
+  ChangeMonitorResolutionResult change_monitor_resolution_result = 250;
+  RestartServer restart_server = 260;
+  SyncPanelInfo sync_panel_info = 270;
+
+   // file transfer begin
+  FileOperateionsEvent file_operateions_event = 280;
+  FileOperateRespRename file_operate_resp_rename = 285;
+  FileOperateRespGetFileList file_operate_resp_get_file_list = 290;
+  FileOperateRespCreateNewFolder file_operate_resp_create_new_folder = 295;
+  FileOperateRespExists file_operate_resp_exists = 300;
+  FileOperateRespDel file_operate_resp_del = 305;
+  FileOperateRespBatchCreateFolders file_operate_resp_batch_create_folders = 310;
+  FileTransRespUpload file_trans_resp_upload = 315;
+  FileTransRespDownload file_trans_resp_download = 320;
+  FileTransDirectControl file_trans_direct_control = 325;
+  FileTransSaveFileException file_trans_save_file_exception = 330;
+  // file transfer end
+}
