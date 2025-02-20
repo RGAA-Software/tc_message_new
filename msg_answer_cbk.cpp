@@ -3,6 +3,10 @@
 
 namespace tc {
 
+//std::shared_ptr<MsgAnswerCallbackStructure> MsgAnswerCallbackStructure::Make() {
+//	return std::make_shared<MsgAnswerCallbackStructure>();
+//}
+
 MsgAnswerCallbackStructure::MsgAnswerCallbackStructure() : io_ctx_(1), asio_timer_(io_ctx_) {
 	io_ctx_.start();
 	AddTimer(std::chrono::milliseconds(100), std::bind(&MsgAnswerCallbackStructure::On100MsTimer, this));
@@ -13,14 +17,16 @@ MsgAnswerCallbackStructure::~MsgAnswerCallbackStructure() {
 	io_ctx_.stop();
 }
 
-void MsgAnswerCallbackStructure::Add(const std::shared_ptr<tc::Message>& msg, OnMsgParseRespCallbackFuncType callback, void* user_data) {
+void MsgAnswerCallbackStructure::Add(const std::shared_ptr<tc::Message>& msg, OnMsgParseRespCallbackFuncType callback/*, void* user_data*/) {
 	int seq = send_message_seq_++;
 	msg->set_sequence(seq);
 	std::lock_guard<std::mutex> lock{mutex_};
 	send_msg_resp_callback_map_[seq].send_time = std::chrono::system_clock::now();
 	send_msg_resp_callback_map_[seq].callback = ([=](const std::shared_ptr<tc::Message>& message) {
 		if (callback) {
-			callback(user_data, message->resp_code(), message->resp_message(), message->resp_data());
+			// to do
+			//callback(user_data, message->resp_code(), message->resp_message(), message->resp_data());
+			callback(message->resp_code(), message->resp_message(), message->resp_data());
 		}
 	});
 }

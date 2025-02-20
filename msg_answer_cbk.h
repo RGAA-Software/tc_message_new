@@ -12,7 +12,9 @@
 
 namespace tc {
 	  
-using OnMsgParseRespCallbackFuncType = std::function<void(void* user_data, tc::RespCode code, const std::string& msg, const std::string& data)>;
+//using OnMsgParseRespCallbackFuncType = std::function<void(void* user_data, tc::RespCode code, const std::string& msg, const std::string& data)>;
+
+using OnMsgParseRespCallbackFuncType = std::function<void(tc::RespCode code, const std::string& msg, const std::string& data)>;
 
 class MsgRespCallbackInfo {
 public:
@@ -23,10 +25,11 @@ public:
 
 class MsgAnswerCallbackStructure {
 public:
+	
 	MsgAnswerCallbackStructure();
 	~MsgAnswerCallbackStructure();
 
-	virtual void Add(const std::shared_ptr<tc::Message>& msg, OnMsgParseRespCallbackFuncType callbck, void* user_data);
+	virtual void Add(const std::shared_ptr<tc::Message>& msg, tc::OnMsgParseRespCallbackFuncType callbck/*, void* user_data*/);
 
 	void On100MsTimer();
 
