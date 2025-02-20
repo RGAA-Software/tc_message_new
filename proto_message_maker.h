@@ -2,10 +2,13 @@
 #define TC_MESSAGE_LIBRARY_H
 
 #include <string>
+#include <memory>
 #include <cstdint>
 
 namespace tc
 {
+
+    class Message;
 
     class ProtoMessageMaker {
     public:
@@ -18,7 +21,7 @@ namespace tc
                                                    const std::string& stream_id);
 
         // file trans begin
-        static std::string MakeGetFileList(const std::string& path);
+        static std::shared_ptr<Message> MakeGetFileListMsg(const std::string& path);
 
 
         // file trans end

@@ -42,7 +42,7 @@ namespace tc
         return msg.SerializeAsString();
     }
 
-    std::string ProtoMessageMaker::MakeGetFileList(const std::string& path) {
+    std::shared_ptr<Message>  ProtoMessageMaker::MakeGetFileListMsg(const std::string& path) {
         auto tc_msg = std::make_shared<tc::Message>();
         tc_msg->set_type(tc::kFileOperateionsEvent);
         ////msg->set_rd_token(token_);
@@ -50,7 +50,7 @@ namespace tc
         file_oper_msg->set_path_of_filelist(path);
         file_oper_msg->set_instruct_type(tc::FileOperateionsEvent::kGetFilesList);
         tc_msg->set_allocated_file_operateions_event(file_oper_msg);
-        return tc_msg->SerializeAsString();
+        return tc_msg;
     }
 
 }
