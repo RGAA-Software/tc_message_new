@@ -8,6 +8,7 @@ enum ServiceMessageType {
   kSrvRestartServer = 2;
   kSrvHeartBeat = 3;
   kSrvHeartBeatResp = 4;
+  kSrvReqCtrlAltDelete = 5;
 }
 
 message MsgStartServer {
@@ -41,6 +42,11 @@ message MsgHeartBeatResp {
   RenderStatus render_status = 2;
 }
 
+message MsgReqCtrlAltDelete {
+  string req_client_id = 1;
+  string req_client_device_id = 2;
+}
+
 message ServiceMessage {
   ServiceMessageType type = 1;
   MsgStartServer start_server = 2;
@@ -48,4 +54,5 @@ message ServiceMessage {
   MsgRestartServer restart_server = 4;
   MsgHeartBeat heart_beat = 5;
   MsgHeartBeatResp heart_beat_resp = 6;
+  MsgReqCtrlAltDelete req_ctrl_alt_delete = 7;
 }

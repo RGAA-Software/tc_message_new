@@ -1,4 +1,4 @@
-syntax = "proto3";
+Ôªøsyntax = "proto3";
 
 package tc;
 
@@ -7,11 +7,11 @@ import "tc_file_transfer.proto";
 enum RespCode
 {
 	kRespCodeNone = 0;
-	
+
 	kRespCodeOk = 1;
-	
+
 	kRespCodeError = 2;
-	// ≥¨ ±
+	// Ë∂ÖÊó∂
 	kRespCodeTimeout = 3;
 }
 
@@ -78,6 +78,8 @@ enum MessageType {
   kFileTransDirectControl = 310;
   kFileTransSaveFileException = 320;
   // file transfer end
+
+  kReqCtrlAltDelete = 330;
 }
 
 enum VideoType {
@@ -457,11 +459,15 @@ message SyncPanelInfo {
   string client_random_pwd = 2;
 }
 
+message ReqCtrlAltDelete {
+
+}
+
 message Message {
   string client_id = 2;
   string device_id = 3;
   string stream_id = 4;
-  // œ˚œ¢–Ú∫≈
+  // Ê∂àÊÅØÂ∫èÂè∑
   uint64 sequence = 5;
   uint64 resp_sequence = 6;
   RespCode resp_code = 7;
@@ -510,4 +516,6 @@ message Message {
   FileTransDirectControl file_trans_direct_control = 325;
   FileTransSaveFileException file_trans_save_file_exception = 330;
   // file transfer end
+
+  ReqCtrlAltDelete req_ctrl_alt_delete = 340;
 }
