@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 20)
 #set(Protobuf_SRC_ROOT_FOLDER ${CMAKE_SOURCE_DIR}/deps/tc_3rdparty/protobuf)
 #include(${CMAKE_BINARY_DIR}/deps/tc_3rdparty/protobuf/cmake/protobuf/protobuf-module.cmake)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/tc_3rdparty/asio2/include)
+include_directories(${CMAKE_SOURCE_DIR}/tc_3rdparty/asio2/3rd)
 
 if(ANDROID)
     find_package(Protobuf REQUIRED)
