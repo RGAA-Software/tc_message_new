@@ -113,10 +113,15 @@ enum ClientType {
   kiOS = 4;
 }
 
-enum ClientConnType {
+enum ClientNetworkType {
   kWebsocket = 0;
   kUdpKcp = 1;
   kWebRtc = 2;
+}
+
+enum ClientConnectType {
+  kDirect = 0;
+  kSignaling = 1;
 }
 
 // UI server
