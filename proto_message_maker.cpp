@@ -3,7 +3,7 @@
 
 namespace tc
 {
-
+    std::string ProtoMessageMaker::s_file_conn_token_ = "file_conn_token";
     std::string ProtoMessageMaker::MakeGamepadState(int32_t buttons, int32_t left_trigger, int32_t right_trigger, int32_t thumb_lx,
                                                     int32_t thumb_ly, int32_t thumb_rx, int32_t thumb_ry, const std::string& device_id, const std::string& stream_id) {
         tc::Message msg;
@@ -45,10 +45,10 @@ namespace tc
     std::shared_ptr<Message>  ProtoMessageMaker::MakeGetFileListMsg(const std::string& path) {
         auto tc_msg = std::make_shared<tc::Message>();
         tc_msg->set_type(tc::kFileOperateionsEvent);
-        ////msg->set_rd_token(token_);
+        tc_msg->set_file_conn_token(s_file_conn_token_);
         auto file_oper_msg = new tc::FileOperateionsEvent();
         file_oper_msg->set_path_of_filelist(path);
-        file_oper_msg->set_instruct_type(tc::FileOperateionsEvent::kGetFilesList);
+        file_oper_msg->set_operate_type(tc::FileOperateionsEvent::kGetFilesList);
         tc_msg->set_allocated_file_operateions_event(file_oper_msg);
         return tc_msg;
     }

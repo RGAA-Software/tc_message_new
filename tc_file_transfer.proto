@@ -144,7 +144,7 @@ message FileOperateionsEvent
 		kCancelUpload = 7;
 		kDownload = 8;
 	}
-	OperateType instruct_type = 1;
+	OperateType operate_type = 1;
 
 	// List of files to be deleted
 	repeated string paths_of_del = 2;
