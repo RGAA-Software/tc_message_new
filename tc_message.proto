@@ -521,6 +521,7 @@ message Message {
   FileTransRespDownload file_trans_resp_download = 320;
   FileTransDirectControl file_trans_direct_control = 325;
   FileTransDataPacket file_trans_data_packet = 326;
+  string file_conn_token = 327;
   FileTransSaveFileException file_trans_save_file_exception = 330;
   // file transfer end
 

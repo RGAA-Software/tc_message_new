@@ -21,6 +21,7 @@ namespace tc
                                                    const std::string& stream_id);
 
         // file trans begin
+        static std::string s_file_conn_token_;
         static std::shared_ptr<Message> MakeGetFileListMsg(const std::string& path);
 
 
