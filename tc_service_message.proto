@@ -43,8 +43,8 @@ message MsgHeartBeatResp {
 }
 
 message MsgReqCtrlAltDelete {
-  string req_client_id = 1;
-  string req_client_device_id = 2;
+  string req_device_id = 1;
+  string req_stream_id = 2;
 }
 
 message ServiceMessage {
