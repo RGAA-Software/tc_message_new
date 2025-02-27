@@ -461,8 +461,8 @@ message RestartServer {
 }
 
 message SyncPanelInfo {
-  string client_id = 1;
-  string client_random_pwd = 2;
+  string device_id = 1;
+  string device_random_pwd = 2;
 }
 
 message ReqCtrlAltDelete {
@@ -470,7 +470,6 @@ message ReqCtrlAltDelete {
 }
 
 message Message {
-  string client_id = 2;
   string device_id = 3;
   string stream_id = 4;
   // 消息序号
