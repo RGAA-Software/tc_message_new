@@ -37,7 +37,7 @@ message RelayHello {
 }
 
 message RelayHeartBeat {
-
+  int64 index = 1;
 }
 
 message RelayTargetMessage {
