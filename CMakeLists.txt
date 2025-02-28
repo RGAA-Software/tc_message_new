@@ -33,8 +33,17 @@ elseif(WIN32 OR APPLE OR UNIX)
     )
     target_link_libraries(tc_message libprotobuf)
 
-    #add_custom_command(TARGET tc_message POST_BUILD
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.h"  "${CMAKE_CURRENT_SOURCE_DIR}"
-    #        COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/tc_message.pb.cc"  "${CMAKE_CURRENT_SOURCE_DIR}"
-    #)
+    ### relay message
+    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS relay_message.proto)
+    add_library(tc_relay_message
+            ${CMAKE_CURRENT_BINARY_DIR}/relay_message.pb.cc
+    )
+    target_link_libraries(tc_relay_message libprotobuf)
+
+    ### manager message
+    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS mgr_message.proto)
+    add_library(tc_mgr_message
+            ${CMAKE_CURRENT_BINARY_DIR}/mgr_message.pb.cc
+    )
+    target_link_libraries(tc_mgr_message libprotobuf)
 endif()
