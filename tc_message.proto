@@ -118,6 +118,7 @@ enum ClientNetworkType {
   kWebsocket = 0;
   kUdpKcp = 1;
   kWebRtc = 2;
+  kRelay = 3;
 }
 
 enum ClientConnectType {
