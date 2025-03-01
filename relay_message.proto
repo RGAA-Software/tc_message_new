@@ -12,6 +12,10 @@ enum RelayMessageType {
   kRelayRequestControl = 50;
   kRelayRequestControlResp = 60;
   kRelayRoomPrepared = 70;
+  kRelayRoomInfoChanged = 80;
+  kRelayRoomDestroyed = 90;
+  kRelayRequestStop = 100;
+  kRelayRequestStopResp = 110;
 }
 
 enum RelayErrorCode {
@@ -29,7 +33,7 @@ message RelayErrorMessage {
   RelayMessageType which_message = 3;
 }
 
-message RelayClientInfo {
+message RelayDeviceInfo {
   string device_id = 2;
 }
 
@@ -42,8 +46,7 @@ message RelayHeartBeat {
 }
 
 message RelayTargetMessage {
-  string room_id = 10;
-  string remote_device_id = 20;
+  repeated string room_ids = 10;
   string payload = 30;
 }
 
@@ -56,7 +59,6 @@ message RelayCreateRoomRespMessage {
   string device_id = 1;
   string remote_device_id = 10;
   string room_id = 20;
-  repeated RelayClientInfo clients = 30;
 }
 
 message RelayRequestControlMessage {
@@ -79,6 +81,30 @@ message RelayRoomPreparedMessage {
   string remote_device_id = 30;
 }
 
+message RelayRoomInfoChangedMessage {
+  string room_id = 10;
+  string device_id = 20;
+  string remote_device_id = 30;
+  repeated RelayDeviceInfo devices = 40;
+}
+
+message RelayRoomDestroyedMessage {
+  string room_id = 10;
+  string device_id = 20;
+  string remote_device_id = 30;
+}
+
+// I don't want to relay anymore
+message RelayRequestStopMessage {
+  string room_id = 10;
+  string device_id = 20;
+  string remote_device_id = 30;
+}
+
+message RelayRequestStopRespMessage {
+
+}
+
 message RelayMessage {
   string from_device_id = 20;
   RelayErrorMessage relay_error = 21;
@@ -91,4 +117,8 @@ message RelayMessage {
   RelayRequestControlMessage request_control = 90;
   RelayRequestControlRespMessage request_control_resp = 100;
   RelayRoomPreparedMessage room_prepared = 110;
+  RelayRoomInfoChangedMessage room_info_changed = 120;
+  RelayRoomDestroyedMessage room_destroyed = 130;
+  RelayRequestStopMessage request_stop = 140;
+  RelayRequestStopRespMessage request_stop_resp = 150;
 }
