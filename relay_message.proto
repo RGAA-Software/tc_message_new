@@ -11,6 +11,7 @@ enum RelayMessageType {
   kRelayCreateRoomResp = 40;
   kRelayRequestControl = 50;
   kRelayRequestControlResp = 60;
+  kRelayRoomPrepared = 70;
 }
 
 enum RelayErrorCode {
@@ -47,6 +48,7 @@ message RelayTargetMessage {
 }
 
 message RelayCreateRoomMessage {
+  string device_id = 1;
   string remote_device_id = 10;
 }
 
@@ -67,11 +69,18 @@ message RelayRequestControlRespMessage {
   string device_id = 10;
   string remote_device_id = 20;
   string room_id = 30;
+  bool under_control = 35;
   string message = 40;
 }
 
-message RelayMessage {
+message RelayRoomPreparedMessage {
+  string room_id = 10;
   string device_id = 20;
+  string remote_device_id = 30;
+}
+
+message RelayMessage {
+  string from_device_id = 20;
   RelayErrorMessage relay_error = 21;
   RelayMessageType type = 30;
   RelayHello hello = 40;
@@ -81,4 +90,5 @@ message RelayMessage {
   RelayCreateRoomRespMessage create_room_resp = 80;
   RelayRequestControlMessage request_control = 90;
   RelayRequestControlRespMessage request_control_resp = 100;
+  RelayRoomPreparedMessage room_prepared = 110;
 }
