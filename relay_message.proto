@@ -47,7 +47,7 @@ message RelayHeartBeat {
 
 message RelayTargetMessage {
   repeated string room_ids = 10;
-  string payload = 30;
+  bytes payload = 30;
 }
 
 message RelayCreateRoomMessage {
