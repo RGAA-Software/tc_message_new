@@ -464,6 +464,9 @@ message RestartServer {
 message SyncPanelInfo {
   string device_id = 1;
   string device_random_pwd = 2;
+  string device_safety_pwd = 3;
+  string relay_host = 4;
+  string relay_port = 5;
 }
 
 message ReqCtrlAltDelete {
