@@ -91,6 +91,13 @@ message FileTransDataPacket {
 	bytes data = 8;
 }
 
+// File transfer packet response
+message FileTransDataPacketResponse {
+	string task_id = 1;  
+	// This task packet sequence
+	uint64 index = 2;
+}
+
 // Response to file upload
 message FileTransRespUpload {
 	enum UploadErrorCause {

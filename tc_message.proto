@@ -77,6 +77,7 @@ enum MessageType {
   kFileTransRespDownload = 305;
   kFileTransDirectControl = 310;
   kFileTransDataPacket = 311;
+  kFileTransDataPacketResponse = 312;
   kFileTransSaveFileException = 320;
   // file transfer end
 
@@ -527,6 +528,7 @@ message Message {
   FileTransDirectControl file_trans_direct_control = 325;
   FileTransDataPacket file_trans_data_packet = 326;
   string file_conn_token = 327;
+  FileTransDataPacketResponse file_trans_data_packet_response = 328;
   FileTransSaveFileException file_trans_save_file_exception = 330;
   // file transfer end
 
