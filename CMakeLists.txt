@@ -21,6 +21,14 @@ if(ANDROID)
             msg_answer_cbk.cpp
             )
     target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+
+    ### relay message
+    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS relay_message.proto)
+    add_library(tc_relay_message
+            ${CMAKE_CURRENT_BINARY_DIR}/relay_message.pb.cc
+    )
+    target_link_libraries(tc_relay_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+
 elseif(WIN32 OR APPLE OR UNIX)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto tc_service_message.proto tc_file_transfer.proto)
 
@@ -41,9 +49,9 @@ elseif(WIN32 OR APPLE OR UNIX)
     target_link_libraries(tc_relay_message libprotobuf)
 
     ### manager message
-    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS mgr_message.proto)
-    add_library(tc_mgr_message
-            ${CMAKE_CURRENT_BINARY_DIR}/mgr_message.pb.cc
-    )
-    target_link_libraries(tc_mgr_message libprotobuf)
+#    protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS mgr_message.proto)
+#    add_library(tc_mgr_message
+#            ${CMAKE_CURRENT_BINARY_DIR}/mgr_message.pb.cc
+#    )
+#    target_link_libraries(tc_mgr_message libprotobuf)
 endif()
