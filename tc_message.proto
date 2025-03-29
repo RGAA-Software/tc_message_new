@@ -157,7 +157,7 @@ message MonitorInfo {
 }
 
 message ServerConfiguration {
-  repeated MonitorInfo monitor_info = 1;
+  repeated MonitorInfo monitors_info = 1;
   string capturing_monitor_name = 2;
 
 }
@@ -192,6 +192,7 @@ message VideoFrame {
   int32 mon_top = 11;
   int32 mon_right = 12;
   int32 mon_bottom = 13;
+  int32 mon_index = 14;
 }
 
 message AudioFrame {
