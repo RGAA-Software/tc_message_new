@@ -427,8 +427,16 @@ message RespFileTransfer {
   uint64 timestamp = 70;
 }
 
+enum ClipboardType {
+  kClipboardText = 0;
+  kClipboardImage = 1;
+  kClipboardPixmap = 2;
+}
+
 message ClipboardInfo {
-  string msg = 1;
+  ClipboardType type = 1;
+  bytes msg = 2;
+  string file_md5 = 3;
 }
 
 message SwitchMonitor {
