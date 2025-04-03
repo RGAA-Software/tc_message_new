@@ -445,7 +445,8 @@ message SwitchMonitor {
 
 message MonitorSwitched {
   string name = 1;
-  repeated MonitorInfo monitor_info = 2;
+  int32 index = 2;
+  repeated MonitorInfo monitor_info = 3;
 }
 
 message SwitchWorkMode {
