@@ -12,8 +12,6 @@
 
 namespace tc {
 	  
-//using OnMsgParseRespCallbackFuncType = std::function<void(void* user_data, tc::RespCode code, const std::string& msg, const std::string& data)>;
-
 using OnMsgParseRespCallbackFuncType = std::function<void(tc::RespCode code, const std::string& msg, const std::string& data)>;
 
 class MsgRespCallbackInfo {
