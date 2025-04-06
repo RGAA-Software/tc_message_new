@@ -82,6 +82,9 @@ enum MessageType {
   // file transfer end
 
   kReqCtrlAltDelete = 330;
+
+  // client -> render update desktop
+  kUpdateDesktop = 340;
 }
 
 enum VideoType {
