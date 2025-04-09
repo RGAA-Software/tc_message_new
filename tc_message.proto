@@ -85,6 +85,10 @@ enum MessageType {
 
   // client -> render update desktop
   kUpdateDesktop = 340;
+
+  //
+  kClipboardReqBuffer = 350;
+  kClipboardRespBuffer = 360;
 }
 
 enum VideoType {
@@ -434,12 +438,37 @@ enum ClipboardType {
   kClipboardText = 0;
   kClipboardImage = 1;
   kClipboardPixmap = 2;
+  kClipboardFiles = 3;
+}
+
+message ClipboardFile {
+  string file_name = 1;
+  string full_path = 2;
+  int32 total_size = 3;
+  string ref_path = 4;
 }
 
 message ClipboardInfo {
   ClipboardType type = 1;
   bytes msg = 2;
   string file_md5 = 3;
+  repeated ClipboardFile files = 4;
+}
+
+message ClipboardReqBuffer {
+  string full_name = 1;
+  int64 req_size = 2;
+  int64 req_start = 3;
+  int64 req_index = 4;
+}
+
+message ClipboardRespBuffer {
+  string full_name = 1;
+  int64 req_size = 2;
+  int64 req_start = 3;
+  int64 req_index = 4;
+  int64 read_size = 5;
+  bytes buffer = 6;
 }
 
 message SwitchMonitor {
@@ -546,4 +575,7 @@ message Message {
   // file transfer end
 
   ReqCtrlAltDelete req_ctrl_alt_delete = 340;
+
+  ClipboardReqBuffer cp_req_buffer = 350;
+  ClipboardRespBuffer cp_resp_buffer = 360;
 }
