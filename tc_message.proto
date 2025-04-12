@@ -3,6 +3,7 @@
 package tc;
 
 import "tc_file_transfer.proto";
+import "tc_signaling_message.proto";
 
 enum RespCode
 {
@@ -578,4 +579,10 @@ message Message {
 
   ClipboardReqBuffer cp_req_buffer = 350;
   ClipboardRespBuffer cp_resp_buffer = 360;
+
+  // signaling begin
+    SigOfferSdpMessage sig_offer_sdp = 370;
+    SigAnswerSdpMessage sig_answer_sdp = 380;
+    SigIceMessage sig_ice = 450;
+  // signaling end
 }
