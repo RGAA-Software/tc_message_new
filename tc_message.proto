@@ -90,6 +90,11 @@ enum MessageType {
   //
   kClipboardReqBuffer = 350;
   kClipboardRespBuffer = 360;
+
+  //
+  kSigOfferSdpMessage = 370;
+  kSigAnswerSdpMessage = 380;
+  kSigIceMessage = 390;
 }
 
 enum VideoType {
