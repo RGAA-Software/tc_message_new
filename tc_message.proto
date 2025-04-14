@@ -167,6 +167,7 @@ message MonitorResolution {
 message MonitorInfo {
   string name = 1;
   repeated MonitorResolution resolutions = 2;
+  bool primary = 3;  // primary monitor   //to do:尚未生效
 }
 
 message ServerConfiguration {
