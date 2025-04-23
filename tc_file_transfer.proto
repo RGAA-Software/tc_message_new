@@ -150,6 +150,7 @@ message FileOperateionsEvent
 		kCancelDownload = 6;
 		kCancelUpload = 7;
 		kDownload = 8;
+		kRecursiveGetFilesList = 9;
 	}
 	OperateType operate_type = 1;
 
