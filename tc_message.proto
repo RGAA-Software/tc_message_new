@@ -320,6 +320,20 @@ message GamepadState {
   GamepadType gp_type = 8;
 }
 
+// working capture information
+message PtMsgWorkingCaptureInfo {
+  // monitor name or hook info
+  string target_name = 1;
+  int32 fps = 2;
+  // dxgi/gdi/hook
+  string capture_type = 3;
+}
+
+// working encoder information
+message PtMsgWorkingEncoderInfo {
+
+}
+
 message CaptureStatistics {
   // from inner server
   repeated uint32 video_frame_gaps = 1;
@@ -360,6 +374,11 @@ message CaptureStatistics {
   string video_capture_target = 17;
   // from inner server
   string video_capture_fps = 18;
+
+  // from renderer,
+  repeated PtMsgWorkingCaptureInfo working_captures_info = 19;
+  // from renderer,
+  repeated PtMsgWorkingEncoderInfo working_encoders_info = 20;
 }
 
 message ClientStatistics {
