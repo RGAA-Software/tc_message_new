@@ -327,9 +327,13 @@ message PtMsgWorkingCaptureInfo {
   int32 capturing_fps = 2;
   // dxgi/gdi/hook
   string capture_type = 3;
+  int32 capture_frame_width = 40;
+  int32 capture_frame_height = 50;
   // NVENC / AMF / SOFTWARE
-  string encoder_name = 4;
-  int32 encoding_fps = 5;
+  string encoder_name = 60;
+  int32 encoding_fps = 70;
+  // YUV420 YUV444
+  string encode_format = 80;
 }
 
 message CaptureStatistics {
