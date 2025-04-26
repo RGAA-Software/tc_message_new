@@ -324,14 +324,12 @@ message GamepadState {
 message PtMsgWorkingCaptureInfo {
   // monitor name or hook info
   string target_name = 1;
-  int32 fps = 2;
+  int32 capturing_fps = 2;
   // dxgi/gdi/hook
   string capture_type = 3;
-}
-
-// working encoder information
-message PtMsgWorkingEncoderInfo {
-
+  // NVENC / AMF / SOFTWARE
+  string encoder_name = 4;
+  int32 encoding_fps = 5;
 }
 
 message CaptureStatistics {
@@ -377,8 +375,6 @@ message CaptureStatistics {
 
   // from renderer,
   repeated PtMsgWorkingCaptureInfo working_captures_info = 19;
-  // from renderer,
-  repeated PtMsgWorkingEncoderInfo working_encoders_info = 20;
 }
 
 message ClientStatistics {
