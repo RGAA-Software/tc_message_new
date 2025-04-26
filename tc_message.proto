@@ -329,15 +329,15 @@ message CaptureStatistics {
   repeated uint32 audio_frame_gaps = 3;
 
   // from client
-  repeated uint32 decode_durations = 4;
+  //repeated uint32 decode_durations = 4;
   // from client
-  repeated uint32 client_video_recv_gaps = 5;
+  //repeated uint32 client_video_recv_gaps = 5;
   // from client
-  uint32 client_fps_video_recv = 6;
+  //uint32 client_fps_video_recv = 6;
   // from client
-  uint32 client_fps_render = 7;
+  //uint32 client_fps_render = 7;
   // from client
-  int64 client_recv_media_data = 8;
+  //int64 client_recv_media_data = 8;
 
   // from inner server
   int32 fps_video_encode = 9;
@@ -347,13 +347,19 @@ message CaptureStatistics {
   int64 server_send_media_data = 11;
 
   // from client
-  int32 render_width = 12;
+  //int32 render_width = 12;
   // from client
-  int32 render_height = 13;
+  //int32 render_height = 13;
   // from inner server
   int32 capture_width = 14;
   // from inner server
   int32 capture_height = 15;
+  // from inner server
+  int32 connected_clients = 16;
+  // from inner server
+  string video_capture_target = 17;
+  // from inner server
+  string video_capture_fps = 18;
 }
 
 message ClientStatistics {
