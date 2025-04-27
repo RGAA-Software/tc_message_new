@@ -379,6 +379,9 @@ message CaptureStatistics {
 
   // from renderer,
   repeated PtMsgWorkingCaptureInfo working_captures_info = 19;
+
+  bool relay_connected = 20;
+  string audio_capture_type = 21;
 }
 
 message ClientStatistics {
