@@ -334,13 +334,14 @@ message PtMsgWorkingCaptureInfo {
   int32 encoding_fps = 70;
   // YUV420 YUV444
   string encode_format = 80;
+  repeated int32 encode_durations = 90;
 }
 
 message CaptureStatistics {
   // from inner server
   repeated uint32 video_frame_gaps = 1;
   // from inner server
-  repeated uint32 encode_durations = 2;
+  //repeated uint32 encode_durations = 2;
   // from inner server
   repeated uint32 audio_frame_gaps = 3;
 
@@ -367,9 +368,9 @@ message CaptureStatistics {
   // from client
   //int32 render_height = 13;
   // from inner server
-  int32 capture_width = 14;
+  //int32 capture_width = 14;
   // from inner server
-  int32 capture_height = 15;
+  //int32 capture_height = 15;
   // from inner server
   int32 connected_clients = 16;
   // from inner server
