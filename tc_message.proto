@@ -329,6 +329,7 @@ message PtMsgWorkingCaptureInfo {
   string capture_type = 3;
   int32 capture_frame_width = 40;
   int32 capture_frame_height = 50;
+  repeated int32 video_capture_gaps = 51;
   // NVENC / AMF / SOFTWARE
   string encoder_name = 60;
   int32 encoding_fps = 70;
