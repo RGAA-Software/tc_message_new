@@ -95,6 +95,13 @@ enum MessageType {
   kSigOfferSdpMessage = 370;
   kSigAnswerSdpMessage = 380;
   kSigIceMessage = 390;
+
+  // renderer -> panel
+  kPluginsInfo = 400;
+
+  // panel -> renderer
+  // send command to renderer
+  kCommandRenderer = 450;
 }
 
 enum VideoType {
@@ -348,6 +355,7 @@ message PtMsgWorkingCaptureInfo {
 }
 
 message CaptureStatistics {
+  int32 ws_port = 1;
   // from inner server
   repeated uint32 audio_frame_gaps = 3;
   // from inner server
@@ -542,6 +550,25 @@ message ReqCtrlAltDelete {
 
 }
 
+message PluginInfo {
+  string name = 1;
+  string author = 2;
+  string version_name = 3;
+  int32 version_code = 4;
+  string desc = 5;
+  bool enabled = 6;
+}
+
+message PluginsInfo {
+  int32 ws_port = 1;
+  repeated PluginInfo plugins_info = 2;
+}
+
+message CommandRenderer {
+  int32 ws_port = 1;
+  string command = 2;
+}
+
 message Message {
   string device_id = 3;
   string stream_id = 4;
@@ -608,4 +635,7 @@ message Message {
     SigAnswerSdpMessage sig_answer_sdp = 380;
     SigIceMessage sig_ice = 450;
   // signaling end
+
+  PluginsInfo plugins_info = 460;
+  CommandRenderer command_renderer = 470;
 }
