@@ -103,6 +103,10 @@ enum VideoType {
   kNetVp9 = 2;
 }
 
+enum AudioEncodeType {
+  kNetOpus = 0;
+}
+
 enum ButtonFlag {
   kNone = 0;
   kCapsLockOn = 1;
@@ -340,38 +344,11 @@ message PtMsgWorkingCaptureInfo {
 
 message CaptureStatistics {
   // from inner server
-  repeated uint32 video_frame_gaps = 1;
-  // from inner server
-  //repeated uint32 encode_durations = 2;
-  // from inner server
   repeated uint32 audio_frame_gaps = 3;
-
-  // from client
-  //repeated uint32 decode_durations = 4;
-  // from client
-  //repeated uint32 client_video_recv_gaps = 5;
-  // from client
-  //uint32 client_fps_video_recv = 6;
-  // from client
-  //uint32 client_fps_render = 7;
-  // from client
-  //int64 client_recv_media_data = 8;
-
-  // from inner server
-  int32 fps_video_encode = 9;
   // from inner server
   int32 app_running_time = 10;
   // from inner server
   int64 server_send_media_data = 11;
-
-  // from client
-  //int32 render_width = 12;
-  // from client
-  //int32 render_height = 13;
-  // from inner server
-  //int32 capture_width = 14;
-  // from inner server
-  //int32 capture_height = 15;
   // from inner server
   int32 connected_clients = 16;
   // from inner server
@@ -384,6 +361,11 @@ message CaptureStatistics {
 
   bool relay_connected = 20;
   string audio_capture_type = 21;
+
+  // video encode type
+  VideoType video_encode_type = 22;
+  // audio encode type
+  AudioEncodeType audio_encode_type = 23;
 }
 
 message ClientStatistics {
