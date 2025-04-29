@@ -340,6 +340,11 @@ message PtMsgWorkingCaptureInfo {
   // YUV420 YUV444
   string encode_format = 80;
   repeated int32 encode_durations = 90;
+
+  // copy texture
+  repeated int32 copy_texture_durations = 100;
+  // map convert texture in software encoder mode
+  repeated int32 map_cvt_texture_durations = 110;
 }
 
 message CaptureStatistics {
