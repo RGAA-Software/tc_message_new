@@ -565,9 +565,15 @@ message PtPluginsInfo {
   repeated PtPluginInfo plugins_info = 2;
 }
 
-message CommandRenderer {
+enum PtPanelCommand {
+  kEnablePlugin = 0;
+  kDisablePlugin = 1;
+}
+
+message PtPanelCommandRenderer {
   int32 ws_port = 1;
-  string command = 2;
+  string plugin_id = 2;
+  PtPanelCommand command = 3;
 }
 
 message Message {
@@ -638,5 +644,5 @@ message Message {
   // signaling end
 
   PtPluginsInfo plugins_info = 460;
-  CommandRenderer command_renderer = 470;
+  PtPanelCommandRenderer command_renderer = 470;
 }
