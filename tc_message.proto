@@ -550,18 +550,19 @@ message ReqCtrlAltDelete {
 
 }
 
-message PluginInfo {
-  string name = 1;
-  string author = 2;
-  string version_name = 3;
-  int32 version_code = 4;
-  string desc = 5;
-  bool enabled = 6;
+message PtPluginInfo {
+  string id = 10;
+  string name = 20;
+  string author = 30;
+  string version_name = 40;
+  int32 version_code = 50;
+  string desc = 60;
+  bool enabled = 70;
 }
 
-message PluginsInfo {
+message PtPluginsInfo {
   int32 ws_port = 1;
-  repeated PluginInfo plugins_info = 2;
+  repeated PtPluginInfo plugins_info = 2;
 }
 
 message CommandRenderer {
@@ -636,6 +637,6 @@ message Message {
     SigIceMessage sig_ice = 450;
   // signaling end
 
-  PluginsInfo plugins_info = 460;
+  PtPluginsInfo plugins_info = 460;
   CommandRenderer command_renderer = 470;
 }
