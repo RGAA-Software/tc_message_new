@@ -338,8 +338,12 @@ message PtMsgWorkingCaptureInfo {
   int32 capturing_fps = 2;
   // dxgi/gdi/hook
   string capture_type = 3;
+  // captured original width x height
   int32 capture_frame_width = 40;
   int32 capture_frame_height = 50;
+  // resize width x height
+  int32 resize_frame_width = 41;
+  int32 resize_frame_height = 42;
   repeated int32 video_capture_gaps = 51;
   // NVENC / AMF / SOFTWARE
   string encoder_name = 60;
