@@ -102,6 +102,9 @@ enum MessageType {
   // panel -> renderer
   // send command to renderer
   kCommandRenderer = 450;
+
+  // client -> render 
+  kSwitchFullColorMode = 460;
 }
 
 enum VideoType {
@@ -531,6 +534,11 @@ message SwitchWorkMode {
   WorkMode mode = 1;
 }
 
+//切换全彩模式
+message SwitchFullColorMode {
+    bool enable = 1;
+}
+
 message ChangeMonitorResolution {
   string monitor_name = 1;
   int32 target_width = 2;
@@ -655,4 +663,6 @@ message Message {
 
   PtPluginsInfo plugins_info = 460;
   PtPanelCommandRenderer command_renderer = 470;
+
+  SwitchFullColorMode switch_full_color_mode = 480;
 }
