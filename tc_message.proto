@@ -197,6 +197,7 @@ message ServerConfiguration {
 
 message HeartBeat {
   uint64 index = 1;
+  int64 timestamp = 2;
 }
 
 message OnHeartBeat {
@@ -210,6 +211,7 @@ message OnHeartBeat {
   bool control_pressed = 40;
   bool win_pressed = 50;
   bool shift_pressed = 60;
+  int64 timestamp = 70;
 }
 
 message VideoFrame {
