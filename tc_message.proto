@@ -200,6 +200,15 @@ message HeartBeat {
   int64 timestamp = 2;
 }
 
+message IsolatedMonitorStatisticsInfoInRender {
+  string name = 1;
+  int32 capture_fps = 2;
+  string encoder_name = 3;
+  int32 encode_fps = 4;
+  int32 capture_frame_width = 5;
+  int32 capture_frame_height = 6;
+}
+
 message OnHeartBeat {
   uint64 index = 1;
   // keyboard information
@@ -212,6 +221,10 @@ message OnHeartBeat {
   bool win_pressed = 50;
   bool shift_pressed = 60;
   int64 timestamp = 70;
+  string video_capture_type = 71;
+  string audio_capture_type = 72;
+  string audio_encode_type = 73;
+  map<string, IsolatedMonitorStatisticsInfoInRender>  monitors_info = 80;
 }
 
 message VideoFrame {
