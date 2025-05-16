@@ -225,6 +225,7 @@ message OnHeartBeat {
   string audio_capture_type = 72;
   string audio_encode_type = 73;
   map<string, IsolatedMonitorStatisticsInfoInRender>  monitors_info = 80;
+  string pc_info = 90;
 }
 
 message VideoFrame {
