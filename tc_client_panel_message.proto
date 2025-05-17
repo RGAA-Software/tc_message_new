@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package tccp;
+
+enum CpMessageType {
+  kCpHello = 0;
+  kCpHeartBeat = 1;
+  kCpOnHeartBeat = 2;
+}
+
+// UI server
+enum CpSessionType {
+  kInnerServer = 0;
+  kAndroidClient = 1;
+  kWindowsClient = 2;
+}
+
+message CpPtMsgHello {
+  CpSessionType type = 1;
+}
+
+message CpPtMsgHeartBeat {
+  string remote_device_desktop_name = 1;
+  string remote_os_name = 2;
+}
+
+message CpPtMsgOnHeartBeat {
+
+}
+
+message CpMessage {
+  CpMessageType type = 1;
+  string stream_id = 2;
+  CpPtMsgHello hello = 5;
+  CpPtMsgHeartBeat heartbeat= 10;
+  CpPtMsgOnHeartBeat on_heartbeat = 20;
+}
+

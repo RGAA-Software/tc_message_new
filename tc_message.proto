@@ -159,13 +159,6 @@ enum ClientConnectType {
   kSignaling = 1;
 }
 
-// UI server
-enum SessionType {
-    kInnerServer = 0;
-    kAndroidClient = 1;
-    kWindowsClient = 2;
-}
-
 message Ack {
   MessageType type = 1;
   uint64 send_time = 2;
@@ -209,6 +202,43 @@ message IsolatedMonitorStatisticsInfoInRender {
   int32 capture_frame_height = 6;
 }
 
+// remote device hardware information
+message RdHardwareInfo {
+  message RdHardwareCpu {
+    string name = 1;
+    string id = 2;
+    uint32 num_cores = 3;
+    uint32 max_clock_speed = 4;
+  }
+
+  message RdHardwareMemory {
+    uint64 total_size = 1;
+    uint64 used_size = 2;
+  }
+
+  message RdHardwareGpu {
+    string name = 1;
+    uint64 size_in_bytes = 2;
+    // GB
+    string size_str = 3;
+    string driver_version = 4;
+    string pnp_device_id = 5;
+  }
+
+  message RdHardwareDisk {
+    string name = 1;
+    string model = 2;
+    string status = 3;
+    string serial_number = 4;
+    string interface_type = 5;
+  }
+
+  RdHardwareCpu cpu = 1;
+  RdHardwareMemory memory = 2;
+  repeated RdHardwareGpu gpus = 3;
+  repeated RdHardwareDisk disks = 4;
+}
+
 message OnHeartBeat {
   uint64 index = 1;
   // keyboard information
@@ -226,6 +256,9 @@ message OnHeartBeat {
   string audio_encode_type = 73;
   map<string, IsolatedMonitorStatisticsInfoInRender>  monitors_info = 80;
   string pc_info = 90;
+  string desktop_name = 91;
+  string os_name = 92;
+  RdHardwareInfo device_info = 100;
 }
 
 message VideoFrame {
@@ -435,7 +468,7 @@ message OnlineGame {
 }
 
 message UIServerHello {
-  SessionType type = 1;
+
 }
 
 message FileTransfer {
@@ -637,7 +670,6 @@ message Message {
   ClientStatistics client_statistics = 140;
   ServerAudioSpectrum server_audio_spectrum = 150;
   repeated OnlineGame online_games = 160;
-  UIServerHello ui_server_hello = 170;
   FileTransfer file_transfer = 180;
   RespFileTransfer resp_file_transfer = 190;
   ClipboardInfo clipboard_info = 200;
