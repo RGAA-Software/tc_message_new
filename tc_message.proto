@@ -105,6 +105,11 @@ enum MessageType {
 
   // client -> render 
   kSwitchFullColorMode = 460;
+
+  // client -> render
+  kStartMediaRecordClientSide = 470;
+  // client -> render
+  kStopMediaRecordClientSide = 471;
 }
 
 enum VideoType {
