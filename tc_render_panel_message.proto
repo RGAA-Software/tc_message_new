@@ -193,6 +193,6 @@ message RpMessage {
   RpPanelCommandRenderer command_renderer = 110;
   RpSyncPanelInfo sync_panel_info = 120;
   RpCaptureStatistics capture_statistics = 130;
-  RpServerAudioSpectrum server_audio_spectrum = 140;
+  RpServerAudioSpectrum renderer_audio_spectrum = 140;
   RpRestartServer restart_server = 150;
 }

@@ -44,7 +44,7 @@ namespace tc
 
     std::shared_ptr<Message>  ProtoMessageMaker::MakeGetFileListMsg(const std::string& path) {
         auto tc_msg = std::make_shared<tc::Message>();
-        tc_msg->set_type(tc::kFileOperateionsEvent);
+        tc_msg->set_type(tc::kFileOperationEvent);
         tc_msg->set_file_conn_token(s_file_conn_token_);
         auto file_oper_msg = new tc::FileOperateionsEvent();
         file_oper_msg->set_path_of_filelist(path);
