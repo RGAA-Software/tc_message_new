@@ -31,12 +31,8 @@ enum MessageType {
   kCursorInfoSync = 70;
   // client -> server
   kGamepadState = 80;
-  // capture server -> host panel
-  kCaptureStatistics = 90;
   // client statistics
   kClientStatistics = 100;
-  // capture server -> host panel
-  kServerAudioSpectrum = 110;
   // host panel -> client
   kOnlineGames = 120;
   // ui server hello
@@ -61,10 +57,10 @@ enum MessageType {
   kAvailableResolutions = 220;
   // insert key frame
   kInsertKeyFrame = 230;
-  // restart me, server -> host panel
-  kRestartServer = 240;
   // panel -> render
   kSyncPanelInfo = 250;
+  // capture server -> host panel
+  kServerAudioSpectrum = 251;
 
   // file transfer begin
   kFileOperateionsEvent = 260;
@@ -97,11 +93,11 @@ enum MessageType {
   kSigIceMessage = 390;
 
   // renderer -> panel
-  kPluginsInfo = 400;
+  //kRpPluginsInfo = 400;
 
   // panel -> renderer
   // send command to renderer
-  kCommandRenderer = 450;
+  //kRpCommandRenderer = 450;
 
   // client -> render 
   kSwitchFullColorMode = 460;
@@ -394,60 +390,6 @@ message GamepadState {
   GamepadType gp_type = 8;
 }
 
-// working capture information
-message PtMsgWorkingCaptureInfo {
-  // monitor name or hook info
-  string target_name = 1;
-  int32 capturing_fps = 2;
-  // dxgi/gdi/hook
-  string capture_type = 3;
-  // captured original width x height
-  int32 capture_frame_width = 40;
-  int32 capture_frame_height = 50;
-  // resize width x height
-  int32 resize_frame_width = 41;
-  int32 resize_frame_height = 42;
-  repeated int32 video_capture_gaps = 51;
-  // NVENC / AMF / SOFTWARE
-  string encoder_name = 60;
-  int32 encoding_fps = 70;
-  // YUV420 YUV444
-  string encode_format = 80;
-  repeated int32 encode_durations = 90;
-
-  // copy texture
-  repeated int32 copy_texture_durations = 100;
-  // map convert texture in software encoder mode
-  repeated int32 map_cvt_texture_durations = 110;
-}
-
-message CaptureStatistics {
-  int32 ws_port = 1;
-  // from inner server
-  repeated uint32 audio_frame_gaps = 3;
-  // from inner server
-  int32 app_running_time = 10;
-  // from inner server
-  int64 server_send_media_data = 11;
-  // from inner server
-  int32 connected_clients = 16;
-  // from inner server
-  string video_capture_target = 17;
-  // from inner server
-  string video_capture_fps = 18;
-
-  // from renderer,
-  repeated PtMsgWorkingCaptureInfo working_captures_info = 19;
-
-  bool relay_connected = 20;
-  string audio_capture_type = 21;
-
-  // video encode type
-  VideoType video_encode_type = 22;
-  // audio encode type
-  AudioEncodeType audio_encode_type = 23;
-}
-
 message ClientStatistics {
   repeated uint32 decode_durations = 1;
   repeated uint32 video_recv_gaps = 2;
@@ -456,15 +398,6 @@ message ClientStatistics {
   int64 recv_media_data = 5;
   int32 render_width = 6;
   int32 render_height = 7;
-}
-
-message ServerAudioSpectrum {
-  // from inner server
-  int32 samples = 1;
-  int32 channels = 2;
-  int32 bits = 3;
-  repeated double left_spectrum = 4;
-  repeated double right_spectrum = 5;
 }
 
 message OnlineGame {
@@ -604,48 +537,17 @@ message ChangeMonitorResolutionResult {
   bool result = 2;
 }
 
-message RestartServer {
-  string reason = 1;
-}
-
-message SyncPanelInfo {
-  string device_id = 1;
-  string device_random_pwd = 2;
-  string device_safety_pwd = 3;
-  string relay_host = 4;
-  string relay_port = 5;
-  string spvr_host = 6;
-  string spvr_port = 7;
-}
-
 message ReqCtrlAltDelete {
 
 }
 
-message PtPluginInfo {
-  string id = 10;
-  string name = 20;
-  string author = 30;
-  string version_name = 40;
-  int32 version_code = 50;
-  string desc = 60;
-  bool enabled = 70;
-}
-
-message PtPluginsInfo {
-  int32 ws_port = 1;
-  repeated PtPluginInfo plugins_info = 2;
-}
-
-enum PtPanelCommand {
-  kEnablePlugin = 0;
-  kDisablePlugin = 1;
-}
-
-message PtPanelCommandRenderer {
-  int32 ws_port = 1;
-  string plugin_id = 2;
-  PtPanelCommand command = 3;
+message ServerAudioSpectrum {
+  // from inner server
+  int32 samples = 1;
+  int32 channels = 2;
+  int32 bits = 3;
+  repeated double left_spectrum = 4;
+  repeated double right_spectrum = 5;
 }
 
 message Message {
@@ -671,9 +573,7 @@ message Message {
   MouseEvent mouse_event = 100;
   CursorInfoSync cursor_info_sync = 110;
   GamepadState gamepad_state = 120;
-  CaptureStatistics capture_statistics = 130;
   ClientStatistics client_statistics = 140;
-  ServerAudioSpectrum server_audio_spectrum = 150;
   repeated OnlineGame online_games = 160;
   FileTransfer file_transfer = 180;
   RespFileTransfer resp_file_transfer = 190;
@@ -683,8 +583,7 @@ message Message {
   SwitchWorkMode work_mode = 230;
   ChangeMonitorResolution change_monitor_resolution = 240;
   ChangeMonitorResolutionResult change_monitor_resolution_result = 250;
-  RestartServer restart_server = 260;
-  SyncPanelInfo sync_panel_info = 270;
+  ServerAudioSpectrum server_audio_spectrum = 260;
 
    // file transfer begin
   FileOperateionsEvent file_operateions_event = 280;
@@ -709,13 +608,10 @@ message Message {
   ClipboardRespBuffer cp_resp_buffer = 360;
 
   // signaling begin
-    SigOfferSdpMessage sig_offer_sdp = 370;
-    SigAnswerSdpMessage sig_answer_sdp = 380;
-    SigIceMessage sig_ice = 450;
+  SigOfferSdpMessage sig_offer_sdp = 370;
+  SigAnswerSdpMessage sig_answer_sdp = 380;
+  SigIceMessage sig_ice = 450;
   // signaling end
-
-  PtPluginsInfo plugins_info = 460;
-  PtPanelCommandRenderer command_renderer = 470;
 
   SwitchFullColorMode switch_full_color_mode = 480;
 }

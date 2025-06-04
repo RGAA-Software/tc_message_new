@@ -1,0 +1,198 @@
+syntax = "proto3";
+
+package tcrp;
+
+enum RpMessageType {
+  kRpHello = 0;
+  kRpHelloResp = 1;
+  kRpHeartBeat = 2;
+  kRpHeartBeatResp = 3;
+  kRpClientConnected = 4;
+  kRpClientDisConnected = 5;
+  kRpFileTransferBegin = 6;
+  kRpFileTransferEnd = 7;
+  // renderer -> panel
+  kRpPluginsInfo = 10;
+  // panel -> render
+  kSyncPanelInfo = 20;
+  // panel -> renderer
+  // send command to renderer
+  kRpCommandRenderer = 30;
+  // capture server -> host panel
+  kRpCaptureStatistics = 40;
+  // capture server -> host panel
+  kRpServerAudioSpectrum = 50;
+  // restart me, server -> host panel
+  kRpRestartServer = 60;
+}
+
+message RpHello {
+
+}
+
+message RpHelloResp {
+
+}
+
+message RpHeartBeat {
+
+}
+
+message RpHeartBeatResp {
+
+}
+
+message RpClientConnected {
+
+}
+
+message RpClientDisconnected {
+
+}
+
+message RpFileTransferBegin {
+  string filename = 1;
+  string timestamp = 2;
+  string direction = 3;
+  string file_detail = 4;
+}
+
+message RpFileTransferEnd {
+  string filename = 1;
+  string timestamp = 2;
+  string direction = 3;
+  string file_detail = 4;
+}
+
+message RpPluginInfo {
+  string id = 10;
+  string name = 20;
+  string author = 30;
+  string version_name = 40;
+  int32 version_code = 50;
+  string desc = 60;
+  bool enabled = 70;
+}
+
+message RpPluginsInfo {
+  int32 ws_port = 1;
+  repeated RpPluginInfo plugins_info = 2;
+}
+
+enum RpPanelCommand {
+  kEnablePlugin = 0;
+  kDisablePlugin = 1;
+}
+
+message RpPanelCommandRenderer {
+  int32 ws_port = 1;
+  string plugin_id = 2;
+  RpPanelCommand command = 3;
+}
+
+message RpSyncPanelInfo {
+  string device_id = 1;
+  string device_random_pwd = 2;
+  string device_safety_pwd = 3;
+  string relay_host = 4;
+  string relay_port = 5;
+  string spvr_host = 6;
+  string spvr_port = 7;
+}
+
+enum VideoType {
+  kNetH264 = 0;
+  kNetHevc = 1;
+  kNetVp9 = 2;
+}
+
+enum AudioEncodeType {
+  kNetOpus = 0;
+}
+
+// working capture information
+message RpMsgWorkingCaptureInfo {
+  // monitor name or hook info
+  string target_name = 1;
+  int32 capturing_fps = 2;
+  // dxgi/gdi/hook
+  string capture_type = 3;
+  // captured original width x height
+  int32 capture_frame_width = 40;
+  int32 capture_frame_height = 50;
+  // resize width x height
+  int32 resize_frame_width = 41;
+  int32 resize_frame_height = 42;
+  repeated int32 video_capture_gaps = 51;
+  // NVENC / AMF / SOFTWARE
+  string encoder_name = 60;
+  int32 encoding_fps = 70;
+  // YUV420 YUV444
+  string encode_format = 80;
+  repeated int32 encode_durations = 90;
+
+  // copy texture
+  repeated int32 copy_texture_durations = 100;
+  // map convert texture in software encoder mode
+  repeated int32 map_cvt_texture_durations = 110;
+}
+
+message RpCaptureStatistics {
+  int32 ws_port = 1;
+  // from inner server
+  repeated uint32 audio_frame_gaps = 3;
+  // from inner server
+  int32 app_running_time = 10;
+  // from inner server
+  int64 server_send_media_data = 11;
+  // from inner server
+  int32 connected_clients = 16;
+  // from inner server
+  string video_capture_target = 17;
+  // from inner server
+  string video_capture_fps = 18;
+
+  // from renderer,
+  repeated RpMsgWorkingCaptureInfo working_captures_info = 19;
+
+  bool relay_connected = 20;
+  string audio_capture_type = 21;
+
+  // video encode type
+  VideoType video_encode_type = 22;
+  // audio encode type
+  AudioEncodeType audio_encode_type = 23;
+}
+
+message RpServerAudioSpectrum {
+  // from inner server
+  int32 samples = 1;
+  int32 channels = 2;
+  int32 bits = 3;
+  repeated double left_spectrum = 4;
+  repeated double right_spectrum = 5;
+}
+
+message RpRestartServer {
+  string reason = 1;
+}
+
+message RpMessage {
+  RpMessageType type = 5;
+  // with ws port...
+  string renderer_id = 10;
+  RpHello hello = 20;
+  RpHelloResp hello_resp = 30;
+  RpHeartBeat heartbeat = 40;
+  RpHeartBeatResp heartbeat_resp = 50;
+  RpClientConnected client_connected = 60;
+  RpClientDisconnected client_disconnected = 70;
+  RpFileTransferBegin ft_begin = 80;
+  RpFileTransferEnd ft_end = 90;
+  RpPluginsInfo plugins_info = 100;
+  RpPanelCommandRenderer command_renderer = 110;
+  RpSyncPanelInfo sync_panel_info = 120;
+  RpCaptureStatistics capture_statistics = 130;
+  RpServerAudioSpectrum server_audio_spectrum = 140;
+  RpRestartServer restart_server = 150;
+}
