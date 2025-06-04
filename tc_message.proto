@@ -60,10 +60,10 @@ enum MessageType {
   // panel -> render
   kSyncPanelInfo = 250;
   // capture server -> host panel
-  kServerAudioSpectrum = 251;
+  kRendererAudioSpectrum = 251;
 
   // file transfer begin
-  kFileOperateionsEvent = 260;
+  kFileOperationEvent = 260;
   kFileOperateRespRename = 265;
   kFileOperateRespGetFileList = 270;
   kFileOperateRespCreateNewFolder = 280;
@@ -91,13 +91,6 @@ enum MessageType {
   kSigOfferSdpMessage = 370;
   kSigAnswerSdpMessage = 380;
   kSigIceMessage = 390;
-
-  // renderer -> panel
-  //kRpPluginsInfo = 400;
-
-  // panel -> renderer
-  // send command to renderer
-  //kRpCommandRenderer = 450;
 
   // client -> render 
   kSwitchFullColorMode = 460;
@@ -541,7 +534,7 @@ message ReqCtrlAltDelete {
 
 }
 
-message ServerAudioSpectrum {
+message RendererAudioSpectrum {
   // from inner server
   int32 samples = 1;
   int32 channels = 2;
@@ -583,7 +576,7 @@ message Message {
   SwitchWorkMode work_mode = 230;
   ChangeMonitorResolution change_monitor_resolution = 240;
   ChangeMonitorResolutionResult change_monitor_resolution_result = 250;
-  ServerAudioSpectrum server_audio_spectrum = 260;
+  RendererAudioSpectrum renderer_audio_spectrum = 260;
 
    // file transfer begin
   FileOperateionsEvent file_operateions_event = 280;
