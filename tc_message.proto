@@ -82,6 +82,7 @@ enum MessageType {
 
   // client -> render update desktop
   kUpdateDesktop = 340;
+  kHardUpdateDesktop = 341;
 
   //
   kClipboardReqBuffer = 350;
