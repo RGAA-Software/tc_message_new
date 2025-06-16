@@ -100,6 +100,9 @@ enum MessageType {
   kStartMediaRecordClientSide = 470;
   // client -> render
   kStopMediaRecordClientSide = 471;
+
+  // client -> render
+  kModifyFps = 480;
 }
 
 enum VideoType {
@@ -180,7 +183,7 @@ message MonitorInfo {
 message ServerConfiguration {
   repeated MonitorInfo monitors_info = 1;
   string capturing_monitor_name = 2;
-
+  int32 fps = 3;
 }
 
 message HeartBeat {
@@ -544,6 +547,11 @@ message RendererAudioSpectrum {
   repeated double right_spectrum = 5;
 }
 
+// client->render
+message ModifyFps {
+    int32 fps = 1;
+}
+
 message Message {
   string device_id = 3;
   string stream_id = 4;
@@ -608,4 +616,6 @@ message Message {
   // signaling end
 
   SwitchFullColorMode switch_full_color_mode = 480;
+
+  ModifyFps modify_fps = 490;
 }
