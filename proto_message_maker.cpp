@@ -53,4 +53,13 @@ namespace tc
         return tc_msg;
     }
 
+    std::string ProtoMessageMaker::MakeChangeMonitor(int index, const std::string& name, const std::string& device_id, const std::string& stream_id) {
+        tc::Message m;
+        m.set_type(tc::kSwitchMonitor);
+        m.set_device_id(device_id);
+        m.set_stream_id(stream_id);
+        m.mutable_switch_monitor()->set_name(name);
+        return m.SerializeAsString();
+    }
+
 }

@@ -20,6 +20,9 @@ namespace tc
         static std::string MakeMouseEventFromTouch(int32_t event, const std::string& mon_name, float x_ratio, float y_ratio, const std::string& device_id,
                                                    const std::string& stream_id);
 
+        // change monitor
+        static std::string MakeChangeMonitor(int index, const std::string& name, const std::string& device_id, const std::string& stream_id);
+
         // file trans begin
         static std::string s_file_conn_token_;
         static std::shared_ptr<Message> MakeGetFileListMsg(const std::string& path);
