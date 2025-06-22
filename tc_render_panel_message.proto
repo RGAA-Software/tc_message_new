@@ -93,6 +93,7 @@ message RpSyncPanelInfo {
   string spvr_port = 7;
   bool can_be_operated = 8;
   bool relay_enabled = 9;
+  int32 language = 10;
 }
 
 enum VideoType {
