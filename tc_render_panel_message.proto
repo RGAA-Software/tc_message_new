@@ -24,6 +24,8 @@ enum RpMessageType {
   kRpServerAudioSpectrum = 50;
   // restart me, server -> host panel
   kRpRestartServer = 60;
+  //
+  kRpClipboardEvent = 70;
 }
 
 message RpHello {
@@ -187,6 +189,27 @@ message RpClientDisConnected {
   string the_conn_id = 4;
 }
 
+enum RpClipboardType {
+  kRpClipboardText = 0;
+  kRpClipboardImage = 1;
+  kRpClipboardPixmap = 2;
+  kRpClipboardFiles = 3;
+}
+
+message RpClipboardFile {
+  string file_name = 1;
+  string full_path = 2;
+  int64 total_size = 3;
+  string ref_path = 4;
+}
+
+message RpClipboardInfo {
+  RpClipboardType type = 1;
+  bytes msg = 2;
+  string file_md5 = 3;
+  repeated RpClipboardFile files = 4;
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -205,4 +228,5 @@ message RpMessage {
   RpCaptureStatistics capture_statistics = 130;
   RpServerAudioSpectrum renderer_audio_spectrum = 140;
   RpRestartServer restart_server = 150;
+  RpClipboardInfo clipboard_info = 160;
 }
