@@ -135,6 +135,12 @@ message RpMsgWorkingCaptureInfo {
   repeated int32 map_cvt_texture_durations = 110;
 }
 
+message RpConnectedClientInfo {
+  string device_id = 1;
+  string stream_id = 2;
+  string room_id = 3;
+}
+
 message RpCaptureStatistics {
   int32 ws_port = 1;
   // from inner server
@@ -144,7 +150,9 @@ message RpCaptureStatistics {
   // from inner server
   int64 server_send_media_data = 11;
   // from inner server
-  int32 connected_clients = 16;
+  int32 connected_clients_count = 13;
+  // from inner server
+  repeated RpConnectedClientInfo connected_clients = 15;
   // from inner server
   string video_capture_target = 17;
   // from inner server
