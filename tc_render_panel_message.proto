@@ -96,6 +96,8 @@ message RpSyncPanelInfo {
   bool can_be_operated = 8;
   bool relay_enabled = 9;
   int32 language = 10;
+  bool file_transfer_enabled = 11;
+  bool audio_enabled = 12;
 }
 
 enum VideoType {
