@@ -141,6 +141,7 @@ message RpConnectedClientInfo {
   string device_id = 1;
   string stream_id = 2;
   string room_id = 3;
+  string device_name = 4;
 }
 
 message RpCaptureStatistics {
