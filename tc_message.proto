@@ -143,6 +143,7 @@ enum ClientType {
   kMacOS = 2;
   kAndroid = 3;
   kiOS = 4;
+  kUnknown = 100;
 }
 
 enum ClientNetworkType {
@@ -167,6 +168,7 @@ message Hello {
   bool enable_video = 2;
   ClientType client_type = 3;
   bool enable_controller = 4;
+  string device_name = 5;
 }
 
 message MonitorResolution {
