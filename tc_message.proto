@@ -180,10 +180,17 @@ message MonitorInfo {
   bool primary = 3;  // primary monitor   //to do:尚未生效
 }
 
+// render -> client
 message ServerConfiguration {
   repeated MonitorInfo monitors_info = 1;
   string capturing_monitor_name = 2;
   int32 fps = 3;
+  // Settings -> Security Settings
+  bool file_transfer_enabled = 4;
+  // Settings -> General Settings
+  bool audio_enabled = 5;
+  // Settings -> Security Settings
+  bool can_be_operated = 6;
 }
 
 message HeartBeat {
