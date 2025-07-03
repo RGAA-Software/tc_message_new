@@ -28,6 +28,8 @@ enum RpMessageType {
   kRpClipboardEvent = 70;
   //
   kRpDisconnectConnection = 80;
+  // client -> render -> panel
+  kRpRemoteClipboardResp = 90;
 }
 
 message RpHello {
@@ -230,6 +232,11 @@ message RpDisconnectConnection {
   string device_name = 4;
 }
 
+message RpRemoteClipboardResp {
+  int32 content_type = 1;
+  bytes msg = 2;
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -250,4 +257,5 @@ message RpMessage {
   RpRestartServer restart_server = 150;
   RpClipboardInfo clipboard_info = 160;
   RpDisconnectConnection disconnect_connection = 170;
+  RpRemoteClipboardResp remote_clipboard_resp = 180;
 }
