@@ -26,6 +26,8 @@ enum RpMessageType {
   kRpRestartServer = 60;
   //
   kRpClipboardEvent = 70;
+  //
+  kRpDisconnectConnection = 80;
 }
 
 message RpHello {
@@ -221,6 +223,13 @@ message RpClipboardInfo {
   repeated RpClipboardFile files = 4;
 }
 
+message RpDisconnectConnection {
+  string device_id = 1;
+  string stream_id = 2;
+  string room_id = 3;
+  string device_name = 4;
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -240,4 +249,5 @@ message RpMessage {
   RpServerAudioSpectrum renderer_audio_spectrum = 140;
   RpRestartServer restart_server = 150;
   RpClipboardInfo clipboard_info = 160;
+  RpDisconnectConnection disconnect_connection = 170;
 }
