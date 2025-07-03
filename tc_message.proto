@@ -103,6 +103,9 @@ enum MessageType {
 
   // client -> render
   kModifyFps = 480;
+
+  // render -> client
+  kDisconnectConnection = 490;
 }
 
 enum VideoType {
@@ -561,6 +564,14 @@ message ModifyFps {
     int32 fps = 1;
 }
 
+// render -> client
+message DisconnectConnection {
+  string device_id = 1;
+  string stream_id = 2;
+  string room_id = 3;
+  string device_name = 4;
+}
+
 message Message {
   string device_id = 3;
   string stream_id = 4;
@@ -627,4 +638,5 @@ message Message {
   SwitchFullColorMode switch_full_color_mode = 480;
 
   ModifyFps modify_fps = 490;
+  DisconnectConnection disconnect_connection = 500;
 }
