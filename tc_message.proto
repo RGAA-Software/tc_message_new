@@ -43,6 +43,8 @@ enum MessageType {
   kRespFileTransfer = 150;
   // clipboard
   kClipboardInfo = 160;
+  // clipboard response
+  kClipboardInfoResp = 161;
   // switch monitor
   kSwitchMonitor = 170;
   // monitor switched
@@ -492,8 +494,13 @@ message ClipboardFile {
 message ClipboardInfo {
   ClipboardType type = 1;
   bytes msg = 2;
-  string file_md5 = 3;
-  repeated ClipboardFile files = 4;
+  repeated ClipboardFile files = 3;
+}
+
+message ClipboardInfoResp {
+  ClipboardType type = 1;
+  bytes msg = 2;
+  repeated ClipboardFile files = 3;
 }
 
 message ClipboardReqBuffer {
@@ -600,6 +607,7 @@ message Message {
   FileTransfer file_transfer = 180;
   RespFileTransfer resp_file_transfer = 190;
   ClipboardInfo clipboard_info = 200;
+  ClipboardInfoResp clipboard_info_resp = 201;
   SwitchMonitor switch_monitor = 210;
   MonitorSwitched monitor_switched = 220;
   SwitchWorkMode work_mode = 230;
