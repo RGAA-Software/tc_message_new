@@ -110,6 +110,9 @@ enum MessageType {
 
   // render -> client
   kDisconnectConnection = 490;
+
+  // client -> render  
+  kFocusOutEvent = 500;
 }
 
 enum VideoType {
