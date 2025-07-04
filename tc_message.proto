@@ -87,7 +87,9 @@ enum MessageType {
   kHardUpdateDesktop = 341;
 
   //
+  kClipboardReqAtBegin = 349;
   kClipboardReqBuffer = 350;
+  kClipboardReqAtEnd = 351;
   kClipboardRespBuffer = 360;
 
   //
@@ -503,11 +505,20 @@ message ClipboardInfoResp {
   repeated ClipboardFile files = 3;
 }
 
+message ClipboardReqAtBegin {
+  string full_name = 1;
+}
+
 message ClipboardReqBuffer {
   string full_name = 1;
   int64 req_size = 2;
   int64 req_start = 3;
   int64 req_index = 4;
+}
+
+message ClipboardReqAtEnd {
+  string full_name = 1;
+  bool success = 5;
 }
 
 message ClipboardRespBuffer {
@@ -634,7 +645,9 @@ message Message {
 
   ReqCtrlAltDelete req_ctrl_alt_delete = 340;
 
+  ClipboardReqAtBegin cp_req_at_begin = 349;
   ClipboardReqBuffer cp_req_buffer = 350;
+  ClipboardReqAtEnd cp_req_at_end = 351;
   ClipboardRespBuffer cp_resp_buffer = 360;
 
   // signaling begin
