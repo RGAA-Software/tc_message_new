@@ -194,14 +194,14 @@ message RpClientConnected {
   string conn_type = 1;
   string visitor_device_id = 2;
   int64 begin_timestamp = 3;
-  string the_conn_id = 4;
+  string stream_id = 4;
 }
 
 message RpClientDisConnected {
   string visitor_device_id = 1;
   int64 end_timestamp = 2;
   int64 duration = 3;
-  string the_conn_id = 4;
+  string stream_id = 4;
 }
 
 enum RpClipboardType {
