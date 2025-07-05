@@ -17,6 +17,7 @@ if(ANDROID)
             ${CMAKE_CURRENT_BINARY_DIR}/tc_signaling_message.pb.cc
             proto_message_maker.cpp
             msg_answer_cbk.cpp
+            proto_converter.cpp
             )
     target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
@@ -42,6 +43,7 @@ elseif(WIN32 OR APPLE OR UNIX)
             ${CMAKE_CURRENT_BINARY_DIR}/tc_service_message.pb.cc
             ${CMAKE_CURRENT_BINARY_DIR}/tc_file_transfer.pb.cc
             ${CMAKE_CURRENT_BINARY_DIR}/tc_signaling_message.pb.cc
+            proto_converter.cpp
     )
     target_link_libraries(tc_message libprotobuf)
 
