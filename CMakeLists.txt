@@ -32,6 +32,7 @@ if(ANDROID)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_render_panel_message.proto)
     add_library(tc_rp_message
             ${CMAKE_CURRENT_BINARY_DIR}/tc_render_panel_message.pb.cc
+            rp_proto_converter.cpp
     )
     target_link_libraries(tc_rp_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
@@ -59,6 +60,7 @@ elseif(WIN32 OR APPLE OR UNIX)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_render_panel_message.proto)
     add_library(tc_rp_message
             ${CMAKE_CURRENT_BINARY_DIR}/tc_render_panel_message.pb.cc
+            rp_proto_converter.cpp
     )
     target_link_libraries(tc_rp_message libprotobuf)
 
