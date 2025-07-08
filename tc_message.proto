@@ -190,6 +190,8 @@ message MonitorInfo {
   string name = 1;
   repeated MonitorResolution resolutions = 2;
   bool primary = 3;  // primary monitor   //to do:尚未生效
+  int32 current_width = 4;
+  int32 current_height = 5;
 }
 
 // render -> client
