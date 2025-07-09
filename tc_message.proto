@@ -113,6 +113,9 @@ enum MessageType {
 
   // client -> render  
   kFocusOutEvent = 500;
+
+  // client -> render  
+  kExitControlledEnd = 510;
 }
 
 enum VideoType {
