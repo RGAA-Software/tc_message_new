@@ -4,8 +4,8 @@ project(tc_message)
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/tc_3rdparty/asio2/include)
-include_directories(${CMAKE_SOURCE_DIR}/tc_3rdparty/asio2/3rd)
+include_directories(${GR_PROJECT_PATH}/tc_3rdparty/asio2/include)
+include_directories(${GR_PROJECT_PATH}/tc_3rdparty/asio2/3rd)
 
 if(ANDROID)
     find_package(Protobuf REQUIRED)
