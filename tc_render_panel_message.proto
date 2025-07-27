@@ -237,6 +237,7 @@ message RpDisconnectConnection {
   string device_name = 4;
 }
 
+// deprecated !!!
 message RpRemoteClipboardResp {
   int32 content_type = 1;
   bytes msg = 2;
@@ -270,6 +271,7 @@ message RpMessage {
   RpRestartServer restart_server = 150;
   RpClipboardInfo clipboard_info = 160;
   RpDisconnectConnection disconnect_connection = 170;
+  // deprecated !!!
   RpRemoteClipboardResp remote_clipboard_resp = 180;
   RpRawRenderMessage raw_render_msg = 190;
 }
