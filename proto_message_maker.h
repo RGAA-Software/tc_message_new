@@ -24,6 +24,15 @@ namespace tc
         // change monitor
         static std::shared_ptr<Data> MakeChangeMonitor(int index, const std::string& name, const std::string& device_id, const std::string& stream_id);
 
+        // lock the device
+        static std::shared_ptr<Data> MakeLockDevice(const std::string& device_id, const std::string& stream_id);
+
+        // stop render
+        static std::shared_ptr<Data> MakeStopRender(const std::string& device_id, const std::string& stream_id);
+
+        // ctrl + alt + delete
+        static std::shared_ptr<Data> MakeCtrlAltDelete(const std::string& device_id, const std::string& stream_id);
+
         // file trans begin
         static std::string s_file_conn_token_;
         static std::shared_ptr<Message> MakeGetFileListMsg(const std::string& path);

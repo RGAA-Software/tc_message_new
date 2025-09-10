@@ -66,4 +66,37 @@ namespace tc
         return buffer;
     }
 
+    // lock the device
+    std::shared_ptr<Data> ProtoMessageMaker::MakeLockDevice(const std::string& device_id, const std::string& stream_id) {
+        tc::Message m;
+        m.set_type(tc::kLockDevice);
+        m.set_device_id(device_id);
+        m.set_stream_id(stream_id);
+        m.mutable_lock_device();
+        auto buffer = ProtoAsData(&m);
+        return buffer;
+    }
+
+    // stop render
+    std::shared_ptr<Data> ProtoMessageMaker::MakeStopRender(const std::string& device_id, const std::string& stream_id) {
+        tc::Message m;
+        m.set_type(tc::kStopRender);
+        m.set_device_id(device_id);
+        m.set_stream_id(stream_id);
+        m.mutable_stop_render();
+        auto buffer = ProtoAsData(&m);
+        return buffer;
+    }
+
+    // ctrl + alt + delete
+    std::shared_ptr<Data> ProtoMessageMaker::MakeCtrlAltDelete(const std::string& device_id, const std::string& stream_id) {
+        tc::Message m;
+        m.set_type(tc::kReqCtrlAltDelete);
+        m.set_device_id(device_id);
+        m.set_stream_id(stream_id);
+        m.mutable_req_ctrl_alt_delete();
+        auto buffer = ProtoAsData(&m);
+        return buffer;
+    }
+
 }
