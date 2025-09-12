@@ -105,6 +105,7 @@ message RpSyncPanelInfo {
   int32 language = 10;
   bool file_transfer_enabled = 11;
   bool audio_enabled = 12;
+  string appkey = 13;
 }
 
 enum VideoType {
