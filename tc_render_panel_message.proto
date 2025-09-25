@@ -33,6 +33,8 @@ enum RpMessageType {
   // render -> panel
   // !!!
   kRpRawRenderMessage = 100;
+  // panel -> render
+  kRpHardwareInfo = 110;
 }
 
 message RpHello {
@@ -254,6 +256,10 @@ message RpRawRenderMessage {
   bool run_through = 5;
 }
 
+message RpHardwareInfoMessage {
+  bytes json_msg = 1;
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -277,4 +283,5 @@ message RpMessage {
   // deprecated !!!
   RpRemoteClipboardResp remote_clipboard_resp = 180;
   RpRawRenderMessage raw_render_msg = 190;
+  RpHardwareInfoMessage hw_info = 200;
 }
