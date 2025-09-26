@@ -258,6 +258,7 @@ message RpRawRenderMessage {
 
 message RpHardwareInfoMessage {
   bytes json_msg = 1;
+  float current_cpu_freq = 2;
 }
 
 message RpMessage {
