@@ -33,12 +33,9 @@ namespace tc
         // ctrl + alt + delete
         static std::shared_ptr<Data> MakeCtrlAltDelete(const std::string& device_id, const std::string& stream_id);
 
-        // file trans begin
-        static std::string s_file_conn_token_;
-        static std::shared_ptr<Message> MakeGetFileListMsg(const std::string& path);
+        // ack
+        static std::shared_ptr<Data> MakeAck(const std::string& device_id, const std::string& stream_id, uint64_t send_time, int msg_type);
 
-
-        // file trans end
     };
 
 }
