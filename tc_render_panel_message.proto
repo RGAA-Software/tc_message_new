@@ -35,6 +35,8 @@ enum RpMessageType {
   kRpRawRenderMessage = 100;
   // panel -> render
   kRpHardwareInfo = 110;
+  // render -> panel
+  kRpRelayAlive = 120;
 }
 
 message RpHello {
@@ -261,6 +263,11 @@ message RpHardwareInfoMessage {
   float current_cpu_freq = 2;
 }
 
+message RpRelayAliveMessage {
+  string device_id = 1;
+  int64 timestamp = 2;
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -285,4 +292,5 @@ message RpMessage {
   RpRemoteClipboardResp remote_clipboard_resp = 180;
   RpRawRenderMessage raw_render_msg = 190;
   RpHardwareInfoMessage hw_info = 200;
+  RpRelayAliveMessage relay_alive = 210;
 }
