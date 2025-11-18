@@ -112,6 +112,7 @@ message RpSyncPanelInfo {
   string appkey = 13;
   uint64 max_transmit_speed = 14;
   uint64 max_receive_speed = 15;
+  bool license_ok = 16;
 }
 
 enum VideoType {
