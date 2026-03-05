@@ -37,6 +37,8 @@ enum RpMessageType {
   kRpHardwareInfo = 110;
   // render -> panel
   kRpRelayAlive = 120;
+  // render -> panel
+  kRpMonitorChanged = 130;
 }
 
 message RpHello {
@@ -269,6 +271,10 @@ message RpRelayAliveMessage {
   int64 timestamp = 2;
 }
 
+message RpMonitorChanged {
+
+}
+
 message RpMessage {
   RpMessageType type = 5;
   // with ws port...
@@ -294,4 +300,5 @@ message RpMessage {
   RpRawRenderMessage raw_render_msg = 190;
   RpHardwareInfoMessage hw_info = 200;
   RpRelayAliveMessage relay_alive = 210;
+  RpMonitorChanged monitor_changed = 220;
 }
