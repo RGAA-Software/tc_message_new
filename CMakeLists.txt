@@ -46,14 +46,14 @@ elseif(WIN32 OR APPLE OR UNIX)
             ${CMAKE_CURRENT_BINARY_DIR}/tc_signaling_message.pb.cc
             proto_converter.cpp
     )
-    target_link_libraries(tc_message libprotobuf)
+    target_link_libraries(tc_message protobuf::libprotobuf)
 
     #### Client <==> Panel message
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_client_panel_message.proto)
     add_library(tc_cp_message
             ${CMAKE_CURRENT_BINARY_DIR}/tc_client_panel_message.pb.cc
     )
-    target_link_libraries(tc_cp_message libprotobuf)
+    target_link_libraries(tc_cp_message protobuf::libprotobuf)
 
 
     #### Renderer <==> Panel message
@@ -62,6 +62,6 @@ elseif(WIN32 OR APPLE OR UNIX)
             ${CMAKE_CURRENT_BINARY_DIR}/tc_render_panel_message.pb.cc
             rp_proto_converter.cpp
     )
-    target_link_libraries(tc_rp_message libprotobuf)
+    target_link_libraries(tc_rp_message protobuf::libprotobuf)
 
 endif()
