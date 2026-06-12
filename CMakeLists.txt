@@ -19,14 +19,14 @@ if(ANDROID)
             msg_answer_cbk.cpp
             proto_converter.cpp
             )
-    target_link_libraries(tc_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+    target_link_libraries(tc_message protobuf::libprotobuf protobuf::libprotobuf-lite)
 
     #### Client <==> Panel message
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_client_panel_message.proto)
     add_library(tc_cp_message
             ${CMAKE_CURRENT_BINARY_DIR}/tc_client_panel_message.pb.cc
     )
-    target_link_libraries(tc_cp_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+    target_link_libraries(tc_cp_message protobuf::libprotobuf protobuf::libprotobuf-lite)
 
     #### Renderer <==> Panel message
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_render_panel_message.proto)
@@ -34,7 +34,7 @@ if(ANDROID)
             ${CMAKE_CURRENT_BINARY_DIR}/tc_render_panel_message.pb.cc
             rp_proto_converter.cpp
     )
-    target_link_libraries(tc_rp_message protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+    target_link_libraries(tc_rp_message protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 elseif(WIN32 OR APPLE OR UNIX)
     protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS tc_message.proto tc_service_message.proto tc_file_transfer.proto tc_signaling_message.proto)
