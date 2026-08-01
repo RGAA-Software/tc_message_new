@@ -9,6 +9,7 @@ enum ServiceMessageType {
   kSrvHeartBeat = 3;
   kSrvHeartBeatResp = 4;
   kSrvReqCtrlAltDelete = 5;
+  kSrvAuthInfo = 6;
 }
 
 message MsgStartServer {
@@ -32,9 +33,26 @@ enum RenderStatus {
   kWorking = 2;
 }
 
+message MsgAuthInfo {
+  string device_id = 1;
+  string auth_id = 2;
+  string auth_name = 3;
+  string machine_code = 4;
+  string appkey = 5;
+  int32 role = 6;
+  int32 days = 7;
+  int32 max_streams = 8;
+  int64 end_timestamp_ms = 9;
+  // spvr(CMS) server address, so the service can connect to CMS
+  string spvr_host = 10;
+  int32 spvr_port = 11;
+}
+
 message MsgHeartBeat {
   int64 index = 1;
   string from = 2;
+  // panel carries its latest authorization info on every heartbeat
+  MsgAuthInfo auth_info = 3;
 }
 
 message MsgHeartBeatResp {
@@ -55,4 +73,6 @@ message ServiceMessage {
   MsgHeartBeat heart_beat = 5;
   MsgHeartBeatResp heart_beat_resp = 6;
   MsgReqCtrlAltDelete req_ctrl_alt_delete = 7;
+  // sent by panel right after connecting, and embedded in every heartbeat
+  MsgAuthInfo auth_info = 8;
 }
